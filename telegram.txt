@@ -1,0 +1,49 @@
+import time, datetime
+import RPi.GPIO as gpio
+import telepot
+from telepot.loop import MessageLoop
+now = datetime.datetime.now()
+gpio.setmode(gpio.BCM)
+gpio.setup(17,gpio.OUT, initial=gpio.LOW)
+def action(msg):
+    chat_id = msg['chat']['id']
+    command = msg['text']
+    print('Received: %s' % command)
+
+    if command == '/hi':
+        telegram_bot.sendMessage (chat_id, str("Hi! CircuitDigest"))
+
+    elif command == '/time':
+        telegram_bot.sendMessage(chat_id, str(now.hour)+str(":")+str(now.minute))
+        
+    elif command == '/logo':
+        telegram_bot.sendPhoto (chat_id, photo = "http://www.rjcollege.edu.in/wp-content/uploads/2016/12/rjcollege-logo-1.png")
+
+    elif command == '/6474':        
+        telegram_bot.sendMessage (chat_id, str("Hi! Arun"))
+    
+    elif command == '/ledon':
+        gpio.output(17,gpio.HIGH)
+
+    elif command == '/ledoff':
+        gpio.output(17,gpio.LOW)
+        
+    elif command == '/6454':
+        telegram_bot.sendMessage (chat_id, str("Hi! Hassaan"))
+
+    elif command == '/6468':
+        telegram_bot.sendMessage (chat_id, str("Hi! Sadique"))
+        
+    elif command == '/file':
+        telegram_bot.sendDocument(chat_id, document=open('/home/pi/Desktop/Pi/chatBot.py'))
+
+
+telegram_bot = telepot.Bot('6559413662:AAGMn_3X0B4j6lft12RPIYAHeRubOhdCni8')
+
+print (telegram_bot.getMe())
+
+MessageLoop(telegram_bot, action).run_as_thread()
+print('Up and Running....')
+
+while 1:
+    time.sleep(10)

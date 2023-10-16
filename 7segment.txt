@@ -1,0 +1,23 @@
+from time import sleep
+import tm1637
+
+try:
+    import thread
+except ImportError:
+    import _thread as thread
+
+display = tm1637.TM1637(CLK=21, DIO=20, brightness=1.0)
+
+try:
+    display.StartClock(military_time=True)
+    display.SetBrightness(1.0)
+    while True:
+        display.ShowDoublepoint(True)
+        sleep(1)
+        display.ShowDoublepoint(False)
+        sleep(1)
+except KeyboardInterrupt:
+    print("7 Segment closed")
+    display.StopClock()  # Stop the clock before cleanup
+    thread.interrupt_main()  # Interrupt the main thread
+    display.cleanup()  # Cleanup the display

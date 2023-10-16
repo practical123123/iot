@@ -1,0 +1,36 @@
+# Import necessary libraries
+from time import sleep
+import serial
+import RPi.GPIO as gp
+
+# Disable GPIO warnings and set the GPIO mode
+gp.setwarnings(False)
+gp.setmode(gp.BOARD)
+
+# Setup GPIO pins 3 and 5 as outputs, and initialize them to LOW
+gp.setup(3, gp.OUT, initial=gp.LOW)
+gp.setup(5, gp.OUT, initial=gp.LOW)
+
+# Define a function to read the RFID card
+def readCard():
+    # Use the correct serial.Serial() function
+    ser = serial.Serial('/dev/ttyUSB0')
+    ser.baudrate = 9600
+    data = ser.read(12)
+    ser.close()
+    return data
+
+try:
+    while True:
+        print('Place the card to read')
+        sleep(1)
+        id = readCard()
+        
+        if id == b'1C0039660043':
+            print("Authenticated")
+            gp.output(3, gp.HIGH)
+        elif id == b'270017A08313':
+            print("Not found")
+            gp.output(5, gp.HIGH)
+finally:
+    gp.cleanup()

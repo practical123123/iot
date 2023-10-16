@@ -1,0 +1,22 @@
+import Rpi.GPIO as gpio
+from time import sleep
+
+gpio.setwarnings(Flase)
+gpio.setmode(gpio.BOARD)
+
+gpio.setup(7, gpio.OUT, initil=gpio.LOW)
+gpio.setup(3, gpio.OUT, initil=gpio.LOW)
+gpio.setup(5, gpio.OUT, initil=gpio.LOW)
+gpio.setup(12, gpio.OUT, initil=gpio.LOW)
+
+while True:
+    gpio.output(7, gpio.HIGH)
+    gpio.output(3, gpio.HIGH)
+    gpio.output(5, gpio.HIGH)
+    gpio.output(13, gpio.HIGH)
+    sleep(1)
+    gpio.output(7, gpio.HIGH)
+    gpio.output(3, gpio.HIGH)
+    gpio.output(5, gpio.HIGH)
+    gpio.output(13, gpio.HIGH)
+    sleep(1)
