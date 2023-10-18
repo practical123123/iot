@@ -1,0 +1,1669 @@
+
+RAMNIRANJAN JHUNJHUNWALA COLLEGE GHATKOPAR (W), MUMBAI - 400086 
+DEPARTMENT OF INFORMATION TECHNOLOGY 
+2023  - 2024 
+T.Y. B. Sc.( I.T.) SEM V
+       Next Generation Technology
+
+Name: Shaikh Iqra Gulam Mustafa
+Roll no: 6461
+
+
+
+
+
+
+
+
+
+
+
+
+Hindi Vidya Prachar Samiti’s
+RAMNIRANJAN JHUNJHUNWALA COLLEGE 
+Ghatkopar (W), Mumbai-400 086
+Certificate
+
+
+
+     This  is  to certify that Mr./Ms. Shaikh Iqra Roll No 6461 of TYBSc-IT class has completed the required number of experiments in the subject of Next Generation Technology in the Department of Information Technology during the academic year 2023- 2024    .
+
+
+
+Professor In-Charge           		 Co-ordinator of IT Department                     
+								
+                                                     		  	Prof. Archana Bhide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INDEX
+Sr. No.
+Topic
+Date
+
+
+Installation of MongoDB and MongoDB shell command.
+23/06/23 
+
+
+Installation of MongoDB.
+
+
+
+
+MongoDB shell Command.
+
+
+
+
+Create a Database.
+List Database.
+Using Database.
+Create a Collection.
+List Collection.
+Insert Document into the Collection.
+Drop Collection.
+Delete Database.insert
+Help Command.
+
+
+c.
+Using MongoDB Compass.
+
+
+2.
+Handling Collection in MongoDB.
+30/06/23
+
+
+MongoDB Collection.
+
+
+
+
+Implicit Creation of Collection.
+
+
+
+
+Explicit Creation of Collection.
+
+
+
+
+Capped Collection.
+
+
+
+
+Creating Collection with document validation.
+
+
+
+
+Clustered Collection.
+
+
+3. 
+Insert/import Operation in MongoDB.
+7/07/23
+
+
+MongoDB Data insertion Methods.
+
+
+
+
+MongoDB Data Types.
+
+
+
+
+insert() Method.
+
+
+
+
+insertOne() Method.
+
+
+
+
+insertMany() Method.
+
+
+
+
+Embedded Documents.
+
+
+
+
+Importing data from .csv file.
+
+
+
+
+Importing data from .json file.
+
+
+4. 
+Querying MongoDB Database
+14/07/23
+
+
+find() and findOne() Method.
+
+
+
+
+pretty() Method.
+
+
+
+
+Filtering criteria in MongoDB Queries/Selection Queries.
+
+
+
+
+Using operators in Queries.
+
+
+
+
+Projection Queries.
+
+
+
+
+limit() Method.
+
+
+
+
+skip() Method.
+
+
+
+
+Regular Expression in MongoDB.
+
+
+5.
+Updating and Deleting Operations in MongoDB
+28/07/23
+
+
+ updateOne and updateMany() Methods
+
+
+b.
+$set and $unset Operators
+
+
+c.
+save() Method
+
+
+d.
+deleteOne() and DeleteMany Methods
+
+
+e.
+remove() Method
+
+
+6.
+Aggregation Operations in MongoDB
+21/07/23
+a.
+aggregate() Method
+
+
+7.
+Sorting and Indexing MongoDB database
+04/08/23
+a.
+sort() Method
+
+
+b.
+Metadata Sort Technique
+
+
+c.
+ensureIndex() and createIndex() Method
+
+
+8.
+Replication , Backup , Restore and Sharing in MongoDB
+11/08/2023
+9.
+Using MongoDB with different programming languages 
+11/08/2023
+a.
+Using MongoDB with Python
+
+
+b.
+Using MongoDB with Java
+
+
+10.
+Using MongoDB Atlas
+06/09/23
+11.
+JQuery
+13/09/23
+
+
+
+
+
+
+
+Practical 1 
+Installation of MongoDB and MongoDB shell command
+
+Installation of MongoDB
+Step 1: Open Browser and paste the link https://www.mongodb.com/try/download/community.           
+
+Step 2: Click on the Download button.       
+
+Step 3: Open the Downloaded file.     
+Step 4: Click on “Next”
+
+Step 5: Tick the “I accept the terms in the License Agreement” check box and then click “Next”
+
+Step 6: Select the Complete setup and click on “Next”.
+
+Step 7: Select the "Install MongoD as a Service" option. Keep all other parameters as default. Click on the "Next" button.
+
+Step 8: Check “Install MangoDB Compass” and click “Next”.
+
+Step 9: In the "Ready to install MongoDB" page, click the "Install" button and give administrator access.
+
+                           
+Step 10: Wait until the installation process is done. 
+                           
+Step 11: Once installation is complete, click on the "Finish" button to finalize installation.
+
+
+MongoDB shell commands.
+1.Create database
+2. List database
+3. Using database
+4. Create Collection
+5. List Collection
+6. Insert Document into the Collection
+7. Drop Collection
+8. Delete database
+9. Help Command
+
+Create Database
+
+List Database 
+>> show dbs;
+
+Use Database
+>> use BScIT
+
+Create Collection
+>> db.createCollection("SyIT")
+
+List Collection
+>> show collections
+
+Insert Document into the Collection
+>> db.FyIT.insertOne({"Roll_No":6461,"Name":"Iqra","Phone_No": 9152543090})
+
+Drop Collection
+>> db.TyIT.drop()
+
+Delete Database
+>> db.dropDatabase()
+
+Help Command
+>> db.help()
+
+Q. ) Create MongoDB database name ‘BscCS’ and in that database create Collections named as ‘FYIT’ , ‘SYIT’ , ‘TYIT’ then  insert document into the ‘FYIT Student information , ‘SYIT’ Result Information and in ‘TYIT’ save Project details.
+Create Database
+>> use BScCS
+
+Current Database 
+>> db
+
+Create Collection 
+>> db.createCollection("FYBScCS")
+Show Collection
+>> show collections 
+
+Insert One document in collection
+>> db.FYBScCS.insertOne({ROLL_NO:01,NAME:"IQRA", EMAIL_ID: "sk.iqra1710@gmail.com", PHONE_NO: 9153543090})
+
+{
+  "_id": {
+    "$oid": "64953ff8bd08e1bd81ea6e11"
+  },
+  "ROLL_NO": 1,
+  "NAME": "IQRA",
+  "EMAIL_ID": "sk.iqra1710@gmail.com",
+  "PHONE_NO": 9153543090
+}
+Insert many doc in collection
+
+SY CS
+
+
+TYBSc-CS
+
+
+
+
+Remove collection
+
+
+
+
+
+Create collection and also drop collection
+
+Another way to create db and collection
+Insert in collection
+
+
+
+
+
+
+Practical 2 
+Handling Collections in MongoDB
+
+Handling Collection in MongoDB
+Implicit collection8
+Explicit Collection
+Capped Collection
+Creating Collection with Document Validation
+Clustered Collection
+
+Implicit Creation of Collection
+>> use MyDB_6461
+>> db.createCollection(“MyCollection_6461”)
+>> db.MyCollection.insertOne({"_id":9,Name:"Iqra",Roll_No:6461})
+
+
+
+ Explicit Creation of Collection
+Create an Explicit collection named ‘MyCollectionExp_RollNo’  in a database named ‘MyDB’ By inserting the following document into the collection ‘MyCollectionExp_RollNo’
+
+
+     c) Capped Collection
+
+
+d) Creating Collection with Document Validation 
+Create a collection named validate with validation rules and try to insert data that does not meet the validation requirement .
+
+Given Validation Rules/@jsonSchema:
+BSON Type as Object
+Phone Field as required string field
+Email field as a string field with @ and .characters.
+Status field with one of the two possible values ‘Unknown ‘ or ‘InComplete’
+
+Code :
+db.createCollection("Validate",{
+validator:{
+$jsonSchema:{
+bsonType:"object",
+required:["phone","email","status"],
+properties:{
+phone:{
+bsonType:"int",
+description:"phone number is required "
+},
+email:{
+bsonType:"string",
+enum:["@","."],
+description: "email is required"
+},
+status:{
+bsonType:"string",
+enum:["unknown","incomplete"],
+description:"Must be either of unknown and incomplete" 
+}
+}
+}
+}
+})
+
+
+
+db.createCollection("posts111",{
+  validator:{
+    $jsonSchema :{
+      bsonType : "object",
+      required : [ "phone","status"],
+      properties : {
+        phone : {
+          bsonType : "string",
+          description : "Phone - Required."
+        },
+        status : {
+          bsonType : "string",
+          enum:["unknown","incomplete"],
+        },
+        email : {
+          bsonType : "string",
+          enum : ["@","."] , 
+          description : "	Category of Post - Optional."
+        }
+      }
+    }
+  }
+} )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 3
+Insert/import Operations in MongoDB
+
+MongoDB Data insertion Methods.
+MongoDB Data Types.
+insert() Method.
+insertOne() Method.
+insertMany() Method.
+Embedded Documents
+Importing data from .csv file
+Importing data from .json file
+
+MongoDB Data insertion Methods.
+The MongoDB shell provides the following methods to insert documents into a collection:
+To insert a single document, use db.collection.insertOne().
+To insert multiple documents, use db.collection.insertMany().
+
+
+MongoDB Data Types.
+Integer − This type is used to store a numerical value. Integer can be 32 bit or 64 bit depending upon your server.
+Boolean − This type is used to store a boolean (true/ false) value.
+Double − This type is used to store floating point values.
+String − This is the most commonly used datatype to store the data. String in MongoDB must be UTF-8 valid.
+Arrays − This type is used to store arrays or list or multiple values into one key.
+Object − This datatype is used for embedded documents.
+Null − This type is used to store a Null value.
+Date − This datatype is used to store the current date or time in UNIX time format. You can specify your own date time by creating an object of Date and passing day, month, year into it.
+Timestamp − timestamp. This can be handy for recording when a document has been modified or added.
+
+insert() Method.
+
+
+Insert the following information into the ‘Student’ Collection of College database using insert()Method.
+>> db.Student_6461.insert({Name:"Iqra", Class:"TY-BscIT", College:"RJC", PerMarks:84})
+
+   d) insertOne() Method.
+>> db.Student_6461.insertOne({Name:"Iram", Class:"FYIBSc", College:"RJC", PerMarks:80})
+
+
+      e) insertMany() Method.
+>> db.Student_6461.insertMany([{Name:"Nawaz", Class:"HSC", College:"Menon", PerMarks:45},
+{Name:"Fahim",Class:"ST-IT",College:"Sk",PerMarks:90},
+{Name:"Hasan", Class:"BCom", College:"Kelkar", PerMarks:67}])
+
+    f) Embedded Documents
+Insert the following information into the ‘Student’ Collection of ‘College’ Database with the embedded document for the field of address.
+
+>> db.Student_6461.insertOne({Name:"Shaikh Iqra", Class:"TY_BscIT", College:"RJC",
+Address:{BuildNO:5, Street:"eevan baug", City:"Mumbai"}, PerMarks:85})
+
+   g) Importing data from .csv file
+Importing data from .csv file  into MongoDB Collection named ‘Attendance’.
+
+C:\Program Files\MongoDB\Server\6.0\bin\Tools\100\bin>mongoimport.exe --db College --collection Attendance --type csv --file C:\Users\skiqr\OneDrive\Documents\Stud_data.csv --headerline
+
+
+
+h) Importing data from .json file
+[
+{"_id":1,"Roll_No": 6461 ,"Firstname":"Iqra","Lastname":"Shaikh","email":"sk.iqra1710@gmail.com","place":"Mumbra"},
+{"_id":2,"Roll_No": 6438 ,"Firstname":"Arbaz","Lastname":"Shaikh","email":"arbazdan153@gmail.com","place":"Mumbai"},
+{"_id":3,"Roll_No": 6474 ,"Firstname":"Mizan","Lastname":"khan","email":"mizank9876@gmail.com","place":"Kurla"}
+]
+
+C:\Program Files\MongoDB\Server\6.0\bin\Tools\100\bin>mongoimport --jsonArray --db College --collection stud_detail --file C:\Users\skiqr\Downloads\stud_detail.json
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 4 
+Querying MongoDB Database
+
+a)    find() and findOne() Method
+b)    pretty() Method
+c)    Filtering criteria in MongoDB Queries/ Selection Queries
+d)    Using operators in Queries
+e)    Projection Queries
+f)     limit() Method
+g)    skip() Method
+h)    Regular Expressions in MongoDB
+
+Exercise
+Download iris.csv file
+Create a database named ‘species’
+Create a collection named ‘flower’
+Import data of iris.csv into flower collection.
+Display all documents of flower using find()
+
+Solution 
+>> use Species_6461
+>> db.createCollection("Flower_61")
+
+
+
+Display all documents of flower collection using find() command
+>> db.flower_6461.find()
+
+Display a document of flower collection using findOne() command
+>> db.flower_6461.findOne()
+
+
+Display all documents of a particular species .
+>> db.flower_6461.find({"Species":"Iris-setosa"})
+
+Display all the documents of setosa having sepal width more than 4.4
+>> db.flower_6461.find({"SepalLengthCm":4.4})
+
+
+Display all the documents of setosa having sepal length less than 4.4
+>> db.flower_6461.find({"SepalLengthCm":{"$lt":4.4}})
+
+Display all document of species having length is either 4.4,4.5,4.6
+>> db.flower_6461.find({"SepalLengthCm":{"$in":[4.4,4.5,4.6]}})
+
+
+
+Display all document of species having not  length is either 4.4,4.5,4.6
+>> db.flower_6461.find({"SepalLengthCm":{"$nin":[4.4,4.5,4.6]}})
+
+
+Display all document of setosa having sepal width more than 3.0
+>> db.flower_6461.find({"Species":"Iris-setosa","SepalWidthCm": {"$gt” :3.0}})
+
+Display all document of setosa having sepal width more than 3.0 and Sepal Length less than 5.0
+>> db.flower_6461.find({"Species":"Iris-setosa",$and:[{ "SepalWidthCm ":{"$gt":3.0}},{"SepalLengthCm":{"$lt":5.0}}]})
+
+
+Display all documents for the species Setosa and Virginica
+>> db.flower_6461.find({$and:[{"Species":"Iris-setosa","Species":" Iris- virginica"}]})
+
+
+
+
+>> db.flower_6461.find({$or:[{"Species":"Iris-setosa"},{"Species":" Iris-virginica"}]})
+
+
+
+Display all documents for the Versicolor species having sepal length equal to 5.4
+>> db.flower_6461.find({"Species":"Iris-versicolor","SepalLengthCm" :5.4})
+
+Display all documents for the Versicolor species having sepal length is not equal to 5.4  ($ne)
+>> db.flower_6461.find({"Species":"Iris-versicolor","SepalLengthCm":{ "$ne" :5.4}})
+
+Display all species not having the petal length as 1.3 or 1.5 or 1.7. ($nin)
+>> db.flower_6461.find({"PetalLengthCm":{"$nin":[1.3,1.5,1.7]}})
+
+Display all species not having the petal length as 1.3 or 1.5 or 1.7. ($nin)
+>> db.flower_6461.find({"PetalLengthCm":{"$in":[1.3,1.5,1.7]}})
+
+Format documents that are stored into the Cursor : 
+>> db.flower_6461.find()
+
+>> db.flower_6461.find().pretty()
+
+Display all document of flowers collection except first two documents.
+>> db.flower_6461.find().skip(2)
+
+ Display first 25 documents of flowers collection.
+>> db.flower_6461.find().limit(25)
+
+
+Display first 25 documents of flowers collection except first five documents.
+>> db.flower_6461.find().skip(5).limit(25)
+
+
+
+Exercise 2 
+ create .json file for the given data and query the data.
+
+.json format
+[
+{"_id":1,"Firstname":"amit ","lastname":"bhide","email":"amit@gmail.com","salary":40000,"skills":["angular","react","mondb"],"department":"IT"},
+
+{"_id":2,"Firstname":"sumit ","lastname":"surve","email":"sumit@gmail.com","salary":3000,"skills":["accounting","tax"], "department":"Finance"},
+
+{"_id":3,"Firstname":"niketan ","lastname":"singh","email":"niketan@gmail.com","salary":44500,"skills":["sales","marketing"], "department":"Marketing"},
+
+{"_id":4,"Firstname":"vijay ","lastname":"vishwakarma","email":"vijay@gmail.com","salary":22500,"skills":["ajava"], "department":"CS"},
+
+{"_id":5,"Firstname":"kaushal ","lastname":"shukla","email":"kaushal@gmail.com","salary":60000,"skills":["accounting","tax"], "department":"Finance"},
+
+{"_id":6,"Firstname":"mita ","lastname":"yadav","email":"mita@gmail.com","salary":20000,"skills":["asp.net","blockchain"], "department":"CS"},
+
+{"_id":7,"Firstname":"sumita ","lastname":"mahale","email":"sumita@gmail.com","salary":15000,"skills":["Networking"], "department":"IT"},
+
+{"_id":8,"Firstname":"anita","lastname":"kulkarni","email":"anita@gmail.com","salary":34000,"skills":["SAP","Analytics"], "department":"IT"},
+
+{"_id":9,"Firstname":"Amit ","lastname":"khona","email":"amit@gmail.com","salary":57000,"skills":["SAP"], "department":"Stock"}
+]
+Import JSON file 
+
+>> db.Emp_data_6461.find()
+
+
+>> db.Emp_data_6461.findOne()
+
+ Display the first occurance of first name amit. (findOne)
+>> db.Emp_data_6461.findOne({"Firstname":"amit "})
+
+ Display the mail id of an employess having first name as vijay.
+>> db.Emp_data_6461.find({"Firstname":"vijay "},{"_id":0,"email":1})
+
+Display the list of emplyess having salary mre than 2000 in ascending order of salaries. Also excelude id field from the result.
+>> db.Emp_data_6461.find({ "salary": { $gt: 2000 } }, { "_id": 0, "lastname": 1 }).sort({ "salary": 1 })
+
+ Display the list of employess having salaries in the range of 30000 to 40000.
+>> db.Emp_data_6461.find({ "salary": { $gt: 30000, $lt: 40000 } })
+
+ Get the list of employess from the department of IT.
+>> db.Emp_data_6461.find({ "department": "IT" })
+
+ Get the list of employess from various departments with the skill tax.
+>> db.Emp_data_6461.find({"skills": "tax"})
+
+
+ Get the list of employess from various departments with the skill either tax or accounting.
+>> db.Emp_data_6461.find({"skills": {$in:["tax","accounting"]}})
+
+Display the list of employess with theri name and department.
+>> db.Emp_data_6461.find({}, { "Firstname": 1, "lastname": 1, "department": 1 })
+
+
+List the employess with mail id kaushal@gmail.com
+>> db.Emp_data_6461.find({ "email": "kaushal@gmail.com" })
+
+Get the list of employees from IT & CS departments with the skill of ASP.NET or blockchain.
+>> db.Emp_data_6461.find({$and:[{$or:[{department:"IT"},{department:" CS"}]},{$or:[{skills:"ASP.NET"},{skills:"blockchain"}]}]})
+  
+Update the name of employee to amita who has employee id as 1.
+>> db.Emp_data_6461.updateOne({"_id": 1 },{$set: {First_Name: 'Amita '}})
+
+Increment the salary of all employees by 600 upees.
+>> db.Emp_data_6461.updateMany({},{$inc:{salary:600}})
+
+List the employee with highest salary. 
+>> db.Emp_data_6461.aggregate([{$group:{_id:null,salMax:{$max: "$salary" }}}])
+
+Multiply the salary of all employees by 30.
+>> db.Emp_data_6461.updateMany({},{$mul:{salary:30}})
+
+Unset the email id of all employees.
+>> db.Emp_data_6461.updateMany({},{$unset:{"email":""}})
+
+Rename the first_name field to firstName 
+>> db.Emp_data_6461.updateMany({},{$rename:{"Firstname":" First_Name"}})
+
+Update the skills of "amita" from angular to Angular JS. (Updating array)
+>> db.Emp_data_6461.updateOne({First_Name:’Amita’,skills:”angular”},{
+$set : {“skills.$:”Angular JS”}})
+
+
+Add 'research' skill to all emplyees.
+>> db.Emp_data_6461.updateMany({},{$push:{"skills":{$each:[" research"]}}})
+
+
+Remove 'research' skill from all emplyees.
+>>   db.Emp_data_6461.updateMany({"skills":"research"},{$pull:{" skills ":"research"}})
+
+
+Update the employees skills from tax to GST.
+>> db.Emp_data_6461.updateMany({ "skills": "tax" },{ $set: { "skills.$": "GST" } })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 5
+            Updating and Deleting Operations in MongoDB
+a) updateOne and updateMany() Methods
+b) $set and $unset Operators
+c) save() Method
+d) deleteOne() and DeleteMany Methods
+e) remove() Method
+Using the ‘employee’ collection that is created in Practical 3, solve the following queries.
+updateOne and updateMany() Methods.
+Change the firstName of the first employee to ‘Morgan’.($set operator).
+>> db.Emp_data_6461.updateOne({"_id":1},{$set:{"First_Name": "Morgon"}})
+
+
+Update the location of employees having firstName as ‘Steve’ to ‘USA’.
+>> db.Emp_data_6461.insertOne({"_id":10,Firstname:"Steve",lastname:" James",Email:"steve@gmail.com",salary:85000,skills:['accounting','GST'],department:"Finance",location:"India"})
+
+>> db.Emp_data_6461.updateMany({"Firstname":"Steve"},{$set:{"location ": "USA"}})
+
+
+Increase the salary of the first employee by 500. ($inc operator).
+>> db.Emp_data_6461.updateOne({"_id":1},{$inc:{"salary":500}})
+
+Set the salary of an employee to 80000 having firstName as ‘Aarti’. (Add the document if not exist)
+>> db.Emp_data_6461.insertOne({"_id":11,First_Name:"Aarti",lastname:" Singh",Email:"aarti@gmail.com",salary:64000,skills:['react','mongodb'],department:"IT",location:"India"})
+>> db.Emp_data_6461.updateMany({"First_Name":"Aarti"},{$set:{" salary": 80000}})
+
+
+
+Add the appraisal date to the current date for all employees and increase the salary by 5000 of each employee. ($currentDate operator).
+>> db.Emp_data_6461.updateMany({},{$currentDate:{date:{$type:" timestamp"}}})
+
+
+>> db.Emp_data_6461.updateMany( {},{$currentDate: { "appraisalDate": true },$inc: { "salary": 5000 }})
+
+
+List an employee with the highest salary. ($max operator).
+>> db.Emp_data_6461.aggregate([{$group:{_id:"$department",maxsalary:{ $max:"$salary"}}}])
+
+List an employee with the lowest salary and ($min operator).
+>> db.Emp_data_6461.aggregate([{$group:{_id:"$department",minsalary:{ $min:"$salary"}}}])
+
+Calculate the 20 times the salary of the first employee. ($mul operator).
+>> db.Emp_data_6461.updateOne({ _id: 1 },{$mul:{salary:Int32(20)}})
+
+
+Remove the email id field from the collection. ($unset operator).
+>> db.Emp_data_6461.updateMany({},{$unset:{Email:""}})
+
+
+Rename the field ‘Firstname’ to ‘FirstName’. ($rename operator).
+>> db.Emp_data_6461.updateMany({},{$rename:{"First_Name":" FirstName"}})
+
+
+Set the lastName of an employee ‘Aarti’ to ‘Shetty’ and salary to 90000. (updating multiple fields).
+>> db.Emp_data_6461.updateOne({ "FirstName": "Aarti" },{ $set: { "lastname": "Shetty", "salary": 90000 } })
+
+
+Update the skill of ‘James’ to ‘Sales’ and ‘Accounting’ instead of ‘Sales’
+>> db.Emp_data_6461.updateOne( { "Firstname": "James", "skills": "Sales" },{ $set: { "skills": ["Sales", "Accounting"] } })
+
+
+Update the ‘Marketing’ skill to ‘Advertising’ for all documents.
+>> db.Emp_data_6461.updateMany({"skills":"marketing"}, {$set:{"skills.$":"Advertising"}})
+
+
+Update the skills element ‘GST’ to ‘Tax’
+>> db.Emp_data_6461.updateMany({ "skills": "GST" },{ $set: { "skills.$": "Tax" } })
+
+
+Add ‘sports’ skill to all the existing documents.
+>> db.Emp_data_6461.updateMany({},{ $push: { "skills": "sports" }})
+
+
+Add ‘Acting’ and ‘Reading’ skills to all the existing documents. ($push and $each operators).
+>> db.Emp_data_6461.updateMany({}, { $push: { "skills": { $each: ["Acting", "Reading"] } } })
+
+
+Remove the ‘sports’ skill from all the documents.
+>> db.Emp_data_6461.updateMany({},{ $pull: { "skills": "sports" } })
+
+
+Replace document 1 with a new document using save() method.
+>> db.Emp_data_6461.insertOne({newDocument})
+const newDocument = {_id: 15,FirstName: "Bharti",last_name: "Bhole",Email:"bharti@gmail.com",salary: 100000,skills: ["Developer", "Programmer"],department:"Finance"}
+
+Delete an employee having a salary of 70000.
+
+>> db.Emp_data_6461.deleteOne({ "salary": 70000})
+
+
+Delete all the employees having salaries greater than 70000.
+>> db.Emp_data_6461.deleteMany({salary:{$gt:70000}})
+
+Remove the employee document having id 2 using remove() method.
+>> db.Emp_data_6461.remove({"_id":2})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 6
+Aggregation Operations in MongoDB
+Create the collection named “MyCollection” and insert the following documents and solve the following queries..
+
+>> db.MyCollection_6461.insert([{ title: 'MongoDB Overview', description: 'MongoDB is no sql database', by: 'tutorials point', url: 'http://www.rjcollege.com', tags: ['mongodb', 'database', 'NoSQL'], likes: 100 }, { title: 'NoSQL Database', description: "NoSQL database doesn't have tables", by: 'tutorials point', url: 'http://www.rjcollege.com', tags: ['mongodb', 'database', 'NoSQL'], likes: 20, comments: [ { user:'user1', message: 'My first comment', dateCreated: new Date(2013,11,10,2,35), like: 0 } ] } ]) 
+
+a)   aggregate() Method
+Write a MongoDB query to use sum, avg, min and max expressions.
+sum
+>> db.MyCollection_6461.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : "$likes"}}}])
+
+avg
+>> db.MyCollection_6461.aggregate([{$group : {_id : "$by_user", num_tutorial : {$avg : "$likes"}}}])
+
+min 
+>> db.MyCollection_6461.aggregate([{$group : {_id : "$by_user", num_tutorial : {$min : "$likes"}}}])
+
+max
+>> db.MyCollection_6461.aggregate([{$group : {_id : "$by_user", num_tutorial : {$max : "$likes"}}}])
+
+     2. Write a MongoDB query to use push and add ToSet expressions.
+push
+>> db.MyCollection_6461.aggregate([{$group : {_id : "$by_user", url : {$push: "$url"}}}])
+
+addToSet
+>> db.MyCollection_6461.aggregate([{$group : {_id : "$by_user", url : {$addToSet: "$url"}}}])
+
+       3. Write a MongoDB query to use the first and last expression.
+ First
+>> db.MyCollection_6461.aggregate([{$group : {_id : "$by_user", first_url : {$first : "$url"}}}])
+
+Last
+>> db.MyCollection_6461.aggregate([{$group : {_id : "$by_user", last_url : {$last : "$url"}}}])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Practical 7
+                           Sorting and Indexing MongoDB Database
+Sort() Method
+Metadata Sort Technique
+EnsureIndex() and createIndex() Method
+
+Sort() Method
+Create a collection named “BookDetails” and insert some document with the field like bookid ,bookName ,bookAuthor , bookPub,bookPrice,bookEdition.
+
+db.BookDetails_6461.insert([
+{bookid: "1", bookName: "The India Story", bookAuthor: "Bimal Jalal", bookPub: "2004", bookPrice: "2000", bookEdition:"2"},
+{bookid: "2", bookName: "Queen of Fire", bookAuthor: "Devika Rangachari", bookPub: "2002", bookPrice: "3000", bookEdition:"2"},
+{bookid: "3", bookName: "A Place Called Home", bookAuthor: "Preeti Shenoy", bookPub: "2001", bookPrice: "1500", bookEdition:"1"},
+{bookid: "4", bookName: "Hear Yourself", bookAuthor: "Prem Rawat", bookPub: "2000", bookPrice: "1000", bookEdition:"1"},
+{bookid: "5", bookName: "Lal Salam", bookAuthor: "Smriti Irani", bookPub: "2001", bookPrice: "1550", bookEdition:"1"},
+{bookid: "6", bookName: "Hear Yourself", bookAuthor: " Prem Rawat", bookPub: "1999", bookPrice: "2500", bookEdition:"3"},
+{bookid: "7", bookName: "Rich and Poor Dad", bookAuthor: "Robert Kiyosaki", bookPub: "2002", bookPrice: "2000", bookEdition:"1"},
+])
+
+
+Sort the document based on bookAuthor.
+>> db.BookDetails_6461.find().sort({bookAuthor:1})
+
+
+
+Sort the document based on bookName and bookAuthor.
+
+>> db.BookDetails_6461.find().sort({bookAuthor:1},{bookName:1})
+
+
+
+Sort the document based on bookPub in descending order.
+
+>> db.BookDetails_6461.find().sort({bookPub:-1})
+
+b) Metadata($) sort technique
+Search the document for any one bookName  and sort the query result document using the metadata “testscore”.
+>> db.BookDetails_6461.find({},{_id:0})
+
+>> db.BookDetails_6461.createIndex({bookName:"text"})
+
+>> db.BookDetails_6461.find({$text:{$search:"Hear Yourself"}},{score:{$meta:"textScore"},_id:0}).sort({sort_exaple:{$meta:"textScore"}})
+
+      c) ensureIndex() and createIndex() Method
+Check for the existence of the index named ‘bookPriceList’.
+>> db.BookDetails_6461.exists("bookPriceList")
+
+Create an index named ‘bookPriceList’ on the bookName in ascending order and bookPrice in decreasing order.
+>> db.BookDetails_6461.createIndex({bookName:1,bookPrice:-1},{name:" bookPriceList"})
+
+Get the list of books sorted by ‘bookPriceList’.
+>> db.BookDetails_6461.find().sort({"bookPriceList":1})
+
+Insert document by creating document object in collection 
+>> Bookobj={“bookName:”Hear Yourself”}
+
+>> db.BookDetails_6461.insertOne("Bookobj")
+
+
+>> db.BookDetails_6461.find()
+
+Cursor : 
+>> var i = db.BookDetails_6461.find({"bookName":"Hear Yourself"})
+>> while(i.hasNext()) printjson(i.next())
+
+
+Explain 
+>> db.BookDetails_6461.find().explain(“allPlansExecution”)
+
+>>  db.BookDetails_6461.find().explain(“queryPlanner”)
+
+>>  db.BookDetails_6461.find().explain(“executionStats”)
+
+
+
+
+
+
+
+
+ Practical 8
+
+Command Prompt:
+>cd C:\Program Files\MongoDB\Server\6.0\bin\Tools\100\bin
+
+Write a MongoDB query to create a Replica of existing databases.
+             
+Write a MongoDB query to create a backup of the existing database.
+Create new folder in C drive “MDbackup” and execute the following command
+
+>mongodump.exe --out C:\MDBackup_6461
+   
+  
+Write a MongoDB query to restore the database from the backup.
+>mongorestore.exe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Practical 9
+Using MongoDB with different programming languages
+                         
+Using MongoDB with Python 
+ Insert a Document  : 
+Code : 
+from pymongo import MongoClient
+client = MongoClient('localhost',27017)
+db = client.Employee
+col = db.Employee_data_6461
+def insert_one():
+     try:
+         name = input("Enter your name:")
+         age = input("Enter your age :")
+         db.col.insert_one({
+         "name " :name,
+         "age":age})
+         print("data Inserted Successfully")
+     except Exception as e:
+           print(str(e))
+insert_one()
+
+Output : 
+
+
+
+Update a Document  : 
+Code : 
+from pymongo import MongoClient
+client = MongoClient('localhost',27017)
+db = client.Employee
+col = db.Employee_data_6461
+def update_one():
+    try:
+        name=input("Enter name to update:")
+        age=input("Enter age to update:")
+
+        db.col.update_one({"name ":name},{"$set":{"age":age}})
+        print("Records Updated Successfully\n")
+    except Exception as e :
+	    print(str(e))
+update_one()
+
+Output : 
+
+
+Delete a Document : 
+Code : 
+from pymongo import MongoClient
+client = MongoClient('localhost' ,27017)
+db = client.Employee
+col = db.Employee_data_6461
+def delete_one():
+	try:
+		name = input("Enter name :")
+		db.col.delete_one({"name ":name})
+		print("Deleted Successfully")
+	except Exception as e:
+		print(str(e))
+delete_one()
+
+Output : 
+
+
+Retrieve a Document : 
+Code : 
+from pymongo import MongoClient
+client = MongoClient('localhost',27017)
+db = client.employees
+col = db.employees_data_6461
+def read_concern():
+        try :
+             col=db.col.find()
+             print("All data from Employees data Database ")
+             for col in col:
+                     print(col)
+        except Exception as e:
+                print(str(e))
+read_concern()
+
+Output : 
+
+
+
+
+
+
+
+
+Using MongoDB with Java
+Connection : 
+Code : 
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import java.util.List;
+import java.util.Set;
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+public class mongodb_connection{
+   public static void main( String args[] ){
+      try{  
+MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+System.out.println("Database Connection Successful!");
+        DB db = mongoClient.getDB( "Iqra6461" );
+   }catch(Exception e){
+    System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+ }
+   }
+}
+
+
+
+Insert a Document : 
+Code : 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import java.util.Arrays;
+
+public class mongodb_connection_insert{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "Iqra6461");
+		System.out.println("Database Connection Successful!");
+		DBCollection collec = db.getCollection("stucollec");
+        BasicDBObject doc = new BasicDBObject("student", "Iqra6461")
+        .append("name", "Iqra")
+        .append("class", 'G')
+		.append("rollno", 61);
+collec.insert(doc);
+ System.out.println("Document is inserted successfully");
+	    }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
+
+
+
+Update a Document   : 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import com.mongodb.WriteResult;
+import java.util.Arrays;
+
+public class mongodb_connection_update{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "Iqra6461" );
+		DBCollection collec = db.getCollection("stucollec");
+		
+		DBObject query = new BasicDBObject("name", "Sk.Iqra");
+        DBObject update = new BasicDBObject();
+        update.put("$set", new BasicDBObject("name","Shaikh_Iqra" ));
+         
+        WriteResult result = collec.update(query, update);
+         
+       	DBCursor cursor = collec.find();
+        try {
+          while(cursor.hasNext()) {
+          System.out.println(cursor.next());
+         }
+         } finally {
+           cursor.close();
+             }
+      }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
+
+
+Retrieve  a Document :
+Code :  
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import java.util.Arrays;
+
+public class mongodb_connection_find_all{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "Iqra6461" );
+		DBCollection collec = db.getCollection("stucollec");
+		DBCursor cursor = collec.find();
+        try {
+          while(cursor.hasNext()) {
+          System.out.println(cursor.next());
+         }
+         } finally {
+           cursor.close();
+             }
+        }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
+
+Delete a Document : 
+Code : 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import com.mongodb.WriteResult;
+import java.util.Arrays;
+public class mongodb_connection_delete{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "Iqra6461" );
+		DBCollection collec = db.getCollection("stucollec");
+		DBObject query = new BasicDBObject("rollno",61);
+        WriteResult result = collec.remove(query);
+        System.out.println("Number of documents are deleted : " + result.getN());
+		DBCursor cursor = collec.find();		
+        try {
+          while(cursor.hasNext()) {
+          System.out.println(cursor.next());
+         }
+         } finally {
+           cursor.close();
+             }
+      }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Practical 10
+MongoDB Atlas
+
+https://www.mongodb.com/cloud/atlas/register
+
+
+
+
+
+
+Create Own DB & Collection : 
+
+
+Insert Document : 
+{"_id":{"$oid":"64e84cf818463292a0d6fc03"},
+  "Roll_No": 6461 ,
+  "Firstname":"Iqra",
+  "Subj1_m":"80",
+  "Subj2_m":"90",
+  "Total":"170",
+  "Grade":"A"
+}
+
+Query : 
+Total Marks of Subject 1 
+[
+  {
+    $group: {
+      _id:null,
+      Total :{$sum:"$Subj1_m"}
+    }
+  }
+]
+
+Max marks of subject 2
+[
+  {
+    $group: {
+      _id:null,
+      Max_Marks :{$max:"$Subj2_m"}
+    }
+  }
+]
+
+
+Count For each grade
+[
+  {
+    $group: {
+      _id: "$Grade", 
+      count: { $sum: 1 } 
+    }
+  }
+]
+
+Count total  no. of student
+[ 
+  { 
+     $count: "No_Of_Student"
+    }
+]
+
+
+
+Group the Students  with similar total marks.
+[  
+  {
+    $group: {
+      _id: "$Total", 
+       students: { $push: "$$ROOT" } 
+    }
+  }
+]
+
+
+
+Display grade wise count of Students.
+[
+  {
+    $group: {
+      _id: "$Grade",
+      count: { $sum: 1 }
+    }
+  }
+]
+
+Alter the marks of Subject 2 for any one Student
+Add the Subject3 column into the same collection and according to that update total Marks and Grade.
+Code : Adding Column Subject 3
+db.ITTYCOL.updateMany({}, { $set: { "Subj3_m": null } })
+
+Adding Subj3_m marks
+db.ITTYCOL.updateMany({}, { $set: { Subj3_m: 80 } } );
+
+
+Display the average Marks for all Subject
+[
+  {
+    $group: {
+      _id: null,
+      avgSubj1: { $avg: "$Subj1_m" },
+      avgSubj2: { $avg: "$Subj2_m" },
+    }
+  }
+]
+
+Visualise the result.
+
+
+
+ Practical 11
+JQuery
+JQuery is a JavaScript Library. JQuery greatly simplifies JavaScript programming. JQuery is easy to learn. JQuery takes a lot of common tasks that require many lines of JavaScript code to accomplish, and wraps them into methods that you can call with a single line of code. JQuery also simplifies a lot of the complicated things from JavaScript, like AJAX calls and DOM manipulation.The purpose of jQuery is to make it much easier to use JavaScript on your website.
+This is simple Webpage : 
+
+The jQuery library is a single JavaScript file, and you reference it with the HTML <script> tag (notice that the <script> tag should be inside the <head> section ).
+JQuery Library : 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+Toggle : Toggle between hiding and showing an element with the toggle() method.
+Source Code : 
+$(document).ready(function() {
+            $(".btn").click(function() {
+                $(".cont").toggle();
+            });
+        });
+
+Output : 
+This is Original Web page 
+
+After Toggle Shown elements are Hidden .
+And Hidden elements are Shown .
+
+Hide : You can hide an HTML element.
+DBClick : The function is executed when the user double-clicks on the HTML element.
+Source Code : 
+$(document).ready(function() {
+            $("p").dblclick(function() {
+                $("p").hide("slow", function() {
+                    alert("The paragraph is now hidden");
+                });
+            });
+        });
+
+Output : 
+
+After Double Click .
+
+Slide Toggle : 
+The jQuery slideToggle() method toggles between the slideDown() and slideUp() methods.
+If the elements have been slid down, slideToggle() will slide them up.
+If the elements have been slid up, slideToggle() will slide them down.
+Source Code : 
+$(document).ready(function() {
+            $(".first").click(function() {
+                $(".hi").slideToggle(3000);
+            });
+        });
+
+Output : 
+
+After SlideToggle (Slide Down )
+
+( Slide Up ) 
+
+Fade Out : 
+The jQuery fadeOut() method is used to fade out a visible element.
+
+Source Code : 
+$(document).ready(function() {
+            $("b").dblclick(function() {
+                $(".first").fadeOut();
+                $(".second").fadeOut(slow);
+                $(".fourth").fadeOut(6000);
+            });
+        });
+
+Output : 
+
+
+After Complete Fade Out .
+
+Animate : The jQuery animate() method is used to create custom animations.
+Stop : The jQuery stop() method is used to stop animations.
+
+Source Code : 
+$(document).ready(function() {
+            $(".btn_an").click(function() {
+                $(".first").animate({
+                    left: '100px'
+                }, 5000);
+                $(".first").animate({
+                    fontSize: '3em'
+                }, 5000);
+            });
+            $(".btn_st").click(function() {
+                $("div").stop();
+            });
+        });
+
+Output : 
+
+After Click Animate Button it will start Animate and Click on Stop will stop the Animate. 
+It Will first moves the element to the right, and then increases the font size of the text.
+
+
+Perform different animations after each other.
+
+Source Code : 
+$(document).ready(function() {
+            $(".btn_an").click(function() {
+                var div = $(".third");
+                div.animate({
+                    height: '600px',
+                    opacity: '0.4'
+                }, "slow");
+                div.animate({
+                    width: '600px',
+                    opacity: '0.8'
+                }, "slow");
+                div.animate({
+                    height: '300px',
+                    opacity: '0.4'
+                }, "slow");
+                div.animate({
+                    width: '270px',
+                    opacity: '0.8'
+                }, "slow");
+            });
+        });
+
+Output : 
+
+
+Slide Up  : The jQuery slideUp() method is used to slide up an element.
+Slide Down : The jQuery slideDown() method is used to slide down an element.
+
+Source Code : 
+$(document).ready(function() {
+            $(".fourth").click(function() {
+                $(".inc,.tti").css("color", "red")
+                    .slideUp(2000)
+                    .slideDown(2000);
+            });
+        });
+
+Output : 
+
+After Slide Up & Slide Down 
+
+Hover : The hover() method takes two functions and is a combination of the mouseenter() and mouseleave() methods.
+
+Source Code : 
+$(document).ready(function() {
+            $(".ti").hover(function() {
+                    alert("You entered in E-mail section. ");
+                },
+                function() {
+                    alert("Bye! You now leave E-mail section !");
+                });
+        });
+
+Output : 
+Mouse enter
+
+Mouse Leave 
+
+Source Code : 
+$(document).ready(function() {
+            $(".tfi").on({
+                mouseenter: function() {
+                    $(this).css("background-color", "lightgray");
+                },
+                mouseleave: function() {
+                    $(this).css("background-color", "lightblue");
+                },
+                click: function() {
+                    $(this).css("background-color", "yellow");
+                },
+            });
+        });
+
+Output : 
+Mouse Enter : 
+
+Mouse Leave : 
+
+Click : 
+
+Focus : The focus() method attaches an event handler function to an HTML form field.
+
+Source Code : 
+$(document).ready(function() {
+            $(".lik").focus(function() {
+                $(this).css("background-color", "pink");
+            });
+        });
+
+Output : 
+
+After Focus 
+
+
