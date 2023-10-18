@@ -1,0 +1,40 @@
+from pymongo import MongoClient
+
+client = MongoClient('localhost', 27017)
+db = client.NewDataBase
+col = db.newCol
+
+def insetOne():
+    try:
+        col.insert_one({"Name":"Bharat", "Age":21})
+        print("inserted")
+    except Exception as e:
+        print(str(e))
+
+
+
+def updateOne():
+    try:
+        col.update_one({"Name":"ArunVish..."}, {"$set":{"Age":25}})
+        print("Updated")
+    except Exception as e:
+        print(str(e))
+
+def delete():
+    try:
+        col.delete_one({"Name":"ArunVish..."})
+        print("Deleted")
+    except Exception as e:
+        print(str(e))
+
+def readAll():
+    try:
+        data = col.find()
+        print("Printing data")
+        for i in data:
+            print(i)
+    except Exception as e:
+        print(str(e))
+insetOne()
+# delete()
+readAll()
