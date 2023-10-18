@@ -1,0 +1,2050 @@
+
+
+MongoDB shell Command.
+
+Create a Database.
+List Database.
+Using Database.
+Create a Collection.
+List Collection.
+Insert Document into the Collection.
+Drop Collection.
+Delete Database.
+Help Command.
+
+Create a Database. (Example) 
+
+List Database(After creating Collection).
+
+
+
+Using Database.
+
+
+
+
+Create a Collection (ExCollection)
+
+List Collection.
+
+Insert Document into the Collection(ExCollection)
+ 
+
+
+
+
+
+
+
+Drop Collection (ExCollection).
+
+
+Delete Database (Example)
+
+
+Create New Database (BSCIT)
+
+
+Create Collection (FY, SY, TY)
+
+
+
+Insert documents in FY collection
+
+
+db.FY.insertMany([{Roll_No:'6408',Name:'Riya Sonar'},{Roll_No:'6409',Name:'Kabir Kapoor'}])
+
+
+
+
+db.FY.find()
+
+
+
+Insert documents in SY collection
+
+db.SY.insertMany([{Roll_no:"6464",Name:"Soniya Sonar",Marks:[{OOPS:"70",DS:"80",CN:"50",DBMS:"75",AM:"40"}]}])
+
+
+
+db.SY.insertMany([{Roll_no:"6408",Name:"Riya Sonar",Marks:[{OOPS:"77",DS:"78",CN:"60",DBMS:"75",AM:"57"}]}])
+
+
+
+db.SY.find()
+
+
+
+
+
+
+Insert documents in TYBScIT collection
+
+db.TY.insertMany([
+{ROll_no:"6408",Name:"Riya Sonar",Project:"Application"},
+{Roll_no:"6411",Name:"Neha Sonar",Project:"Website"},
+{Roll_no:"6476",Name:"Sheetal Sonar",Project:"Game"}])
+
+
+
+
+db.TY.find()
+
+
+
+
+
+Practical 2. Handling Collection in MongoDB.
+MongoDB Collection.
+Implicit Collection.
+Explicit Collection.
+Crapped Collection.
+Capped Collection with documentation validation.
+Clustered Collection
+
+Implicit Creation of Collection.
+
+> use MyDB_6408
+> db
+> db.createCollection(“MyCollection”)
+> db.MyCollection.insertOne({"_id":11,Name:"Riya",Roll_No:6408})
+
+
+
+Explicit Creation of Collection.
+
+Create an Explicit collection named ‘MyCollectionExp_RollNo’  in a database named ‘MyDB’ By inserting the following document into the collection ‘MyCollectionExp_RollNo’
+
+
+
+
+Capped Collection.
+
+
+Creating Collection with document validation.
+
+1. Create Collection validate with validation rules and try to insert data that does not meet the validation requirement.
+
+BSON type as object.
+Phone field as required string field.
+Email field as string field with @ and .characters.
+Status field with one of the two possible values ‘unknown’ or ‘Incomplete’.
+
+
+db.createCollection("validate",{validator:{$jsonSchema:{
+bsonType:"object",required:["phone","email","status"],properties:{
+phone:{bsonType:"int",description:"phone no is required"},
+email:{bsonType:"string",enum:["@","."],description:"email is required"},
+status:{bsonType:"string",enum:["unknown","incomplete"],
+description:"must be either of unknown and incomplete"}}}}})
+
+
+
+
+Clustered Collection.
+1. Create a Clustered Collection named ‘Stocks’ with the following features -
+Cluster index key as 1.
+Unique clustered index key value.
+Clustered index name as ‘Stocks clustered key’.
+db.runCommand({
+create : "Stocks",
+clusteredIndex : {"key":{_id:1}, "unique":true, "name" :"Stocks clustered key"}})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 3. Insert/import Operation in MongoDB.
+
+MongoDB Data insertion Methods.
+MongoDB Data Types.
+insert() Method.
+insertOne() Method.
+insertMany() Method.
+Embedded Documents
+Importing data from .csv file
+Importing data from .json file
+Create Database(college)
+
+
+Create Collection(Student_6408)
+
+MongoDB Data insertion Methods.
+
+The MongoDB shell provides the following methods to insert documents into a collection:
+To insert a single document, use db.collection.insertOne().
+To insert multiple documents, use db.collection.insertMany().
+
+MongoDB Data Types.
+
+Integer − This type is used to store a numerical value. Integer can be 32 bit or 64 bit depending upon your server.
+Boolean − This type is used to store a boolean (true/ false) value.
+Double − This type is used to store floating point values.
+String − This is the most commonly used datatype to store the data. String in MongoDB must be UTF-8 valid.
+Arrays − This type is used to store arrays or list or multiple values into one key.
+Object − This datatype is used for embedded documents.
+Null − This type is used to store a Null value.
+Date − This datatype is used to store the current date or time in UNIX time format. You can specify your own date time by creating an object of Date and passing day, month, year into it.
+Timestamp − timestamp. This can be handy for recording when a document has been modified or added.
+insert() Method.
+
+db.Student_6408.insert({Name: "Eric",Class: "TYBSCIT",College:"KJS",Address:{BuildNo: 1, Street: "JN Road",City:"Mumbai"}, PerMark: "80.00%"})
+
+
+
+insertOne() Method.
+
+db.Student_6408.insertOne({Name :"Kabir",Class :"TYBSCIT",College :"RJC",Percentage :"90.00%"})
+
+
+
+insertMany() Method.
+
+db.Student_6408.insertMany([
+{Name :"Riya",Class :"TYBSCIT",College :"RJC",Percentage :"88.00%"},
+{Name :"Neha",Class :"TYBSCIT",College :"SKS",Percentage :"92.00%"},
+{Name :"Sheetal",Class :"TYBSCIT",College :"KJS",Percentage :"97.00%"}])
+
+
+
+
+Embedded Documents.
+
+db.Student_6408.insertOne({
+  Name: "Riya",
+  Class: "TYBSCIT",
+  College: "RJC",
+  Address: {
+    Room_No: 1,
+    Street: "Tagore Nagar",
+    City: "Mumbai"
+  },
+  PerMarks: "87.00%"
+})
+
+
+
+db.Student_6408.find()
+
+
+
+Importing data from .csv file.
+
+
+
+Importing data from .json file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 4. Querying MongoDB Database
+find() and finddone() Method
+pretty() Method
+Filtering criteria in MongoDB Queries/ Selecting Queries
+Using operators in Queries
+Projection Queries
+limit() Method
+skip() Method
+Regular Expression in MongoDB
+
+Exercise
+Download iris.csv file
+Create a database named ‘species’
+Create a collection named ‘flower’
+Import data of iris.csv into flower collection.
+Display all documents of flower using find()
+
+
+Create database Species
+
+
+create collection flower
+
+
+
+
+
+
+
+
+
+find() and findOne() Method.
+
+Display all documents of flower collection using find() command
+
+Display a document of flower collection using findOne() command
+
+
+
+
+
+Display all documents of setosa having sepal width more than 3.0.
+
+Display all documents of setosa having sepal width more than 3.0 and sepal length less than 6.0.
+
+
+Display all documents for the species setosa and virginica.
+db.flower.find({$and:[{"variety":"Setosa"},{"variety":"Virginica"}]})
+
+
+
+Display all documents for the species setosa or lily.
+db.flower.find({ $or: [{ variety: "Setosa" },{ variety: "Lily" }]})
+
+
+
+Display all documents for the virginica species having sepal length not equal to 4.3($ne).
+db.flower.find({"variety":"Virginica","sepal.length":{"$ne":4.3}})
+
+
+
+
+
+
+Display all species not having the petal length as 1.3 or 1.5 or 1.7($nin).
+db.flower.find( { "petal.length": { $nin: [ 1.3, 1.5,1.7 ] } })
+
+
+
+
+
+
+
+
+
+Display all species having the petal length is either 1.3 or 1.5 or 1.7.
+db.flower.find({"petal.length":{"$in":[1.3,1.5,1.7]}})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Example 2 create a .json file for the given data and query the data.
+
+.json format
+[
+{"_id":1,"Firstname":"amit ","lastname":"bhide","email":"amit@gmail.com","salary":40000,"skills":["angular","react","mondb"],"department":"IT"},
+
+{"_id":2,"Firstname":"sumit ","lastname":"surve","email":"sumit@gmail.com","salary":3000,"skills":["accounting","tax"], "department":"Finance"},
+
+{"_id":3,"Firstname":"niketan ","lastname":"singh","email":"niketan@gmail.com","salary":44500,"skills":["sales","marketing"], "department":"Marketing"},
+
+{"_id":4,"Firstname":"vijay ","lastname":"vishwakarma","email":"vijay@gmail.com","salary":22500,"skills":["ajava"], "department":"CS"},
+
+{"_id":5,"Firstname":"kaushal ","lastname":"shukla","email":"kaushal@gmail.com","salary":60000,"skills":["accounting","tax"], "department":"Finance"},
+
+{"_id":6,"Firstname":"mita ","lastname":"yadav","email":"mita@gmail.com","salary":20000,"skills":["asp.net","blockchain"], "department":"CS"},
+
+{"_id":7,"Firstname":"sumita ","lastname":"mahale","email":"sumita@gmail.com","salary":15000,"skills":["Networking"], "department":"IT"},
+
+{"_id":8,"Firstname":"anita","lastname":"kulkarni","email":"anita@gmail.com","salary":34000,"skills":["SAP","Analytics"], "department":"IT"},
+
+{"_id":9,"Firstname":"Amit ","lastname":"khona","email":"amit@gmail.com","salary":57000,"skills":["SAP"], "department":"Stock"}
+]
+
+
+
+
+
+Create Database Emp
+
+Import demo1.json file
+
+or
+mongoimport "C:\Users\Neha Sonar\Documents\6408_Riya Sonar\demo1.json" -d Emp 
+-c Emp_data_6408 --jsonArray
+
+
+1. Display the first occurrence of the first name amit. (findOne)
+db.Emp_data_6408.findOne({"Firstname":"amit "})
+
+
+
+2. Display the mail id of an employee having first name as vijay.
+db.Emp_data_6408.find({"Firstname":"vijay "},{"_id":0,"email":1})
+
+
+
+
+3. display the list of employees having salaries more than 2000 in ascending order of salaries. Also exclude the id field from the result.
+db.Emp_data_6408.find({ "salary": { $gt: 2000 } }, { "_id": 0, "lastname": 1 }).sort({ "salary": 1 })
+
+
+
+
+
+4. Display the list of employees having salaries in the range of 30000 to 40000.
+db.Emp_data_6408.find({ "salary": { $gt: 30000, $lt: 40000 } })
+
+
+
+
+5. Get the list of employees from the department of IT.
+db.Emp_data_6408.find({ "department": "IT" })
+
+
+
+
+
+6. Get the list of employees from various departments with the skill tax.
+db.Emp_data_6408.find({"skills": "tax"})
+
+
+
+
+
+
+
+
+
+7. Get the list of employees from various departments with the skill either tax or accounting.
+db.Emp_data_6408.find({"skills": {$in:["tax","accounting"]}})
+
+
+
+
+8. Display the list of employees with their name and department.
+db.Emp_data_6408.find({}, { "Firstname": 1, "lastname": 1, "department": 1 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9. List the employees with mail id kaushal@gmail.com
+
+db.Emp_data_6408.find({ "email": "kaushal@gmail.com" })
+
+
+
+
+10. Get the list of employees from IT & CS departments with the skill of ASP.NET or blockchain.
+
+db.Emp_data_6408.find({$and:[{$or:[{department:"IT"},{department:"CS"}]},{$or:[{skills:"ASP.NET"},{skills:"blockchain"}]}]})
+
+
+
+
+
+
+
+11. Update the name of employee to amita who has employee id as 1.
+
+db.Emp_data_6408.updateOne({"_id": 1 },{$set: {First_Name: 'Amita '}})
+
+
+
+
+12. Increment the salary of all employees by 600 rupees.
+
+db.Emp_data_6408.updateMany({},{$inc:{salary:600}})
+
+
+
+13. List the employee with the highest salary. 
+
+db.Emp_data_6408.aggregate([{$group:{_id:null,salMax:{$max:"$salary"}}}])
+
+
+
+
+
+14. Multiply the salary of all employees by 30.
+
+db.Emp_data_6408.updateMany({},{$mul:{salary:30}})
+
+
+
+15. Unset the email id of all employees.
+
+db.Emp_data_6408.updateMany({},{$unset:{"email":""}})
+
+
+
+16. Rename the first_name field to firstName 
+
+db.Emp_data_6408.updateMany({},{$rename:{"Firstname":"First_Name"}})
+
+
+
+17. Update the skills of "amita" from angular to Angular JS. (Updating array)
+
+db.Emp_data_6408.updateOne({ First_Name: 'Amita ', skills: "angular" },{ $set: { "skills.$": "Angular JS" }})
+
+
+
+
+18. Add 'research' skills to all employees.
+
+db.Emp_data_6408.updateMany({},{$push:{"skills":{$each:["research"]}}})
+
+
+
+
+19. Remove 'research' skills from all employees.
+
+db.Emp_data_6408.updateMany({"skills":"research"},{$pull:{"skills":"research"}})
+
+
+
+20. Update the employees skills from tax to GST.
+
+db.Emp_data_6408.updateMany({ "skills": "tax" },{ $set: { "skills.$": "GST" } })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 5. Updating and Deleting Operations in MongoDB
+updateOne and updateMany() Methods
+ $set and $unset Operators
+ save() Method
+ deleteOne() and DeleteMany Methods
+ remove() Method
+Using the ‘Emp_data_6408’ collection that is created in Practical 3 , solve the following queries.
+updateOne and updateMany() Methods.
+1. Change the firstName of the first employee to ‘Morgan’.($set operator).
+db.Emp_data_6408.updateOne({"_id":1},{$set:{"FirstName":"Morgon"}})
+
+
+db.Emp_data_6408.find()
+
+
+
+
+
+2. Update the location of employees having firstName as ‘Steve’ to ‘USA’.
+db.Emp_data_6408.insertOne({"_id":10,Firstname:"Steve",lastname:"James",Email:"steve@gmail.com",salary:70000,skills:['accounting'],department:"IT",location:"India"})
+
+
+db.Emp_data_6408.updateMany({ "Firstname": "Steve" },{ $set: { "location": "USA" } })
+
+
+db.Emp_data_6408.find({"_id":10})
+
+
+
+
+3. Increase the salary of the first employee by 500. ($inc operator).
+db.Emp_data_6408.updateOne({"_id":1},{$inc:{"salary":500}})
+
+
+
+db.Emp_data_6408.find({"_id":1})
+
+
+
+4. Set the salary of an employee to 80000 having firstName as ‘Aarti’. (Add the document if not exist)
+db.Emp_data_6408.insertOne({"_id":11,Firstname:"Aarti",lastname:"Bhole",Email:"aarti@gmail.com",salary:80000,skills:['tax'],department:"Finance",location:"India"})
+
+db.Emp_data_6408.find({"_id":11})
+
+
+5. Add the appraisal date to the current date for all employees and increase the salary by 5000 of each employee. ($currentDate operator).
+db.Emp_data_6408.updateMany({},{$currentDate:{date:{$type:"timestamp"}}})
+
+
+
+db.Emp_data_6408.updateMany( {},{$currentDate: { "appraisalDate": true },$inc: { "salary": 5000 }})
+
+
+
+
+6. List an employee with the highest salary. ($max operator).
+db.Emp_data_6408.aggregate([{$group:{_id:"$department",minsalary:{$min:"$salary"}}}])
+
+
+7. List an employee with the lowest salary and ($min operator).
+db.Emp_data_6408.aggregate([{$group:{_id:"$department",maxsalary:{$max:"$salary"}}}])
+
+
+8. Calculate the 20 times the salary of the first employee. ($mul operator).
+db.Emp_data_6408.updateOne(
+   { _id: 1 },
+   { $mul:
+      {
+         salary:Int32(20)
+       }
+   }
+)
+
+
+db.Emp_data_6408.find({"_id":1})
+
+
+
+9. Remove the email id field from the collection. ($unset operator).
+db.Emp_data_6408.updateMany({},{$unset:{email:""}})
+
+
+
+
+
+
+Email id removed
+db.Emp_data_6408.find()
+
+
+10. Rename the field ‘Firstname’ to ‘FirstName’. ($rename operator).
+db.Emp_data_6408.updateMany(
+   {},
+   { $rename: { 'Firstname': 'FirstName'} }
+)
+
+
+db.Emp_data_6408.find()
+
+
+
+
+11. Set the lastName of an employee ‘Aarti’ to ‘Shetty’ and salary to 90000. (updating multiple fields).
+db.Emp_data_6408.updateOne({ "Firstname": "Aarti" },{ $set: { "lastname": "Shetty", "salary": 90000 } })
+
+
+
+db.Emp_data_6408.find({"_id":11})
+
+
+12. Update the skill of ‘James’ to ‘Sales’ and ‘Accounting’ instead of ‘Sales’
+db.Emp_data_6408.insertOne({"_id":12,Firstname:"James",lastname:"Bhole",Email:"james@gmail.com",salary:50000,skills:['sales','Accounting'],department:"Finance"})
+
+
+db.Emp_data_6408.find({"_id":12})
+
+
+13. Update the ‘Marketing’ skill to ‘Advertising’ for all documents.
+db.Emp_data_6408.updateMany({"skills":"marketing"}, {$set:{"skills.$":"Advertising"}})
+
+
+
+14. Update the skills element ‘GST’ to ‘Tax’.
+db.Emp_data_6408.updateMany({ "skills": "tax" },{ $set: { "skills.$": "GST" } })
+
+
+db.Emp_data_6408.find({"skills":"GST"})
+
+
+
+
+15. Add ‘sports’ skill to all the existing documents.
+db.Emp_data_6408.updateMany({},{ $push: { "skills": "sports" }})
+
+
+
+db.Emp_data_6408.find()
+
+
+
+16. Add ‘Acting’ and ‘Reading’ skills to all the existing documents. ($push and $each operators).
+db.Emp_data_6408.updateMany({}, { $push: { "skills": { $each: ["Acting", "Reading"] } } })
+
+
+
+
+
+
+
+db.Emp_data_6408.find()
+
+
+
+17. Remove the ‘sports’ skill from all the documents.
+db.Emp_data_6408.updateMany({},{ $pull: { "skills": "sports" } })
+
+
+db.Emp_data_6408.find()
+
+
+
+18. Replace document 1 with a new document using save() method.
+ db.Emp_data_6408.insertOne({newDocument})
+
+const newDocument = {_id: 15,FirstName: "Bharti",last_name: "Bhole",Email:"bharti@gmail.com",salary: 100000,skills: ["Developer", "Programmer"],department:"Finance"}
+
+
+
+
+19. Delete an employee having a salary of 50000.
+
+db.Emp_data_6408.deleteOne({ "salary": 50000})
+
+db.Emp_data_6408.find({"_id":12})
+
+
+20. Delete all the employees having salaries greater than 70000.
+ > db.Emp_data_6408.deleteMany({Salary:{$gt:70000}})
+
+
+
+
+
+
+
+
+
+
+
+
+21. Remove the employee document having id 2 using remove() method.
+ > db.Emp_data_6408.remove({"_id":2})
+
+
+db.Emp_data_6408.remove({_id:2})
+
+
+db.Emp_data_6408.find({_id:2})
+
+
+
+
+
+
+
+
+
+Practical 6. Aggregation Operations in MongoDB
+Collection - MyCollection_6408
+db.createCollection("MyCollection_6408")
+
+
+Documents
+db.MyCollection_6408.insert([ 
+{ title: 'MongoDB Overview', description: 'MongoDB is no sql database', by: 'tutorials point', url: 'http://www.rjcollege.com', tags: ['mongodb', 'database', 'NoSQL'], likes: 100 }, 
+{ title: 'NoSQL Database', description: "NoSQL database doesn't have tables", by: 'tutorials point', url: 'http://www.rjcollege.com', tags: ['mongodb', 'database', 'NoSQL'], likes: 20, comments: [ { user:'user1', message: 'My first comment', dateCreated: new Date(2013,11,10,2,35), like: 0 } ] } ])  
+
+
+a)   aggregate() Method
+Write a MongoDB query to use sum, avg, min and max expressions.
+sum
+db.MyCollection_6408.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : "$likes"}}}]) 
+
+
+avg
+db.MyCollection_6408.aggregate([{$group : {_id : "$by_user", num_tutorial : {$avg : "$likes"}}}]) 
+
+
+min
+db.MyCollection_6408.aggregate([{$group : {_id : "$by_user", num_tutorial : {$min : "$likes"}}}])
+
+
+max
+db.MyCollection_6408.aggregate([{$group : {_id : "$by_user", num_tutorial : {$max : "$likes"}}}]) 
+
+
+
+
+
+ Write a MongoDB query to use push and add ToSet expressions.
+ Push 
+db.MyCollection_6408.aggregate([{$group : {_id : "$by_user", url : {$push: "$url"}}}])
+
+
+
+addToSet
+db.MyCollection_6408.aggregate([{$group : {_id : "$by_user", url : {$addToSet: "$url"}}}]) 
+
+
+  Write a MongoDB query to use the first and last expression.
+ First
+db.MyCollection_6408.aggregate([{$group : {_id : "$by_user", first_url : {$first : "$url"}}}]) 
+
+
+
+
+
+Last
+db.MyCollection_6408.aggregate([{$group : {_id : "$by_user", last_url : {$last : "$url"}}}])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 7. Sorting and Indexing MongoDB database
+sort() Method
+Metadata Sort Technique
+ensureIndex() and createIndex() Method
+
+Database
+
+use Book_6408
+
+
+Collection
+
+db.createCollection("bookDetails_6408")
+
+
+
+
+sort() Method
+
+Create a collection named ‘bookDetails’ and insert some documents with the fields like bookid, bookName,bookAuthor,  bookPub, bookPrice and bookEdition.
+
+db.bookDetails_6408.insert([
+{bookid: "1", bookName: "Hear Yourself", bookAuthor: "Prem Rawat", bookPub: "2000", bookPrice: "1000", bookEdition:"1"},
+{bookid: "2", bookName: "The India Story", bookAuthor: "Bimal Jalal", bookPub: "2004", bookPrice: "2000", bookEdition:"2"},
+{bookid: "3", bookName: "A Place Called Home", bookAuthor: "Preeti Shenoy", bookPub: "2001", bookPrice: "1500", bookEdition:"1"},
+{bookid: "4", bookName: "Lal Salam", bookAuthor: "Smriti Irani", bookPub: "2001", bookPrice: "1550", bookEdition:"1"},
+{bookid: "5", bookName: "Queen of Fire", bookAuthor: "Devika Rangachari", bookPub: "2002", bookPrice: "3000", bookEdition:"2"},
+{bookid: "6", bookName: "Hear Yourself", bookAuthor: " Prem Rawat", bookPub: "1999", bookPrice: "2500", bookEdition:"3"}
+])
+
+
+
+Sort the documents based on bookAuthor.
+
+db.bookDetails_6408.find().sort({bookAuthor:1})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sort the documents on bookName and bookAuthor.
+
+db.bookDetails_6408.find().sort({bookAuthor:1, bookName:1})
+
+
+
+
+
+
+Sort the documents on bookPub in descending order.
+
+db.bookDetails_6408.find().sort({bookPub:-1})
+
+
+
+
+
+
+b. Metadata Sort Technique
+
+Search the documents for any one bookName and sort the query result documents using the metadata ‘testscore’.
+
+To use the $text search operator in MongoDB, you need to create a text index on the field you want to search.
+
+Create a Text Index:
+
+db.bookDetails_6408.createIndex({ "bookName": "text" })
+
+
+
+
+db.bookDetails_6408.find({ $text: { $search: "Hear Yourself" } },{ score: { $meta: "textScore" }, _id: 0 })
+
+
+
+
+c. ensureIndex() and createIndex() Method
+
+Check for the existence of the index named ‘bookPriceList’.
+
+db.bookDetails_6408.exists(" bookPriceList")
+
+
+
+
+
+Create an index named ‘bookPriceList’ on the bookName in ascending order and bookPrice in decreasing order.
+
+db.bookDetails_6408.createIndex({bookName:1, bookPrice: -1}, {name:"bookPriceList"})
+
+
+
+
+Get the list of books sorted by ‘bookPriceList’.
+
+db.bookDetails_6408.find().sort({"bookPriceList":1})
+
+
+
+
+
+
+
+
+
+Insert document by creating document object in collection ‘Bookobj={“bookName:”Queen of Fire”}’
+
+Bookobj={"bookName":"Queen of Fire"}
+
+
+
+
+db.bookDetails_6408.insertOne("Bookobj")
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+Practical 8. Replication, Backup, restore and sharding in MongoDB
+ 
+Command Prompt:
+
+>cd C:\Program Files\MongoDB\Server\5.0\bin\mongodb-database-tools-windows-x86_64-100.5.4\bin
+
+
+Write a MongoDB query to create a Replica of existing databases.
+
+Write a MongoDB query to create a backup of the existing database.
+
+After that, create new folder in C drive “MDbackup” and execute the following commands : 
+
+>mongodump.exe --out C:\MDbackup                       
+>mongorestore.exe
+
+
+
+
+
+
+
+Write a MongoDB query to restore the database from the backup.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 9. Using MongoDB with different programming languages 
+
+
+
+Using MongoDB with Python
+
+Insert:
+from pymongo import MongoClient
+client = MongoClient('localhost',27017)
+db = client.Emp
+col = db.Emp_data_6408
+def insert_one():
+     try:
+         name = input("Enter your name:")
+         age = input("Enter your age :")
+         db.col.insert_one({
+         "name " :name,
+         "age":age})
+         print("data Inserted Successfully")
+     except Exception as e:
+           print(str(e))
+insert_one()
+
+
+
+
+Output
+
+
+
+
+
+
+
+
+Update:
+from pymongo import MongoClient
+client = MongoClient('localhost',27017)
+db = client.Emp
+col = db.Emp_data_6408
+def update_one():
+    try:
+        name=input("Enter name to update:")
+        age=input("Enter age to update:")
+
+        db.col.update_one({"name ":name},{"$set":{"age":age}})
+        print("Records Updated Successfully\n")
+    except Exception as e :
+	    print(str(e))
+update_one()
+
+
+
+
+Output
+
+
+
+Delete:
+from pymongo import MongoClient
+client = MongoClient('localhost' ,27017)
+db = client.Emp
+col = db.Emp_data_6408
+def delete_one():
+	try:
+		name = input("Enter name :")
+		db.col.delete_one({"name ":name})
+		print("Deleted Successfully")
+	except Exception as e:
+		print(str(e))
+delete_one()
+
+
+
+
+Output
+
+
+
+
+
+
+
+
+
+
+
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import java.util.List;
+import java.util.Set;
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+public class connection_6408{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		System.out.println("Database Connection Successful!");
+        DB db = mongoClient.getDB( "Emp" );
+	    }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
+
+
+
+cmd:
+>cd C:\mongodb_6408
+>javac connection_6408.java
+>java connection_6408
+
+
+
+
+Inserting One Document
+
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb. MongoClient; 
+import com.mongodb. MongoCredential; 
+import org.bson.Document; 
+
+public class Insert
+{ 
+public static void main(String args[]) 
+{ 
+MongoClient mongo = new MongoClient("localhost", 27017 ); // Creating a Mongo client 
+System.out.println("Connected to the database successfully"); 
+MongoDatabase database = mongo.getDatabase("Emp"); // Accessing the database 
+MongoCollection<Document> collection = database.getCollection("Emp_6408"); //accessing collection 
+System.out.println("Collection Emp_6408 selected successfully"); 
+Document document = new Document(); 
+
+document.append("_id", 1); 
+document.append("rollno",6408);
+document.append("name","Riya");
+document.append("description", "database"); 
+document.append("likes", "100"); 
+document.append("url", "http://www.MongoDb.com"); 
+document.append("by", "NoSQL"); 
+collection.insertOne(document); 
+System.out.println("Document inserted successfully");
+} 
+}
+
+
+
+
+>javac Insert.java
+>java Insert
+
+
+
+
+
+
+
+
+
+
+Updating one Document
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import com.mongodb.WriteResult;
+import java.util.Arrays;
+public class Update{
+   public static void main( String args[] )
+{
+      try{   
+	MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+	DB db = mongoClient.getDB( "Emp" );
+	DBCollection collec = db.getCollection("Emp_6408");	
+	DBObject query = new BasicDBObject("name", "Riya");
+          	DBObject update = new BasicDBObject();
+        	update.put("$set", new BasicDBObject("likes","Icecream"));
+       	WriteResult result = collec.update(query, update);      
+       	DBCursor cursor = collec.find();
+      	try {
+          		while(cursor.hasNext()) 
+		{
+          			System.out.println(cursor.next());
+         	     	 }
+          	        } 
+  	 finally 
+	{
+           		cursor.close();
+             	}
+            }
+       catch(Exception e)
+      {
+	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+       }
+   }
+}
+
+
+
+
+
+
+
+
+>javac Update.java
+>java Update
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Insert Field in Document
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import com.mongodb.WriteResult;
+import java.util.Arrays;
+public class Update1
+{
+   	public static void main( String args[] )
+	{
+      		try
+      		{   
+			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+			DB db = mongoClient.getDB( "Emp" );
+			DBCollection collec = db.getCollection("Emp_6408");
+		
+			DBObject query = new BasicDBObject("name", "Riya");
+        			DBObject update = new BasicDBObject();
+        			update.put("$set", new BasicDBObject("Class","BScIT"));
+         
+       			WriteResult result = collec.update(query, update);
+         
+       			DBCursor cursor = collec.find();
+        			try 
+			{
+         			 	while(cursor.hasNext()) 
+				{
+          			 		System.out.println(cursor.next());
+         				}
+         			} 
+         			finally 
+         			{
+           				cursor.close();
+          			}
+      		}
+		catch(Exception e)
+		{
+	     		System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	 	}
+	}
+}
+
+
+
+
+
+>javac Update1.java
+>java Update1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Select Document
+
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb. MongoClient; 
+import com.mongodb. MongoCredential; 
+import org.bson.Document; 
+import java.util.Iterator; 
+import com.mongodb.client.FindIterable; 
+public class Select
+{ 
+	public static void main(String args[]) 
+	{ 
+		MongoClient mongo = new MongoClient("localhost", 27017); 
+		System.out.println("Connected to the database successfully"); 
+		MongoDatabase database = mongo.getDatabase("Emp"); 
+		MongoCollection<Document> collection = database.getCollection("Emp_6408"); 
+		System.out.println("Collection sampleCollection selected successfully"); 
+		FindIterable<Document> iterDoc = collection.find();
+		// Getting the iterable object 
+		int i = 1; 
+		Iterator it = iterDoc.iterator(); // Getting the iterator 
+		while(it.hasNext()) 
+		{ 
+			System.out.println(it.next()); 
+			i++; 
+		} 
+	} 
+}
+
+
+
+
+>javac Select.java
+>java Select
+
+
+
+
+
+Delete Document
+
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb. MongoClient; 
+import com.mongodb. MongoCredential; 
+import org.bson.Document; 
+import com.mongodb.client.model.Filters; //it store filter property 
+public class Delete
+{ 
+	public static void main(String args[]) 
+	{ 
+		MongoClient mongo = new MongoClient("localhost", 27017 );
+		// Creating a Mongo client 
+		System.out.println("Connected to the database successfully"); 
+		MongoDatabase database = mongo.getDatabase("Emp"); 
+		// Accessing the database 
+		MongoCollection<Document> collection = database.getCollection("Emp_6408"); 
+		System.out.println("Collection Emp_6408 selected successfully"); 
+		// Deleting the documents 
+		collection.deleteOne (Filters.eq("_id", 1)); 
+		System.out.println("Document deleted successfully..."); 
+	} 
+} 
+
+
+
+
+>javac Delete.java
+>java Delete
+
+
+
+
+
+InsertMany Document
+
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb. MongoClient; 
+import com.mongodb. MongoCredential; 
+import java.util.ArrayList;
+import java.util.List;
+import org.bson.Document; 
+public class insertMany
+{ 
+	public static void main(String args[]) 
+	{ 
+		MongoClient mongo = new MongoClient("localhost", 27017 ); 
+		// Creating a Mongo client 
+		System.out.println("Connected to the database successfully"); 
+		MongoDatabase database = mongo.getDatabase("Emp"); 
+		// Accessing the database 
+		MongoCollection<Document> collection =     database.getCollection("Emp_6408"); 
+		//accessing collection 
+		System.out.println("Collection Emp_6408 selected successfully"); 
+		Document document = new Document(); 
+		document.append("_id", 2); 
+		document.append("rollno",6409);
+		document.append("name","Neha");
+		document.append("description", "database"); 
+		document.append("likes", "Sandwich"); 
+		document.append("url", "http://www.MongoDb.com"); 
+		document.append("by", "NoSQL"); 
+
+		Document document1 = new Document(); 
+		document1.append("_id", 3); 
+		document1.append("rollno",6410);
+		document1.append("name","Sheetal");
+		document1.append("description", "database"); 
+		document1.append("likes", "Cake"); 
+		document1.append("url", "http://www.MongoDb.com"); 
+		document1.append("by", "NoSQL"); 
+
+		List<Document> list = new ArrayList<Document>();
+		list.add(document);
+		list.add(document1);
+		collection.insertMany(list); 
+		System.out.println("Document inserted successfully"); 
+	} 
+} 
+
+
+
+
+
+
+
+>javac insertMany.java
+>java insertMany
+
+
+
+
+
+Practical 10. Atlas
+
+
+
+
+
+
+
+mongo "mongodb+srv://clustertyb1.fb1vheq.mongodb.net/" --apiVersion 1 --username RiyaSonar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Documents :
+{
+"_id":{"$oid":"64f15684b75bca995b9bf075"},
+"Roll_No":"6408",
+"Name":"Riya Sonar",
+"Java":"79",
+"DBMS":"86",
+"Total":"165",
+"Grade":"A"
+}
+
+{
+"_id":{"$oid":"64f157fcb75bca995b9bf076"},
+"Roll_No":"6409",
+"Name":"Kabir Kapoor",
+"Java":"92",
+"DBMS":"95",
+"Total":"187",
+"Grade":"A+"
+}
+
+{
+"_id":{"$oid":"64f158c3b75bca995b9bf077"},
+"Roll_No":"6410",
+"Name":"Rahul Soni",
+"Java":"77",
+"DBMS":"83",
+"Total":"160",
+"Grade":"A"
+}
+
+{
+"_id":{"$oid":"64f1593ab75bca995b9bf078"},
+"Roll_No":"6411",
+"Name":"Ranvijay Ravat",
+"Java":"87",
+"DBMS":"93",
+"Total":"180",
+"Grade":"A+"
+}
+
+{
+"_id":{"$oid":"64f15a02b75bca995b9bf079"},
+"Roll_No":"6412",
+"Name":"Ram Varma",
+"Java":"64",
+"DBMS":"70",
+"Total":"134",
+"Grade":"B"
+}
+
+{
+"_id":{"$oid":"64f15a71b75bca995b9bf07a"},
+"Roll_No":"6413",
+"Name":"Neha Sonar",
+"Java":"87",
+"DBMS":"77",
+"Total":"164",
+"Grade":"A"
+}
+
+{
+"_id":{"$oid":"64f15abeb75bca995b9bf07b"},
+"Roll_No":"6414",
+"Name":"Sheetal Sonar",
+"Java":"94",
+"DBMS":"89",
+"Total":"183",
+"Grade":"A+"
+}
+
+{
+"_id":{"$oid":"64f15b0ab75bca995b9bf07c"},
+"Roll_No":"6415",
+"Name":"Tina Jaiswal",
+"Java":"67",
+"DBMS":"69",
+"Total":"136",
+"Grade":"B"
+}
+
+{
+"_id":{"$oid":"64f15b6fb75bca995b9bf07d"},
+"Roll_No":"6416",
+"Name":"Devid Jones",
+"Java":"80",
+"DBMS":"77",
+"Total":"157",
+"Grade":"A"
+}
+
+{
+"_id":{"$oid":"64f15bf1b75bca995b9bf07e"},
+"Roll_No":"6417",
+"Name":"Soniya Kapoor",
+"Java":"80",
+"DBMS":"89",
+"Total":"169",
+"Grade":"A"
+}
+
+{
+"_id":{"$oid":"64f15edeb75bca995b9bf07f"},
+"Roll_No":"6418",
+"Name":"Sam Smith",
+"Java":"99",
+"DBMS":"97",
+"Total":"196",
+"Grade":"O"
+}
+
+{
+"_id":{"$oid":"64f16460b75bca995b9bf080"},
+"Roll_No":"6419",
+"Name":"Simran Gupta",
+"Java":"55",
+"DBMS":"60",
+"Total":"115",
+"Grade":"B"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+List of Students with their Roll No.
+
+{Roll_No:1 , Name:1}
+
+
+
+
+List the Students with more than 60% marks in Subject 1.
+{"Java":{$gt:"60"}}
+
+
+
+
+
+
+
+
+List first three toppers.
+[
+  {$group:{
+           _id: "$Name",
+           maxTotal: { $max: "$Total" }}},
+     {$sort:{"maxTotal":-1}},
+     {$limit : 3}
+]
+
+
+
+
+
+
+
+
+Display the Students with o Grade.
+{"Grade":"O"}
+
+
+
+
+Group the Students  with similar total marks.
+
+[
+   {
+    $group: {
+      _id: "$Total", 
+       students: { $push: "$$ROOT" } 
+    }
+  }
+]
+
+
+
+
+
+
+
+
+
+Display grade wise count of Students.
+
+[
+  { 
+    $group: 
+    {_id: "$Grade",count:{ $sum : 1} 
+    }
+  }
+]
+
+
+
+
+
+Alter marks of Subject2 for any one Student.
+
+db.TYIT.updateOne({Roll_No : "6408"}, {$set : {DBMS : 92}})
+db.TYIT.find({Roll_No : "6408"})
+
+
+
+
+Add the Subject3 column into the same collection and according to that update total Marks and Grade.
+
+
+
+
+
+Display the average Marks for all Subjects.
+
+[
+   {
+    $group: {
+      _id: null,
+      avg_Java: { $avg: "$Java" },
+      avg_DBMS: { $avg: "$DBMS" },
+    }
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+Visualise the result.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 11. JQuery
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            var images = ["p2.png", "p3.png", "p4.png"]; // List of image URLs
+            var currentIndex = 0; // Current image index
+            var imageElement = $("#image");
+
+
+            function changeImage() {
+                imageElement.attr("src", images[currentIndex]);
+                currentIndex = (currentIndex + 1) % images.length; // Loop through images
+            }
+
+
+            // Call changeImage function every 3 seconds (3000 milliseconds)
+            setInterval(changeImage, 3000);
+        });
+
+
+        $(document).ready(function () {
+            $("#flip").click(function () {
+                $("#panel").slideToggle("slow");
+            });
+        });
+    </script>
+
+
+    <Style>
+        body {
+            background-color: #f8f9fa;
+            padding: 1%;
+            /* width: 80%; */
+        }
+
+       
+        input::placeholder {
+            font-weight: bold;
+            color: black;
+        }
+       
+     
+        .input-with-image {
+            padding-left: 10px; /* Adjust the padding to make space for the image */
+            background-image: url("icon.png");
+            background-size: 20px; /* Adjust the size of the background image */
+            background-position: 380px center; /* Adjust the position of the image */
+            background-repeat: no-repeat;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            height: 30px;
+        }
+       
+
+        /* Reset some default styles for lists and anchor tags */
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+
+        /* Style the navigation bar */
+        nav {
+            background-color: rgb(45, 121, 219);
+        }
+
+
+        /* Style the navigation links */
+        nav ul {
+            display: flex;
+            justify-content: center;
+            /* Center the links horizontally */
+            padding: 10px 0;
+            /* Add some padding for spacing */
+        }
+
+
+        nav li {
+            margin: 0 20px;
+            /* Add margin between the links */
+            border: #333;
+            border-color: 2px solid black;
+
+
+        }
+
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+
+        /* Style the links on hover */
+        nav a:hover {
+            color: #ff9900;
+            /* Change the color on hover */
+        }
+
+
+        .parent {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #E8E8E8;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: palevioletred;
+        }
+
+
+        .widgets {
+            width: 200px;
+            text-align: center;
+            padding: 20px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: white;
+            transition: background-color 0.3s ease;
+           
+
+
+        }
+
+
+        .widgets:hover {
+            background-color: rgb(228, 246, 246);
+            transform: scale(1.1);
+       
+
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        /* Style for each div */
+        .half-width-div {
+            width: 50%;
+            /* Each div takes up 50% of the container width */
+            background-color: #f0f0f0;
+            /* Background color for the divs */
+            padding: 20px;
+            /* Add some padding for spacing */
+            box-sizing: border-box;
+            /* Include padding in the width calculation */
+        }
+
+        #panel,
+        #flip {
+            padding: -10px;
+            text-align: center;
+            background-color: #b2cfff;
+            border: solid 1px #03142a;
+            padding-bottom: -20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+
+        #panel {
+            padding: 50px;
+            display: none;
+        }
+    </Style>
+</head>
+
+
+<body>
+
+
+    <div>
+        <div>
+
+
+    <div style="display: flex; height: 40px; "> <img src="logo.png" alt="">
+   
+    <!-- <div class="search-container"> -->
+        <!-- <h1>Search</h1> -->
+        <input  style="width: 27%;margin-bottom: 50px;padding-right: 5px;margin-left: 380px; border: 1.5px solid #ccc;border-radius: 50px;margin-bottom: 10px;border-color: red;" type="text" class="input-with-image"  placeholder="seacrh by company name, symbol or keyword">
+        <select id="language-select" style=" padding-left: 5px; height: 35px; border: 1.5px solid #ccc; border-radius: 50px; margin-left: 20px;border-color: red;">
+            <option value="english">English</option>
+            <option value="hindi">Hindi</option>
+            <option value="marathi">Marathi</option>
+        </select>
+    </div>
+    <hr>
+        <!-- <button class="search-button">Search</button> -->
+    <!-- </div> -->
+
+    <div id="flip">
+
+           <p style="height: 25px; font-weight: bolder; padding-left: 30px;">Click To see Navigation bar</p>
+
+                <div id="panel">
+
+                    <div>
+                        <nav>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Portfolio</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </nav>
+                        <hr>
+                    </div>
+                </div>
+    </div>
+                <div class="parent">
+                    <div class="widgets">
+                        <h3>NIFTY 50</h3>
+                        <P></P>
+                        <P style="color: red;"> 19,727.05 <br />116.00 ( 0.59%)</P>
+                    </div>
+                    <div class="widgets">
+                        <h3>NIFTY Next 50</h3>
+                        <P style="color: red;"> 19,27.05 <br /> 112.00 ( 0.50%)</P>
+                    </div>
+                    <div class="widgets">
+                        <h3>NIFTY MIDCAP </h3>
+                        <P style="color: red;"> 29,27.05 <br /> 156.00 ( 0.89%)</P>
+                    </div>
+                    <div class="widgets">
+                        <h3>NIFTY BANK </h3>
+                        <P style="color: red;"> 18,274 <br /> 166.00 ( 0.96%)</P>
+                    </div>
+                    <div class="widgets">
+                        <h3>NIFTY FINANCE </h3>
+                        <P style="color: red;"> 15,27.15 <br /> 110.00 ( 0.49%)</P>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="container">
+                    <div class="half-width-div">
+                        <!-- Content for the first div -->
+                        <img src="p1.PNG" alt="">
+                    </div>
+                    <div class="half-width-div">
+                        <!-- Content for the second div -->
+
+
+                        <img style="width: 95%; " id="image" src="p2.PNG" alt="">
+                        <img style="width: 95%; display: none;" id="image" src="p3.PNG" alt="">
+                        <img style="width: 95%; display: none;" id="image" src="p4.PNG" alt="">
+                    </div>
+                </div>
+
+
+            </div></div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
