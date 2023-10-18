@@ -1,0 +1,99 @@
+<body>
+    <form id="form1" runat="server">
+   
+        <div>
+            <asp:GridView ID="gv1" runat="server" OnRowCommand="gv1_RowCommand">
+                <Columns>
+                    <asp:ButtonField CommandName="Show" Text="Show" ButtonType="Button" ></asp:ButtonField>
+                </Columns>
+                
+            </asp:GridView>
+
+            <asp:Label ID="lbl" runat="server" Text="Label"></asp:Label>
+        </div>
+        </form>
+</body>
+
+
+ protected void Page_Load(object sender, EventArgs e)
+ {
+     if (!IsPostBack)
+     {
+         DataTable dt = new DataTable();
+         dt.Columns.AddRange(new DataColumn[2] { new DataColumn("Name"), new DataColumn("Count") });
+         dt.Rows.Add("Arun", "Mumbai");
+         dt.Rows.Add("Arjun", "Pune");
+         dt.Rows.Add("Ram", "Ayodhya");
+         dt.Rows.Add("SitaMa", "Japan");
+         gv1.DataSource =  dt;
+         gv1.DataBind();
+
+     }
+ }
+
+
+ protected void gv1_RowCommand(object sender, GridViewCommandEventArgs e)
+ {
+     if (e.CommandName== "Show")
+     {
+         int rowIndex = Convert.ToInt32(e.CommandArgument);
+         GridViewRow row = gv1.Rows[rowIndex];
+         String name = row.Cells[1].Text;
+         String count = row.Cells[2].Text;
+
+         lbl.Text = name + " he " + count;
+     }
+ }
+
+------------------------------------------
+<body>
+    <form id="form1" runat="server">
+   
+        <div>
+            <asp:GridView PageSize="5" OnPageIndexChanging="gv1_PageIndexChanging" AllowPaging="true" ID="gv1" runat="server"></asp:GridView>
+
+            <asp:Label ID="lbl" runat="server" Text="Label"></asp:Label>
+        </div>
+        </form>
+</body>
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+               /*
+                DataTable dt = new DataTable();
+                dt.Columns.AddRange(new DataColumn[2] { new DataColumn("Name"), new DataColumn("Count") });
+                dt.Rows.Add("Arun", "Mumbai");
+                dt.Rows.Add("Arjun", "Pune");
+                dt.Rows.Add("Ram", "Ayodhya");
+                dt.Rows.Add("SitaMa", "Japan");
+                gv1.DataSource =  dt;
+                gv1.DataBind();*/
+               loadData();
+
+            }
+        }
+
+        protected void loadData()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[2] { new DataColumn("Id"), new DataColumn("Name") });
+            dt.Rows.Add("1", "Arun");
+            dt.Rows.Add("2", "Arjun");
+            dt.Rows.Add("3", "Luv");
+            dt.Rows.Add("4", "Kush");
+            dt.Rows.Add("5", "Dhruv");
+            dt.Rows.Add("6", "Elon");
+            dt.Rows.Add("7", "Ram");
+            dt.Rows.Add("8", "Laxman");
+            dt.Rows.Add("9", "Bharat");
+            gv1.DataSource= dt;
+            gv1.DataBind();
+        }
+
+        protected void gv1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gv1.PageIndex = e.NewPageIndex;
+            loadData();
+        }
+    
