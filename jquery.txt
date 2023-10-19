@@ -1,0 +1,182 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+Toggle : Toggle between hiding and showing an element with the toggle() method.
+Source Code : 
+$(document).ready(function() {
+            $(".btn").click(function() {
+                $(".cont").toggle();
+            });
+        });
+
+Output : 
+This is Original Web page 
+
+After Toggle Shown elements are Hidden .
+And Hidden elements are Shown .
+
+Hide : You can hide an HTML element.
+DBClick : The function is executed when the user double-clicks on the HTML element.
+Source Code : 
+$(document).ready(function() {
+            $("p").dblclick(function() {
+                $("p").hide("slow", function() {
+                    alert("The paragraph is now hidden");
+                });
+            });
+        });
+
+Output : 
+
+After Double Click .
+
+Slide Toggle : 
+The jQuery slideToggle() method toggles between the slideDown() and slideUp() methods.
+If the elements have been slid down, slideToggle() will slide them up.
+If the elements have been slid up, slideToggle() will slide them down.
+Source Code : 
+$(document).ready(function() {
+            $(".first").click(function() {
+                $(".hi").slideToggle(3000);
+            });
+        });
+
+Output : 
+
+After SlideToggle (Slide Down )
+
+( Slide Up ) 
+
+Fade Out : 
+The jQuery fadeOut() method is used to fade out a visible element.
+
+Source Code : 
+$(document).ready(function() {
+            $("b").dblclick(function() {
+                $(".first").fadeOut();
+                $(".second").fadeOut(slow);
+                $(".fourth").fadeOut(6000);
+            });
+        });
+
+Output : 
+
+
+After Complete Fade Out .
+
+Animate : The jQuery animate() method is used to create custom animations.
+Stop : The jQuery stop() method is used to stop animations.
+
+Source Code : 
+$(document).ready(function() {
+            $(".btn_an").click(function() {
+                $(".first").animate({
+                    left: '100px'
+                }, 5000);
+                $(".first").animate({
+                    fontSize: '3em'
+                }, 5000);
+            });
+            $(".btn_st").click(function() {
+                $("div").stop();
+            });
+        });
+
+Output : 
+
+After Click Animate Button it will start Animate and Click on Stop will stop the Animate. 
+It Will first moves the element to the right, and then increases the font size of the text.
+
+
+Perform different animations after each other.
+
+Source Code : 
+$(document).ready(function() {
+            $(".btn_an").click(function() {
+                var div = $(".third");
+                div.animate({
+                    height: '600px',
+                    opacity: '0.4'
+                }, "slow");
+                div.animate({
+                    width: '600px',
+                    opacity: '0.8'
+                }, "slow");
+                div.animate({
+                    height: '300px',
+                    opacity: '0.4'
+                }, "slow");
+                div.animate({
+                    width: '270px',
+                    opacity: '0.8'
+                }, "slow");
+            });
+        });
+
+Output : 
+
+
+Slide Up  : The jQuery slideUp() method is used to slide up an element.
+Slide Down : The jQuery slideDown() method is used to slide down an element.
+
+Source Code : 
+$(document).ready(function() {
+            $(".fourth").click(function() {
+                $(".inc,.tti").css("color", "red")
+                    .slideUp(2000)
+                    .slideDown(2000);
+            });
+        });
+
+Output : 
+
+After Slide Up & Slide Down 
+
+Hover : The hover() method takes two functions and is a combination of the mouseenter() and mouseleave() methods.
+
+Source Code : 
+$(document).ready(function() {
+            $(".ti").hover(function() {
+                    alert("You entered in E-mail section. ");
+                },
+                function() {
+                    alert("Bye! You now leave E-mail section !");
+                });
+        });
+
+Output : 
+Mouse enter
+
+Mouse Leave 
+
+Source Code : 
+$(document).ready(function() {
+            $(".tfi").on({
+                mouseenter: function() {
+                    $(this).css("background-color", "lightgray");
+                },
+                mouseleave: function() {
+                    $(this).css("background-color", "lightblue");
+                },
+                click: function() {
+                    $(this).css("background-color", "yellow");
+                },
+            });
+        });
+
+Output : 
+Mouse Enter : 
+
+Mouse Leave : 
+
+Click : 
+
+Focus : The focus() method attaches an event handler function to an HTML form field.
+
+Source Code : 
+$(document).ready(function() {
+            $(".lik").focus(function() {
+                $(this).css("background-color", "pink");
+            });
+        });
+
+Output : 
