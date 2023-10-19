@@ -1,0 +1,166 @@
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import java.util.List;
+import java.util.Set;
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+public class mongodb_connection{
+   public static void main( String args[] ){
+      try{  
+MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+System.out.println("Database Connection Successful!");
+        DB db = mongoClient.getDB( "Iqra6461" );
+   }catch(Exception e){
+    System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+ }
+   }
+}
+
+
+
+Insert a Document : 
+Code : 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import java.util.Arrays;
+
+public class mongodb_connection_insert{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "Iqra6461");
+		System.out.println("Database Connection Successful!");
+		DBCollection collec = db.getCollection("stucollec");
+        BasicDBObject doc = new BasicDBObject("student", "Iqra6461")
+        .append("name", "Iqra")
+        .append("class", 'G')
+		.append("rollno", 61);
+collec.insert(doc);
+ System.out.println("Document is inserted successfully");
+	    }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
+
+
+
+Update a Document   : 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import com.mongodb.WriteResult;
+import java.util.Arrays;
+
+public class mongodb_connection_update{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "Iqra6461" );
+		DBCollection collec = db.getCollection("stucollec");
+		
+		DBObject query = new BasicDBObject("name", "Sk.Iqra");
+        DBObject update = new BasicDBObject();
+        update.put("$set", new BasicDBObject("name","Shaikh_Iqra" ));
+         
+        WriteResult result = collec.update(query, update);
+         
+       	DBCursor cursor = collec.find();
+        try {
+          while(cursor.hasNext()) {
+          System.out.println(cursor.next());
+         }
+         } finally {
+           cursor.close();
+             }
+      }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
+
+
+Retrieve  a Document :
+Code :  
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import java.util.Arrays;
+
+public class mongodb_connection_find_all{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "Iqra6461" );
+		DBCollection collec = db.getCollection("stucollec");
+		DBCursor cursor = collec.find();
+        try {
+          while(cursor.hasNext()) {
+          System.out.println(cursor.next());
+         }
+         } finally {
+           cursor.close();
+             }
+        }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
+
+Delete a Document : 
+Code : 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import com.mongodb.WriteResult;
+import java.util.Arrays;
+public class mongodb_connection_delete{
+   public static void main( String args[] ){
+      try{   
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		DB db = mongoClient.getDB( "Iqra6461" );
+		DBCollection collec = db.getCollection("stucollec");
+		DBObject query = new BasicDBObject("rollno",61);
+        WriteResult result = collec.remove(query);
+        System.out.println("Number of documents are deleted : " + result.getN());
+		DBCursor cursor = collec.find();		
+        try {
+          while(cursor.hasNext()) {
+          System.out.println(cursor.next());
+         }
+         } finally {
+           cursor.close();
+             }
+      }catch(Exception e){
+	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	  }
+   }
+}
