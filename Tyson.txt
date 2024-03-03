@@ -1,0 +1,1950 @@
+
+
+Practical no 1 
+
+a. Write a program to create a class and implement a default, overloaded and copy Constructor.
+
+
+constructor overloading 
+
+class Add{
+  public Add(int a,int b)
+  {
+    System.out.println(a+b);
+  }
+  public Add(String s1,String s2)
+  {
+    System.out.println(s1+s2);
+  }
+  public Add(double d1,double d2)
+ {
+    System.out.println(d1+d2);
+  }
+  public static void main(String[] args){
+   Add a = new Add();
+  a.Add(2,3);
+  a.Add("sumit","bansode");
+  a.Add(3.14,3.14);
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+Copy constructor 
+
+class Add{
+
+  String name;
+  int id;
+  public Add(String a,int b)
+  {
+    name = a;
+    id = b;
+  }
+  public Add(Add obj)
+  {
+    name = obj.name;
+    id = obj.id;
+  }
+  public void display()
+  {
+    System.out.println(name+"	"+id);
+  }
+  public static void main(String[] args){
+  Add a1 = new Add("sumit",76);
+  Add a2 = new Add(a1);
+  a1.display();
+  a2.display();
+
+  }
+}
+
+Op:
+
+
+
+b. Write a program to create a class and implement the concepts of Method Overloading
+
+Method overloading 
+
+class Add{
+  public void Add(int a,int b)
+  {
+    System.out.println(a+b);
+  }
+  public void Add(String s1,String s2)
+  {
+    System.out.println(s1+s2);
+  }
+  public void Add(double d1,double d2)
+ {
+    System.out.println(d1+d2);
+  }
+  public static void main(String[] args){
+  Add a = new Add();
+  a.Add(2,3);
+  a.Add("sumit","bansode");
+  a.Add(3.14,3.14);
+  }
+
+}
+
+
+
+
+
+
+
+c.Write a program to create a class and implement the concepts of Static methods and variable
+
+class Add{
+
+  String name;
+  int id;
+  static String college = "RJ";
+  public Add(String a,int b)
+  {
+    name = a;
+    id = b;
+  }
+  public void display()
+  {
+    System.out.println(name+"	"+id+"	"+college);
+  }
+
+}
+class Demo1{
+
+  public static void main(String[] args){
+  Add a1 = new Add("sumit",76);
+  Add a2 = new Add("shubham",77);
+  Add a3 = new Add("ravi",90);
+  a1.display();
+  a2.display();
+  a3.display();
+
+  }
+}
+
+
+
+
+
+
+
+Changing a value of static variable 
+
+class Add{
+
+  String name;
+  int id;
+  static String college = "RJ";
+  public Add(String a,int b)
+  {
+    name = a;
+    id = b;
+  }
+  public void display()
+  {
+    System.out.println(name+"	"+id+"	"+college);
+  }
+  public static void change()
+  {
+    college = "rj";
+  }
+}
+class test_stat{
+
+  public static void main(String[] args){
+  Add a1 = new Add("sumit",76);
+  Add a2 = new Add("shubham",77);
+  Add a3 = new Add("ravi",90);
+  Add a4 = new Add("noor",88);
+  a1.display();
+  a2.display();
+  a3.display();
+  Add.change();
+  a4.display();
+
+  }
+}
+
+
+
+Practical3
+
+import java.awt.*;
+
+public class awt{
+
+public awt()
+
+{
+
+Frame f = new Frame();
+
+Button btn = new Button("Hello World");
+
+btn.setBounds(80,80,100,50);
+
+f.add(btn); //adding button
+
+f.setSize(300,250); //setting size
+
+f.setTitle("Awt Frame Example"); //setting title
+
+f.setLayout(null); //set default layout for frame
+
+f.setVisible(true); //set frame visibility true
+
+}
+
+public static void main(String[] args){
+
+awt a = new awt(); //creating a frame
+
+}
+
+}
+
+
+
+<html>
+<body><title>home page</title>
+<applet code="awt.class" width ="500" height ="300">
+<param name="msg" value="welcome to applet"/>
+</applet>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+'write a program in java to demonstrate various  string operation '
+
+String function 
+
+//WRITE A PROGRAM IN JAVA TO DEMONSTRATE VARIOUS  STRING OPERATION 
+
+//WRITE A PROGRAM IN JAVA TO DEMONSTRATE VARIOUS  STRING OPERATION 
+
+class String1{
+  public static void main(String[] args){
+  String s1 = "Java Programming";
+  String s2 = " python";
+  System.out.println("uppercase : "+s1.toUpperCase());
+  System.out.println("lowercase: "+s1.toLowerCase());
+  System.out.println("trim: "+s1.trim());
+  System.out.println("startswith: "+s1.startsWith("Ja"));
+  System.out.println("endswith: "+s1.endsWith("Ja"));
+  System.out.println("charAt: "+s1.charAt(3));
+  System.out.println("length: "+s1.length());
+  System.out.println("substring: "+s1.substring(2,4));
+  System.out.println("replace: "+s1.replace("Java","Python"));
+  System.out.println("contain: "+s1.contains("a"));
+  System.out.println("index: "+s1.indexOf("g"));
+  System.out.println("lastindexof : "+s1.lastIndexOf("g"));
+  System.out.println("concate "+s1+s2);
+  System.out.println("concate "+s1.concat(s2));
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical no 2 
+OOPs concepts in Java – 2
+
+a.Write a program to implement the concepts of Inheritance- single, multilevel and hierarchical and Method overriding
+
+Single level inheritance
+
+class Input{
+  int a;
+  int b;
+  public void Input()
+  {
+    a=10;
+    b=20;
+  }
+}
+class Output extends Input{
+  public void Output()
+  {
+    int c; 
+    c = a+b;
+    System.out.println("addition of two 10 and 20 :"+c);
+  }
+}
+class Testinharit{
+  public static void main(String[] args)
+  {
+     Output o1 = new Output();
+     o1.Input();
+     o1.Output();
+  }
+}
+
+
+
+
+
+
+
+Multilevel inheritance 
+
+class Animal{
+  public void Animal()
+  {
+    System.out.println("Animal class is called.....");
+  } 
+}
+class Dog extends Animal{
+  public void Dog()
+  {
+    System.out.println("Dog is called on the basis of Animal class");
+  }
+}
+class Cat extends Dog{
+  public void Cat()
+  {
+    System.out.println("Cat is called on the basis of Dog class");
+  }
+}
+class mul_inharit{
+  public static void main(String[] args)
+  {
+    Dog d1 = new Dog();
+    d1.Animal();
+    d1.Dog();
+    //d1.Cat();showing -> mul_inharit.java:25: error: cannot find symbol
+   Cat c1 = new Cat();
+   c1.Animal();
+   c1.Dog();
+  }
+}
+
+
+
+
+
+Hierarchical inharitence 
+
+class Animal{
+  public void Animal()
+  {
+    System.out.println("Animal class is called.....");
+  } 
+}
+class Dog extends Animal{
+  public void Dog()
+  {
+    System.out.println("Dog is called on the basis of Animal class");
+  }
+}
+class Cat extends Animal{
+  public void Cat()
+  {
+    System.out.println("Cat is called on the basis of Dog class");
+  }
+}
+class Hierarchical{
+  public static void main(String[] args)
+  {
+    Dog d1 = new Dog();
+    d1.Animal();
+    d1.Dog();
+    //d1.Cat();showing -> mul_inharit.java:25: error: cannot find symbol
+   Cat c1 = new Cat();
+   c1.Animal();
+   //c1.Dog(); showing ->  error: cannot find symbol
+   c1.Cat();
+  }
+}
+
+
+
+
+
+
+
+Multiple inheritance 
+
+interface Father{
+  public void Father();
+
+}
+interface Mother{
+  public void Mother();
+
+}
+class Child implements Father,Mother{
+  public void Child()
+  {
+    System.out.println("This is Child Class");
+  }
+  public void Father()
+  {
+    System.out.println("This is Father class");
+  }
+  public void Mother()
+  {
+    System.out.println("This is Mother class");
+  }
+}
+class Multiple{
+  public static void main(String[] args)
+  {
+     Child c1 = new Child();
+     c1.Father();
+     c1.Mother();
+     c1.Child();
+  }
+}
+
+
+
+
+
+
+Override
+
+
+class Parent
+{
+	private void m1()
+	{
+		System.out.println("From Parent m1()");
+			
+	}
+	protected void m2()	
+	{
+		
+		m1();
+		System.out.println("From Parent m2()");
+	}
+	
+		
+	
+}
+class Child extends Parent
+{
+	private void m1()
+	{
+		System.out.println("From Child m1()");
+	}
+	
+	@Override protected void m2()	
+	{
+		System.out.println("From Child m2()");
+	}
+}
+class OR
+{
+	public static void main(String args[])
+	{
+		
+		Parent p1=new Parent();
+		p1.m2();
+		Parent p2=new Child();
+		p2.m2();		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+b.Write a program to implement the concepts of Abstract classes and methods
+
+
+
+Abstract class 
+
+abstract class Bike{
+	Bike()
+	{
+		System.out.println("bike is created");
+	}
+	abstract void run();
+	void changeGear()
+	{
+		System.out.println("gear changed");
+	}
+}
+//creating a Child class which inharits Abstract class
+class Honda extends Bike{
+	void run()
+	{
+		System.out.println("running safely..");
+	}
+}
+//Creating a Test class which calls abstract and non-abstract methods
+class Test{
+	public static void main(String args[]){
+		Bike obj = new Honda();
+		obj.run();
+		obj.changeGear();
+	}
+}
+
+
+Op
+
+
+
+
+Example 2
+
+abstract class Bike {
+    Bike() {
+        System.out.println("Bike is created ");
+    }
+
+
+    abstract void run();
+
+
+    void changeGear() {
+        System.out.println("Gear is changed ");
+    }
+}
+
+
+class Honda extends Bike {
+    void run() {
+        System.out.println("Car is running Safely ");
+    }
+}
+
+
+class TestAbstraction2 {
+    public static void main(String args[]) {
+        Honda honda = new Honda(); // Instantiate a concrete subclass
+        honda.run(); // Call the overridden run method
+        honda.changeGear(); // Call the inherited method
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+c.Write a program to implement the concept of interfaces - multiple inheritance, static and default keyword in interface
+
+Final example 
+
+
+class Bike9{
+	
+	final int speedlimit=90; //final variable 
+	static int x = 80; 	// static variable 
+	void run()
+	{
+
+		//speedlimit=400; // final reinitialization is not allowed 
+		x=88; // static reinitialization is alowed 
+		
+	}
+	public static void main(String args[])
+	{
+		Bike9 obj=new Bike9();
+		obj.run();
+	}
+}// end class
+
+
+
+ Use of Default keyword
+
+interface Drawable
+{
+    public void draw();
+    default void msg()
+    {
+        System.out.println("Default Method");
+    }
+}
+class Rectangle implements Drawable
+{
+    public void draw()  
+    {
+        System.out.println("Drawing Rectangle");    
+    }
+
+
+}
+class TestinterfaceDefault
+{
+    public static void main(String args[])
+    {
+        Drawable d=new Rectangle();
+        d.draw();
+        d.msg();
+    }
+}
+
+
+
+
+
+Use of Static keyword 
+
+interface Drawable
+{
+    public void draw();
+    static void msg()
+    {
+        System.out.println("Static Method");
+    }
+}
+class Rectangle implements Drawable
+{
+    public void draw()  
+    {
+        System.out.println("Drawing Rectangle");    
+    }
+
+
+}
+class TestinterfaceStatic
+{
+    public static void main(String args[])
+    {
+        Drawable d=new Rectangle();
+        d.draw();
+        Drawable.msg();
+    }
+}
+
+
+
+
+
+
+
+
+Practical no 3 
+
+Exception handling 
+
+a.Write a program to raise all built-in exceptions and raise them as per the requirements(single and multiple catch block)
+
+class Exception_handle{
+
+public static void main(String args[])
+	{
+		try
+		{
+			int a=5;
+			int b=0;
+			int c;
+			c=a/b;
+			System.out.println(c);
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("can't divide by 0");
+			System.out.println("e.getMessage()->"+e.getMessage());
+		}
+	}
+	
+}
+
+
+
+Op
+
+
+
+
+Array out of bond -
+
+class Exception_handle{
+
+public static void main(String args[])
+	{
+		try
+		{
+			int a[]=new int[5];
+			a[0]=10;
+			a[1]=20;  
+			a[2]=70;  
+			a[3]=40;  
+			a[4]=50; 
+			a[5]=60; 
+			System.out.println((a[5]));
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("given array length is greater than max length");
+			System.out.println("e.getMessage()->"+e.getMessage());
+		}
+	}
+	
+}
+
+Op
+
+
+
+
+
+
+
+
+
+
+File exception 
+
+
+// java program to demonstrate 
+// FileNotFoundException
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+class File_notFound_Demo{
+	public static void main(String args[])
+	{
+		try{
+			// Following file does not exist
+			File file = new File("E:// file.txt");
+
+			FileReader fr = new FileReader(file);
+		}
+		catch(FileNotFoundException e){
+			System.out.println("File does not exist");
+		}
+	}
+}
+
+
+Op
+
+
+
+
+
+
+StringIndexOutOfBound
+
+// Java program to demonstrate 
+// StringIndexOutOfBoundsException
+class StringIndexOutOfBound_Demo {
+public static void main(String args[])
+    {
+        try {
+            String a = "This is like chipping "; // length is 22
+            char c = a.charAt(24); // accessing 25th element
+            System.out.println(c);
+        }
+        catch (StringIndexOutOfBoundsException e) {
+            System.out.println("StringIndexOutOfBoundsException");
+        }
+    }
+}
+
+
+
+
+b.Write a program to define user defined exceptions and raise them as per the requirements
+
+Age exception user define 
+
+class Myexception extends Exception
+{
+	public Myexception(String message){
+		super(message);
+	}
+}
+
+class Exception_handle{
+
+public static void main(String args[])
+	{
+		try
+		{
+			int age=17;
+
+			if(age<=18)
+			{
+				throw new Myexception("Age is less than 18 ");
+			}
+		}		
+		catch(Myexception e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+	
+}
+
+
+Op
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical no 4 
+
+Multithreading 
+
+
+
+class A extends Thread
+{
+  public void run()
+  {
+    for(int i=1;i<=5;i++)
+    {
+      System.out.println("Thread A i="+i);
+    }
+    System.out.println("Exit from A");
+  }
+}
+class B extends Thread
+{
+  public void run()
+  {
+    for(int j=1;j<=5;j++)
+    {
+      System.out.println("Thread b:j="+j);
+    }
+    System.out.println("Exit from B");
+  }
+}
+class threadtest1
+{
+  public static void main(String args[])
+  {
+    A obj = new A();
+    B obj1 = new B();
+      obj.start();
+      obj1.start();
+  }
+}
+
+Op
+
+
+
+Sleep function
+
+class A extends Thread
+{
+	public void run()
+	{
+		for(int i=0;i<=5;i++)
+		{
+			try
+			{
+				if(i==2)
+				{
+					sleep(10000);
+				}
+			}
+			catch(Exception e)
+			{
+
+			}
+			System.out.println("Thread A :"+i);	
+		}
+		System.out.println("Exit from A ");	
+	}
+}
+class B extends Thread
+{
+	public void run()
+	{
+		for(int j=0;j<=5;j++)
+		{
+			System.out.println("Thread B :"+j);	
+		}
+		System.out.println("Exit from B ");	
+	}
+}
+
+class Multithreading
+{
+	public static void main(String args[])
+	{
+		A  a=new  A();
+		B  b=new B();
+		a.start();
+		b.start();
+		
+	}
+}
+
+
+
+
+
+
+Bouncing Ball:
+
+BouncingBall.java
+import java.awt.*;
+
+public class BouncingBall extends java.applet.Applet implements Runnable {
+
+    Thread t;
+    int f, y, f1, f2, f3;
+
+    public void init() {
+        t = new Thread(this);
+        t.start();
+        f = 0;
+        y = 0;
+        f1 = 0;
+    }
+
+    public void run() {
+        try {
+            if (f == 0) {
+                t.sleep(10);
+                y = y + 5;
+                repaint();
+                if (f1 == 6) {
+                    f1 = 0;
+                }
+            }
+            if (f == 1) {
+                t.sleep(10);
+                y = y - 5;
+                repaint();
+                if (f1 == 6) {
+                    f1 = 0;
+                }
+            }
+
+        } catch (Exception e) {
+        }
+        run();
+    }
+
+    public void paint(Graphics g) {
+        if (f == 0) {
+            if (f1 == 1)
+                g.setColor(Color.green);
+
+            if (f1 == 2)
+                g.setColor(Color.blue);
+
+            if (f1 == 3)
+                g.setColor(Color.red);
+
+            if (f1 == 4)
+                g.setColor(Color.yellow);
+
+            if (f1 == 5)
+                g.setColor(Color.orange);
+
+            g.fillOval(150, y + 10, 20, 20);
+            if (y == 400) {
+                f1++;
+                f = 1;
+            }
+        }
+
+        if (f == 1) {
+            if (f1 == 1)
+                g.setColor(Color.green);
+
+            if (f1 == 2)
+                g.setColor(Color.blue);
+
+            if (f1 == 3)
+                g.setColor(Color.red);
+
+            if (f1 == 4)
+                g.setColor(Color.yellow);
+
+            if (f1 == 5)
+                g.setColor(Color.orange);
+
+            g.fillOval(150, y - 10, 20, 20);
+            if (y == 0) {
+                f1++;
+                f = 0;
+            }
+        }      
+    }
+}
+
+
+
+
+
+
+
+
+Practical no 5 
+
+Applet Programming
+
+
+a.Write a Java program to demonstrate lifecycle of an applet
+
+
+
+import java.applet.Applet;
+import java.awt.*;
+
+public class AppletDemo extends Applet
+{
+    String msg;
+    public void init()
+    {
+        setBackground(Color.black);
+        setForeground(Color.cyan);
+        msg="Initialized Applet";
+        System.out.println(msg);
+    }
+    public void start()
+    {
+        msg="Started applet";
+        System.out.println(msg);
+    }
+    public void paint(Graphics g)
+    {
+        msg="Paint Method Called";
+        g.drawString(msg,10,10);
+        System.out.println(msg);
+    }
+   public void stop()
+    {
+        msg="Stopped applet";
+        System.out.println(msg);
+    }
+
+    public void destroy()
+    {
+        msg="Destroyed applet";
+        System.out.println(msg);
+    }
+}
+
+
+
+<html>
+<body><title>applet page</title>
+<applet code="AppletDemo.class" width="500" height="300">
+<param name="msg" value="welcome to applet" />
+</applet>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+b.Write a Java program to demonstrate parameter passing in an applet
+
+UseParameter.java
+
+import java.applet.Applet;
+import java.awt.Graphics;
+public class UseParameter extends Applet{
+
+	public void paint(Graphics g){
+	
+	String msg=getParameter("msg");
+	String combinedString = "Message " +msg;
+	g.drawString(combinedString, 50, 50);
+	
+	}
+}
+
+
+
+
+
+UseParameter.html
+
+<html>
+<body><title>home page</title>
+<applet code="UseParameter.class" width ="500" height ="300">
+<param name="msg" value="welcome to applet"/>
+</applet>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical no 6
+
+GUI Programming
+
+a.Design an AWT program to print the factorial for an input value.
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class awtevent1 extends Frame implements ActionListener {
+    Label l1, l2;
+    TextField t1, t2;
+    Button b1, b2;
+
+    public awtevent1() {
+        l1 = new Label("Enter Number:");
+        l2 = new Label("Factorial:");
+
+        t1 = new TextField(3);
+        t2 = new TextField(10);
+
+        b1 = new Button("Factorial");
+        b2 = new Button("Clear");
+
+        setLayout(new GridLayout(3, 2));
+        add(l1);
+        add(t1);
+        add(l2);
+        add(t2);
+        add(b1);
+        add(b2);
+
+        setSize(200, 200);
+        setVisible(true);
+
+        b1.addActionListener(this);
+        b2.addActionListener(this); // corrected typo from addActionListner to addActionListener
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new awtevent1();
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b1) {
+            int num, fact, i;
+            String result;
+            fact = 1;
+            num = Integer.parseInt(t1.getText());
+            for (i = 1; i <= num; i++) {
+                fact = fact * i;
+            }
+            result = String.valueOf(fact); // corrected typo from Stirng to String
+            t2.setText(result);
+        } else if (ae.getSource() == b2) { // Added handling for Clear button
+            t1.setText("");
+            t2.setText("");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+b.Design an AWT program to perform various string operations like reverse string, string concatenation etc
+
+Awt string operation 
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class string_awt extends Frame implements ActionListener {
+    Label l1;
+    TextField t1, t2;
+    Button b1;
+
+    public string_awt() {
+        t1 = new TextField(10);
+        t2 = new TextField(10);
+        l1 = new Label();
+        b1 = new Button("**Operation**");
+
+        setLayout(new GridLayout(3, 2));
+        add(new Label("Enter Number:"));
+        add(t1);
+        add(new Label("Factorial:"));
+        add(t2);
+        add(l1);
+        add(b1);
+
+        setSize(600, 400);
+        setVisible(true);
+
+        b1.addActionListener(this);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new string_awt();
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b1) {
+            String str1 = t1.getText();
+            String str2 = t2.getText();
+            String temp;
+            StringBuilder sb = new StringBuilder(str1);
+            temp = sb.reverse().toString();
+            String result = "Concat str1,str2  :" + str1.concat(str2) + "\n Lower case  :" + str1.toLowerCase() + "\n Upper case  :" + str1.toUpperCase() +
+                    "\n trime  :" + str1.trim() + "\nReversed :  " + temp + "\n string replace:  " + str1.replace('a', 'e');
+            l1.setText(result);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical no 7.
+Layouts: Write programs for the following layouts:
+
+a.Flow layout 
+
+
+Code 
+
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class border extends Frame {
+
+
+    public border() {
+        Button b1, b2, b3, b4, b5, b6;
+
+
+        b1 = new Button("b1");
+        b2 = new Button("b2");
+        b3 = new Button("b3");
+        b4 = new Button("b4");
+        b5 = new Button("b5");
+        b6 = new Button("b6");
+
+
+        add(b1);
+        add(b2);
+        add(b3);
+        add(b4);
+        add(b5);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose(); // Close the window
+            }
+        });
+        setLayout(new FlowLayout());
+        setTitle("Flow layout");
+        setSize(300, 300);
+        setVisible(true);
+    }
+
+
+    public static void main(String args[]) {
+        new border();
+    }
+}
+
+
+
+Op:
+
+
+
+
+
+b.Grid layout 
+Code-
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class border extends JFrame {
+
+
+    public border() {
+        JButton b1, b2, b3, b4, b5, b6;
+
+
+        b1 = new JButton("b1");
+        b2 = new JButton("b2");
+        b3 = new JButton("b3");
+        b4 = new JButton("b4");
+        b5 = new JButton("b5");
+        b6 = new JButton("b6");
+        setLayout(new GridLayout(3, 3));
+        add(b1);
+        add(b2);
+        add(b3);
+        add(b4);
+        add(b5);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose(); // Close the window
+            }
+        });
+
+
+        setTitle("Grid layout");
+        setSize(300, 300);
+        setVisible(true);
+    }
+
+
+    public static void main(String args[]) {
+        new border();
+    }
+}
+
+
+
+
+
+
+
+
+
+Grid layout awt
+
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class border extends Frame {
+
+
+    public border() {
+        Button b1, b2, b3, b4, b5, b6;
+
+
+        b1 = new Button("b1");
+        b2 = new Button("b2");
+        b3 = new Button("b3");
+        b4 = new Button("b4");
+        b5 = new Button("b5");
+        b6 = new Button("b6");
+        setLayout(new GridLayout(3, 3));
+        add(b1);
+        add(b2);
+        add(b3);
+        add(b4);
+        add(b5);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                dispose(); // Close the window
+            }
+        });
+
+
+        setTitle("Grid layout");
+        setSize(300, 300);
+        setVisible(true);
+    }
+
+
+    public static void main(String args[]) {
+        new border();
+    }
+}
+
+
+
+
+
+
+
+Swing ->
+
+
+
+c.Border Layout 
+
+Code -
+
+import java.awt.*;
+
+
+public class border extends Frame {
+
+
+    public border() {
+        Button b1, b2, b3, b4, b5;
+
+
+        b1 = new Button("North");
+        b2 = new Button("South");
+        b3 = new Button("East");
+        b4 = new Button("West");
+        b5 = new Button("Center");
+        add(b1, BorderLayout.NORTH);
+        add(b2, BorderLayout.SOUTH);
+        add(b3, BorderLayout.EAST);
+        add(b4, BorderLayout.WEST);
+        add(b5, BorderLayout.CENTER);
+        setTitle("Border layout");
+        setSize(300, 300);
+        setVisible(true);
+
+
+    }
+
+
+    public static void main(String args[]) {
+        new border();
+    }
+}
+
+Op
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical no 8
+
+Events: Write programs to demonstrate all the Java events(at least 3).
+
+
+Mouse active
+
+Code 
+
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class mouse extends Frame implements MouseListener {
+
+
+    Label l;
+
+
+    mouse() {
+        addMouseListener(this);
+        l = new Label();
+        l.setBounds(20, 50, 200, 20);
+        add(l);
+        setLayout(null);
+        setTitle("Mouse Event Example");
+        setSize(300, 300);
+        setVisible(true);
+    }
+
+
+    public static void main(String[] args) {
+        new mouse();
+    }
+
+
+    public void mouseClicked(MouseEvent e) {
+        l.setText("Mouse Clicked");
+    }
+
+
+    public void mouseEntered(MouseEvent e) {
+        l.setText("Mouse Entered");
+    }
+
+
+    public void mouseExited(MouseEvent e) {
+        l.setText("Mouse Exited");
+    }
+
+
+    // Other mouse event methods that need to be implemented
+    public void mousePressed(MouseEvent e) {
+    }
+
+
+    public void mouseReleased(MouseEvent e) {
+    }
+}
+
+
+
+Op
+
+
+
+
+
+
+
+Key events
+
+Code-
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class keylisten extends JFrame implements KeyListener {
+    JLabel L1;
+
+
+    public keylisten() {
+        JTextField t1 = new JTextField();
+        JTextArea t2 = new JTextArea(10, 10);
+
+
+        JLabel L2 = new JLabel("Key events occuring");
+        L1 = new JLabel("Key Events");
+
+
+        add(t1);
+        add(t2);
+        add(L2);
+        add(L1);
+        t1.addKeyListener(this);
+
+
+        setLayout(new GridLayout(3, 1));
+        setSize(300, 300);
+        setVisible(true);
+        setTitle("Key Events");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+
+    }
+
+
+    public void keyReleased(KeyEvent E) {
+        L1.setText("Key Released");
+    }
+
+
+    public void keyPressed(KeyEvent E) {
+        L1.setText("Key  Pressed");
+    }
+
+
+    public void keyTyped(KeyEvent E) {
+        L1.setText("key typed");
+    }
+
+
+    public static void main(String[] args) {
+        keylisten k = new keylisten();
+    }
+}
+
+
+Op-
+
+
+
+
+
+
+
+
+
+
+Practical no 9
+
+Networking in Java
+
+a.Write a program to implement socket programming in java.
+
+import java.io.*;
+import java.net.*;
+
+
+public class Myserver {
+    public static void main(String[] args) {
+        try {
+            ServerSocket ss = new ServerSocket(6666);
+            Socket s = ss.accept();// establishes connection
+            DataInputStream dis = new DataInputStream(s.getInputStream());
+            String str = (String) dis.readUTF();
+            System.out.println("message= " + str);
+            ss.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+
+
+
+Myclient.jva
+import java.io.*;
+import java.net.*;
+
+
+public class Myclient {
+    public static void main(String[] args) {
+        try {
+            Socket s = new Socket("localhost", 6666);
+            DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+            dout.writeUTF("Hello Server");
+            dout.flush();
+            dout.close();
+            s.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+
+OP
+
+
+
+
+
+
+
+
+
+
+b.Write a java socket program to implement client server communication
+
+import java.io.*;
+import java.net.*;
+
+
+class Server_1 {
+
+
+    public static void main(String[] args) {
+
+
+        try {
+
+
+            ServerSocket ss = new ServerSocket(6666);
+            Socket s = ss.accept();
+            DataInputStream dis = new DataInputStream(s.getInputStream());
+            DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+
+
+            int num = dis.readInt(); // Reading the message from client
+            int flag = 0;
+            for (int i = 2; i <= num / 2; i++) {
+                if (num % i == 0) {
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 1) {
+                dout.writeUTF("The number is not a prime number.");
+
+
+            } else {
+                dout.writeUTF("Prime number");
+            }
+            ss.close();
+        }
+
+
+        catch (Exception e) {
+            System.out.println("Server exception : " + e);
+        }
+
+
+    }
+}
+
+
+
+Op
+
+
+
+Clients 
+
+import java.io.*;
+import java.net.*;
+import java.util.Scanner;
+
+
+class clients {
+
+
+    public static void main(String[] args) {
+
+
+        try {
+
+
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter first number- ");
+            int a = sc.nextInt();
+            Socket s = new Socket("localhost", 6666);
+            DataInputStream dis = new DataInputStream(s.getInputStream());
+            DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+
+            // Send data to the server
+            // dos.writeUTF("6");
+            dos.writeInt(a);
+
+
+            dos.flush();
+
+
+            // Read response from the server
+            String str = dis.readUTF();
+            System.out.println(str);
+
+
+            // Close the socket
+            s.close();
+
+
+        } catch (Exception e) {
+            System.out.println("Client exception: " + e);
+        }
+    }
+}
+
+
+
+Op
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+21/02/24
+Practical no 10
+
+Steps for netbeans ->
+1) create new project 
+2)
+3)
+4) add a jar file in library
+
+5)
+6)goto service-> Database-> new connection -> 
+
+7) add password user name and test connection 
+
+
+
+
+8) add driver 	class name and driver path in your code 
+
+
+
+
+
+Crate data base in workbench
+Refresh your jdriver in services 
+
+Create table and store data 
+
+Code select statement 
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package prac9jdbc;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Admin
+ */
+
+public class Prac9JDBC {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Connection con;
+        Statement stmt;
+        ResultSet rs;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3309/mysql?zeroDateTimeBehavior=convertToNull","root","root@123");
+            System.out.println(con);
+                        stmt = con.createStatement();
+            rs = stmt.executeQuery("select * from test_java.student");
+            
+            while(rs.next())
+            {
+                System.out.println("Id: " + rs.getInt("id")+ "\t" +"Name: "+rs.getString("name"));
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Prac9JDBC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
