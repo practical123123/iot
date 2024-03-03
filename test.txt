@@ -1,0 +1,1499 @@
+  
+PRACTICAL 1 - CLASSES AND METHODS 
+A. Write a C++ / Java program to design an employee class for reading and displaying the employee  information, the getInfo () and displayInfo() methods will be used respectively. 
+Source code 
+//Shivam Prajapati 
+#include <iostream> 
+using namespace std; 
+class employee 
+{ 
+char name[30]; // string as class member 
+float age; 
+public: 
+void getdata(void); 
+void putdata(void); 
+}; 
+void employee :: getdata(void) 
+{ 
+cout << "Enter the Name: "; 
+cin >> name; 
+cout << "Enter the age: "; 
+cin >> age; 
+} 
+void employee :: putdata(void) 
+{ 
+cout << "Name of the employee: " << name << "\n"; 
+cout << "Age of the employee: " << age << "\n"; 
+} 
+const int size = 3; 
+int main() 
+{ 
+employee manager[3]; 
+for(int i=0;i<3;i++) 
+{ 
+cout << "\nDetails of the manager: " << i+1 << "\n"; 
+manager[i].getdata(); 
+} 
+cout << "\n"; 
+for(int i=0;i<3;i++) 
+{ 
+cout << "\nManager: " << i+1 << "\n"; 
+manager[i].putdata(); 
+}
+1 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+return 0; 
+} 
+Screen Shot
+
+2 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Output:
+
+3 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+B. Write a C++ / Java program to design the class student containing getData() and displayData() as  two of its methods which will be used for reading and displaying the student information  respectively. Where getData() will be private method. 
+Source code in C++: 
+// Shivam Prajapati 
+// Roll No:- 3029 
+# include <iostream> 
+using namespace std; 
+class employee 
+{ 
+private: 
+int emp_id; 
+char emp_name[30]; 
+double salary; 
+void getinfo() 
+{ 
+cout<<"Enter Name"<<endl; 
+cin>>emp_name; 
+cout<<"Enter ID"<<endl; 
+cin>>emp_id; 
+cout<<"Enter salary"<<endl; 
+cin>>salary; 
+} 
+public: 
+void displayinfo() 
+{ 
+getinfo(); 
+cout<<endl<<"THE INFORMATION ENTERED IS :"<<endl; 
+cout<<"Name is "<<emp_name<<endl; 
+cout<<"ID is "<<emp_id<<endl; 
+cout<<"Your salary is "<<salary<<endl; 
+} 
+}; 
+int main() 
+{ 
+employee e1; 
+e1.displayinfo(); 
+return 0; 
+}
+4 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Output 
+
+Source code in Java: 
+package displaydata; 
+public class student { 
+ int rollNo; 
+ String studentName; 
+ String studentClass; 
+ long contactNo; 
+ public void getData(int rNo, String name, String section, long contact) {  rollNo = rNo; 
+ studentName = name; 
+ studentClass = section; 
+ contactNo = contact; 
+ } 
+ public void displayData() { 
+ System.out.println("\nStudent Details\n---------------------------------------------");  System.out.println("Roll No : " + rollNo); 
+ System.out.println("Name No : " + studentName); 
+ System.out.println("Class No : " + studentClass); 
+ System.out.println("Contact No : " + contactNo);
+5 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ } 
+ public static void main(String[] args) { 
+ student s1 = new student(); 
+ s1.getData(3029, "Shivam", "BCA",892898833); 
+ s1.displayData(); 
+ student s2 = new student(); 
+ s2.getData(3002, "Hima", "ARTS", 865307290); 
+ s2.displayData(); 
+ } 
+} 
+Output
+
+6 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+C. Write a Java Program to design the class Demo which will contain the following methods:  readNo(), factorial() for calculating the factorial of a number, reverseNo() will reverse the given  number, is Palindrome() will check the given number is palindrome, isArmstrong() which will  calculate the given number is arm Strong or not. Where readNo() will be private method. 
+Code: 
+//Shivam Prajapati 
+#include<iostream> 
+#include<conio.h> 
+using namespace std; 
+class Demo 
+{ 
+int a1,a2,a3,a4; 
+void Readno_fact() 
+{ 
+ cout<<"Enter the number to find the factorial:"; 
+ cin>>a1; 
+} 
+void Readno_rev() 
+{ 
+ cout<<"\nEnter the number to find the reverse number:"; 
+ cin>>a2; 
+} 
+void Readno_pal() 
+{ 
+ cout<<"\nEnter the number to find the palindrome number :"; 
+ cin>>a3; 
+} 
+void Readno_ams() 
+{ 
+ cout<<"\nEnter the number to find the amstrong number :"; 
+ cin>>a4; 
+} 
+public: 
+void factorial(); 
+int reverseno(); 
+void palindrome(); 
+void amstrong(); 
+}; 
+void Demo::factorial() 
+{ Readno_fact();
+7 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+double x,fact=1; 
+x=a1; 
+for(int i=1;i<=x;i++) 
+{ 
+ fact=fact*i; 
+} 
+cout<<"\nThe factorial of number is :"<<fact<<endl; } 
+int Demo::reverseno() 
+{ Readno_rev(); 
+int y,rem,temp=0; 
+y=a2; 
+while(y!=0) 
+{ 
+ rem=y%10; 
+ temp=10*temp+rem; 
+ y=y/10; 
+} 
+return temp; 
+} 
+void Demo::palindrome() 
+{ Readno_pal(); 
+int pp,temp2=0,rem2=0; 
+pp=a3; 
+while(pp!=0) 
+{ 
+ rem2=pp%10; 
+ temp2=10*temp2+rem2; 
+ pp=pp/10; 
+} 
+if(temp2==a3) 
+{ 
+ cout<<"\nThe number is palindrome\n"; } 
+else 
+{ 
+ cout<<"\nThe number is not palindrome\n"; } 
+} 
+void Demo::amstrong() 
+{ Readno_ams(); 
+int z,sum=0,r; 
+z=a4; 
+while(z!=0)
+8 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+{ 
+ r=z%10; 
+ sum=sum+r*r*r; 
+ z=z/10; 
+} 
+if(sum==a4) 
+ cout<<"\nThe number is amstrong"; 
+else 
+ cout<<"\nThe number is not amstrong"; 
+} 
+int main() 
+{ 
+Demo anynum; 
+anynum.factorial(); 
+int r=0; 
+ r=anynum.reverseno(); 
+ cout<<"\nReverse of the number is :"<<r<<endl; anynum.palindrome(); 
+anynum.amstrong(); 
+getch(); 
+} 
+Code Screenshot:
+9 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+
+10 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+
+11 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Output:
+
+12 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+D. Write a Java program to demonstrate function definition outside class and accessing class  members in function definition. 
+Code: 
+// Shivam Prajapati 
+// Roll No.-3029 
+#include<iostream>  
+#include<conio.h>  
+using namespace std; 
+class Student  
+{  
+int roll_no;  
+char name [30];  
+float percentage;  
+public:  
+void getdata ();  
+void show (); 
+};  
+void Student:: getdata ()  
+{  
+cout <<"Enter Roll No: ";  
+cin >> roll_no;  
+cout << endl <<"Enter name: ";  
+cin >> name;  
+cout << endl <<"Enter Percentage: ";  
+cin >> percentage;  
+}  
+void Student:: show ()  
+{  
+cout << endl <<"Roll No: " << roll_no;  
+cout << endl <<"Name: " << name;  
+cout << endl <<"Percentage: " <<percentage;  
+}  
+int main()  
+{  
+//clrscr();  
+Student studObj;  
+studObj.getdata();  
+studObj.show();  
+getch(); 
+return 0;  
+} 
+13 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Code Screen Shot: 
+
+Output:
+
+14 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 2: - Constructors and method overloading. 
+A. Write a C++ program to design a class “Complex” for adding the two complex  numbers. Use constructor. 
+Source Code 
+#include<iostream> 
+#include<conio.h> 
+using namespace std; 
+class complex 
+{ 
+float n,m; 
+public: 
+void getData() 
+{ 
+cout<<"\nEnter real number: "; 
+cin>>n; 
+cout<<"\nEnter imaginary number: "; 
+cin>>m; 
+} 
+void showData() 
+{ 
+cout<< n <<" + i"<< m ; 
+} 
+friend complex sum(complex, complex); 
+}; 
+complex sum(complex c1, complex c2) 
+{ 
+complex c3; 
+c3.n=c1.n+c2.n; 
+c3.m=c1.m+c2.m; 
+return c3;
+15 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+} 
+int main() 
+{ 
+complex obj1, obj2, obj3; 
+cout<<"\nEnter Data for 1st Complex Number \n"; 
+cout<<" "; 
+obj1.getData(); 
+cout<<"\nEnter Data for 2nd Complex Number \n"; 
+cout<<" "; 
+obj2.getData(); 
+obj3=sum(obj1,obj2); 
+cout<<"\nComplex Number1: "; 
+obj1.showData(); 
+cout<<"\nComplex Number2: "; 
+obj2.showData(); 
+cout<<"\nComplex Number sum: "; 
+obj3.showData(); 
+getch(); 
+} 
+Output
+
+16 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+B. (Use C++) Write a Java Program to design a class Geometry containing the methods  area () and volume() and also overload the area() function. 
+Source Code in Java 
+package area; 
+public class Area { 
+ void calculateArea(float x) { 
+ System.out.println("Area of the square: " + x * x + " sq units"); 
+ } 
+ void calculateArea(float x, float y) { 
+ System.out.println("Area of the rectangle: " + x * y + " sq units");  } 
+ void calculateArea(double r) { 
+ double area = 3.14 * r * r; 
+ System.out.println("Area of the circle: " + area + " sq units"); 
+ } 
+ void calculateArea(double m, double n) { 
+ double area_t = (m * n) / 2; 
+ System.out.println("Area of the Traingle: " + area_t + " sq units");  } 
+ public static void main(String[] args) { 
+ Area obj = new Area(); 
+ obj.calculateArea(6.1); 
+ obj.calculateArea(10, 22);
+17 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ obj.calculateArea(10, 22.5); 
+ obj.calculateArea(6.1); 
+ } 
+} 
+Output
+
+18 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+C. Write a Java Program to demonstrate basic String handling. Source Code: 
+//Shivam Prajapati 
+//Roll No.-3029 
+package help; 
+public class Help {  
+ public static void main(String[] args) { 
+ String s1="Java"; 
+ String s2="Programming"; 
+ String s3="is"; 
+ String s4="Popular"; 
+ String s5="Language!!!!";  
+ String s6 = s1.toLowerCase(); 
+ boolean s7 = s1.equals(s2); 
+ String s8 = s1.concat(" " + s2 + " "+s5); 
+ int s9 = s2.length(); 
+ String s10 = s3.replace('i','a'); 
+ String s11 = s5.substring(3); 
+ int s12 = s1.compareTo(s2); 
+ System.out.println(s6);  
+ System.out.println(s7);  
+ System.out.println(s8);  
+ System.out.println(s9);  
+ System.out.println(s10);  
+ System.out.println(s11);  
+ System.out.println(s12);  
+ } 
+}
+19 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+SCREEN SHOT OF CODE: 
+
+OUTPUT:
+
+20 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+D.Write a Java program to count the letters, spaces, numbers and other characters of an input string. Source code in Java 
+package count; 
+import java.util.Scanner; 
+public class String1 { 
+ public static void main(String[] args) { 
+ Scanner sc = new Scanner(System.in); 
+ System.out.println("Enter a string : "); 
+ String s1 = sc.nextLine(); 
+ System.out.println("s1 : " + s1); 
+ count(s1); 
+ } 
+ public static void count(String x) { 
+ char[] ch = x.toCharArray(); 
+ int letter = 0; 
+ int space = 0; 
+ int num = 0; 
+ int other = 0; 
+ for (int i = 0; i < x.length(); i++) { 
+ if (Character.isLetter(ch[i])) { 
+ letter++; 
+ } else if (Character.isDigit(ch[i])) {
+21 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ num++; 
+ } else if (Character.isSpaceChar(ch[i])) { 
+ space++; 
+ } else { 
+ other++; 
+ } 
+ } 
+ System.out.println("letter: " + letter); 
+ System.out.println("space: " + space); 
+ System.out.println("number: " + num); 
+ System.out.println("other: " + other); 
+ } 
+} 
+Output
+
+22 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 3: - Use of operators 
+A. Write a Java program to add two Binary Numbers • Source code 
+package add_binary; 
+import java.util.Scanner; 
+public class Add_Binary { 
+public static void main(String[] args) { 
+long b1, b2; 
+int i = 0, carry = 0; 
+int[] sum = new int[10]; 
+Scanner sc = new Scanner(System.in); 
+System.out.print("Enter first binary number: "); 
+b1 = sc.nextLong(); 
+System.out.print("Enter second binary number: "); 
+b2 = sc.nextLong(); 
+sc.close(); 
+while (b1 != 0 || b2 != 0) { 
+sum[i++] = (int) ((b1 % 10 + b2 % 10 + carry) % 2); 
+carry = (int) ((b1 % 10 + b2 % 10 + carry) / 2); 
+b1 = b1 / 10; 
+b2 = b2 / 10; 
+}
+23 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+if (carry != 0) { 
+sum[i++] = carry; 
+} 
+--i; 
+System.out.print("Output: "); 
+while (i >= 0) { 
+System.out.print(sum[i--]); 
+} 
+System.out.print("\n"); 
+} 
+} 
+Output
+
+24 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+B. Write a Java program to convert decimal numbers to binary numbers and vice versa. Source code 
+package binary_decimal; 
+import java.util.Scanner; 
+public class Binary_Decimal { 
+ public static void main(String[] args) { 
+ Scanner sc = new Scanner(System.in); 
+ System.out.print("Enter a binary number- "); 
+ long num = sc.nextLong(); 
+// call method by passing the binary number 
+ int decimal = convertBinaryToDecimal(num); 
+ System.out.println("Binary to Decimal"); 
+ System.out.println(num + " = " + decimal); 
+ } 
+ public static int convertBinaryToDecimal(long num) { 
+ int decimalNumber = 0, i = 0; 
+ long remainder; 
+ while (num != 0) { 
+ remainder = num % 10; 
+ num /= 10; 
+ decimalNumber += remainder * Math.pow(2, i); 
+ ++i; 
+ }
+25 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ return decimalNumber; 
+ } 
+} 
+Output
+
+26 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 4: - Inheritance  
+A. Write a C++/ Java program to implement single level inheritance. Source Code in C++ 
+#include <iostream> 
+using namespace std; 
+class B 
+{ 
+ int a; 
+public: 
+ int b; 
+ void get_ab(); 
+ int get_a(void); 
+ void show_a(void); 
+}; 
+class D : public B 
+{ 
+ int c; 
+public: 
+ void mul(void); 
+ void display(void); 
+}; 
+void B ::get_ab(void) 
+{ 
+ a = 5; 
+ b = 10; 
+} 
+int B ::get_a() 
+{ 
+ return a; 
+} 
+void B ::show_a() 
+{ 
+ cout << "a = " << a << "\n"; 
+} 
+void D ::mul() 
+{ 
+ c = b * get_a();
+27 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+} 
+void D::display() 
+{ 
+ cout << "a = " << get_a() << "\n"; 
+ cout << "b = " << b << "\n"; 
+ cout << "c = " << c << "\n\n"; 
+} 
+int main() 
+{ 
+ D d; 
+ d.get_ab(); 
+ d.mul(); 
+ d.show_a(); 
+ d.display(); 
+ d.b = 20; 
+ d.mul(); 
+ d.display(); 
+ return 0; 
+} 
+Output
+
+28 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Source code in Java 
+package SigalInheritance; 
+class Animal{ 
+void eat (){System.out.println("eating...");} 
+} 
+class Dog extends Animal{ 
+void bark(){System.out.println("barking...");} 
+} 
+public class SigalInheritance{ 
+public static void main(String[] args) { 
+Dog d= new Dog(); 
+d.bark(); 
+d.eat(); 
+} 
+} 
+Output
+
+29 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+B. Write a java program to implement method overriding 
+Source Code 
+package overriding; 
+class Vehical{ 
+ void run(){System.out.println("Parent class is called by base(child) class!!!");} } 
+class Overriding extends Vehical{ 
+ public static void main(String[] args) {  
+ Overriding obj = new Overriding(); 
+ obj.run(); 
+ } 
+} 
+Output
+
+30 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+C. Write a C++ / java program to implement multiple inheritance. Source code in java 
+package middle; 
+class Top { 
+ void getter() { 
+ System.out.println("Top method of Parent Class."); 
+ } 
+} 
+class bottom extends Top { 
+ void setter() { 
+ System.out.println("bottom method is access using Middle class.");  } 
+} 
+class Middle extends bottom { 
+ void letter() { 
+ System.out.println("middle method accessing both the calss method i.e Top and bottom  class."); 
+ } 
+ public static void main(String[] args) { 
+ Middle m = new Middle(); 
+ m.getter(); 
+ m.setter(); 
+ m.letter(); 
+ } 
+}
+31 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Output 
+
+Source code in C++ 
+#include <iostream> 
+using namespace std; 
+class A 
+{ 
+public: 
+ int a = 29; 
+ A() 
+ { 
+ cout << "Constructor for class A" << endl; 
+ } 
+}; 
+class B 
+{ 
+public: 
+ int b = 02; 
+ B() 
+ { 
+ cout << "Constructor for class B" << endl; 
+ } 
+}; 
+class C : public A, public B 
+{
+32 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+public: 
+ int c = 34; 
+ C() 
+ { 
+ cout << "Constructor for class C" << endl; 
+ cout << "Class C inherits from class A and class B" << endl; 
+ } 
+}; 
+int main() 
+{ 
+ C obj; 
+ cout << "a = " << obj.a << endl; 
+ cout << "b = " << obj.b << endl; 
+ cout << "c = " << obj.c << endl; 
+ return 0; 
+} 
+Output:
+
+33 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+D. Write a C++ program to implement the hierarchical inheritance. Source code: 
+#include <iostream> 
+using namespace std; 
+// base class 
+class Parent 
+{ 
+public: 
+ void info() 
+ { 
+ cout << "I am an Parent." << endl; 
+ } 
+}; 
+// derived class 1 
+class Child : public Parent 
+{ 
+public: 
+ void hello() 
+ { 
+ cout << "I am Child." << endl; 
+ } 
+}; 
+// derived class 2 
+class Daughter : public Parent 
+{ 
+public: 
+ void Hi() 
+ { 
+ cout << "I am a Daughter." << endl; 
+ } 
+};
+34 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+int main() 
+{ 
+ // Create object of Dog class 
+ Child ch1; 
+ cout << "Child Class:" << endl; 
+ ch1.info(); // Parent Class function 
+ ch1.hello(); 
+ // Create object of Cat class 
+ Daughter du1; 
+ cout << "\nDaughter Class:" << endl; 
+ du1.info(); // Parent Class function 
+ du1.Hi(); 
+ return 0; 
+} 
+Output:
+
+35 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 5: - Array handling 
+1. Write a Java program to sort a numeric array and a string array. Source code: 
+package arraysort; 
+import java.util.*; 
+public class arraySort { 
+ public static void main(String args[] ){ 
+ int[] Arraydata1 = {1,7,2,5,4,6,9,8}; 
+ String[] Arraydata2 = {"Shuzuki","BMW","MIni","Tata","Bugati"}; 
+ System.out.println("Original value : "+ Arrays.toString(Arraydata1));  Arrays.sort(Arraydata1); 
+ System.out.println("Sorted value : "+ Arrays.toString(Arraydata1)); 
+ System.out.println("Original value : "+ Arrays.toString(Arraydata2));  Arrays.sort(Arraydata2); 
+ System.out.println("Sorted value : "+ Arrays.toString(Arraydata2)); 
+ } 
+} 
+Output
+
+36 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+2. Write a Java program to find the common elements between two arrays of Integer. Source Code: 
+package commonfactor; 
+import java.util.*; 
+public class Commonfactor { 
+ public static void main(String args[]) { 
+ int[] Array1 = {2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14}; 
+ int[] Array2 = {1, 12, 13, 14, 15, 16, 17, 18, 19}; 
+ System.out.println("\n Array 1 : " + Arrays.toString(Array1)); 
+ System.out.println("\n Array 2 : " + Arrays.toString(Array2)); 
+ System.out.println("======================== The Common Elements are  ====================== \n"); 
+ for (int i = 0; i < Array1.length; i++) { 
+ for (int j = 0; j < Array2.length; j++) { 
+ if (Array1[i] == Array2[j]) { 
+ System.out.println(Array1[i]); 
+ break; 
+ } 
+ } 
+ } 
+ } 
+} 
+Output:
+
+37 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+3. Write a java program to add two matrices and print the resultant matrix. Source Code: 
+package summatrix; 
+import java.util.Scanner; 
+public class Summatrix { 
+ public static void main(String args[]) { 
+ int row, col, i, j; 
+ Scanner in = new Scanner(System.in); 
+ System.out.println("Enter the number of rows :-"); 
+ row = in.nextInt(); 
+ System.out.println("Enter the number columns:-"); 
+ col = in.nextInt(); 
+ int mat1[][] = new int[row][col]; 
+ int mat2[][] = new int[row][col]; 
+ int res[][] = new int[row][col]; 
+ System.out.println("Enter the elements of matrix1:-"); 
+ i = 0; 
+ do { 
+ j = 0; 
+ do { 
+ mat1[i][j] = in.nextInt(); 
+ j++; 
+ } while (j < col); 
+ i++; 
+ } while (i < row); 
+ System.out.println("Enter the elements of matrix2:-"); 
+ i = 0; 
+ do { 
+ j = 0; 
+ do { 
+ mat2[i][j] = in.nextInt(); 
+ j++; 
+ } while (j < col); 
+ i++; 
+ } while (i < row);
+38 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ i = 0; 
+ do { 
+ j = 0; 
+ do { 
+ res[i][j] = mat1[i][j] + mat2[i][j]; 
+ j++; 
+ } while (j < col); 
+ i++; 
+ } while (i < row); 
+ System.out.println("Sum of matrices:-"); 
+ i = 0; 
+ do { 
+ j = 0; 
+ do { 
+ System.out.print(res[i][j] + "\t"); 
+ j++; 
+ } while (j < col); 
+ System.out.println(); 
+ i++; 
+ } while (i < row); 
+ } 
+} 
+Output:
+
+39 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+4. Write a java program to multiplication of two matrix. 
+Static source code: 
+package mulmatrix; 
+public class Mulmatrix { 
+ public static void main(String args[]) { 
+ int a[][] = {{1, 2}, {5, 6}}; 
+ int b[][] = {{9, 11}, {3, 5}}; 
+ int c[][] = new int[2][2]; 
+ for (int i = 0; i < 2; i++) { 
+ for (int j = 0; j < 2; j++) { 
+ c[i][j] = 0; 
+ for (int k = 0; k < 2; k++) { 
+ c[i][j] += a[i][k] * b[k][j]; 
+ } 
+ System.out.print(c[i][j] + " "); 
+ } 
+ System.out.println(); 
+ } 
+ } 
+} 
+Output:
+
+40 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Dynamic Source Code: 
+package matrixmul2; 
+import java.util.Scanner; 
+class Matrixmul2 
+{ 
+ public static void main(String args[]) 
+ { 
+ int m, n, p, q, sum = 0, c, d, k; 
+ Scanner in = new Scanner(System.in); 
+ System.out.println("Enter the number of rows and columns of first matrix: ");  m = in.nextInt(); 
+ n = in.nextInt(); 
+ int first[][] = new int[m][n]; 
+ System.out.println("Enter elements of first matrix: "); 
+ for (c = 0; c < m; c++) 
+ for (d = 0; d < n; d++) 
+ first[c][d] = in.nextInt(); 
+ System.out.println("Enter the number of rows and columns of second matrix: ");  p = in.nextInt(); 
+ q = in.nextInt(); 
+ if (n != p) 
+ System.out.println("The matrices can't be multiplied with each other.");  else 
+ { 
+ int second[][] = new int[p][q]; 
+ int multiply[][] = new int[m][q]; 
+ System.out.println("Enter elements of second matrix: "); 
+ for (c = 0; c < p; c++) 
+ for (d = 0; d < q; d++) 
+ second[c][d] = in.nextInt(); 
+ for (c = 0; c < m; c++) 
+ { 
+ for (d = 0; d < q; d++) 
+ { 
+41 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ for (k = 0; k < p; k++) 
+ { 
+ sum = sum + first[c][k]*second[k][d]; 
+ } 
+ multiply[c][d] = sum; 
+ sum = 0; 
+ } 
+ } 
+ System.out.println("Product of the matrices: "); 
+ for (c = 0; c < m; c++) 
+ { 
+ for (d = 0; d < q; d++) 
+ System.out.print(multiply[c][d]+"\t"); 
+ System.out.print("\n"); 
+ } 
+ } 
+ } 
+} 
+Output:
+
+42 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 6: - Virtual Function and Abstract Class 
+1. Write a C++ / Java program to implement the concept of method overriding. Suppose  we have a base class Animal and derived classes Dog and Cat. Make getType() virtual  in the Animal class, then create a single, separate print() function that accepts a  pointer of Animal type as its argument. Then use this single function to override the  virtual function. 
+Source code: 
+#include<iostream> 
+using namespace std; 
+class Animal 
+{ 
+ public: 
+ virtual void getType(){ 
+ cout<<"Animal is living things.\n"; 
+ } 
+}; 
+class Dog : public Animal 
+{ 
+ public: 
+ void getType(){ 
+ cout<<"Dog is very honest pet!!!\n"; 
+ } 
+}; 
+class Cat : public Animal 
+{ 
+ public: 
+ void print(); 
+ void getType(){ 
+ cout<<"Cats are very lazzy pet!!!!\n"; 
+ } 
+}; 
+void Cat :: print() 
+{ 
+ Animal *Aptr; 
+ Dog objdog; 
+ Cat objcat; 
+ Aptr=&objdog;
+43 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ Aptr->getType(); 
+ Aptr=&objcat; 
+ Aptr->getType(); 
+} 
+int main() 
+{ 
+ Cat c1; 
+ c1.print(); 
+ return 0; 
+} 
+Output:
+
+44 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+2. Write a java program to show the use of virtual functions.. 
+Make two levels of inheritance. In this example, show how the virtual function administration() is displaying different messages depending on which type of object it is associated with. 
+When it is associated with the “State” type, it is showing messages from the parent class. 
+When it is associated with the “District” type, it shows messages from its child class. Again in the second level of inheritance, when associated with the “Municipality” type, it shows messages from its child class of its parent, the “District” class. 
+Source code: 
+package virtualfunction; 
+class Base 
+{ 
+ void administration(){ 
+ System.out.println("class Base administrator"); 
+ } 
+} 
+class State extends Base 
+{ 
+ void administration(){ 
+ System.out.println("class State administrator"); 
+ } 
+} 
+class District extends State 
+{ 
+ void administration(){ 
+ System.out.println("class District administrator"); 
+ } 
+} 
+class Municipality extends District 
+{ 
+ void administration(){ 
+ System.out.println("class Municipality administrator"); 
+ } 
+} 
+class Virtualfunction { 
+ public static void main(String[] args) { 
+ Base b = new State(); 
+ State s = new District(); 
+ District d = new Municipality(); 
+  
+ b.administration();
+45 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ s.administration(); 
+ d.administration(); 
+ } 
+} 
+Output:
+
+46 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+3. Write a java program to show the implementation of abstract class. Create an abstract class Animal. 
+The class contains an abstract method makeSound() and a non-abstract method eat(). 
+We have inherited a subclass Dog from the superclass Animal. Here, the subclass Dog provides the implementation for the abstract method makeSound(). 
+Source code: 
+package abstractclass; 
+abstract class Animal { 
+ abstract void makesound(); 
+ void eat() { 
+ System.out.println("Animal is a living benigs therefore there survival they can eat.");  } 
+} 
+class dog extends Animal { 
+ void makesound() { 
+ System.out.println("Dog is a animal and they can Bark !!!!"); 
+ } 
+} 
+class Abstractclass { 
+ public static void main(String[] args) { 
+ Animal a = new dog(); 
+ a.makesound(); 
+ } 
+} 
+Output:
+
+47 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 7: - Multithreading 
+1.Write a java program to implement multithreading. 
+Source code: 
+package threadtest; 
+class A implements Runnable //class A implements runnable interface 
+{ 
+ public void run() //run()method create an object of class A that implement Runnable Interface  { 
+ System.out.println("\nEnter into thread A"); 
+ for (int i = 0; i <= 3; i++) { 
+ System.out.println('a'); 
+ } 
+ System.out.println("Exit from thread A"); 
+ } 
+} 
+class B implements Runnable //class B implements runnable interface 
+{ 
+ public void run() //run()method create an object of class B that implement Runnable Interface  { 
+ System.out.println("\nEnter into thread B"); 
+ for (int i = 0; i <= 3; i++) { 
+ System.out.println('b'); 
+ } 
+ System.out.println("Exit from thread B"); 
+ } 
+} 
+class C implements Runnable //class C implements runnable interface 
+{ 
+ public void run() //run()method create an object of class C that implement Runnable Interface  { 
+ System.out.println("\nEnter into thread C"); 
+ for (int i = 0; i <= 3; i++) { 
+ System.out.println('c'); 
+ } 
+ System.out.println("Exit from thread C"); 
+ } 
+}
+48 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+// Main class of the runnable interface 
+class ThreadTest { 
+ public static void main(String ar[]) { 
+ System.out.println("Main thread started"); 
+ A t1 = new A(); 
+ B t2 = new B(); 
+ C t3 = new C(); 
+ Thread th1 = new Thread(t1); 
+ Thread th2 = new Thread(t2); 
+ Thread th3 = new Thread(t3); 
+ th1.start(); 
+ th2.start(); 
+ th3.start(); 
+ System.out.println("Main thread ended"); 
+ } 
+} 
+Output:
+
+49 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+2. Write a Java program to create multiple threads in Java. Source Code: 
+package multithreadtest; 
+class A extends Thread 
+{ 
+ public void run () 
+ { 
+ for (int i=1 ; i<=5; i++) 
+ { 
+ System.out.println("\t From thread A: i = " + i);  } 
+ System.out.println("Exit from class A"); 
+ } 
+} 
+class B extends Thread  
+{ 
+ public void run () 
+ { 
+ for (int j=1 ; j<=5; j++) 
+ { 
+ System.out.println("\t From thread B: j = " + j);  } 
+ System.out.println("Exit from class B"); 
+ } 
+} 
+class C extends Thread  
+{ 
+ public void run () 
+ { 
+ for (int k=1 ; k<=5; k++) 
+ { 
+ System.out.println("\t From thread B: k = " + k);  } 
+ System.out.println("Exit from class C"); 
+ } 
+} 
+class MultiThreadTest 
+{ 
+ public static void main(String args[]) 
+ { 
+ new A().start(); 
+ new B().start(); 
+ new C().start();
+50 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ } 
+} 
+Output:
+
+51 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 8: - Exception Handling 
+1.Write a java program to show the implementation of exception handling. Source code: 
+package multiexceptionjava; 
+import java.util.Scanner; 
+public class MultiExceptionJava { 
+ public static void main(String[] args) { 
+ try { 
+ int i; 
+ int j; 
+ int result; 
+ Scanner in = new Scanner(System.in); 
+ System.out.println("Enter the 1st Number: "); 
+ i = in.nextInt(); 
+ System.out.println("Enter the 2nd number: "); 
+ j = in.nextInt(); 
+ result = i / j; 
+ System.out.println("Division of number is " + result); 
+ System.out.println(result); 
+ } catch (ArithmeticException e) { 
+ System.out.println("Arithmetic Exception occurs"); 
+ } catch (ArrayIndexOutOfBoundsException e) { 
+ System.out.println("ArrayIndexOutOfBounds Exception occurs");  } catch (Exception e) { 
+ System.out.println("Parent Exception occurs"); 
+ } 
+ } 
+}
+52 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Output: 
+When Exception Occur: 
+When Exception Not Occur:
+
+53 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+2. Write a java program to show the implementation for exception handling for String. Source code: 
+package stringexception; 
+import java.util.Scanner; 
+public class StringException { 
+ public static void main(String[] args) { 
+ try { 
+ String s = "Shivam"; 
+ int i = Integer.parseInt(s); 
+ } catch (ArithmeticException e) { 
+ System.out.println("Exception Handling - " + e); 
+ } catch (NullPointerException r) { 
+ System.out.println("Exception Handling - " + r); 
+ } catch (NumberFormatException t) { 
+ System.out.println("Exception Handling - " + t); 
+ } catch (ArrayIndexOutOfBoundsException y) { 
+ System.out.println("Exception Handling - " + y); 
+ } 
+ } 
+} 
+Output:
+
+54 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 9: - File handling 
+1. Write a java program to open a file and display the contents in the console window. Source code: 
+package filehandling; 
+import java.io.File; 
+import java.io.IOException; 
+import java.io.FileNotFoundException; 
+import java.util.Scanner; 
+import java.io.FileWriter; 
+public class FileHandling { 
+ public static void main(String[] args) { 
+ try { 
+ File Obj = new File("File_1.txt"); 
+ if (Obj.createNewFile()) { 
+ System.out.println("File created: " + Obj.getName()); 
+ } else { 
+ System.out.println("File Name already exist."); 
+ } 
+ } catch (IOException e) { 
+ System.out.println("An error occured."); 
+ e.printStackTrace(); 
+ } 
+ try { 
+ FileWriter Writer 
+ = new FileWriter("File_1.txt"); 
+ Writer.write( 
+ "Files in Java are seriously good!!" 
+ + "I am a Java Programmer." 
+ + "I Love Java Programming."); 
+ Writer.close(); 
+ System.out.println("Successfully written."); 
+ } catch (IOException e) { 
+ System.out.println("An error has occurred."); 
+ e.printStackTrace(); 
+ } 
+ try { 
+ File Obj = new File("File_1.txt");
+55 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ Scanner Reader = new Scanner(Obj); 
+ while (Reader.hasNextLine()) { 
+ String data = Reader.nextLine(); 
+ System.out.println(data); 
+ } 
+ Reader.close(); 
+ } catch (FileNotFoundException e) { 
+ System.out.println("An error has occurred."); 
+ e.printStackTrace(); 
+ } 
+ } 
+} 
+Output:
+
+56 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+2. Write a java program to copy the contents from one file to other file. Source code: 
+package filehandling; 
+import java.io.*; 
+import java.util.*; 
+public class FileHandling { 
+ public static void copyContent(File a, File b) 
+ throws Exception { 
+ FileInputStream in = new FileInputStream(a); 
+ FileOutputStream out = new FileOutputStream(b); 
+ try { 
+ int n; 
+ // read() function to read the 
+ // byte of data 
+ while ((n = in.read()) != -1) { 
+ // write() function to write 
+ // the byte of data 
+ out.write(n); 
+ } 
+ } finally { 
+ if (in != null) { 
+ // close() function to close the 
+ // stream 
+ in.close(); 
+ } 
+ // close() function to close 
+ // the stream 
+ if (out != null) { 
+ out.close(); 
+ } 
+ } 
+ System.out.println("File Copied"); 
+ } 
+ public static void main(String[] args) throws Exception {
+57 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ Scanner sc = new Scanner(System.in); 
+ // get the source file name 
+ System.out.println( 
+ "Enter the source filename from where you have to read/copy :");  String a = sc.nextLine(); 
+ // source file 
+ File x = new File(a); 
+ // get the destination file name 
+ System.out.println( 
+ "Enter the destination filename where you have to write/paste :");  String b = sc.nextLine(); 
+ // destination file 
+ File y = new File(b); 
+ // method called to copy the 
+ // contents from x to y 
+ copyContent(x, y); 
+ try { 
+ File Obj = new File("File_1.txt"); 
+ Scanner Reader = new Scanner(Obj); 
+ while (Reader.hasNextLine()) { 
+ String data = Reader.nextLine(); 
+ System.out.println(data); 
+ } 
+ Reader.close(); 
+ } catch (FileNotFoundException e) { 
+ System.out.println("An error has occurred."); 
+ e.printStackTrace(); 
+ } 
+ try { 
+ File Obj = new File("File_2.txt"); 
+ Scanner Reader = new Scanner(Obj); 
+ while (Reader.hasNextLine()) { 
+ String data = Reader.nextLine(); 
+ System.out.println(data); 
+ } 
+ Reader.close(); 
+ } catch (FileNotFoundException e) {
+58 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+ System.out.println("An error has occurred."); 
+ e.printStackTrace(); 
+ } 
+ } 
+} 
+Output:
+
+59 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+3. Write a java program to read the student data from user and store it in the file. Source Code: 
+import java.io.FileOutputStream;  
+import java.util.Scanner;  
+public class user_create_file  
+{  
+public static void main(String args[])  
+{  
+try  
+{  
+Scanner sc=new Scanner(System.in); //object of Scanner class  
+System.out.print("Enter the file name: ");  
+String name=sc.nextLine(); //variable name to store the file name  FileOutputStream fos=new FileOutputStream(name, true); // true for append mode  System.out.print("Enter file content: ");  
+String str=sc.nextLine()+"\n"; //str stores the string which we have entered  byte[] b= str.getBytes(); //converts string into bytes  
+fos.write(b); //writes bytes into file  
+fos.close(); //close the file  
+System.out.println("file saved.");  
+}  
+catch(Exception e)  
+{  
+e.printStackTrace();  
+}  
+}  
+}  
+Output:
+
+
+60 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Practical 10: - Package 
+1.Write a program to create a user defined package in Java. 
+Develop a java program to create a user defined package using following instructions. Create a java project/file with the name AddYourID. 
+Package 1: 
+Create a package with the name YoursFirstNameAdd. 
+Create a java class with the name Calculation. 
+Create a method with name addition to add and return any two float numbers. Addition = J + K 
+Package 2: 
+Create a package with the name YourSecondNamePack. 
+Create a java main class with the name Addition. 
+Include the package YourFirstNameAdd. 
+Display the addition of any two float numbers using the object of calculation. 
+Source code: 
+AddYourID.java 
+package YoursFirstNameAdd; 
+public class AddYourID{ 
+ public static void main(String[] args) { 
+  
+ } 
+} 
+calculation.java 
+package YoursFirstNameAdd; 
+public class calculation{ 
+ public float addition(float J, float K){ 
+ return J+K; 
+ } 
+} 
+Addition.java
+61 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+package YourSecondNamePack; 
+import YoursFirstNameAdd.*; 
+public class Addition{ 
+ public static void main(String[] args) { 
+ calculation c =new calculation(); 
+ System.out.println(c.addition(12, 12)); 
+ } 
+} 
+Output:
+
+62 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+B) Write a Package MCA which has one class Student. Accept student details through  parameterized constructor. Write display () method to display details. Create a main class  which will use package and calculate total marks and percentage. 
+Source Code : 
+package MCA; 
+class student{ 
+ float OS,MA,maths; 
+ student(float OS, float MA, float maths){ 
+ System.out.println("Enter marks "); 
+ System.out.println(""); 
+ System.out.println("Enter OS marks : "+(this.OS=OS)); 
+ System.out.println("Enter MA marks : "+(this.MA=MA)); 
+ System.out.println("Enter maths marks : "+(this.maths=maths)); 
+ System.out.println(""); 
+ } 
+ public void display(){ 
+ System.out.println("Display Total and Percentage"); 
+ System.out.println(""); 
+ System.out.println("Total = " + (OS+MA+maths) ); 
+ System.out.println("Percentage = " + (OS+MA+maths)/3 ); 
+ } 
+} 
+public class Main{ 
+ public static void main(String[] args) { 
+ student s = new student(90,92,98); 
+ s.display(); 
+ } 
+}
+63 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
+NAME: - SHIVAM PARMESH PRAJAPATI OBJECT ORIENTED PROGRAMMING ROLL NO. - 3029 
+Output:
+
+64 
+RAMNIRANJAN JHUNJHUNWAL COLLEGE 
