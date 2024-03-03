@@ -1,0 +1,2213 @@
+
+Practical 1:
+Create an HTML page demonstrating the use of all  Basic HTML Formatting Tags.
+
+
+
+Source code:
+
+<html>
+<head>
+<title>demo page</title>
+</head>
+<body>
+<H1><u>WELCOME TO IT INFORMATION</u></H1>
+<P style="font-size:19px;">
+<i>What is Information Technology (IT)? Information technology (IT) is a broad professional category covering functions including building communications networks,<br>
+ safeguarding data and information, and troubleshooting computer problems.</i></P>
+<H1>FY BSC IT SUBJECTS FOR 1 SEM</H1>
+<OL TYPE="A" >
+<LI>THEORETICAL SUBJECTS</LI>
+<OL TYPE="1">
+<LI>DE</LI>
+<LI>DBMS</LI>
+<LI>GT</LI>
+<LI>MM</LI>
+<LI>DM</LI>
+</OL>
+</OL>
+<img src="i.jpg" width="300" height="300">
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+       Practical 2:
+
+Design an HTML page demonstrating links to different pages and allow navigation between web pages.
+
+
+
+
+SOURCE CODE:
+
+<HTML>
+<HEAD>
+<TITLE>ANIMAL INFORMATION</TITLE>
+</HEAD>
+<BODY BGCOLOR="cyan">
+
+<h1 ALIGN="CENTER">
+*BASIC ANIMALS INFORMATION*</H1>
+
+<P ALIGN="CENTER" style="font-size:25px;">*<I>Animals are multicellular, eukaryotic organisms in the biological kingdom Animalia. With few exceptions, animals consume organic material, breathe oxygen, have myocytes and are able to move, can reproduce sexually, and grow from a hollow sphere of cells, the blastula, during embryonic development.<I>*</P>
+
+</P>
+
+<H2 ALIGN="CENTER"> * SOME BASIC ANIMALS PHOTOS WITH NAME*</H2>
+<P>1.PEACOCK &nbsp;&nbsp;&nbsp;
+2.lion &nbsp;&nbsp;&nbsp;
+3.tiger &nbsp;&nbsp;&nbsp;
+4.dog &nbsp;&nbsp;&nbsp;
+5.cat &nbsp;&nbsp;&nbsp;
+</p>
+
+<a href="pea.html"><IMG SRC="D:\PEA.jpeg" ALT="peacock" width="250" height="250"></a>&nbsp;&nbsp;
+
+<a href="LION.HTML"><IMG SRC="D:\LION.jpeg" width="250" height="250"></a>&nbsp;&nbsp;
+
+<a href="TIGER.HTML"><IMG SRC="D:\TIGER.jpeg" width="250" height="250"></a>&nbsp;&nbsp;
+
+<a href="DOG.HTML"><IMG SRC="D:\DOG.jpeg" width="250" height="250"></a>&nbsp;&nbsp;
+<a href="CAT.HTML"><IMG SRC="D:\CAT.jpeg" width="250" height="250"></a>&nbsp;&nbsp;&nbsp;
+</body>
+</HTML>
+
+
+
+
+OUTPUT:
+
+
+
+THESE PAGES ARE LINK PAGE
+
+
+ Page 1:
+SOURCE CODE:
+
+<html>
+<head>
+<style>
+body{
+background-color:pink;
+}
+div
+{text-align:center;
+}
+.c a{
+text-align:center;
+font-size:30px;
+color:black;
+background-color:yellow;
+text-decoration:none;
+}
+</style>
+<title>second page</title>
+</head>
+<body>
+<h1 align="center"> *welcome to this page to get some basic information about peacock*</h1>
+<div>
+<IMG SRC="D:\PEA.jpeg" ALT="peacock" width="350" height="350">
+</div>
+<p align="center" style="font-size:30px;">Peacock is an American over-the-top video streaming service owned and operated by Peacock TV LLC,<br> a subsidiary of NBCUniversal Television and Streaming. Named after the NBC logo, the service launched on July 15.
+
+</p>
+<div class="c">
+<a href="AN.html">go back</a>
+</div>
+</body>
+</html>
+
+
+
+
+OUTPUT :
+
+
+
+
+
+ Page 2.
+SOURCE CODE:
+
+<html>
+<head>
+<style>
+body{
+background-color:aqua;
+}
+div
+{text-align:center;
+}
+.c a{
+text-align:center;
+font-size:30px;
+color:black;
+background-color:yellow;
+text-decoration:none;
+}
+</style>
+<title>second page</title>
+</head>
+<body>
+<h1 align="center"> *welcome to this page to get some basic information about lion*</h1>
+<div>
+<IMG SRC="D:\LION.jpeg" ALT="lion" width="350" height="350">
+</div>
+<p align="center" style="font-size:30px;"><I>The lion (Panthera leo) is a large cat of the genus Panthera native to Africa and India.<br> It has a muscular, broad-chested body; short, rounded head; round ears;<br> and a hairy tuft at the end of its tail. 
+</I></p>
+<div class="c">
+<a href="AN.html">go back</a>
+</div>
+</body>
+</html>
+
+
+
+
+OUTPUT :
+
+
+
+
+ Page 3:
+SOURCE CODE:
+
+<html>
+<head>
+<style>
+body{
+background-color:lime;
+}
+div
+{text-align:center;
+}
+.c a{
+text-align:center;
+font-size:30px;
+color:black;
+background-color:yellow;
+text-decoration:none;
+}
+</style>
+<title>second page</title>
+</head>
+<body>
+<h1 align="center"> *welcome to this page to get some basic information about tiger*</h1>
+<div>
+<IMG SRC="D:\TIGER.jpeg" ALT="tiger" width="350" height="350">
+</div>
+<p align="center" style="font-size:30px;">The tiger (Panthera tigris) is the largest living cat species and a member of the genus Panthera.<BR> It is most recognisable for its dark vertical stripes on orange fur with a white underside. An apex predator, 
+</p>
+<div class="c">
+<a href="AN.html">go back</a>
+</div>
+</body>
+</html>
+
+Output :
+
+
+ Page 4:
+Source code:
+<html>
+<head>
+<style>
+body{
+background-color:violet;
+}
+div
+{text-align:center;
+}
+.c a{
+text-align:center;
+font-size:30px;
+color:black;
+background-color:yellow;
+text-decoration:none;
+}
+</style>
+<title>second page</title>
+</head>
+<body>
+<h1 align="center"> *welcome to this page to get some basic information about dog*</h1>
+<div>
+<a href="DOG.HTML"><IMG SRC="D:\DOG.jpeg" ALT="dog" width="350" height="350"></a>
+</div>
+<p align="center" style="font-size:30px;">The earliest remains generally accepted to be those of a domesticated dog were discovered in Bonn-Oberkassel, Germany.<br> Contextual, isotopic, genetic, and morphological evidence shows that this dog was not a local wolf. </P>
+
+<div class="c">
+<a href="AN.html">go back</a>
+</div>
+</body>
+</html>
+
+ Output :
+
+
+ Page 5:
+Source code:
+
+<html>
+<head>
+<style>
+body{
+background-color:grey;
+}
+div
+{text-align:center;
+}
+.c a{
+text-align:center;
+font-size:30px;
+color:black;
+background-color:yellow;
+text-decoration:none;
+}
+</style>
+<title>second page</title>
+</head>
+<body>
+<h1 align="center"> *welcome to this page to get some basic information about cat*</h1>
+<div>
+<a href="CAT.HTML"><IMG SRC="D:\CAT.jpeg" ALT="cat" width="350" height="350"></a>
+</div>
+<p align="center" style="font-size:30px;"><I>The cat (Felis catus), commonly referred to as the domestic cat or house cat, is the only domesticated species in the family Felidae.<BR> Recent advances in archaeology and genetics have shown that the domestication of the cat occurred in the Near East around 7500 BC. 
+</I></p>
+<div class="c">
+<a href="AN.html">go back</a>
+</div>
+</body>
+</html>
+
+
+
+
+
+Output:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 3 :
+Design Webpage to design the following content using list
+
+
+Source code:
+
+<html>
+<head>
+<title>design webpage</title>
+</head>
+<body>
+<h1>Learning Web Development</h1>
+<ol type="I">
+<li>Background Skills</li>
+<ol type="A">
+<li>Unix Commands</li>
+<li>Vim Text Editor</li>
+</ol>
+<li>HTML</li>
+<ol type="A">
+<li>Minimal Page</li>
+<li>Headings</li>
+<li>Tags</li>
+<li>Lists</li>
+<ol type="i">
+<li>Unordered</li>
+<li>Ordered</li>
+<li>Definition</li>
+<li>Nested</li>
+</ol>
+<li>Links</li>
+<ol type="i">
+<li>Absolute</li>
+<li>Relative</li>
+</ol>
+<li>Images</li>
+</ol>
+<li>CSS</li>
+<ol type="A">
+<li>Anatomy</li>
+<li>Basic Selectors</li>
+<ol type="i">
+
+
+
+
+<li>Element</li>
+<li>Class</li>
+<li>ID</li>
+<li>Group</li>
+</ol>
+<li>THE DOM</li>
+</ol>
+</body>
+</html>
+
+
+
+
+Output:
+
+
+
+
+
+
+
+
+
+Practical 4: Design the web  page containing the following table
+
+
+
+
+Source code:
+
+<html>
+<head>
+<title>table</title>
+</head>
+<body>
+<table border="3" align="center" <caption><h1 align="center">TABLE</h1>
+</caption>
+<tr>
+<th colspan="2"  rowspan="2" width="60%" >Student</th>
+
+<th  colspan="4" width="30%">Exam</th>
+</tr>
+<tr>
+<th>Q1</th>
+<th>Q2</th>
+<th>Q3</th>
+<th rowspan="2">grade</th>
+</tr>
+<tr>
+<th>CODE</th>
+<th>NAME</th>
+<td align="center">8</td>
+<td align="center">7</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td >80549061</td>
+<td align="center">John</td>
+<td align="center">70%</td>
+<td align="center">100%</td>
+<td align="center">100%</td>
+<td align="center">17.6</td>
+</tr>
+
+<tr>
+<td >80549062</td>
+<td align="center">Mary</td>
+<td align="center">10%</td>
+
+<td align="center">50%</td>
+<td align="center">50%</td>
+<td align="center">6.8</td>
+</tr>
+<tr>
+<td >80549063</td>
+<td align="center">claire</td>
+</tr>
+</table>
+</body>
+</html>
+
+
+
+
+Output:
+
+
+
+
+Practical 5: Design a web page with ImageMaps
+
+
+
+
+Source code:
+
+<html>
+<head>
+<title>
+image mapping</title>
+</head>
+<body>
+<h1 align="center">IMAGE MAP</h1>
+<img src="mm.png" alt="html" usemap="#html">
+<map name="html">
+<area shape="rect" coords="531,82,632,151" 
+   href="np.html" alt="asia" target="_self/">
+<area shape="rect" coords="356,183,473,243" 
+   href="link.html" alt="europe">
+<area shape="rect" coords="660,312,764,368" 
+   href="link.html" alt="africa">
+<area shape="rect" coords="124,115,208,165" 
+   href="link.html" alt="south africa">
+<area shape="rect" coords="223,263,317,341" 
+   href="link.html" alt=”north america">
+<area shape="rect" coords="394,102,486,145" 
+   href="link.html" alt="australia">
+<area shape="rect" coords="386,467,506,501" 
+   href="link.html" alt="antarctica">
+</map>
+</body>
+</html>
+
+
+
+
+
+
+Output:
+
+
+
+
+
+
+
+
+Second page:
+
+<html>
+<head>
+<title>
+2 page</title>
+</head>
+<body>
+<table border="0" cellspacing="20px"<caption><h1 align="center">ASIA INFORMATION</h1></caption>
+<tr>
+<td>
+<img src="as.png" alt="html" width="300" height="300" ></td>
+<td><p>Asia shares the landmass of Eurasia with Europe, and of Afro-Eurasia with both Europe and Africa. <br>In general terms, it is bounded on the east by the Pacific Ocean, on the south by the Indian Ocean, and on the north by the Arctic Ocean.<br> The border of Asia with Europe is a historical and cultural .
+</p></td>
+</tr>
+
+</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+Third page
+Source code:
+
+<html>
+<head>
+<title>
+2 page</title>
+</head>
+<body>
+<table border="0" cellspacing="20px"<caption><h1 align="center">EUROPE INFORMATION</h1></caption>
+<tr>
+<td>
+<img src="eu.png" alt="html" width="300" height="300" ></td>
+<td><p><I>European culture is the root of Western civilisation, which traces its lineage back to ancient Greece and ancient Rome. The fall of the Western Roman Empire in 476 CE and the related Migration Period marked the end of european
+</I></p></td>
+</tr>
+</table>
+<p align="center" style="font-size:30px;">
+<a href="ns.html">goback</a></p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+Forth  page
+Source code:
+
+<html>
+<head>
+<title>
+2 page</title>
+</head>
+<body>
+<table border="0" cellspacing="20px"<caption><h1 align="center">AFRICA  INFORMATION</h1></caption>
+<tr>
+<td>
+<img src="af.png" alt="html" width="300" height="300" ></td>
+<td><p><I>Africa is the world's second-largest and second-most populous continent, after Asia in both aspects. At about 30.3 million km2  including adjacent islands, it covers 20 of Earth's land area .
+</I></p></td>
+</tr>
+</table>
+<p align="center" style="font-size:30px;">
+<a href="ns.html">goback</a></p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 6: Design a web page embedding image, audio and video tags
+Source code:
+
+
+
+<html>
+<head>
+<title>using three tage</title>
+</head>
+<body>
+<h1>
+Practical 6: Design a web page embedding image, audio and video tags
+
+</h1>
+<img src="rj.png" width="150" heigth="150"><br><br>
+<audio width="800" height="1000" controls>
+<source src="C:\Users\Admin\Downloads/Audio1.ogg" type="Audio/ogg">
+</audio><br>
+<Video width="500" height="400" controls>
+<source src="C:\Users\Admin\Downloads/Video2.mp4" type="Video/mp4">
+</video>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 7:Design a web page demonstrating semantics
+
+
+
+Source code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Styled Web Page</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+  header {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+.navigation a:hover{
+transform:scale(1.1);
+} 
+.navigation a::after
+{
+content:'';
+position:absolute;
+left:0;
+bottom:-6px;
+width:100%;
+height:3px;
+background-color:#2B547E;
+border-radius:5px;
+transform-orgin:right;
+transform:scaleX(0);
+transition:transform.5s;
+}
+
+.navigation a:hover::after{
+transform:scaleX(1);
+Transform-orgin:left;
+}
+a{
+text-decoration:none;
+
+}
+   section {
+            max-width: 1800px;
+            margin: 20px auto;
+            margin-top: 90px;
+            padding: 20px;
+            background-color: color;
+            box-shadow: 0 0 10px black;
+           position:absolute;
+           left:30px;
+        }
+  aside {
+            max-width: 100px;
+            margin: 20px auto;
+            margin-top: 90px;
+            padding: 20px;
+            background-color: color;
+            box-shadow: 0 0 10px black;
+             position:relative;
+           left:500px;
+}
+    footer {
+            text-align: center;
+            padding: 10px;
+            background-color: black;
+            color:white;
+        }
+  </style>
+</head>
+<body>
+   <header>
+        <h1>BASIC INFORMATION ABOUT BSCIT</h1>
+    </header>
+<nav>
+<div class="navigation">
+<img src="logo.jpg" width="50px" height="50px"style="position:absolute;top:110px;left:10px;">
+<p href="#" style="font-size:20px;position:absolute;top:100px;left:70px;color:black;">IT-INFORMATION</p>
+<a href="#.html"style="font-size:22px;position:absolute;top:110px;left:700px;color:black;">Home</a>
+<a href="#" style="font-size:22px;position:absolute;top:110px;left:800px;color:black;">About</a>
+<a href="#"style="font-size:22px;position:absolute;top:110px;left:900px;color:black;">Contact</a>
+<a href="#"style="font-size:22px;position:absolute;top:110px;left:1000px;color:black;">Admin</a>
+<a href="C:\Users\user\Downloads/faq.pdf"style="font-size:22px;position:absolute;top:110px;left:1100px;color:black;">FAQ</a>
+</div>
+</nav>
+ <section>
+        <h2>Welcome to my webpage!</h2>
+        <p>This is a simple example of a webpage with internal and  stylesheets.</p>
+    </section>
+<aside>
+<p>This is for basic information about it filed if we choose this filed </p>
+</aside>
+<footer>
+        &copy; 2023 My Web Page
+    </footer>
+
+</body>
+</html>
+
+
+
+Output
+
+
+
+
+
+
+Practical 8:   Design a web page using internal and external stylesheets.
+
+
+
+internal
+Source code:
+
+
+<html>
+<head>
+<style>
+h1{
+text-align:center;
+color:magenta 
+}
+.cu{
+word-spacing:240px;
+font-size:30px;
+ box-shadow: 0 0 10px black;
+background-color:black;
+
+}
+a{
+text-decoration:none;
+color:white;
+}
+p
+{font-size:30px;
+}
+div
+{
+text-align:center;
+}
+</style>
+<title>internal sheet</title>
+</head>
+<h1>Electronic waste</h1>
+
+<div class="cu">
+<a href="j.html">Article</a>
+ <a href="j.html">active</a>
+ <a href="j.html">read</a>
+ <a href="j.html">Edit</a>
+ <a href="j.html">View-history</a>
+</div><br>
+<div>
+
+<img src="l.jpg" width="350px" height="350px">
+</div>
+<p >
+Electronic waste describes discarded electrical or electronic devices. It is also commonly known as waste electrical and electronic equipment  or end-of-life electronics. Used electronics which are destined for refurbishment, reuse, resale, salvage recycling through material.</p>
+</body>
+</html>
+
+
+
+
+
+
+
+         EXTERNAL STYLESHEET
+
+Source code:
+
+<html>
+<head>
+
+<title>internal sheet</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1><u><i>DISASTER MANAGEMENT</i></u></h1>
+
+<div class="cu">
+
+<a href="j.html">Article</a>
+ <a href="j.html">active</a>
+ <a href="j.html">read</a>
+ <a href="j.html">Edit</a>
+ <a href="j.html">View-history</a>
+</div><br>
+<table border="0">
+<tr>
+<td>
+
+<img src="C:\Users\Admin\Downloads/d.jpg" width="350px" height="350px">
+</td>
+<td>
+<p >
+Defining Disaster
+According to the International Federation of Red Cross and Red Crescent Societies: “More people are becoming vulnerable to disasters or are forced to cope with acts of violence, financial crises and growing uncertainty.</p>
+</td></tr></table>
+<p>Disaster types include the following:</p>
+<o1>
+<li>Earthquakes</li>
+<li>Tornadoes</li>
+<li>Hurricanes</li>
+<li>Pandemics</li>
+<li>Volcano eruptions</li>
+</ol>
+
+</body>
+</html>
+
+
+
+
+Style.css
+Source code:
+
+h1{
+text-align:center;
+color:magenta 
+}
+.cu{
+word-spacing:180px;
+font-size:30px;
+
+background-color:purple;
+
+}
+a{
+text-decoration:none;
+color:white;
+}
+p
+{font-size:20px;
+}
+
+
+
+
+
+
+
+
+
+Practical 9:    
+ Design a web page with a registration form that uses all types of controls 
+
+
+
+
+Source code:
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>EMPLOYEE REGISTRATION FORM</title>
+<style>
+.head {
+color:red;
+text-align:center;
+padding:10px;
+}
+
+#2 {
+padding-left:10px;
+}
+
+#div2 {
+padding-left:30px;
+}
+</style>
+
+</head>
+<body>
+<main>
+
+<CENTER><table style="border:solid">
+<tr>
+<td>
+<CENTER><table border="0" >
+<tr>
+<td colspan="2" class="head">
+<img src="C:\Users\Admin\Downloads/hello.png" alt="form" >
+</td>
+<td><h1 class="head">Employee Registration form</h1></td>
+</tr>
+</table></CENTER>
+<div id="div2">
+<CENTER><table id="2" border="0" cellspacing="5px" >
+<tr>
+<td></td>
+<td>
+<input type="radio" name="r1" value="mr">Mr.
+<input type="radio" name="r1" value="mr">Mrs.
+<input type="radio" name="r1" value="mr">Ms.
+</td>
+<tr>
+<td>First Name:</td>
+<td><input type="text" name="fname" value="FirstName">
+</td>
+</tr>
+<tr>
+<td>LastName:</td>
+<td><input type="text" name="lname" value="LastName">
+</tr>
+<tr>
+<td>Mail Address1:</td>
+<td><input type="text" name="madd1" >
+</tr>
+<tr>
+<td>Mail Address2:</td>
+<td><input type="text" name="madd2" >
+</tr>
+<tr>
+<td>State:</td>
+<td><select name="select">
+    <option>Gujarat</option>
+    <option>Rajasthan</option>
+    <option>Maharashtra</option>
+    <option>Uttar Pradesh</option>
+    </select>
+<tr>
+<td>City:</td>
+<td><input type="text" name="city">
+</tr>
+<tr>
+<td>Zip:</td>
+<td><input type="text" name="zip" >
+</tr>
+<tr>
+<td>E-mail:</td>
+<td><input type="email" name="email" >
+</tr>
+<tr>
+<td>Mobile No:</td>
+<td><input type="tel"placeholder="+91" name="tel" >
+</tr>
+<tr>
+<td>Upload Photo:</td>
+<td><input type="file" name="photo" value="Browse"  >
+</tr>
+<tr>
+<td>Languages Known:</td>
+<td><input type="checkbox" name="on" value="gujrati" checked>Gujarati<br>
+    <input type="checkbox" name="on" value="hindi">Hindi<br>
+    <input type="checkbox" name="on" value="english">English<br>
+    <input type="checkbox" name="on" value="Marathi">Marathi <br>
+</td>
+</tr>
+<tr>
+<td>Additional Information:</td>
+<td><textarea rows="3" placeholder="optional"></textarea><br>
+<button type=”submit”>Submit</button>
+<button type=”reset”>Reset</button></tr>
+
+
+</tr>
+</table></CENTER>
+</td>
+</tr>
+</table></CENTER>
+</main>
+</body>
+</html>
+
+
+
+
+
+
+
+Output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        *JAVASCRIPT Programming*
+
+
+ Practical 1. Design a web page that prints factorials of the given Number.
+
+
+
+
+#source code
+
+
+<html>
+<head>
+  <meta>
+  <title>Document</title>
+</head>
+<body>
+<button value="pop" onclick="con();">
+click this button
+</button> 
+
+  <script language ="javascript" type="text/javascript">
+function con()
+{
+   Var num =prompt("Enter any number to find factorial number");
+    var ans=1;
+ for(var i=1;i<=num;i++)
+    {
+      ans *=i;
+      // document.write(i + " ");
+    }
+ document.write("The factorial  number "+ num + " and this number is" +ans);
+
+}
+  </script>
+</body>
+</html>
+
+
+
+
+
+Output
+
+
+
+
+ Practical 2. Design a web page that prints Fibonacci series of the given Number.
+
+
+
+
+#source code
+
+<html>
+<head>
+<title>
+fibonacci</title>
+</head>
+<body>
+<script language ="javascript" type="text/javascript">
+var a=0;
+var b=1;
+document.write("Fibonacci Series");
+document.write("<br/>");
+var n=prompt("enter the value of Fibonacci series");
+for (i=1;i<=n;i++)
+{
+var c=a+b;
+document.write(a+"");
+document.write("<br/>");
+a=b;
+b=c;
+}
+</script>
+
+
+
+
+Output:
+
+
+
+
+
+
+ Practical 3.  Write a JavaScript program to accept a number from the user and display the sum of its digits. Use textbox  to get input.
+
+
+
+
+Source code:-
+
+<html>
+<head>
+<title>
+practical 3</title>
+</head>
+<body>
+<h1> Javascipt TO Calculate SUM oF Digits Number</h1>
+<script language ="javascript" type="text/javascript">
+
+function find()
+{
+var sum=0;
+var no=parseInt(form1.text1.value);
+while(no>0)
+{
+sum=sum+no%10;
+no=Math.floor(no/10);
+}
+form1.text2.value=sum;
+}
+</script>
+<form name="form1">
+Enter first  any number to sum:
+<input type="text"  name="text1" placeholder="first number">
+<br>
+<br>
+
+<input name="b1" onclick="find()"; type="button" value="click to calculate">
+<br>
+<br>
+
+ sum of digit of given number:
+<input type="text"  name="text2" placeholder="sum number" value="">
+</form>
+</body>
+
+
+Output:
+
+
+
+
+Practical 4. Find whether the number entered in the prompt dialog box is a prime or not.
+
+
+
+
+#Source code
+
+
+<html>
+<head>
+<title>
+</title>
+</head>
+<body>
+<script>
+
+function Prime(number) {
+ 
+for(i=2;i<=number/2;i++)
+    if (number % i === 0) {
+      return false;
+      }
+        return true;
+}
+var user = prompt("Enter a number:");
+var number =user;
+if ( Prime(number)) {
+ alert(number + " is a prime number.");
+} else {
+ alert(number + " is not a prime number.");
+}
+</script>
+
+
+
+
+
+
+Practical 5. To check if the given string is  palindrome or not. 
+
+
+#Source code:
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>palindrome</title>
+</head>
+<body>
+<h1>enter number is palindrome or not</h1>
+<form name="f1">
+Enter a String/number :<input type="text" name="t1" id="str1">
+<button name="b1" value="palindrome" onClick="palindrome()">Click</button>
+</form>
+<script language="javaScript" type="text/javaScript">
+function palindrome() {
+var str=document.getElementById("str1").value;
+ var revstr="";
+var i=str.length;
+ for(var j=i;j>=0;j--) {
+revstr=revstr+str.charAt(j-1);
+}
+if(revstr==str) {
+alert( str + " is palindrome");
+}
+else {
+alert(str +" is not palindrome");
+}
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+ 
+Practical 6. Write a JavaScript program to check Whether given no is  odd or even.
+
+
+#Source code
+
+<html>
+<head>
+<title>odd & even</title>
+</head>
+<body>
+odd & even number
+<script>
+ var n=prompt("Enter a Number ");
+if(n%2==0)
+{
+alert("it is a Even Number");
+}
+else
+{
+alert("it is a Odd Number");
+}
+</script>
+</body>
+</html>
+
+
+
+
+Output
+
+
+
+
+ Practical 7. Write a javascript program to design a simple calculator 
+
+#Source code
+
+
+<html>
+<head>
+<title>
+cal</title>
+</head>
+<body>
+<h1>Simple Calculator</h1>
+<br>
+<form name="calc">
+<table border="4">
+<tr>
+<td colspan=4><input name="display" onkeypress="return event.charcode>=48 && event charcode<=57" type="text"></td>
+</tr>
+<tr>
+<td><input type=button value="0" OnClick="calc.display.value+='0'"></td>
+<td><input type=button value="1" OnClick="calc.display.value+='1'"></td>
+<td><input type=button value="2" OnClick="calc.display.value+='2'"></td>
+<td><input type=button value="+" OnClick="calc.display.value+='+'"></td>
+</tr>
+<tr>
+<td><input type=button value="3" Onclick="calc.display.value+='3'"></td>
+<td><input type=button value="4" Onclick="calc.display.value+='4'"></td>
+<td><input type=button value="5" Onclick="calc.display.value+='5'"></td>
+<td><input type=button value="-" Onclick="calc.display.value+='-'"></td>
+</tr>
+<tr>
+<td><input type=button value="6" Onclick="calc.display.value+='6'"></td>
+<td><input type=button value="7" Onclick="calc.display.value+='7'"></td>
+<td><input type=button value="8" Onclick="calc.display.value+='8 '"></td>
+<td><input type=button value="x" Onclick="calc.display.value+='*'"></td>
+</tr>
+<tr>
+<td><input type=button value="9" OnClick="calc.display.value+='9'"></td>
+<td><input type=button value="C" OnClick="calc.display.value=''"></td>
+<td><input type=button value="=" OnClick="calc.display.value=eval(calc.display.value)"></td>
+<td><input type=button value="/" OnClick="calc.display.value+='/'"></td>
+</tr>
+</table>
+</form>
+</html>
+
+Output
+
+
+ Practical 8. Write a program to change background color using onclick event .
+
+
+#Source code
+
+
+<html>
+<head>
+<title>
+calu</title>
+<h1>
+CLICK HERE</h1>
+<script language="javascript" type="text/javascript">
+function changeBG1()
+{
+document.bgColor="red";
+}
+function changeBG2()
+{
+document.bgColor="blue";
+}
+function changeBG3()
+{
+document.bgColor="green";
+}
+function changeBG4()
+{
+document.bgColor="yellow";
+}
+</script>
+</head>
+<body>
+
+<input type =button value="red" name="submit1" onClick=changeBG1()>
+<input type =button value="blue" name="submit2" onClick=changeBG2()>
+<input type =button value="green" name="submit3" onClick=changeBG3()>
+<input type =button value="yellow" name="submit4" onClick=changeBG4()>
+
+</body>
+</html>
+
+
+
+Output
+
+
+
+
+Practical 9. Write a program to demonstrate event handling using onMouseOver and onMouseOut Event
+
+
+#Source code
+
+
+<html>
+<head>
+<title>
+How to make a javaScript Image Rollover</title>
+<script language="javascript">
+function MouseRollover(MyImage)
+{
+MyImage.src =  "E:\sakshi html/donor.jpg";
+MyImage.alt ="Mypicture2.jpg"
+}
+function MouseOut (MyImage)
+{
+MyImage.src = "E:\sakshi html/2donor.jpg";
+MyImage.alt ="Mypicture1.jpg"
+}
+function MouseOut (MyImage)
+{
+MyImage.src =  "E:\sakshi html/img.jpg";
+MyImage.alt ="Mypicture3.jpg"
+}
+
+</script>
+</head>
+<body>
+<div align="center">
+<img src="E:\sakshi html/2donor.jpg" border="0px" width="550px" height="550"
+onMouseOver="MouseRollover(this)"
+onMouseOut="MouseOut(this)">
+</div>
+</body>
+</html>
+
+
+
+
+Output:
+‘
+
+
+
+10.Write a program to do simple form validation.
+
+
+<!DOCTYPE html>
+<head>
+<title>practical 10 </title>
+<script language="javascript" type="text/javascript">
+function validateform()
+{
+ var name=document.myform.name.value;  
+var password=document.myform.password.value;  
+var email=document.myform.email.value;
+ var num=document.myform.num.value;
+if (name === "" || !isValidName(name)) {
+ alert("Name cannot be empty and must be in character");
+return false;
+  }
+ if (password === "" || password.length !== 8) {
+alert("Password must be 8 characters long.");
+ return false;
+}  
+if (email === "" || !isValidEmail(email)) {
+alert("Please enter a valid email address.");
+ return false;
+  }  
+if (num === "" || isNaN(num) || num.length !==10) {
+  alert("Please enter a valid numeric contact number.");
+return false;
+  }
+return true;
+}
+ function isValidName(name) {
+var letters = /^[A-Za-z]+$/;
+return name.match(letters);
+}
+function isValidEmail(email) {
+ var atIndex = email.indexOf('@');
+var dotIndex = email.lastIndexOf('.');
+ return (atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.length - 1);
+}
+</script>
+</head>
+<body>
+<table border="0">
+<form name="myform"  onsubmit="return validateform()" method=”POST”>
+<tr>
+<td>Name:<td><input type="text" name="name" id="name"></br>
+</tr>
+<tr>
+<td>Password:<td><input type="password" name="password"></br>
+</tr>
+<tr>
+<td>E-mail Id: <td><input type="text" name="email"></br>
+</tr>
+<tr>
+<td>Contact No.:<td><input type="text" name="num"><span id="numloc"></span></br>
+</tr>
+<tr>
+<td><input type="submit" value="submit">
+</form>
+</table>
+</body>
+</html>
+
+
+
+
+PHP PROGRAMING
+1. Write a PHP code to find the greater of 2 numbers. Accept the no. from the user.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>This Page</title>
+</head>
+<body>
+    <h1>WELCOME TO MY WEBSITE</h1>
+  <form method="post" action="">
+        Enter 1 number:
+        <input required type="text" name="large1" style="width:250px;">
+        <br><br>
+ Enter 2 number:
+        <input required type="text" name="large2" style="width:250px;">
+        <br><br>
+<input type="submit" value="Submit" name="submit">
+    </form>
+ <?php
+
+        $no = $_POST['large1'];
+        $no1 = $_POST['large2'];
+         if($no > $no1) {
+            echo "The first number is greater: $no ";
+        } elseif($no1 > $no) {
+            echo "The second number is greater:$no1";
+        } else {
+            echo "Both numbers are equal";
+        }
+      ?>
+</body>
+</html>
+
+
+
+
+
+2. Write a PHP Program to accept a number from the user and print it factorial.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>second Page</title>
+</head>
+<body>
+<center>
+    <h1>WELCOME TO MY WEBSITE</h1>
+<form method="post" action="">
+        Enter 1 number:
+        <input required type="text" name="large1" style="width:250px;">
+        <br><br>
+          <input type="submit" value="Submit" name="submit">
+    </form>
+    <?php
+     $num = $_POST['large1'];
+        $ans=1;
+for($i=1;$i<=$num;$i++)
+ {   $ans*=$i;
+ }
+echo "the factorial  number $num  and this number is $ans";
+ ?></center>
+</body>
+</html>
+
+
+
+
+3. Write a PHP program to accept a number from the user and print whether it is armstrong number or not .i.e (153 = 13+53+33=153) 153 is armstrong number
+ 
+<html>
+<body>
+<form action="page.php" method= "post">
+enter number: <input type="text" name="num"/> <hr/>
+<input type="submit" name="submit" value="result" >
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+<?php  
+$num=$_POST['num']; 
+$sum=0;  
+$temp=$num;  
+while($temp!=0)  
+{  
+$rem=$temp%10;  
+$sum=$sum+$rem*$rem*$rem;  
+$temp=$temp/10;  
+}  
+if($num==$sum)  
+{  
+$result= " it is an Armstrong number";  
+}  
+else  
+{  
+$result= "No it is not an armstrong number";  
+}
+echo "result: <input type='text' value='$result' />";  
+?>
+
+
+
+
+
+
+
+4. Write a PHP program to display the following Binary Pyramid:
+1
+0 1
+1 0 1
+0 1 0 1
+1 0 1 0 1
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Binary Tree</title>
+</head>
+<body>
+
+<?php
+// Function to print the binary pyramid
+function printBinaryPyramid($rows)
+{
+    for ($i = 1; $i <= $rows; $i++) {
+        if ($i % 2 == 0) {
+            $num = 0;
+        } else {
+            $num = 1;
+        }
+        for ($j = 1; $j <= $i; $j++) {
+            echo $num . " ";
+            if ($num == 1) {
+                $num = 0;
+            } else {
+                $num = 1;
+            }
+        }
+        echo "<br/>";
+    }
+}
+
+// Number of rows in the pyramid
+$rows = 5;
+
+// Print the binary pyramid
+printBinaryPyramid($rows);
+?>
+
+</body>
+</html>
+
+
+
+
+
+ 5.Write a PHP program to demonstrate different array 
+<?php
+$color = array('white','green','red');
+foreach($color as $c)
+{
+echo "$c, ";
+}
+sort($color);
+echo"<ul>";
+foreach ($color as $y)
+{
+echo"<li>$y</li>";
+}
+echo"</ul>";
+?>
+
+2)Create a PHP script which displays the capital and country name from the 
+Below array $countrylist. sort the list by the name of the capital program.
+
+<?php
+$countrylist = array("India"=>"Delhi", "Italy"=>"Rome",
+"Finland"=>"Helsinki", "Greece"=>"Athens",
+"Germany"=>"Berlin", "Greece"=>"Athens",
+"Ireland"=>"Dubin", "Netherlands"=>"Amsterdam",
+"United kingdom"=>"London", "Austria"=>"Vienna", "Poland"=>"warsaw");
+asort($countrylist);
+foreach($countrylist as $country=>$capital)
+{
+echo "The capital of $country is $capital"."<br>";
+}
+?>
+
+
+
+
+
+6. Write a PHP program to demonstrate use of sessions and cookies.
+1)Cookies
+Source code:
+
+<?php
+setcookie ("user_name", "sakshi", time ()+ 60, '/' ); //expries after 60 seconds
+echo 'the cookie has been set for 60 seconds';
+?>
+
+
+
+
+Retrieving the Cookie value
+<?php
+print_r($_COOKIE); // output the contents of the cookie  array variable
+?>
+
+
+
+
+
+Delete Cookies
+
+<?php
+setcookie("sakshi", "6009", time() - 360, '/');
+echo "cookie delete";
+?>
+
+
+
+
+
+
+B)sessions
+Creating a session.
+
+<?php
+session_start (); // start the PHP_session function
+if(isset($_SESSION['page_count']))
+{
+$_SESSION['page_count'] +=1;
+}
+else
+{
+$_SESSION['page_count'] = 1;
+}
+echo 'you are visitor number'.$_SESSION['page_count'];
+?>
+
+
+
+
+
+
+Destroying Session Variables
+<?php
+session_start(); // start the session
+session_destroy(); // destroy entire session
+echo "session deleted";
+?>
+
+
+7. Write a PHP program to demonstrate use of filters. To validate integer,email id ,IP address,URL
+TO validate integer
+Source code:
+
+<?php
+// Sample integer value
+$int = 20;
+ 
+// Validate sample integer value
+if(filter_var($int, FILTER_VALIDATE_INT)){
+    echo "The <b>$int</b> is a valid integer";
+} else{
+    echo "The <b>$int</b> is not a valid integer";
+}
+?>
+
+
+
+
+
+To validate email id
+Source code:
+
+<?php
+// Sample email address
+$email = "sakshishahu81@gmail.com";
+ 
+// Remove all illegal characters from email
+$sanitizedEmail = filter_var($email, FILTER_SANITIZE_EMAIL);
+ 
+// Validate email address
+if($email == $sanitizedEmail && filter_var($email, FILTER_VALIDATE_EMAIL)){
+    echo "The $email is a valid email address";
+} else{
+    echo "The $email is not a valid email address";
+}
+?>
+
+
+
+Invalid Email address
+
+<?php
+// Sample email address
+$email = "sakshishahu81@@gmail.com";
+ 
+// Remove all illegal characters from email
+$sanitizedEmail = filter_var($email, FILTER_SANITIZE_EMAIL);
+ 
+// Validate email address
+if($email == $sanitizedEmail && filter_var($email, FILTER_VALIDATE_EMAIL)){
+    echo "The $email is a valid email address";
+} else{
+    echo "The $email is not a valid email address";
+}
+?>
+
+
+
+
+
+
+
+
+
+Valid IP address
+
+<?php
+
+$ip = "172.16.254.1";
+ 
+
+if(filter_var($ip, FILTER_VALIDATE_IP)){
+    echo "The <b>$ip</b> is a valid IP address";
+} else {
+    echo "The <b>$ip</b> is not a valid IP address";
+}
+?>
+
+
+
+
+
+
+
+Invalid IP address
+
+<?php
+
+$ip = "172.16.254";
+ 
+
+if(filter_var($ip, FILTER_VALIDATE_IP)){
+    echo "The <b>$ip</b> is a valid IP address";
+} else {
+    echo "The <b>$ip</b> is not a valid IP address";
+}
+?>
+
+
+
+
+
+
+
+Valid URL
+
+
+<?php
+// Sample website url
+$url = "http://www.amazon.com";
+ 
+// Remove all illegal characters from url
+$sanitizedUrl = filter_var($url, FILTER_SANITIZE_URL);
+ 
+// Validate website url
+if($url == $sanitizedUrl && filter_var($url, FILTER_VALIDATE_URL)){
+    echo "The $url is a valid website url";
+} else{
+    echo "The $url is not a valid website url";
+}
+?>
+
+
+
+
+
+Invalid URL
+
+<?php
+// Sample website url
+$url = "http:://www.amazon.com";
+ 
+// Remove all illegal characters from url
+$sanitizedUrl = filter_var($url, FILTER_SANITIZE_URL);
+ 
+// Validate website url
+if($url == $sanitizedUrl && filter_var($url, FILTER_VALIDATE_URL)){
+    echo "The $url is a valid website url";
+} else{
+    echo "The $url is not a valid website url";
+}
+?>
+
+
+
+
+
+
+
+
+
+8 . Write a PHP program to create a database my_db and a table
+<?php
+$con = mysql_connect("localhost", "admin", "");
+
+if (!$con) {
+    die('Could not connect: ' . mysql_error());
+}
+
+if (mysql_query("CREATE DATABASE my_db", $con)) {
+    echo "Database created";
+} else {
+    echo "Error creating database: " . mysql_error();
+}
+
+mysql_close($con);
+?>
+
+#output
+
+
+
+
+
+
+CREATE TABLE PERSONS(FIRSTNAME,LASTNAME,AGE)
+<?php
+$con=mysql_connect("localhost","admin", "");
+if(!$con)
+{
+die('Could not connect :' . mysql_erreo());
+}
+mysql_select_db("my_db", $con);
+$sql="CREATE TABLE persons
+(
+FirstName varchar(15),
+LastName varchar(15),
+Age int)";
+
+if(mysql_query($sql,$con))
+{
+echo "Table created";
+}
+else
+{
+echo "Error creating Table: " .mysql_error();
+}
+mysql_close($con);
+?>
+
+#output
+
+
+9. Write a PHP program to :
+(i) Insert 3 records of your choice on the “Persons” Table.
+          
+Form table:
+
+<html>
+<body>
+<form action="insert.php" method="POST">
+FirstName:<input type="text" name="firstname"/>
+LastName:<input type="text" name="lastname"/>
+Age:<input type="text" name="age"/>
+<input type="submit"/>
+</form>
+</body>
+</html>
+
+
+(i) Insert 3 records of your choice on the “Persons” Table.
+
+Insert record
+
+
+<?php
+$con =mysql_connect("localhost","admin","");
+if(!$con)
+{
+die('could not connect:'.mysql_error());
+}
+mysql_select_db("my_db", $con);
+$sql="INSERT INTO Persons (FirstName,LastName,Age)
+VALUES
+('$_POST[firstname]','$_POST[lastname]','$_POST[age]')";
+if (!mysql_query($sql,$con))
+{
+die('Error: ' . mysql_error());
+}
+echo "1 record added";
+mysql_close($con)
+?>
+
+
+
+
+ (ii)  Display all the data stored in the "Persons" table 
+
+
+<?php
+$con = mysql_connect("localhost","admin","");
+if (!$con)
+{
+die('Could not connect: ' . mysql_error());
+}
+mysql_select_db("my_db", $con);
+$result = mysql_query("SELECT * FROM Persons");
+while($row = mysql_fetch_array($result))
+{
+echo $row['FirstName'] . " " . $row['LastName'] ." ". $row['Age'];
+echo "<br />";
+}
+mysql_close($con);
+?>
+
+
+Write a PHP program to create a database Department  and a table Employee (Name,Department, Age,Salary)
+
+
+<?php
+$con = mysql_connect("localhost", "admin", "");
+
+if (!$con) {
+    die('Could not connect: ' . mysql_error());
+}
+
+if (mysql_query("CREATE DATABASE Department", $con)) {
+    echo "Database created";
+} else {
+    echo "Error creating database: " . mysql_error();
+}
+
+mysql_close($con);
+?>
+
+
+table Employee (Name,Department, Age,Salary)
+<?php
+$con=mysql_connect("localhost","admin", "");
+if(!$con)
+{
+die('Could not connect :' . mysql_erreo());
+}
+mysql_select_db("Department", $con);
+$sql="CREATE TABLE Employee
+(
+Name varchar (15),
+department varchar (15),
+Age int,
+Salary int)";
+
+if(mysql_query($sql,$con))
+{
+echo "Table created";
+}
+else
+{
+echo "Error creating Table: " .mysql_error();
+}
+mysql_close($con);
+?>
+
+
+
+
+Form creation:
+
+
+<html<
+<head>
+<title>department</title>
+<body>
+<form  action="data insert.php" method="POST">
+Name:
+<input type="text" name="Name"  required>
+<br>
+<br>
+Department:
+<input type="text" name="dep" required>
+<br>
+<br>
+Age:
+<input type="text"  name="age" required>
+<br>
+<br>
+Salary:
+<input type="text" name="sal" required>
+<br>
+<br>
+<input type="submit">
+</form>
+</body>
+</head>
+</html>
+
+
+ (b) (i) Insert 5 records of your choice on the “Employee” Table.
+
+
+<?php
+$con =mysql_connect("localhost","admin","");
+if(!$con)
+{
+die('could not connect:'.mysql_error());
+}
+mysql_select_db("Department", $con);
+$sql="INSERT INTO Employee (Name,department,Age,Salary)
+VALUES
+('$_POST[Name]','$_POST[dep]','$_POST[age]','$_POST[sal]')";
+if (!mysql_query($sql,$con))
+{
+die('Error: ' . mysql_error());
+}
+echo "1 record added";
+mysql_close($con)
+?>
+
+
+
+
+
+ (ii)  Display the data of employee  stored in the "Employee" table whose Salary is greater than 10,000
+
+
+<?php
+
+$con = mysql_connect("localhost","admin","");
+
+if (!$con)
+
+{
+
+die('Could not connect: ' . mysql_error());
+
+}
+
+mysql_select_db("Department", $con);
+
+$result = mysql_query("SELECT * FROM Employee where Salary>10000");
+
+while($row = mysql_fetch_array($result))
+
+{
+
+echo $row['Name'] . " " . $row['department'] ." ". $row['Age'] ." ". $row['Salary'];
+
+echo "<br />"; 
+
+}
+
+mysql_close($con);
+
+?>
+
+
+10 .Write a PHP program to demonstrate different string functions. 
+
+<?php 
+
+$string="Miss.";
+$string1="Sakshi shahu.";
+echo "First String:".$string."<br>";
+echo "Second String:".$string1."<br>";
+echo "1.The Length of String:".strlen($string)."<br>";
+echo "2.The reverse string is:".strrev($string1)."<br>";
+echo "3. The  Substr String is:".substr($string1,6)."<br>";
+echo "4. The upper String is:".strtoupper($string1)."<br>";
+echo "5.The Lower Case String is:".strtolower($string)."<br>";
+echo "6.The Trim String is:".trim($string1)."<br>";
+?>
+
+
+
+11. Write a PHP program to demonstrate Date and Time function 
+Date Function
+
+<?php
+echo "Today's date is:";
+$today = date("d/m/Y");
+echo $today;
+?>
+
+
+
+
+Date in various formats
+
+
+<?php
+echo "Today's date in Various formats:"."<br>";
+echo date("d/m/Y")."<br>";
+echo date("d-m-Y")."<br>";
+echo date("d.m.Y")."<br>";
+echo date("d.M.Y/D");
+
+?>
+
+
+Time Function
+<?php
+$timestamp = time();
+echo($timestamp);
+echo"<br>";
+echo(date("F d, Y h:i:s A", $timestamp));
+?>
+
+
+
+
+<?php
+echo mktime(23, 21, 50, 11, 25, 2017);
+?>
+
+
+
+
