@@ -1,0 +1,513 @@
+Common Config for all pracs
+For Line vty 
+enable
+conf t
+line vty 0 4
+password ciscovtypa55
+login 
+end 
+
+For console password
+enable
+conf t
+line console 0
+password ciscoconpa55
+login 
+end 
+
+
+For enable password
+enable
+conf t
+enable password ciscoenpa55
+exit 
+
+
+Line vty ssh connection
+enable
+conf t
+ip domain-name user.com
+username sshAdmin privilege 15 secret sshadmin123
+line vty 0 4
+login local
+transport input ssh
+crypto key zeroize rsa
+crypto 	key generate rsa
+1024 
+
+show ip ssh
+
+
+
+Practical 1 
+
+Part 1 : Configure OSPF MD5 Authentication
+
+Step 1 : ( same in all router )
+R1(config)# router ospf 1
+R1(config-router)# area 0 authentication message-digest
+
+Step 2 : ( same in all router just have to change the interfaces of each router accordingly )
+R1(config)# interface s0/1/0
+R1(config-if)# ip ospf message-digest-key 1 md5 MD5pa55
+ 
+R1> show ip ospf interface                                     ..…….(this is for verifying)
+
+
+Part 2 : NTP Server Setup
+
+Step 1: Enable NTP authentication on PC-A(NTP server).
+Go to service → NTP → ON → enable → KEY = 1 , Password = NTPpa55
+
+Step 2: Configure R1, R2, and R3 as NTP clients. And update clock(same in all router )
+
+R1(config)# ntp server 192.168.1.5
+R1(config)# ntp update-calendar
+
+Step 3: Configure NTP authentication on the routers. (same in all router )
+R1(config)# ntp authenticate
+R1(config)# ntp trusted-key 1
+R1(config)# ntp authentication-key 1 md5 NTPpa55
+
+Step 4: Configure routers to timestamp log messages.  (same in all router )
+R1(config)# service timestamps log datetime msec
+
+Part 3: Configure Routers to Log Messages to the Syslog Server
+
+Step 1: Configure the routers to identify the remote host (Syslog Server) that will receive
+logging messages.
+R1(config)# logging host 192.168.1.6     (same in all router )
+R1> show logging 					…..(for verifying logs)
+
+Step 2 : you can see all logg messages in SYSLOG server(PC_B).
+
+Part 4: Configure R3 to Support SSH Connections
+Step 1 : 
+R3(config)# ip domain-name ccnasecurity.com
+R3(config)# username SSHadmin privilege 15 secret ciscosshpa55
+R3(config)# line vty 0 4
+R3(config-line)# login local
+R3(config-line)# transport input ssh
+R3(config)# crypto key generate rsa
+How many bits in the modulus [512]: 1024
+
+
+Step 2 : 
+
+R3>show ip ssh
+ connect to R3 via Telnet from PC-C.
+PC> telnet 192.168.3.1 
+		Failed
+Connect to R3 using SSH on PC-C.
+PC> ssh –l SSHadmin 192.168.3.1
+		Successfull
+Connect to R3 using SSH on R2.
+R2# ssh –v 2 –l SSHadmin 10.2.2.1
+		Successfull
+
+
+
+Practical 2
+Part 1: Configure Local AAA Authentication for Console Access on R1
+Step1 : Configure a local username on R1.
+R1(config)# username Admin1 secret admin1pa55    	(same in all router )  
+Step2: Configure local AAA authentication for console access on R1.
+R1(config)# aaa new-model					(same in all router )
+R1(config)# aaa authentication login default local	(same in all router just small changes)
+Step 3: Configure the line console to use the defined AAA authentication method.
+R1(config)# line console 0
+R1(config-line)# login authentication default
+R1(config-line)#end
+R1> exit
+And now verify using above created username and password
+
+Part 2: Configure Local AAA Authentication for vty Lines on R1
+Step 1: Configure domain name and crypto key for use with SSH.
+R1(config)# ip domain-name ccnasecurity.com
+R1(config)# crypto key generate rsa
+R1(config)# aaa authentication login SSH-LOGIN local
+R1(config)# line vty 0 4
+R1(config-line)# login authentication SSH-LOGIN
+R1(config-line)# transport input ssh 
+R1(config-line)#end
+
+Verify the SSH configuration SSH to R1 from the command prompt of PC-A..
+PC> ssh –l Admin1 192.168.1.1
+Password: admin1pa55
+
+Part 3: Configure Server-Based AAA Authentication Using TACACS+ on R2
+Step 1: Configure a backup local database entry called Admin.
+R2(config)# username Admin2 secret admin2pa55
+Step 2: TACACS+ Server configuration.
+
+Step 3: Configure AAA login authentication for console access on R2.
+R2(config)# username Admin2 secret admin2pa55    
+R2(config)# aaa new-model
+R2(config)# aaa authentication login default group tacacs+ local
+R2(config)# line console 0
+R2(config-line)# login authentication default
+End then exit and verify by using Admin2 as username and admin2pa55 as password
+
+Part 4: Configure Server-Based AAA Authentication Using RADIUS on R3
+Step 1: Configure a backup local database entry called Admin.
+R3(config)# username Admin3 secret admin3pa55
+Step 2: RADIUS Server configuration.
+
+Step 3: Configure AAA login authentication for console access on R3.
+R3(config)# aaa new-model
+R3(config)# aaa authentication login default group radius local
+R3(config)# line console 0
+R3(config-line)# login authentication default
+End then exit and verify by using Admin3 as username and admin3pa55 as password
+
+
+
+
+
+Practical 3
+Part 1: Configure, Apply and Verify an Extended Numbered ACL
+Step 1 : Configure an ACL to permit FTP access and ICMP.
+A. we are only permitting FTP traffic
+R1(config)# access-list 100 permit tcp 172.22.34.66	 0.0.0.31 host 172.22.34.62 eq ftp
+B. Create a second access list statement to permit ICMP (ping, etc.) traffic from PC1 to Server. 
+R1(config)# access-list 100 permit icmp 172.22.34.66 0.0.0.31 host 172.22.34.62
+
+Step 2: Apply the ACL on the correct interface to filter traffic.
+R1(config)# interface gigabitEthernet 0/0
+R1(config-if)# ip access-group 100 in 
+
+Verify the ACL implementation.
+Ping from PC1 to PC2. The destination host should be unreachable, because the traffic was not explicitly Permitted.
+Ping PC1 to server it should be successful
+FTP from PC1 to Server. The username and password are both cisco.
+
+Part 2: Configure, Apply and Verify an Extended Named ACL
+Step 1: Configure an ACL to permit HTTP access and ICMP.
+a. You can configure named standard and extended ACLs. This access list filters both source and destination IP addresses; therefore, it must be extended. Enter HTTP_ONLY as the name. 
+R1(config)# ip access-list extended HTTP_ONLY
+
+b. Finish the statement by specifying the server address as you did in Part 1 and filtering www traffic.
+R1(config-ext-nacl)# permit tcp 172.22.34.98 0.0.0.15 host 172.22.34.62 eq www
+
+c. Create a second access list statement to permit ICMP (ping, etc.) traffic from PC2 to Server. 
+R1(config-ext-nacl)# permit icmp 172.22.34.98 0.0.0.15 host 172.22.34.62
+
+Step 2: Apply the ACL on the correct interface to filter traffic.
+R1(config)# interface gigabitEthernet 0/1
+R1(config-if)# ip access-group HTTP_ONLY in 
+
+Step 3: Verify the ACL implementation.
+a. Ping from PC2 to Server. The ping should be successful
+b. Open the web browser on PC2 and enter the IP address of Server a
+
+Practical 4
+
+Blocking Web browser communication from PC0 to Server0.
+Router(Config)#access-list 100 deny tcp host 192.168.1.1 host 192.168.19.1 eq www
+
+Blocking FTP connection from PC1 to Server0.
+Router(Config)#access-list 100 deny tcp host 192.168.17.1 host 192.168.19.1 eq ftp
+
+Blocking ICMP connection from laptop to Server0.
+Router(Config)#access-list 100 deny icmp host 192.168.1.5 host 192.168.19.1
+
+All other IP traffic is denied, by default.So use the command
+Router(Config)#access-list 100 permit ip any any
+
+From R1’s perspective, the traffic that access list HTTP_ONLY applies to is inbound from the network connected to Serial0/0/1 interface. Enter the interface configuration mode and apply the ACL.
+
+Router(Config)#interface Serial0/0/1
+Router(Config-if)#ip access-group 100 out
+Router(Config-if)#ex
+
+Checking Results :
+Condition 01: Blocking Web browser communication from PC0 to Server0.
+Condition 02: Blocking FTP connection from PC1 to Server0.
+Condition 03: Blocking ICMP connection from laptop to Server0.
+
+
+
+
+Practical 5 :Configure IP ACLs to mitigate Attacks
+Part 1 : Verify connectivity
+Step 1: From PC-A, verify connectivity to PC-C and R2. (Successful)
+Step 2: From PC-C, verify connectivity to PC-A and R2. (Successful
+Open a web browser to the PC-A server (192.168.1.3) to display the web page.
+
+Part 2: Secure Access to Routers
+Step 1: Configure ACL 10 to block all remote access to the routers except from PC-C.
+R1(config)# access-list 10 permit host 192.168.3.3    (same in all router )
+Step 2: Apply ACL 10 to ingress traffic on the VTY lines. Use the access-class command to apply the access list to incoming traffic on the VTY lines.
+R1(config)# line vty 0 4			(same in all router )
+R1(config-line)# access-class 10 in         (same in all router )
+
+Verify connection from PC-C and PC-A to R2(PC-C connection should successful and PC-A is failed)
+
+Part 3: Create a Numbered IP ACL 120 on R1
+Step 1: Verify that PC-C can access the PC-A via HTTPS using the web browser.
+Be sure to disable HTTP and enable HTTPS on server PC-A.
+Step 2: Configure ACL 120 to specifically permit and deny the specified traffic.
+R1(config)# access-list 120 permit udp any host 192.168.1.3 eq domain
+R1(config)# access-list 120 permit tcp any host 192.168.1.3 eq smtp
+R1(config)# access-list 120 permit tcp any host 192.168.1.3 eq ftp
+R1(config)# access-list 120 deny tcp any host 192.168.1.3 eq 443
+R1(config)# access-list 120 permit tcp host 192.168.3.3 host 10.1.1.1 eq 22
+Step 3: Apply the ACL to interface S0/0/0. 
+R1(config)# interface s0/0/0
+R1(config-if)# ip access-group 120 in
+Verify that PC-C cannot access PC-A via HTTPS using the web browser. 
+
+Part 4: Modify an Existing ACL on R1
+Step 1: Verify that PC-A cannot successfully ping the loopback interface on R2.
+Step 2: Make any necessary changes to ACL 120 to permit and deny the specified traffic. 
+R1(config)# access-list 120 permit icmp any any echo-reply
+R1(config)# access-list 120 permit icmp any any unreachable
+R1(config)# access-list 120 deny icmp any any
+R1(config)# access-list 120 permit ip any any
+Step 3: Verify that PC-A can successfully ping the loopback interface on R2.
+
+Part 5: Create a Numbered IP ACL 110 on R3
+Step 1: Configure ACL 110 to permit only traffic from the inside network.
+R3(config)# access-list 110 permit ip 192.168.3.0 0.0.0.255 any
+Step 2: Apply the ACL to interface G0/1
+R3(config)# interface g0/1
+R3(config-if)# ip access-group 110 in
+
+Part 6: Create a Numbered IP ACL 100 on R3
+Step 1: Configure ACL 100 to block all specified traffic from the outside network.
+R3(config)#access-list 100 permit tcp 10.0.0.0 0.255.255.255 eq 22 host 192.168.3.3
+
+R3(config)# access-list 100 deny ip 10.0.0.0 0.255.255.255 any
+R3(config)# access-list 100 deny ip 172.16.0.0 0.15.255.255 any
+R3(config)# access-list 100 deny ip 192.168.0.0 0.0.255.255 any
+R3(config)# access-list 100 deny ip 127.0.0.0 0.255.255.255 any
+R3(config)# access-list 100 deny ip 224.0.0.0 15.255.255.255 any 
+R3(config)# access-list 100 permit ip any any
+
+Step 2: Apply the ACL to interface Serial 0/0/1.
+R3(config)# interface s0/0/1
+R3(config-if)# ip access-group 100 in
+
+Step 3: Confirm that the specified traffic entering interface Serial 0/0/1 is handled correctly.
+a. From the PC-C command prompt, ping the PC-A server. The ICMP echo replies are blocked by the ACL 
+b. Establish an SSH session to 192.168.2.1 from PC-C (should be successful).
+
+
+
+
+
+Practical 6 : IPv6
+Practical 7 : Zone Based Security
+Part 1: Verify Basic Network Connectivity
+Step 1: From the PC-A command prompt, ping PC-C.
+Step 2: Access R2 using SSH.
+Step 3: From PC-C, open a web browser to the PC-A server.
+Part 2: Create the Firewall Zones on R3
+a.  On R3, issue the show version command to view the Technology Package license 
+b.  If the Security Technology package has not been enabled, use the following command to enable the package.
+R3(config) : license boot module c1900 technology-package securityk9
+
+Copy run start and after that reload then check return using Show version 
+Step 2: Create an zones.
+R3(config)# zone security IN-ZONE
+R3(config-sec-zone) exit
+R3(config)# zone security OUT-ZONE
+R3(config-sec-zone) exit
+
+Part 3: Identify Traffic Using a Class-Map
+
+Step 1: Create an ACL that defines internal traffic.
+R3(config)# access-list 101 permit ip 192.168.3.0 0.0.0.255 any
+Step 2: Create a class map referencing the internal traffic ACL.
+R3(config)# class-map type inspect match-all IN-NET-CLASS-MAP
+R3(config-cmap)# match access-group 101
+R3(config-cmap)# exit
+Part 4: Specify Firewall Policies
+Step 1: Create a policy map to determine what to do with matched traffic.
+R3(config)# policy-map type inspect IN-2-OUT-PMAP
+Step 2: Specify a class type of inspect and reference class map IN-NET-CLASS-MAP.
+R3(config-pmap)# class type inspect IN-NET-CLASS-MAP
+R3(config-pmap-c)# inspect
+Part 5: Apply Firewall Policies
+Step 1: Create a pair of zones.
+R3(config)# zone-pair security IN-2-OUT-ZPAIR source IN-ZONE destination OUT-ZONE
+Step 2: Specify the policy map for handling the traffic between the two zones.
+R3(config-sec-zone-pair)# service-policy type inspect IN-2-OUT-PMAP
+R3(config-sec-zone-pair)# exit
+Step 3: Assign interfaces to the appropriate security zones.
+R3(config)# interface g0/1
+R3(config-if)# zone-member security IN-ZONE
+R3(config-if)# exit
+R3(config)# interface s0/0/1
+R3(config-if)# zone-member security OUT-ZONE
+R3(config-if)# exit
+Part 6: Test Firewall Functionality from IN-ZONE to OUT-ZONE
+Step 1: From internal PC-C, ping the external PC-A server. (successful)
+Step 2: From internal PC-C, SSH to the R2 S0/0/1 interface.
+While the SSH session is active, issue the command show policy-map type inspect zone-pair sessions on R3 to view established sessions.
+Step 3: From PC-C, exit the SSH session on R2 and close the command prompt window.
+Step 4: From internal PC-C, open a web browser to the PC-A server web page.
+
+Part 7: Test Firewall Functionality from OUT-ZONE to IN-ZONE
+Step 1: From the PC-A server command prompt, ping PC-C.  (Failed)
+Step 2: From R2, ping PC-C.	(Failed)
+
+
+
+
+
+
+
+Practical 8 : IPS  IOS
+Part 1: Enable IOS IPS
+Step 1: Enable the Security Technology package.
+Step 2: Verify network connectivity. PC-A to PC-C and vice versa    (successful)
+Step 3: Create an IOS IPS configuration directory in flash on R1. 
+R1# mkdir ipsdir
+Step 4: Configure the IPS signature storage location. On R1, configure the IPS signature storage location to be the directory you just created.
+R1(config)# ip ips config location flash:ipsdir
+
+Step 5: Create an IPS rule.
+R1(config)# ip ips name iosips
+Step 6: Enable logging.
+R1(config)# ip ips notify log
+A ) clock set command
+R1# clock set 8:35:00 3 february 2024
+B) Enable the timestamp service if it is not enabled.
+R1(config)# service timestamps log datetime msec
+C) Send log messages to the syslog server at IP address 192.168.1.50. 
+	R1(config)#logging host 192.168.1.50
+Step 7: Configure IOS IPS to use the signature categories.
+R1(config)# ip ips signature-category
+R1(config-ips-category)# category all
+R1(config-ips-category-action)# retired true
+R1(config-ips-category-action)# exit
+R1(config-ips-category)# category ios_ips basic
+R1(config-ips-category-action)# retired false
+R1(config-ips-category-action)# exit
+R1(config-ips-cateogry)# exit
+Do you want to accept these changes? [confirm] <Enter>
+Step 8: Apply the IPS rule to an interface.
+R1(config)# interface g0/1
+R1(config-if)# ip ips iosips out 
+
+Part 2: Modify the Signature
+Step 1: Change the event-action of a signature.
+Un-retire the echo request signature (signature 2004, subsig ID 0), enable it, and change the signature action to alert and drop.
+R1(config)# ip ips signature-definition
+R1(config-sigdef)# signature 2004 0
+R1(config-sigdef-sig)# status
+R1(config-sigdef-sig-status)# retired false
+R1(config-sigdef-sig-status)# enabled true
+R1(config-sigdef-sig-status)# exit
+
+R1(config-sigdef-sig)# engine
+R1(config-sigdef-sig-engine)# event-action produce-alert 
+R1(config-sigdef-sig-engine)# event-action deny-packet-inline
+R1(config-sigdef-sig-engine)# exit
+R1(config-sigdef-sig)# exit
+R1(config-sigdef)# exit
+Do you want to accept these changes? [confirm] <Enter>
+
+Step 2: Use show commands to verify IPS.(Show ip ips all )
+Step 3: Verify that IPS is working properly. 
+Ping pc-c to pc-A (should be failed)
+Ping pc-A to pc-C (Should be successful)
+
+
+
+
+
+
+Practical 9 : Layer 2 security
+Part 1: Configure Root Bridge
+Step 1: Determine the current root bridge.
+From Central, issue the show spanning-tree command to determine the current root bridge, to see the ports in use, and to see their status.
+Step 2: Assign Central as the primary root bridge.
+Central(config)# spanning-tree vlan 1 root primary
+Step 3: Assign SW-1 as a secondary root bridge.
+SW-1(config)# spanning-tree vlan 1 root secondary
+Central# show spanning-tree
+
+Part 2: Protect Against STP Attacks
+Step 1: Enable PortFast on all access ports and Enable BPDU guard on all access ports
+SW-A(config)# interface range f0/1 - 4
+SW-A(config-if-range)# spanning-tree portfast
+SW-A(config-if-range)# spanning-tree bpduguard enable
+
+SW-B(config)# interface range f0/1 - 4
+SW-B(config-if-range)# spanning-tree portfast
+SW-B(config-if-range)# spanning-tree bpduguard enable
+
+Step 2: Enable root guard.
+SW-1(config)# interface range f0/23 - 24
+SW-1(config-if-range)# spanning-tree guard root
+SW-2(config)# interface range f0/23 - 24
+SW-2(config-if-range)# spanning-tree guard root
+
+
+Part 3: Configure Port Security and Disable Unused Ports
+Step 1: Configure basic port security on all ports connected to host devices.
+SW-A(config)# interface range f0/1 - 22
+SW-A(config-if-range)# switchport mode access : (This command sets the operational mode of the interfaces to access mode. Access mode is typically used for connections to end devices like computers or printers.)
+SW-A(config-if-range)# switchport port-security
+SW-A(config-if-range)# switchport port-security maximum 2 (max number of mac addresses are allowed are 2)
+SW-A(config-if-range)# switchport port-security violation shutdown  (more than the maximum number of MAC addresses are detected), the interface will be shut down.)
+SW-A(config-if-range)# switchport port-security mac-address sticky
+
+DO SAME THING ON SW-B all commands of above step-1
+
+Step 2: Verify port security.
+SW-A# show port-security interface f0/1
+Ping from C1 to C2 and issue the command show port-security interface f0/1 again to verify that the switch has learned the MAC address for C1.
+SW-A# show port-security interface f0/1
+Step 3: Disable unused ports.
+SW-A(config)# interface range f0/5 - 22
+SW-A(config-if-range)# shutdown
+SW-B(config)# interface range f0/5 - 22
+SW-B(config-if-range)# shutdown
+
+
+Practical 10 : VPN
+Part 1: Configure IPsec Parameters on R1
+Step1 : Enable the Security Technology package.
+R1(config)# license boot module c1900 technology-package securityk9
+Step 2: Identify interesting traffic on R1.
+R1(config)# access-list 110 permit ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255
+Step 3: Configure the IKE Phase 1 ISAKMP policy on R1.
+R1(config)# crypto isakmp policy 10
+R1(config-isakmp)# encryption aes 256
+R1(config-isakmp)# authentication pre-share
+R1(config-isakmp)# group 5			(Diffie-Hellman (DH) groups determine the strength of the key used in the key exchange process.)
+R1(config-isakmp)# exit
+R1(config)# crypto isakmp key vpnpa55 address 10.2.2.2
+
+Step 5: Configure the IKE Phase 2 IPsec policy on R1.
+a.     Create the transform-set VPN-SET to use esp-aes and esp-sha-hmac.
+R1(config)# crypto ipsec transform-set VPN-SET esp-aes esp-sha-hmac
+
+b.     Create the crypto map VPN-MAP that binds all of the Phase 2 parameters together. Use sequence number 10 and identify it as an ipsec-isakmp map…………………………..(VPNTM)
+R1(config)# crypto map VPN-MAP 10 ipsec-isakmp ……………..(Tunnel creation)
+R1(config-crypto-map)# description VPN connection to R3
+R1(config-crypto-map)# set peer 10.2.2.2
+R1(config-crypto-map)# set transform-set VPN-SET
+R1(config-crypto-map)# match address 110
+R1(config-crypto-map)# exit
+
+Step 6: Configure the crypto map on the outgoing interface.
+R1(config)# interface s0/0/0
+R1(config-if)# crypto map VPN-MAP
+
+Part 2: Configure IPsec Parameters on R3
+DO SAME AS YOU DO FOR R1  just change 
+
+R1(config)# crypto isakmp key vpnpa55 address 10.1.1.2  ….(Just Ip will be of opposite router)
+R1(config-crypto-map)# description VPN connection to R1  …(change to R1)
+R1(config-crypto-map)# set peer 10..1.1.2
+R1(config)# interface s0/0/0   …..(here you can change accordingly )
+
+
+
+
+
+
