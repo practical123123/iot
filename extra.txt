@@ -1,0 +1,289 @@
+################           Fibonacci series          #################
+
+
+; Prompt the user to enter a number
+$num = InputBox("Input", "Enter the number of Fibonacci terms you want: ")
+
+; Initialize the first two terms of the Fibonacci sequence
+$fib1 = 0
+$fib2 = 1
+
+; Initialize a string to store the Fibonacci sequence
+$fibSequence = "Fibonacci sequence: " & $fib1 & ", " & $fib2
+
+; Calculate and append Fibonacci sequence up to the n-th term entered by the user
+For $i = 3 To $num
+    $fibN = $fib1 + $fib2  ; Calculate next term
+    $fibSequence &= ", " & $fibN  ; Append the next term to the sequence string
+    $fib1 = $fib2  ; Update the (n-2)th term
+    $fib2 = $fibN  ; Update the (n-1)th term
+Next
+
+; Display the Fibonacci sequence
+MsgBox(0, "Fibonacci Sequence", $fibSequence)
+ConsoleWrite($fibSequence)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################               Factorial Number               ###################################
+
+
+
+$num = InputBox("Number","Enter number ")
+
+$fact = 1
+
+For $i = 1 To $num 
+	$fact *= $i
+Next
+
+MsgBox(1,"Result","Factorial " & $fact)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##############################               Armstrong Number               ######################################
+
+
+
+
+
+$num = InputBox("Input", "Enter a number to check if it's an Armstrong number: ")
+
+
+$originalNum = $num
+
+
+$sum = 0
+$numDigits = StringLen($num)
+
+
+While $num > 0
+    $digit = Mod($num, 10)
+    $sum += $digit ^ $numDigits
+    $num = Int($num / 10)
+WEnd
+
+
+If $sum = $originalNum Then
+    MsgBox(0, "Armstrong Number", $originalNum & " is an Armstrong number.")
+Else
+    MsgBox(0, "Armstrong Number", $originalNum & " is not an Armstrong number.")
+EndIf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################       Pallindrome ########################################
+
+
+
+
+$str = InputBox("Input", "Enter a string to check if it's a palindrome: ")
+
+
+$str = StringRegExpReplace($str, "[^a-zA-Z0-9]", "")
+
+
+$strLower = StringLower($str)
+
+
+$len = StringLen($strLower)
+$isPalindrome = True
+
+
+For $i = 0 To ($len / 2) - 1
+    If StringMid($strLower, $i + 1, 1) <> StringMid($strLower, $len - $i, 1) Then
+        $isPalindrome = False
+        ExitLoop
+    EndIf
+Next
+
+
+If $isPalindrome Then
+    MsgBox(0, "Palindrome Check", '"' & $str & '" is a palindrome.')
+Else
+    MsgBox(0, "Palindrome Check", '"' & $str & '" is not a palindrome.')
+EndIf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#########################                     Prime Number                    ##########################
+
+
+
+$num = InputBox("Prime Number Check", "Enter a number to check if it's prime: ")
+
+
+$num = Int($num)
+
+
+If $num <= 1 Then
+    MsgBox(0, "Prime Number Check", "Please enter a number greater than 1.")
+    Exit
+EndIf
+
+
+$isPrime = True
+
+
+For $i = 2 To Sqrt($num)
+    If Mod($num, $i) = 0 Then
+        $isPrime = False
+        ExitLoop
+    EndIf
+Next
+
+
+If $isPrime Then
+    MsgBox(0, "Prime Number Check", $num & " is a prime number.")
+Else
+    MsgBox(0, "Prime Number Check", $num & " is not a prime number.")
+EndIf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################                        EVEN AND ODD               ##########################
+
+
+
+
+$num = InputBox("number","Enter number ")
+
+If Mod($num,2) ==0  Then
+	MsgBox(0,"res","Even")
+Else
+	MsgBox(0,"res","Odd")
+	
+EndIf
+
+
+
+
+
+
+
+
+
+
+

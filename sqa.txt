@@ -1,0 +1,884 @@
+Practical 3
+
+
+What is Selenium ? 
+
+Selenium is a handy tool for managing web browsers using code, used for automation testing. It works with all browsers, runs on different operating systems, and supports multiple programming languages like Python, Java, and C#.
+
+
+
+Selenium has four major components
+
+Selenium IDE
+Selenium RC
+Selenium Web driver 
+Selenium GRID
+
+
+What is Selenium IDE ? 
+
+Selenium IDE (Integrated Development Environment) is the major tool in the Selenium Suite. It is a complete integrated development environment (IDE) for Selenium tests. It is implemented as a Firefox Add-On and as a Chrome Extension. It allows for recording, editing and debugging of functional tests. It was previously known as Selenium Recorder. 
+
+Scripts may be automatically recorded and edited manually providing autocompletion support and the ability to move commands around quickly. Scripts are recorded in Selenese, a special test scripting language for Selenium. Selenese provides commands for performing actions in a browser (click a link, select an option) and for retrieving data from the resulting pages.
+
+1.Download Installation and Core Features Introduction (Creating a Selenium IDE ScriptRecording, Playback and Saving)
+Using chrome : 
+
+Selenium is a powerful open-source framework for automating web browsers. It provides a way for developers to write scripts in various programming languages (such as Java, Python, C#, etc.) to automate interactions with web applications. Here are 10 key features of Selenium:
+
+Cross-browser Compatibility:
+Selenium supports various web browsers, including Chrome, Firefox, Safari, Internet Explorer, and Edge. This allows developers to write scripts that work across different browsers without major modifications.
+
+Multi-language Support:
+Selenium supports multiple programming languages, such as Java, Python, C#, Ruby, and JavaScript. This flexibility enables developers to choose a language they are comfortable with or that best fits their project requirements.
+
+Platform Independence:
+Selenium is platform-independent, meaning it can run on different operating systems like Windows, Linux, and macOS. This makes it versatile for testing and automation on various environments.
+
+Parallel Execution:
+Selenium allows parallel test execution, which means running multiple test scripts simultaneously. This can significantly reduce the overall test execution time, improving efficiency in large-scale testing.
+
+Integration with Testing Frameworks:
+Selenium can be integrated with popular testing frameworks like JUnit, TestNG, NUnit, and others. This integration provides additional features and functionalities for organizing and managing test cases.
+
+Support for Different Operating Systems:
+Selenium supports testing on different operating systems, making it suitable for testing web applications across various environments and ensuring consistency in behavior.
+
+Extensibility:
+Selenium can be extended using third-party plugins or browser extensions. This extensibility allows developers to enhance and customize the functionality of Selenium according to specific project requirements.
+
+Large Community and Support:
+Selenium has a large and active community of developers and testers. This means there are abundant resources, forums, and online communities where users can seek help, share knowledge, and find solutions to common issues.
+
+Continuous Integration:
+Selenium can be easily integrated into continuous integration and continuous delivery (CI/CD) pipelines. This ensures that automated tests are seamlessly executed as part of the development and deployment process.
+
+Robust and Powerful:
+Selenium provides a robust set of tools and APIs for interacting with web elements, handling different types of alerts, managing windows, and executing complex scenarios. This makes it a powerful tool for web automation and testing.
+
+
+Step 1 : Go to google and search  Selenium IDE in search box.
+
+
+Now go to the webpage and download selenium IDE for chrome .
+Step 2: Launch chrome  and navigate to Selenium IDE extension Click on Add to chrome.
+
+
+
+It will open pop up and click on add extension.
+
+
+
+
+
+Click on Selenium IDE
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now login to webpage : 
+
+
+
+
+
+
+
+
+Using Firefox : 
+
+Open Setting Tab:
+Open Firefox and go to the settings menu by clicking on the three horizontal lines in the upper-right corner.
+      2. Access Add-Ons:
+From the settings menu, click on "Add-ons" (it might also be labeled as "Extensions").
+
+
+
+3. Search for Selenium IDE:
+In the Add-ons/Extensions page, search for "Selenium IDE" in the search bar.
+
+
+
+4. Install Selenium IDE:
+Once found, click on "Add to Firefox" to add Selenium IDE to your Firefox browser.
+
+
+
+5. Open Selenium IDE:
+After installation, locate the Selenium IDE icon, usually found in the toolbar or the extensions menu, and click on it to open the Selenium IDE.
+
+6. Record a New Test in a New Project:
+In Selenium IDE, click on "Record a new test in a new project."
+ 
+
+
+7. Name Your Project:
+Provide a name for your project when prompted.
+
+
+
+
+8. Give TestCase Name:
+Enter a meaningful name for your test case.
+9. Start Recording:
+Click on "Start recording" to begin capturing your actions on the web browser.
+
+
+
+
+10. Perform Actions:
+Interact with the web application as you would during a manual test. Selenium IDE will record your actions.
+
+
+
+
+
+
+
+
+11. Stop Recording:
+Once you've completed the test scenario, click on "Stop recording" to finish capturing the steps.
+
+
+
+13. Run Current Test:
+Click on "Run current test" to execute the automated test case and observe the browser's actions.
+
+
+14. Review Results:
+After the test run is complete, review the results in the Selenium IDE interface. Check for any failures or issues.
+
+
+
+
+
+
+
+Practical 4 : Selenium Locators – Demonstrate Relative XPath Expressions in detail 
+
+1. Install ChroPath extension 
+
+Go to Chrome web store and download chropath extension.
+
+
+
+
+
+
+
+Now, Navigate to Any Website and open the chropath 
+
+
+
+Now open chropath studio
+
+
+
+
+
+
+
+
+
+
+2. Open your HTML web page(basic Web Application for demonstration) in Chrome Browser, where ChroPath is already installed
+
+
+
+
+
+
+3. Locate the entire web page
+
+
+
+
+4. Locate the head section of the web page i.e. head tag.
+
+
+
+5. Locate the title of the web page i.e. title tag.
+
+
+6. Locate the body section of the web page i.e. body tag.
+
+
+7. Locate all the Paragraphs on the web page i.e. p tags.
+
+
+
+8.Locate the first paragraph only by adding the index value [1] to the above Relative XPath Expression to from the Relative XPath Expression
+
+
+
+9. Locate the second paragraph only by adding the index value [2] to the above Relative XPath Expression to from the Relative XPath Expression
+
+
+10 . Locate the paragraph having the id attribute value as ‘para1′
+
+
+11. Locate the paragraph having the id attribute value as ‘para2′
+
+
+12 Locate the paragraph having the class attribute value as ‘main’ 
+
+
+13. Locate the paragraph having the class attribute value as ‘sub’
+
+
+14. Take two different attribute names and values to locate the p tags in the above web page.
+
+
+15 . Locate all the paragraphs having the id attribute value as ‘para1’ and also class attribute value as ‘main’
+
+
+16. Locate all the p tags having id attribute value as ‘para1’ and also class attribute value as ‘sub’ using the Relative XPath Expression
+
+
+
+17 . Locate all the p tags in the above web page having any of the id values as ‘para1’ or ‘para2’.
+
+
+
+
+Practical 5
+Selenium Locators – Relative XPath Expression to Locate/ Identify Web Elements (Text box, Button, Drop Down, Check Box, Radio Button) 
+
+1. Open your own HTML registration form or (http://omayo.blogspot.com/ ) in Chrome Browser, where ChroPath is already installed.
+
+
+2. Locate all the input tags in the HTML page using the relative XPath Expression.
+
+
+
+3. Locate the first input tag and modify it. Then observe that it is locating the first UI element having input tag
+
+
+4. Locate only the input tags having the name attribute by executing the Relative XPath Expression – //input[@name]
+
+
+
+5. Locate the input tag having attribute name ‘value’ and its value as ‘orange’ 
+
+
+
+6. locate the input tag having two attribute names and values where,
+The first attribute name is ‘name’ and its value is ‘color’
+
+
+
+The second attribute name is ‘value’ and its value is ‘blue’
+
+
+
+
+
+
+
+
+
+
+7. Locate the Radio and Checkbox options that are in the selected mode.
+
+
+
+
+
+8. Locate all the images (i.e. img tags) in the HTML page
+
+
+
+
+9. Locate the dropdown
+
+
+
+10. Locate the another UI element, say hyperlink
+
+
+
+
+11. Locate the button
+
+
+
+12. Locate all the anchor tags
+
+
+
+13. Locate all the tags (input, a, button and other tags) in the HTML.
+
+
+
+
+14. Locate all the tags in the web page having id attribute value as radio1 and name attribute value as gender
+
+
+
+
+
+
+
+
+Practical - 6 : WebDriver Entire Setup and Installation with python Implementation of Our First WebDriver Script
+
+
+https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/win64/chromedriver-win64.zip
+
+Implementation of Our First WebDriver Script
+
+1.Prerequisite - Python should be installed on your machine.
+2.To check - Open CMD prompt. Type python –version. 
+
+
+
+3.Click on the link below to install selenium. Copy the path and paste on command prompt. Ensure that it is successfully installed.
+
+
+
+
+4.Install chrome driver - first check the version of your browser . follow the below link.
+
+Go to https://chromedriver.chromium.org/downloads
+
+
+
+
+
+Paste it and it will get downloaded
+
+Practical - 7 : WebDriver
+			
+
+
+Check Visibility Of Web Elements (buttons, drop boxes, checkboxes, radio buttons, labels etc) Using WebDriver Commands-isDisplayed(), isSelected(), isEnabled()
+
+Checkbox.py
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+# Start the WebDriver (assuming Chrome in this example)
+
+
+driver_path = "D:/6409_vivek/SQA/chromedriver-win64/chromedriver-win64/chromedriver.exe"
+service = Service(driver_path)
+
+# Start the WebDriver using the specified service
+driver = webdriver.Chrome(service=service)# Replace 'your_url' with the actual URL of the webpage
+driver.get('https://omayo.blogspot.com/')
+driver.maximize_window()
+
+# Locate the checkbox element
+checkbox_element = driver.find_element(By.ID, 'checkbox2')
+
+# Check if the checkbox is selected
+if not checkbox_element.is_selected():
+    checkbox_element.click()
+    print("Checkbox is selected")
+else:
+    print("Checkbox is not selected")
+
+# Close the WebDriver
+time.sleep(5)
+driver.quit()
+
+
+
+
+Alternate code for that : 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+# Start the WebDriver (assuming Chrome in this example)
+driver = webdriver.Chrome()
+
+# Replace 'your_url' with the actual URL of the webpage
+driver.get('https://omayo.blogspot.com/')
+driver.maximize_window()
+
+# Locate the checkbox element
+checkbox_element = driver.find_element(By.ID, 'checkbox2')
+
+# Check if the checkbox is selected
+if not checkbox_element.is_selected():
+    checkbox_element.click()
+    print("Checkbox is selected")
+else:
+    print("Checkbox is not selected")
+
+# Close the WebDriver
+time.sleep(5)
+driver.quit()
+
+
+
+
+
+
+
+
+
+Before  							After 
+		
+
+RadioButton.py : 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+# Start the WebDriver (assuming Chrome in this example)
+
+
+driver_path = "D:/vivek/SQA/chromedriver-win64/chromedriver-win64/chromedriver.exe"
+service = Service(driver_path)
+
+# Start the WebDriver using the specified service
+driver = webdriver.Chrome(service=service)# Replace 'your_url' with the actual URL of the webpage
+driver.get('https://omayo.blogspot.com/')
+driver.maximize_window()
+
+# Locate the checkbox element
+Radio_element = driver.find_element(By.ID,'radio1')
+
+# Check if the checkbox is selected
+if not Radio_element.is_selected():
+    Radio_element.click()
+    print("Radio Button  is selected")
+else:
+    print("Radio Button  is not selected")
+
+# Close the WebDriver
+time.sleep(5)
+driver.quit()
+
+
+Output : 
+
+
+
+
+Before : 							After
+ 				
+Dropdown.py : 
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+import time
+from selenium.webdriver.common.by import By
+
+# Start the WebDriver (assuming Chrome in this example)
+driver = webdriver.Chrome()
+
+# Replace 'your_url' with the actual URL of the webpage
+driver.get('https://omayo.blogspot.com/')
+
+# Locate the dropdown element by its ID
+dropdown = Select(driver.find_element(By.ID, 'drop1'))
+
+# Get the currently selected option
+selected_option_before = dropdown.first_selected_option.text
+print(f"Selected Option Before: {selected_option_before}")
+
+# Select an option by index (index starts from 0)
+dropdown.select_by_index(2)  # Selects the third option (index 2)
+
+# Get the selected option after selection
+selected_option_after = dropdown.first_selected_option.text
+print(f"Selected Option After: {selected_option_after}")
+
+# Close the WebDriver
+time.sleep(5)
+driver.quit()
+
+
+
+
+Output : 
+
+
+
+Before 							          After
+                           
+
+Button.py : 
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("https://omayo.blogspot.com/")
+# Assuming "but2" is the ID of the button
+button = driver.find_element(By.ID, "prompt")
+# Check if the button is clickable (enabled)
+if button.is_displayed() and button.is_enabled():
+    print("Button is clickable.")
+    button.click()
+else:
+    print("Button is not clickable.")
+time.sleep(5)
+driver.quit()
+
+
+
+
+Output : 
+
+
+
+
+LABELS.py : 
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("https://omayo.blogspot.com/")
+# Assuming the textarea has specific text content
+# Find the first textarea element on the page
+textarea = driver.find_element(By.TAG_NAME, "textarea")
+# Check if the textarea is visible
+if textarea.is_displayed():
+    print("Textarea is visible.")
+    
+    textarea.send_keys("hii bush.")
+else:
+    print("Textarea is not visible.")
+time.sleep(5)
+driver.quit()
+
+
+
+
+Output : 
+
+
+
+Before : 
+
+
+
+After : 
+
+
+
+
+
+Practical 8 : Implement Iterative and decision-making structures
+
+1) Example of a For loop in AutoIt
+
+For $i = 1 To 5 Step 1
+ConsoleWrite("Iteration " & $i & @CRLF)
+Next
+
+
+; Explanation:
+; This For loop will iterate from 1 to 5 with a step size of 1.
+; Inside the loop, ConsoleWrite is used to print the current iteration.
+; @CRLF is a predefined constant that represents a new line.
+(The $ prefix is used when declaring a variable. In this example, $myVariable is assigned
+the string value "Hello, AutoIt!". Local $myVariable = "Hello, AutoIt!")
+
+Output : 
+
+
+
+Script : 
+Run("notepad.exe")
+sleep(1000)
+Send("Hello Vivek, how are you ?!!!..")
+Sleep(1000) ; Wait for a moment to see the typed text
+WinClose("[CLASS:Notepad]")
+
+
+
+
+
+
+
+
+3) Example of an If-Then statement in AutoIt
+
+Local $number = 10
+If $number > 5 Then
+MsgBox(0, "Result", "$number is greater than 5.")
+EndIf
+
+
+
+
+; Explanation:
+; This If-Then statement checks if $number is greater than 5.
+; If the condition is true, a message box is displayed indicating that $number is greater than 5.
+
+
+
+
+4) Example of an If-Else statement in AutoIt
+
+Local $value = 8
+
+If $value > 10 Then
+MsgBox(0, "Result", "$value is greater than 10.")
+Else
+MsgBox(0, "Result", "$value is not greater than 10.")
+EndIf
+
+
+
+
+
+; Explanation:
+; This If-Else statement checks if $value is greater than 10.
+; If true, it displays a message stating that $value is greater than 10; otherwise, it indicates that
+$value is not greater than 10.
+
+
+
+
+
+5) Example of a Switch statement in AutoIt
+
+Local $day = "Tuesday"
+
+Switch $day
+Case "Monday"
+MsgBox(0, "Day", "It's Monday.")
+Case "Tuesday"
+MsgBox(0, "Day", "It's Tuesday.")
+Case "Wednesday"
+MsgBox(0, "Day", "It's Wednesday.")
+Case "Thursday"
+MsgBox(0, "Day", "It's Thursday.")
+Case "Friday"
+MsgBox(0, "Day", "It's Friday.")
+Case Else
+MsgBox(0, "Day", "It's a weekend day.")
+EndSwitch
+
+
+; Explanation:
+0: Specifies the type of the message box. In this case, it is set to 0, which means it's a
+standard message box with an "OK" button
+; The Switch statement is used to evaluate the value of $day and execute the corresponding Case.
+; If $day matches any of the specified cases, the corresponding MsgBox is displayed.
+; If $day doesn't match any of the cases, the code inside Case Else is executed.
+
+
+
+
+Practical : 9. Handling different windows application (Calculator, MS Excel, MS Word, Notepad) using AutoIt
+1) Notepad
+; Open Notepad
+Run("notepad.exe")
+Sleep(1000)
+; Type some text
+Send("Hello, AutoIt!")
+; Wait for a moment
+Sleep(2000)
+; Close Notepad
+WinClose("Untitled - Notepad")
+
+
+
+
+Output : 
+
+2 ) Calculator
+
+; Open Calculator
+Run("calc.exe")
+WinWaitActive("Calculator")
+; Add a brief delay (adjust as needed)
+Sleep(1000)
+; Send the calculation command
+Send("2*4=")
+; Wait for the result to appear (adjust the sleep time as needed)
+Sleep(2000)
+; Close Calculator
+WinClose("Calculator")
+
+
+Output : 
+
+
+
+3 ) Excel
+
+; Create Excel application object
+Global $oExcel = ObjCreate("Excel.Application")
+
+; Check if Excel was successfully created
+
+If IsObj($oExcel) Then
+; Make Excel visible (optional)
+$oExcel.Visible = True
+
+; Add a new workbook
+Global $oWorkbook = $oExcel.Workbooks.Add
+
+; Activate the first sheet
+Global $oSheet = $oWorkbook.Sheets(1)
+$oSheet.Activate
+
+; Write "Hello, AutoIt!" to cell A1
+$oSheet.Range("A1").Value = "Name"
+$oSheet.Range("A2").Value = "Vivek Yadav"
+
+$oSheet.Range("B1").Value = "Roll No"
+$oSheet.Range("B2").Value = "6409"
+
+
+; Wait for a moment (optional)
+Sleep(2000)
+
+; Save and close the workbook
+$oWorkbook.SaveAs(@ScriptDir & "\AutoItExcelExample.xlsx")
+$oWorkbook.Close
+
+; Quit Excel
+$oExcel.Quit
+ObjRelease($oExcel)
+EndIf
+
+
+Output : 
+
+
+4 ) ms word
+
+; Create Word application object
+Global $oWord = ObjCreate("Word.Application")
+
+; Check if Word was successfully created
+
+If IsObj($oWord) Then
+; Make Word visible (optional)
+$oWord.Visible = True
+
+; Add a new document
+Global $oDoc = $oWord.Documents.Add
+
+; Write "Hello, AutoIt!" to the document
+$oDoc.Range.Text = "Hello, AutoIt!"
+
+; Wait for a moment (optional)
+Sleep(2000)
+
+; Save and close the document
+$oDoc.SaveAs(@ScriptDir & "\AutoItWordExample.docx")
+$oDoc.Close
+
+; Quit Word
+$oWord.Quit
+ObjRelease($oWord)
+EndIf
+
+
+
+
+Output  : 
+
+
+
+
+Practical 10 : To perform Load and performance testing
+
+First check java is present in the system or not
+
+
+Go to download release 
+
+
+Download .zip file : 
+
+
+Open jar file : 
+
+
+
+
+
+
+
+Add thread group : 
+
+
+
+
+
+
+View result : 
+
+
+
+Result tree
+
+
+
+Table format : 
+
+
+
+Practical 11 : Testing Using WAPT 
+ Click the “New” button on the toolbar. This will launch the New Scenario Wizard. 
+
+
+
+
+In this example we will create a simple performance test. Choose the "Ramp-up" option on the first page of the Wizard and click the “Next” button to continue.
+
+On the second page of the Wizard you can specify the basic parameters for the ramp-up load recommended for the performance testing. The number of virtual users will grow during the test and you can make it grow faster or slower. This will let you compare the performance of your web application in different test periods depending on the changing load. 
+
+Click the “Next” button to proceed.
+
+
+ you can choose the test duration. You can either specify an exact time for the test or set the total number of sessions that should be executed by all virtual users. Now let’s proceed 
+
+ 
+
+
+
+The last page of the Wizard contains some important hints on how to create a test and interpret its results. Click the “Finish” button to proceed to the test recording. 
+
+Note that any options you choose in the Scenario Wizard can be adjusted later. To do this click the “Test Volume” item in the left view of the WAPT Cloud window. The type of test only changes the default values of the load parameters you see in the wizard.
+
+After you complete the New Scenario Wizard, WAPT Cloud will automatically proceed to recording a profile. In the future you can click the “Rec” button on the toolbar to record another one. This will open the “Recording Options” dialog. 
+
+Choose a name for your profile. 
+
+
+
+You can either use the embedded Internet Explorer window for recording, or choose an external browser for this purpose. Embedded window provides more visibility and lets WAPT Cloud better organize the recorded requests, but it has limited JavaScript support. So, if you experience any problems using it (like JavaScript error messages appearing during recording or some application features not working), try using one of the external browsers instead. 
+
+It is strictly recommended to delete browser cache files and cookies before starting the recording. This is required to record a session independent from all the previous user activity that may have been performed on your system. Only in such case it will be possible to reproduce the recorded session correctly. WAPT Cloud will perform the cleanup automatically if you leave the corresponding options checked. Note that it may take up to several minutes when you do this for the first time.  
+Click the “Ok” button to start recording. 
+
+
+
+Login to github using Id and password:
+
+
+
+
+
+ID and password are recorded while testing
+
+
+
+
+
+
+
+
