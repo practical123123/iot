@@ -1,0 +1,63 @@
+Address 
+PRACTICAL - 2
+A. Explore and manage raster data
+Raster Layer -> gldssg0060 and glds90g60 (asc file) -> property -> render type -> single band pseudocode color -> min 0 and max 240 appply
+-> Click Raster -> then raster calculator -> substract both layer -> setName to output layer as OUTPUTLAYER -> uncheck the other two layers i.e. glds00ag60.asc and glds90ag60.asc -> 
+OUTPUTLAYER properties ->  single band pseudocode color -> single band pseudocode color -> min 0 and max 240 appply
+
+C. Raster Mosaicking and Clipping
+Raster Layer -> Select file tif image files -> Vector layer -> select IND_adm0.shp -> IND_adm0.shp property -> symbology -> outline blue ->
+Raster -> Miscellaneous -> merge -> click input layer three dots -> select all india layers -> run -> 
+Raster -> Extraction -> Clip raster by mask layer -> set merged layer as input layer and ind-adm0 as masked layer -> run
+ 
+Practical - 3
+Making a map (maharashtra map)
+Vector layer -> All maharashtra( only .shp file)
+Then project -> New print layout -> give name -> add item -> add map -> add label -> add legend -> add scale bar -> add picture(north arrow) from dataset
+
+PRACTICAL - 4 
+A. Working with attributes
+Vector layer -> add (ne_10m_populated_places_simple.shp) ->go attribute table -> select feature and using expression -> and give query and click select feature 
+
+b) Terrain Data and Hill shade analysis (summary -> mea300 -> clipped(extent and the map canvas) -> counter (using clipped)-> hillshade(using clipped) )
+Add raster layer -> add (10n060e_20101117_gmted_mea300.tif)->Enter 86.92, 27.98 in the coordinate field, Scale 1:10000000-> Go to Raster → Extraction→ Clip Raster by Extent( Use Canvas Extends)->Go to Raster → Extraction→ Contour(use clipped file)->contours property->label->single lable->value= ELEV->apply->contours property->export->save features as-> select format KML->go to raster->analysis->Hillshade->go to property and change the color
+
+
+PRACTICAL - 5
+Working with Projections and WMS Data
+Layer → Add Layer →Vector Layer->Select “ne_10m_admin_0_countries.zip” Layer -> go to layer ->select expoert and click save as and select globle 102008->and save ->saved file right clicked and click lyer CRS->set project CRS from layer->go to rster layer -> select MiniScale_(standard)_R17.tif this layer
+-> project -> properties -> crs -> british national birds
+
+
+PRACTICAL - 6
+Georeferencing TopoSheets and Scanned Maps. 
+Go to Layers → Add Layer → Add vector Layer->write Mumbai in OSM place search(to open osm palce search -> view -> panels(check osm palce search))->dwnld plugin georefrence->Raster-> georefrencer->file->open raster ->setting->change the target (4044)->edit ->add point (4 points)-> setting->change the target (4326)->load
+
+Practical - 7
+1.Table Join.
+Go to Layer → Add Layer → Add new Vector Layer->“tl_2013_06_tract.zip”->Add layer -> Delimited text layer->add ca_tacts_pop.csv->go to tract joint via property ->join field = GEO.id2 , trget field = GEO.ID->apply ->go to tract property -> symbology -> graducated, value: tract_file , percision:0, mode:equl interval, classify
+
+2.Spatial Join.
+Go to Layer → Add Layer → Add new 2 Vector Layer->nursinghome_001.shp)(nybb.shp -> Raster ->Management tool -> join attribyte by location -> apply
+
+3.Points in polygon.
+Go to Layer → Add Layer → Add Delimited Text Layer-> “EarthQuakeDatabase.txt”->Go to Layer → Add Layer → Add vector Layer->ne_10m_admin_0_countries.zip-> 
+vectoy -> analysis tool ->Count point in polygon ->wiegght field: LOCATION_NAME, Class_field:COUNTRY->Run
+
+4.Performing Spatial queries.
+ Go to Layer → Add Layer → Add Vector 2 Layer and load->ne_10m_populated_places_simple.zip, ne_10m_rivers_lake_centerlines.zip->Open project Properties → Set CRS “World_Azimuthal_Equidistant EPSG 54032”->vector-> geoprocessing tools -> buffer-> set distance to 0.2 -> run
+
+Practical 8
+1.Nearest Neighbor Analysis
+Go to Layer → add Layer → add vector Layer and load ne_10m_populated_places_simple.zip” ->Go to Layer → add Layer → add Delimited Text Layer and load “earthquakes_2021_11_25_14_31_59_+0530.tsv”->Processing ->search "Null" -> click REMOVE NULL GEOMETRIES and click run->see in proseeing toolbox->Vector analysis->DISTANCE TO NEAREST HUB->Source:no null, destination:Sample file,name,kilometer->Run->Finish
+
+2.Sampling Raster Data using Points or Polygons
+Go to Layer ->Add Raster Layer->us.tmax_nohads_ll_20140525_float.tif->click on geometry enble x and y->install plugin "point sampling tool"-> go plugin-> analyses-> Point sampling tool ->select 1 2 last one-> and ok-
+before start neXt step delete all files and only u have .tif file ->Go to Layer ->Add Vector Layer-> tl_2013_us_county.zip->right click on county file -> export->save feature as-> save-> in application left side corner search zonal statistic->in zonal statistic ->in property->value:z_mean
+
+3.Interpolating Point Data. 
+Go to Layer ->Add Layer ->Add Vector Layer->from zip file -> select only 1 nd 3->
+
+Practical 9
+Go to Layer ‣ Add Vector Layer->shapefile ne_10m_admin_0_countries.shp->Groprocessing tool-> Dissolve->select from option"CONTINENT"->run->click icon on selected feature by area and location(left side and uppar first line )then select->click processing->vector overlay-> rigght click on clip -> select batch processing->and 3 .shp files(airport, road, railroad)->and click on output and save on file name of output and select FILL WITH PARAMETER VALUE and load run
+
