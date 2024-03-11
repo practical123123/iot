@@ -1,0 +1,1556 @@
+Practical 1 
+Data Analysis using Excel 
+
+Demonstrate the use of various features of Excel that are required to do the data analysis.
+
+ Result Analysis 
+Open Excel
+
+
+Select a blank sheet
+ 
+
+Enter the below data:
+
+FORMULAE:
+Formula to calculate values of Total :
+ =SUM(C4:F4) → means select the entire row from Sub1 to Sub4
+Formula to calculate values of Percentage: 
+ = G3/400*100 → G3 means Total value cell
+Formula to calculate values of Rounded %:  
+= ROUNDUP(H3,0) → H3 means Percentage value cell
+
+
+Less Than… : The cells with less values will be highlighted.
+Select values of Sub1 Marks.
+Select Less Than…. from the Highlighted Cells Rules of Home tab.
+Set the range and select the colour
+
+
+
+
+
+Similar for Sub1 Marks, Sub2 Marks and Sub3 Marks.
+
+
+Data Bars : This will add the coloured data bar to represent the value.
+Select the values of Total column 
+Select Data Bars of Conditional Formatting from Home tab
+Select colour
+
+
+
+Top/Bottom Rules : The highest or the lowest value(s) will be highlighted.
+Select the values of the Percentage column.
+Select the Top 10 items…. of Top/Bottom Rules from the Home tab.
+Select colour.
+
+
+
+Icon Sets : Set of icons to represent the values.
+Select the set of icons of your choice from the Icon Sets of Home tab.
+
+
+Stacked Bar Chart : This chart is used to compare the values.
+Select the values of the Total column.
+Select the Stacked Column of Charts from the Insert tab.
+
+Do the formatting and the result will be.
+
+
+Similarly for the Percentage column, but select Pie chart instead of Stacked Bar.
+The result will be.
+
+Select the values from Sub1 Marks to Sub3 Marks to represent it in the Line Chart.
+
+
+
+Assignment 1 : Salary analysis 
+Enter 10 Employees data for the following columns :  Employee No., Emp.Name, Basic ,TA ,DA,Other Allowances,Gross salary,Standard Tax and Net Salary.
+Mark the Gross salary with the help of color scale.
+
+
+
+
+
+Plot the Pie Graph of salary percentage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 2 
+What-if Analysis Using Excel
+
+Demonstrate what-if analysis using goal seek, scenario manager and data table for your own data.
+
+Goal Seek  - This will find the right input value.
+Semester and Grade points
+Enter the below data
+
+
+Select the CGPA value.
+Select the Goal Seek from What-If Analysis of Data tab. 
+
+
+Set the values in Goal Seek window
+
+
+The result will be
+
+
+
+
+
+ Month and Sales
+Enter the below data
+
+
+
+ Subject and Total 
+Enter the below data
+
+
+
+
+
+
+
+2)  Scenario Manager : This will create different groups of values or scenarios and switch between them.
+
+Gross Revenue 
+Enter the below data
+
+Select the value of Gross Profit 
+Select Scenario Manager from What-If Analysis of Data tab.
+
+
+Click Add 
+
+Now add a scenario and select the value cell of Cost of Goods  in the Changing cells textbox
+
+
+
+The result will be
+
+
+ 
+
+
+Home Loan 
+
+
+
+3)  Data Table 
+Stationary 
+Displays the results of multiple inputs at the same time
+Enter the data 
+
+Select the all value cells 
+
+
+Go to the Data tab, now select the Data Table from What-If Analysis.
+
+Enter the highest value of % sold as column input cell in the Data Table window.Click OK
+
+
+
+
+
+The results 
+
+
+Manufacturing 
+(Same steps as above)
+
+
+
+
+
+
+Compound Interest Calculator
+
+FORMULAE :
+Balance = FV(B32/B33,B33*B34,,-B31)
+Interest = B35-B31
+
+
+
+Now make a new table with the first value of Balance is equal to the value of Balance from original table
+ For Initial Investment
+
+Go to the Data tab, now select the Data Table from What-If Analysis.
+
+
+
+For one variable
+
+
+
+
+Result:
+
+
+For Annual Interest Rate
+
+
+For Two variable
+Select 2000
+
+
+Stationary Analysis
+FORMULA
+Profit=60*50+40*20
+
+
+
+Check Total Profit for the following Highest & Lowest Price. (Select 60 highest & 40 Lowest)
+
+
+
+Highest Price :
+
+
+
+
+Lowest Price :
+
+
+
+
+
+
+Practical 3 
+Creating Pivot Table and Pivot Chart using Excel and Power BI
+
+Demonstrate the creation of one dimensional and two dimensional pivot table and pivot chart to perform analysis using Microsoft Excel and PowerBI for any sample data like fruits sale data.
+
+Microsoft Excel 
+Sales Data 
+Enter data 
+
+
+
+Select the whole data and select the Table/Range from Pivot Table from Insert tab
+
+Click OK
+
+The results will be
+
+
+
+Grand Total of Different Product
+
+
+Sum Of Different category of Product 
+
+
+Count Of Different category of Product 
+
+
+Min
+
+
+Max
+
+
+
+
+Pivot Chart : 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Power BI
+
+Load the sales data in power BI
+
+
+
+
+
+
+
+Practical 4 
+Import data from legacy data structures.
+
+Import the legacy data from different sources such as (Excel, Web, XMl, etc) in PowerBi.
+
+Import the legacy data from different data sources such as (Flat file, Excel, Web, XML, JSON, OData,etc. Perform the extraction transformation and Loading (ETL) process to load in PowerBi)
+
+Note: Use your data for Flat File ,Excel,Web, XMl,JSON, OData
+File for oData - https://services.odata.org/v2/northwind/northwind.svc/ 
+
+Open Power BI Desktop
+
+
+
+CSV File
+Open Power BI and load the file.
+
+Download iris.csv file from Google. Select File type Text/CSV from the Get Data window. Select iris.csv file. Click on Load button
+
+
+
+Excel 
+Select Excel workbook option from Get Data
+
+
+
+
+
+
+
+Xml : 
+<?xml version="1.0" encoding="UTF-8"?>
+<breakfast_menu>
+<food>
+<name>Belgian Waffles</name>
+<price>$5.95</price>
+<description>Two of our famous Belgian Waffles with plenty of real maple syrup</description>
+<calories>650</calories>
+</food>
+<food>
+<name>Strawberry Belgian Waffles</name>
+<price>$7.95</price>
+<description>Light Belgian Waffles covered with strawberries and whipped cream</description>
+<calories>900</calories>
+</food>
+<food>
+<name>Strawberry Belgian Waffles</name>
+<price>$7.95</price>
+<description>Light Belgian Waffles covered with strawberries and whipped cream</description>
+<calories>900</calories>
+</food>
+</breakfast_menu>
+
+
+
+
+JSON :
+[
+  {
+    "UserID": 1,
+    "UserName": "rooter",
+    "Password": "12345",
+    "Country": "UK",
+    "Email": "sac@gmail.com"
+  },
+  {
+    "UserID": 2,
+    "UserName": "binu",
+    "Password": "123",
+    "Country": "uk",
+    "Email": "Binu@gmail.com"
+  },
+  {
+    "UserID": 3,
+    "UserName": "cal",
+    "Password": "123",
+    "Country": "uk",
+    "Email": "cal@gmail.com"
+  },
+  {
+    "UserID": 4,
+    "UserName": "nera",
+    "Password": "1234",
+    "Country": "uk",
+    "Email": "nera@gmail.com"
+  }
+]
+
+
+
+
+
+OData
+http://services.odata.org/V4/northwind/northwind.svc/
+
+Enter a URL
+
+
+
+
+
+Web
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 5
+ETL and Data Modeling in Power BI
+Perform Extract , Transformation, Loading process to construct the database in Power BI.
+
+Create a data model for the student database in PowerBI and import data from excel worksheet. Also  perform ETL and prepare data for result analysis.
+
+Load 
+
+
+
+
+
+Load Data Using Transform Data button.
+
+
+
+
+Splitting a column
+Applying a transformation on a column.
+
+
+Change data type of a column
+
+
+
+Remove not required columns.
+ 
+
+
+Replace null values with default values.
+
+
+
+
+Duplicate a column.
+
+
+
+Change data type of a column
+
+
+
+We can also use Uppercase & Lowercase 
+
+
+
+
+Create Data group 
+
+
+
+
+
+
+
+
+Create the data Model by relating all the tables if possible.
+Data Structure 
+
+
+
+   
+
+
+Practical 6
+Creating Reports and Charts in Power BI
+
+Perform Extract , Transformation, Loading process to construct the database in Power BI.
+
+Create a data model for the student database in PowerBI and import data from excel worksheet. Also  perform ETL and prepare data for result analysis.
+
+1.loading and transforming data 
+
+Q. 1) Load Financial sample data into PowerBI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q. 2) Create the data Model by relating all the tables if possible.
+
+Q.3) Open financial data table for transformation.
+
+
+
+Q. 4) nTransform ‘Unit Sold’ columns data by changing its data type to whole number.
+
+
+
+
+
+
+Q.5)  Transform Segment column data to uppercase.
+Before                                           
+
+
+After
+
+
+
+Q.6) Shorten the column name name from Month Name to just Month.
+
+After
+
+Q.7) The Montana product did not continue last month. So exclude the data of the Montana product from the table by deselecting the product from the column filter.
+Before
+
+
+
+
+After
+
+Q.8)You see that  each transformation has been added to the list under query settings in applied steps.
+
+
+Q.9 )Back on the Home tab, select close & apply
+
+
+2)  Writing DAX Expression
+
+Q. Create a new measure named Total Units Sold to add all the numbers in the Units Sold column.
+On the Home ribbon, select New measure.
+
+Type the following expression.
+Total Units Sold = SUM(financials[Units Sold])
+
+Select the check mark beside the expression box to commit the expression.
+
+
+3)  Create new table in data model
+Q. Create a new table named;Calendar to generate a Calendar table of all dates between January 1,2013, and December 31, 2014.
+Select the Data view on the left.
+ On the Home ribbon, select the New table.
+
+Type the following expression in the expression box.
+Calendar = CALENDAR(DATE(2013,01,01),Date(2014,12,31))
+
+Select the check mark to commit.
+
+Now select the Model view on the left.
+
+Update data model to link Financial Sample and Calendar tables - Drag the Date field from
+the financials table to the Date field in the Calendar table to join the tables and create a
+relationship between them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4)  Add report title as “Executive Summary – Finance Report
+On the Insert ribbon, select Text Box to add title to the report and type “Executive Summary – Finance Report”.
+Select the text you typed. Set the Font Size to 20 and Bold.
+Resize the box to fit on one line.
+
+
+Q. To check Profit by Date, add a line chart to see which month and year had the highest profit.
+From the Fields pane, drag the Profit field to a blank area on the report canvas. By default, Power BI displays a column chart with one column, Profit.
+
+
+
+
+
+Drag the Date field to the same visual. If you created a Calendar table in Extra credit: Create a table in DAX earlier in this article, drag the Date field from your Calendar table instead.
+
+
+Power BI updates the column chart to show profit by the two years.
+
+
+
+In the Fields section of the Visualizations pane, select the drop-down in the X-axis value. Change Date from Date Hierarchy to Date.
+
+
+
+
+
+Power BI updates the column chart to show profit for each month.
+
+
+Q. Change the visualization type to Line chart. (In the Visualizations pane change the chart
+type)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q. Create a map visual to check the height profit Country or Region.
+From the Fields pane, drag the Country field to a blank area on your report canvas to create
+a map.
+
+
+Drag the Profit field to the map.
+
+
+
+Power BI creates a map visual with bubbles representing the relative profit of each location.
+Compare the bubble size to identify the highest profit country.
+
+Q. Create a bar chart to check sales by product and segment and determine which companies and segments to invest in.
+Drag the two charts you’ve created to be side by side in the top half of the canvas. Save some room on the left side of the canvas.
+Select a blank area in the lower half of your report canvas.
+In the Fields pane, select the Sales, Product, and Segment fields.
+
+
+Power BI automatically creates a clustered column chart.
+Drag the chart so its wide enough to fill the space under the two upper charts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q. Add date slicer to the report to check or filter the year wise or month wise data.
+In the Fields pane, select the Date field in the Financials table. Drag it to the blank
+area on the left of the canvas.
+In the Visualizations pane, choose Slicer. Power BI automatically creates a numeric
+range slicer.
+
+
+
+You can drag the ends to filter, or select the arrow in the upper-right corner
+and change it to a different type of slicer.
+
+
+Date slicer using the DAX table
+In the Fields pane, select the Date field in the Calendar table. Drag it to the blank area on the left of the canvas.
+
+
+
+In the Visualizations pane, choose Slicer.
+
+
+In the Fields section of the Visualizations pane, select the drop-down in Fields. Remove Quarter and Day so only Year and Month are left.
+
+
+
+
+
+
+
+
+
+
+
+
+Expand each year and resize the visual, so all months are visible.
+
+
+We’ll use this slicer in the finished report.
+Now if your manager asks to see just 2013 data, you can use either slicer to select years, or specific months of each year.
+
+
+
+
+
+
+
+
+
+
+5)  Report Formatting
+Q. Format Visuals to give a professional look to your report.
+    Use View -&gt;Change theme to Executive.
+Or use format options to change foreground or background colours.
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 7
+Creating Dashboards in Power BI
+
+Upload the data
+
+
+
+
+Go to the Report View
+
+
+
+You will see this screen
+
+
+
+Under Visualization → Click on Format your report Page
+
+
+
+Under Visualization → Format your report page → Canvas Background → Change the background color. 
+
+
+
+
+Insert →Shapes →Rounded Rectangle  
+
+
+
+Do the formatting as per your need and also set text
+
+
+
+
+
+
+
+create as many shape as you want
+
+Now create a new Table in which we will execute all our measures that will be used further in the dashboard. Under Home Section → Enter Data. 
+
+
+
+This window will be open, Name: All Measures.
+
+
+As you can see the new Table with one Column1 is created under Data. 
+
+
+
+Right click on Column1 → create a New Measure.  
+
+
+Under New Measure write the DAX Query as shown below. Use the CountRows function of DAX Query to count the rows in the table. 
+
+Total Customer = COUNTROWS('Mall_Customers') 
+
+
+
+Now again create a new measure and then use the DAX Query to query the data according to it.
+
+
+
+Write the following queries in it. 
+
+Male = CALCULATE([Total Customer], 'Mall_Customers'[Gender]="Male")
+
+
+
+Female = CALCULATE([Total Customer], 'Mall_Customers'[Gender]="Female")
+
+
+
+% male = DIVIDE([Male],[Total Customer],0) 
+
+
+
+% female = DIVIDE([Female],[Total Customer],0)
+
+
+
+Check the Total Customer checkbox, a stacked column chart will be displayed as below
+
+
+
+
+
+
+Since we want only the value, we will use Card
+
+   
+
+
+
+Repeat the similar process.
+
+
+
+
+
+Now, click on Clustered Column chart
+
+
+
+
+Drag and drop the Age column in X-axis and Male and Female measures in Y-axis
+
+
+
+
+
+By clicking on a bar, we can find the total no. of customers, no. of male customers and no. of female customers
+
+
+Now, add a new page, before that rename our first page as Home
+
+
+
+
+Name the second page as Spending and Income
+
+Copy the above two rounded rectangles from the Home Dashboard and paste it in the Spending and Income Dashboard. Also select a clustered column chart as we did in the Home page. Select Spending Score(1-100) column in X-axis and Max of Annual Income (k$). Do the formatting as per need.
+
+
+
+For navigating between the dashboards, we will now add a Blank Button from Insert tab
+
+Write a text and do the formatting
+
+
+
+Enable the Action option, select Page Navigation for Type and None (because we are adding this button in the Spending and Income Dashboard itself) in Destination.
+
+
+Likewise make another button in Spending and Income Dashboard, give it a text named Home, set its action type as Page Navigation and select Home in Destination
+
+
+
+
+
+
+Do the same things in Home Dashboard, be careful while selecting the Destination for each buttons
+Our final Home Dashboard looks like this
+For navigating to Spending and Income Dashboard, Ctrl and click the Spending and Navigation button
+
+
+
+
+
+
+Our final Spending and Income Dashboard looks like this
+For navigating to Home Dashboard, Ctrl and click the Home button
+
+
+
+
+
+Practical 8
+DAX Queries in Power BI
+
+Execute the following DAX queries on food sales data.
+Load the necessary datasets
+
+1. Create a measure to display quarter wise sum of sales amount
+Previous Quarter Sales = CALCULATE(SUM(Sales[SalesAmount]),PREVIOUSQUARTER(Calendar[DateKey]))
+
+
+Click on Commit
+
+
+A new measure is created
+
+Go to Report view
+
+
+Select a Stacked column chart
+
+
+
+Drag and drop the following fields
+
+
+
+2. Create a measure to display Minimum sales amount (Sales Amount)
+By similar process, create a new measure with the below DAX query
+Minimum Sales Amount = MIN(Sales[SalesAmount])
+
+A new measure is created
+
+Similarly make a stacked column chart for minimum sale amount.
+
+
+
+We can also display the minimum value using a card visualisation tool.
+
+
+3. Create a measure to display maximum sales amount (Sales Amount)
+Maximum sales amount = MAX(Sales[Sales Amount])
+
+
+
+
+We can also display the minimum value using a card visualisation tool.
+
+
+4. Display maximum product cost of product.
+Max Cost = MAX(Product[UnitCost])
+
+
+
+
+
+We can also display the minimum value using a card visualisation tool.
+
+
+5. Display a measure to count distinct brand names.
+Distinct brand = COUNTROWS(DISTINCT([Product[BrandName]))
+
+
+
+
+6. Create a measure to display the total of blank values for product manufacturers.
+Blank values = CALCULATE(COUNTROWS('Product'), ISBLANK('Product'[Manufacturer]))
+
+
+Since there is no blank values, the count is null 
+
+                                               
+Practical 9 
+Implementation of Regression Algorithms using Python
+
+
+
+Create a BI folder in your drive. Now right click and select Google Colaboratory option
+
+
+
+An untitled Google colab notebook will open
+
+
+
+Rename it as 6407_DataAnalysisUsingPython
+Add a text 
+
+
+
+Executing linux commands, the commands should precede an exclamation mark (!)
+
+ 
+
+Q. Define integer variables for storing data.
+ 
+
+
+Q. Define list with integer values.
+
+
+
+
+
+
+Q. Define list with string values.
+
+
+
+
+Q.Display the first element of var4.
+
+
+
+
+
+
+
+Q. Define function
+
+
+
+
+
+Q.pass parameters to function
+
+
+
+Q.numpy array [ 1D ]
+
+import numpy 
+
+
+
+
+
+Q.  To find the shape of  array
+
+
+
+Q.Declaring arr1
+
+
+
+
+
+
+Q. 2-D array
+
+
+
+
+
+
+Q. 3-D array
+
+
+
+
+
+
+
+
+
+
+
+
+Q. reshaping array 
+
+
+
+
+
+
+Q. matmul() : 
+
+
+
+Q. dot() : 
+
+
+
+
+
+
+
+Q. add() : 
+
+
+
+
+Q. subtract() :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Simple linear regression
+
+
+Example 1
+
+
+
+
+Creating an object named model of LinearRegression() class
+
+ 
+
+fit() method takes the training data as arguments. Used to train a machine learning model on a given dataset. 
+
+ 
+
+
+
+
+
+
+Display x
+
+
+
+intercept_ is the value at which the regression line crosses the y-axis.
+
+
+
+coef_ returns an array of the coefficients of the linear regression equation.
+
+
+
+score() calculates accuracy of model.
+
+
+
+
+
+
+predict() is used to make predictions on new data, based on a trained model. It accepts one argument, the new data X_new, and returns the learned label for each object in the array.
+
+
+
+
+Pyplot is a submodule of Matplotlib, a Python library used to create data visualisations. Pyplot provides a number of functions for creating and manipulating plots
+
+scatter() will create a scatter plot
+
+
+
+ 
+
+
+
+
+
+Example 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Example 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Simple Linear Regression
+
+Problem Statement - Given the datasetsal2.csv that has two variables: salary (dependent variable) and experience (Independent variable) solve the following queries :
+
+
+
+
+
+
+
+
+
+
+Pre-Processing
+First, we will import the three important libraries
+
+
+
+Load the data set (salary_data) 
+
+
+Select and upload the file
+
+
+
+load the dataset into our code:
+
+
+
+
+
+
+extract the dependent and independent variables from the given dataset. 
+
+
+
+
+for x variable, we have taken -1 value since we want to remove the last column from the dataset. 
+For y variable, we have taken 1 value as a parameter, since we want to extract the second column and indexing starts from the zero.
+
+
+
+
+Output of x:	
+
+
+
+Output of y:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Find out if there is any correlation between two variables: salary and experience.
+
+
+
+
+2. Find the best fit line for the dataset.
+ 
+
+
+
+
+
+
+
+
+
+3. Demonstrate how the dependent variable is changing by changing the independent variable.
+
+y = mx + c [where m is coefficient or slope and c is intercept ]
+
+Method 1
+
+
+Method 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Multiple Linear Regression
+
+Problem Statement - Given a dataset complist.csv of 50 start-up companies with five main attributes: R&D Spend, Administration Spend, Marketing Spend, State, and Profit for a financial year, create a model that can easily determine which company has a maximum profit, and which is the most affecting factor for the profit of a company.
+
+https://www.kaggle.com/datasets/amineoumous/50-startups-data
+
+Code:-
+
+import numpy as nm
+import matplotlib.pyplot as mtp
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.model_selection import train_test_split
+
+data_set= pd.read_csv('/content/50_Startups.csv')
+x= data_set.iloc[:, :-1].values
+y= data_set.iloc[:, 4].values
+
+labelencoder_x= LabelEncoder()
+x[:, 3]= labelencoder_x.fit_transform(x[:,3])
+#onehotencoder= OneHotEncoder(categorical_features= [3])
+onehotencoder=ColumnTransformer([("State", OneHotEncoder(), [3])], remainder = 'passthrough')
+x= onehotencoder.fit_transform(x)
+x = x[:, 1:]
+print("x: ",x,"dtype: ",x.dtype)
+x_train, x_test, y_train, y_test= train_test_split(x, y, test_size= 0.2, random_state=0)
+from sklearn.linear_model import LinearRegression
+regressor= LinearRegression()
+regressor.fit(x_train, y_train)
+y_pred= regressor.predict(x_test)
+print("y_pred: ", y_pred)
+print('Train Score: ', regressor.score(x_train, y_train))
+print('Test Score: ', regressor.score(x_test, y_test))
+
+
+
+
+
+
+
+
+
+
+Another Example
+
+
+
+
+
+
+
+
+
+
+Practical 10
+Implementation of Classification Algorithms using Python
+
+
+Problem Statement: Classify the iris species by using the following algorithms. (Given Dataset: iris.csv)
+
+Logistic Regression
+K-Nearest Neighbors (KNN)
+Naive Bayes
+Decision Tree
+Support Vector Machine
+
+Logistic Regression :
+ Logistic Regression Logistic regression is a linear model that can be used to model the probability of a binary outcome. It uses a sigmoid function to map the linear combination of the input features to a value between 0 and 1, which can be interpreted as the likelihood of the positive class. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+K-Nearest Neighbors (KNN) : 
+K-Nearest Neighbors (KNN) K-nearest neighbors (KNN) is a non-parametric algorithm that can be used to classify an observation based on the majority vote of its k closest neighbors in the feature space.
+
+
+Naive Bayes : 
+Naive Bayes Naive Bayes is a probabilistic algorithm that can be used to classify an observation based on the Bayes’ theorem and the assumption of conditional independence among the input features. It calculates the posterior probability of each class given the observation and chooses the class with the highest probability
+
+
+
+
+
+Decision Tree :
+ Decision Tree Decision tree is a hierarchical algorithm that can be used to classify an observation based on a series of rules derived from the input features. It splits the data into subsets based on the best feature and threshold at each node, until a leaf node is reached that contains only one class or a predefined minimum number of samples. 
+
+
+Support Vector Machine : 
+Support Vector Machine Support vector machine (SVM) is a linear or non-linear model that can be used to classify an observation based on the maximum margin hyperplane that separates the classes in the feature space. It uses a kernel function to map the input features to a higher dimensional space where the data is more likely to be linearly separable. 
+
+
+
+
+
+Practical 11
+  Implementation of Clustering Algorithms using Python
+
+K-means Clustering Algorithm
+Given a dataset of Mall_Customers, which is the data of customers who visit the mall and spend there, implement the k-means clustering algorithm.
+
+Data set Of Mall_Customers
+
+https://gist.github.com/pravalliyaram/5c05f43d2351249927b8a3f3cc3e5ecf
+
+Code:-
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+dataset = pd.read_csv('/content/Mall_Customers.csv')
+x = dataset.iloc[:,[3,4]].values
+from sklearn.cluster import KMeans
+wcss_list = []
+for i in range(1,11):
+  kmeans = KMeans(n_clusters=i,init='k-means++',random_state = 42)
+  kmeans.fit(x)
+  wcss_list.append(kmeans.inertia_)
+plt.plot(range(1,11),wcss_list)
+plt.title('The Elobw Method Graph')
+plt.xlabel('Number of clusters(k)')
+plt.ylabel('wcss_list')
+plt.show()
+kmeans = KMeans(n_clusters = 5,init='k-means++',random_state = 42)
+y_predict = kmeans.fit_predict(x)
+#First Cluster
+plt.scatter(x[y_predict == 0,0],x[y_predict == 0,1],s=100,c='blue', label = 'Cluster 1')
+#Second Cluster
+plt.scatter(x[y_predict == 1,0],x[y_predict == 1,1],s=100,c='green',label='Cluster 2')
+#Third Cluster
+plt.scatter(x[y_predict == 2,0],x[y_predict == 2,1],s=100,c='red',label='Cluster 3')
+#Fourth Cluster
+plt.scatter(x[y_predict == 3,0],x[y_predict == 3,1],s=100,c='cyan',label='Cluster 4')
+#Fifth Cluster
+plt.scatter(x[y_predict == 4,0],x[y_predict == 4,1],s=100,c='magenta',label='Cluster 5')
+plt.scatter(kmeans.cluster_centers_[:,0],kmeans.cluster_centers_[:,1] ,s= 200,c='yellow',label='Centroid')
+plt.title('Clusters of Customers')
+plt.xlabel('Annual Income(k$)')
+plt.ylabel('Spending Score (1-100)')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Agglomerative Clustering
+Implement agglomerative hierarchical clustering algorithm using Python for Mall_customer dataset.The dataset contains the information of customers that have visited a mall for shopping. So, the mall owner wants to find some patterns or some particular behaviour of his customers using the dataset information. (Dataset: Mall_Customers.csv)
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+dataset = pd.read_csv('/content/Mall_Customers.csv')
+x = dataset.iloc[:,[3,4]].values
+import scipy.cluster.hierarchy as shc
+dendro = shc.dendrogram(shc.linkage(x,method="ward"))
+plt.title("Dendrograma Plot")
+plt.ylabel("Education Distances")
+plt.xlabel("Customers")
+plt.show()
+from sklearn.cluster import AgglomerativeClustering
+hc = AgglomerativeClustering(n_clusters = 5,affinity='euclidean',linkage='ward')
+y_pred = hc.fit_predict(x)
+#visualizing clusters
+#Cluster 1
+plt.scatter(x[y_pred == 0,0],x[y_pred == 0,1],s=100,c='blue',label='Cluster 1')
+#Cluster 2
+plt.scatter(x[y_pred == 1,0],x[y_pred == 1,1],s=100,c='green',label='Cluster 2')
+#Cluster 3
+plt.scatter(x[y_pred == 2,0],x[y_pred == 2,1],s=100,c='red',label='Cluster 3')
+#Cluster 4
+plt.scatter(x[y_pred == 3,0],x[y_pred == 3,1],s=100,c='cyan',label='Cluster 4')
+#Cluster 5
+plt.scatter(x[y_pred == 4,0],x[y_pred == 4,1],s=100,c='magenta',label='Cluster 5')
+plt.title('Clusters of customers')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score (1-100)')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
