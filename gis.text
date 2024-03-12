@@ -56,8 +56,15 @@ Go to Layer ->Add Raster Layer->us.tmax_nohads_ll_20140525_float.tif->click on g
 before start neXt step delete all files and only u have .tif file ->Go to Layer ->Add Vector Layer-> tl_2013_us_county.zip->right click on county file -> export->save feature as-> save-> in application left side corner search zonal statistic->in zonal statistic ->in property->value:z_mean
 
 3.Interpolating Point Data. 
-Go to Layer ->Add Layer ->Add Vector Layer->from zip file -> select only 1 nd 3->
+Go to Layer ->Add Layer ->Add Vector Layer->from zip file -> select only 1 nd 3->bottom left conrner search TIN INTERPOLATION -> click -> Arlington as vector layer and elevation as attribute -> click plus -> extent from -> layer -> arlington -> pixl size 5 and click run (interpolated layer will be created) -> 
+Raster -> Extraction -> clipped by mask layer -> set interpollated as input and boundary as masked layer -> run (clipped will be created) -> pusedo color
+Raster -> Exteraction -> contour -> clipped layer as input layer -> interval 5 -> run (countor will be created)-> counter property -> label -> elevation 
 
-Practical 9
+Practical 9 
+A. Batch Processing using Processing Framework
 Go to Layer ‣ Add Vector Layer->shapefile ne_10m_admin_0_countries.shp->Groprocessing tool-> Dissolve->select from option"CONTINENT"->run->click icon on selected feature by area and location(left side and uppar first line )then select->click processing->vector overlay-> rigght click on clip -> select batch processing->and 3 .shp files(airport, road, railroad)->and click on output and save on file name of output and select FILL WITH PARAMETER VALUE and load run
 
+C. Automating Map Creation with Print Composer Atlas
+Add 2 vector Layers -> hi_wetlands and county10.shp.zip(.shp files) -> click Project -> print new layout -> add map -> drag to add map -> click atlas -> show setting -> 
+coverage layer as country -> check hidden coverage layer -> check atals generating -> preview atlas -> add label -> concat('County of ', "NAME10") - >
+new lable -> concat('created on : ', to_date(now()))
