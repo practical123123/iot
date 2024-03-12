@@ -60,9 +60,11 @@ Go to Layer ->Add Layer ->Add Vector Layer->from zip file -> select only 1 nd 3-
 Raster -> Extraction -> clipped by mask layer -> set interpollated as input and boundary as masked layer -> run (clipped will be created) -> pusedo color
 Raster -> Exteraction -> contour -> clipped layer as input layer -> interval 5 -> run (countor will be created)-> counter property -> label -> elevation 
 
-Practical 9.
+Practical 9
 Add Vector Layer->
-shapefile ne_10m_admin_0_countries.shp->Groprocessing tool-> Dissolve->select from option"CONTINENT"->run->click icon on selected feature by area and location(left side and uppar first line )then select->click processing->vector overlay-> rigght click on clip -> select batch processing->and 3 .shp files(airport, road, railroad)->and click on output and save on file name of output and select FILL WITH PARAMETER VALUE and load run
+shapefile ne_10m_admin_0_countries.shp->Groprocessing tool-> 
+Dissolve->select from option"CONTINENT"->run->click icon on selected feature by area and location(left side and uppar first line )then select->
+click processing->vector overlay-> rigght click on clip -> select batch processing->and 3 .shp files(airport, road, railroad)->and click on output and save on file name of output and select FILL WITH PARAMETER VALUE and load run
 
 C. Automating Map Creation with Print Composer Atlas
 Add 2 vector Layers -> hi_wetlands and county10.shp.zip(.shp files) -> click Project -> print new layout -> add map -> drag to add map -> click atlas -> show setting -> 
