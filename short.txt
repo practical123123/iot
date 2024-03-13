@@ -35,7 +35,7 @@ crypto key zeroize rsa
 crypto 	key generate rsa
 1024 
 
-show ip ssh
+verify ssh -> show ip ssh
 
 
 
@@ -63,6 +63,7 @@ Step 2: Configure R1, R2, and R3 as NTP clients. And update clock(same in all ro
 
 R1(config)# ntp server 192.168.1.5
 R1(config)# ntp update-calendar
+R1# show ntp status
 
 Step 3: Configure NTP authentication on the routers. (same in all router )
 R1(config)# ntp authenticate
@@ -360,6 +361,7 @@ Step 2: From R2, ping PC-C.	(Failed)
 
 Practical 8 : IPS  IOS
 Part 1: Enable IOS IPS
+R1(config)# license boot module c1900 technology-package securityk9
 Step 1: Enable the Security Technology package.
 Step 2: Verify network connectivity. PC-A to PC-C and vice versa    (successful)
 Step 3: Create an IOS IPS configuration directory in flash on R1. 
