@@ -1,0 +1,184 @@
+Practical 8 
+
+1. Create a measure to display quarter wise sum of sales amount
+Previous Quarter Sales = CALCULATE(SUM(Sales[SalesAmount]),PREVIOUSQUARTER(Calendar[DateKey]))
+
+5. Display a measure to count distinct brand names.
+Distinct brand = COUNTROWS(DISTINCT('Product'[BrandName]))
+
+6. Create a measure to display the total of blank values for product manufacturers.
+Blank values = CALCULATE(COUNTROWS('Product'), ISBLANK('Product'[Manufacturer]))
+
+
+practical 9
+A. Simple Linear Regression 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plot
+from sklearn.linear_model import LinearRegression 
+dataset = pd.read_csv('/content/sample_data/Salary_Data.csv')
+
+x = dataset.iloc[:,:-1].values
+y = dataset.iloc[:,1].values
+
+correlation = np.corrcoef(x.flatten(), y.flatten())[0,1]
+correlation #measures the strength and direction of the linear relationship between two variables
+
+model = LinearRegression()
+model.fit(x,y)
+plot.scatter(x,yPredict, color='green', label='data')
+plot.legend()
+yPredict = model.predict(x)
+plot.plot(x, yPredict)
+plot.xlabel("hehe")
+plot.ylabel("hehe")
+
+# Demonstrate how the dependent variable is changing by changing the independent variable.
+# y = mx + c  [where m is coefficient or slope and c is intercept]
+m = model.coef_
+c = model.intercept_
+reg_y = m*2.5 + c
+reg_y
+
+B. multiple linear regression
+# multiple linear regression
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plot
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+dataset = pd.read_csv('/content/sample_data/50_Startups.csv')
+x = dataset[['R&D Spend', 'Administration', 'Marketing Spend']]
+y = dataset['Profit']
+
+xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state=42)
+
+model = LinearRegression()
+model.fit(xTrain, yTrain)
+
+yPredict = model.predict(xTest)
+print(f"Train score {model.score(xTrain, yTrain)}")
+print(f"Test score {model.score(xTest, yTest)}")
+coefficients = pd.DataFrame({'Feature': x.columns, 'Coefficient': model.coef_})
+print("Coefficients:")
+print(coefficients)
+
+plot.scatter(yTest, yPredict)
+plot.xlabel('Actual Profit')
+plot.ylabel('Predicted Profit')
+plot.title('Actual vs Predicted Profit')
+plot.show()
+
+
+Practical 10
+* Logistic Regression
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report
+
+iris = pd.read_csv('/content/sample_data/iris.csv')
+
+iris.head()
+
+x = iris[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']]
+y = iris['species']
+
+xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size=0.2, random_state=42)
+
+model = LogisticRegression()
+model.fit(xTrain, yTrain)
+yPredict = model.predict(xTest)
+accuracyScore = accuracy_score(yTest, yPredict)
+report = classification_report(yTest, yPredict)
+
+print(f"accuracy score : {accuracyScore}\n\n")
+print(f"report: {report}\n\n")
+
+
+Practical 11 
+kmeans cluster
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.cluster import KMeans
+
+
+dataset = pd.read_csv('/content/sample_data/Mall_Customers.csv')
+
+x = dataset[['Annual Income (k$)', 'Spending Score (1-100)']]
+wcss_list = []
+
+for i in range(1, 11):
+  kmeans = KMeans(n_clusters=i, init='k-means++', random_state=42)
+  kmeans.fit(x)
+  wcss_list.append(kmeans.inertia_)
+
+	
+kmeans = KMeans(n_clusters=5, init='k-means++', random_state=42)
+yPredict = kmeans.fit_predict(x)
+plt.scatter(x.iloc[yPredict==0,0],x.iloc[yPredict==0,1],s=100, c='blue', label="fafadsf" )
+plt.scatter(x.iloc[yPredict==1,0],x.iloc[yPredict==1,1],s=100, c='purple', label="fafadsf" )
+plt.scatter(x.iloc[yPredict==2,0],x.iloc[yPredict==2,1],s=100, c='green', label="fafadsf" )
+plt.scatter(x.iloc[yPredict==3,0],x.iloc[yPredict==3,1],s=100, c='orange', label="fafadsf" )
+plt.scatter(x.iloc[yPredict==4,0],x.iloc[yPredict==4,1],s=100, c='pink', label="fafadsf" )
+
+plt.legend()
+
+plt.scatter(kmeans.cluster_centers_[:,0], kmeans.cluster_centers_[:,1], c='red', s=200)
+
+
+Agglomerative Clustering (dendogram)
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import AgglomerativeClustering
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+url = "/content/sample_data/Mall_Customers.csv"
+df = pd.read_csv(url)
+
+print(df.head())
+
+X = df[['Age', 'Spending Score (1-100)']]
+
+agg_clustering = AgglomerativeClustering(n_clusters=None, distance_threshold=0, linkage='ward')
+agg_clusters = agg_clustering.fit_predict(X)
+
+
+
+# Visualize the Dendrogram
+linked = linkage(X, 'ward')
+dendrogram(linked, orientation='top', distance_sort='descending', show_leaf_counts=True)
+plt.title('Hierarchical Clustering Dendrogram')
+plt.xlabel('Sample Index')
+plt.ylabel('Cluster Distance')
+plt.show()
+
+# Visualize the clusters
+plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=agg_clusters, cmap='viridis', marker='o', edgecolors='w')
+plt.title('Agglomerative Hierarchical Clustering')
+plt.xlabel('Age')
+plt.ylabel('Spending Score (1-100)')
+plt.show()
+
+# Display the cluster assignments
+df['Agg_Cluster'] = agg_clusters
+print("Agglomerative Hierarchical Clustering - Cluster Assignments:")
+print(df[['Age', 'Spending Score (1-100)', 'Agg_Cluster']])
+
+# Display the clusters using scatter plot
+plt.scatter(X.loc[df['Agg_Cluster'] == 0, 'Age'], X.loc[df['Agg_Cluster'] == 0, 'Spending Score (1-100)'], s=100, c='blue', label='Cluster 1')
+plt.scatter(X.loc[df['Agg_Cluster'] == 1, 'Age'], X.loc[df['Agg_Cluster'] == 1, 'Spending Score (1-100)'], s=100, c='green', label='Cluster 2')
+plt.scatter(X.loc[df['Agg_Cluster'] == 2, 'Age'], X.loc[df['Agg_Cluster'] == 2, 'Spending Score (1-100)'], s=100, c='red', label='Cluster 3')
+
+plt.title('Agglomerative Hierarchical Clustering - Clusters of Customers')
+plt.xlabel('Age')
+plt.ylabel('Spending Score (1-100)')
+plt.legend()
+plt.show()
