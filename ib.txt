@@ -41,6 +41,7 @@ reg_y = m*2.5 + c
 reg_y
 
 B. multiple linear regression
+Method 1:
 # multiple linear regression
 import pandas as pd
 import numpy as np
@@ -51,6 +52,27 @@ from sklearn.linear_model import LinearRegression
 dataset = pd.read_csv('/content/sample_data/50_Startups.csv')
 x = dataset[['R&D Spend', 'Administration', 'Marketing Spend']]
 y = dataset['Profit']
+---------------------------------
+Method 2: 
+
+from sklearn.preprocessing import LabelEncodeer, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.model_selection import train_test_split
+
+x = dataset.iloc[:,:-1].values
+y = dataset.iloc[:,4].values
+
+labelencoder_x = LabelEncoder()
+
+x[:,3] = labelencoder_x.fit_transform(x[]:,3)
+
+onehotconder = ColmnTransformer([("State", OneHotEncoder(),[3])],reminder='passthrough')
+
+x= onehotencoder.fit_transform(x)
+
+x = x[:,1:]
+
+-----------------------------------
 
 xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state=42)
 
