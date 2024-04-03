@@ -1,0 +1,252 @@
+prac2  light sensitive sensor
+ 
+int ldr=A3;
+int bulb=7;
+void setup()
+{
+pinMode(bulb,OUTPUT);
+pinMode(ldr,INPUT);
+}
+void loop()
+{
+//if light is more
+if(analogRead(ldr)>500)
+{
+digitalWrite(bulb,0);
+}
+//if light is less
+else
+{
+digitalWrite(bulb,1);
+}
+}
+
+
+prac3  temperarture sensor
+
+int baselineTemp = 0;
+int celsius = 0;
+int fahrenheit = 0;
+void setup()
+{
+pinMode(A0, INPUT);
+Serial.begin(9600);
+pinMode(2, OUTPUT);
+pinMode(3, OUTPUT);
+pinMode(4, OUTPUT);
+}
+void loop()
+{
+baselineTemp = 40;
+celsius = map(((analogRead(A0) - 20) * 3.04), 0, 1023, -40, 125);
+fahrenheit = ((celsius * 9) / 5 + 32);
+Serial.print(celsius);
+Serial.print(" C, ");
+Serial.print(fahrenheit);
+Serial.println(" F");
+if (celsius < baselineTemp) {
+digitalWrite(2, LOW);
+digitalWrite(3, LOW);
+digitalWrite(4, LOW);
+}
+if (celsius >= baselineTemp && celsius < baselineTemp + 10) {
+digitalWrite(2, HIGH);
+digitalWrite(3, LOW);
+digitalWrite(4, LOW);
+}
+if (celsius >= baselineTemp + 10 && celsius < baselineTemp + 20) {
+digitalWrite(2, HIGH);
+digitalWrite(3, HIGH);
+digitalWrite(4, LOW);
+}
+if (celsius >= baselineTemp + 20 && celsius < baselineTemp + 30) {
+digitalWrite(2, HIGH);
+digitalWrite(3, HIGH);
+digitalWrite(4, HIGH);
+}
+if (celsius >= baselineTemp + 30) {
+digitalWrite(2, HIGH);
+digitalWrite(3, HIGH);
+digitalWrite(4, HIGH);
+}
+delay(1000);
+}
+
+prac4   humidity snensor
+
+int heater=0;
+int x=50;
+double temp;
+void setup()
+{
+Serial.begin(9600);
+pinMode(13,OUTPUT);
+pinMode(A0,INPUT);
+}
+void loop()
+{
+int humi=analogRead(A0);
+temp=(double)humi/1024;
+temp=temp*5;
+temp=temp-0.5;
+temp=temp*100;
+if(temp<x)
+{
+digitalWrite(13,HIGH);
+delay(1000);
+temp=analogRead(A0);
+}
+else
+{
+digitalWrite(13,LOW);
+delay(1000);
+temp=analogRead(A0);
+}
+Serial.print("Temperature");
+Serial.print(temp);
+Serial.print("Humidity");
+Serial.print(humi);
+}
+
+
+prac 6 ultrasonic sensor
+
+const int pingPin = 7;
+const int ledPin = 13;
+void setup() {
+Serial.begin(9600);
+pinMode(ledPin, OUTPUT);
+}
+void loop() {
+long duration, cm;
+pinMode(pingPin, OUTPUT);
+digitalWrite(pingPin, LOW);
+delayMicroseconds(2);
+digitalWrite(pingPin, HIGH);
+delayMicroseconds(5);
+digitalWrite(pingPin, LOW);
+pinMode(pingPin, INPUT);
+duration = pulseIn(pingPin, HIGH);
+// convert the time into a distance
+cm = microsecondsToCentimeters(duration);
+// Print the distance
+Serial.print("Distance: ");
+Serial.print(cm);
+Serial.print("cm");
+Serial.println();
+// Turn on the LED if the object is too close:
+if(cm < 100) {
+digitalWrite(ledPin, HIGH);
+}
+else {
+digitalWrite(ledPin, LOW);
+}
+delay(100);
+}
+long microsecondsToCentimeters(long microseconds) {
+return microseconds / 29 / 2;
+}
+
+
+
+prac 7  infrared motion senser
+
+int buttonState = 0;
+void setup()
+{
+pinMode(2, INPUT);
+pinMode(LED_BUILTIN, OUTPUT);
+}
+void loop()
+{
+// read the state of the pushbutton
+buttonState = digitalRead(2);
+// check if pushbutton is pressed. if it is, the
+// button state is HIGH
+if (buttonState == HIGH) {
+digitalWrite(LED_BUILTIN, HIGH);
+} else {
+digitalWrite(LED_BUILTIN, LOW);
+}
+delay(10);
+}
+
+
+prac 8 gas sensor
+
+int const PGAS = A1;
+int LED1 = 7;
+int LED2 = 6;
+int LED3 = 5;
+int LED4 = 4;
+void setup()
+{
+pinMode(LED1, OUTPUT);
+pinMode(LED2, OUTPUT);
+pinMode(LED3, OUTPUT);
+pinMode(LED4, OUTPUT);
+Serial.begin(9600);
+}
+void loop()
+{
+int value = analogRead(PGAS);
+value = map(value, 300, 750, 0, 100);
+digitalWrite(LED1, HIGH);
+digitalWrite(LED2, value >= 30 ? HIGH : LOW);
+digitalWrite(LED3, value >= 50 ? HIGH : LOW);
+digitalWrite(LED4, value >= 80 ? HIGH : LOW);
+delay(250);
+}
+
+prac 9  servo motor
+ 
+#include <Servo.h>
+Servo servoBase;
+void setup()
+{
+servoBase.attach(A1);
+servoBase.write(0);
+}
+void loop()
+{
+for(int i=0; i<=180; i=i+10)
+{
+servoBase.write(i);
+delay(2000);
+}
+}
+
+prac 10 joystick
+
+byte led;
+int joystick;
+void setup() {
+for(byte n=2; n<13; n++)
+pinMode(n,OUTPUT);
+Serial.begin(115200);
+}
+void loop() {
+joystick= analogRead(A0);
+led= map(joystick, 0 ,1023, 2, 12);
+digitalWrite(led,1);
+delay(10);
+digitalWrite(led,0);
+}
+
+
+Practical 11 : Stepper Motor
+
+#include <Stepper.h>
+const int stepsPerRevolution = 200;
+Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
+int stepCount = 0;
+void setup() {
+}
+void loop() {
+int sensorReading = analogRead(A0);
+int motorSpeed = map(sensorReading, 0, 1023, 0, 100);
+if (motorSpeed > 0) {
+myStepper.setSpeed(motorSpeed);
+myStepper.step(stepsPerRevolution / 100);
+}
+}
