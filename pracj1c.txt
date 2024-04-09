@@ -1,0 +1,23 @@
+class Student
+{ int rollno;
+ static String classname="SMS";
+ Student(int rollno)
+ { this.rollno=rollno;
+ }
+ static void changeClass()
+ { classname="SYBScIT"; 
+ }
+ void display()
+ {System.out.println("Roll no:"+rollno);
+ System.out.println("Class:"+classname);
+ }
+ public static void main(String arg[])
+ {
+	 Student s1=new Student(200);
+	 Student s2=new Student(300);
+	 s1.display();
+	 Student.changeClass();
+	 s1.display();
+	 s2.display();
+ }
+}

@@ -1,0 +1,39 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class MouseEventTest implements MouseListener {
+JFrame jf1;
+JPanel p1;
+JLabel l1;
+void GUI()
+{
+    jf1=new JFrame("Mouse Event Test");
+    p1=new JPanel();
+    l1=new JLabel("Mouse Event");
+    p1.add(l1);
+    jf1.add(p1);
+    jf1.pack();
+    jf1.setSize(500,500);
+    jf1.setVisible(true);
+    jf1.addMouseListener(this);
+}
+public static void main(String[] args) {
+MouseEventTest j1=new MouseEventTest();
+j1.GUI();
+    }
+       public void mouseClicked(MouseEvent e) {
+        l1.setText("Mouse clicked");
+    }
+   public void mousePressed(MouseEvent e) {
+          l1.setText("Mouse Pressed");
+    }
+      public void mouseReleased(MouseEvent e) {
+          l1.setText("Mouse Released");
+    }
+public void mouseEntered(MouseEvent e) {
+          l1.setText("Mouse Entered");
+    }
+   public void mouseExited(MouseEvent e) {
+          l1.setText("Mouse Exited");
+    }
+}

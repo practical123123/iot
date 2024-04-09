@@ -1,0 +1,56 @@
+import java.awt.*;
+import java.applet.*;
+/*<applet code="BouncingBall.class" 
+height=400 width=350></applet>*/
+public class BouncingBall extends 
+Applet implements Runnable
+{
+    Thread t;
+    int y1,y2,inr=5,inr2=5;
+    public void init()
+    {
+     t=new Thread(this);
+     t.start();
+	 y1=5;  
+	y2=300;	 
+    }
+    public void run()
+    {   try{
+    if (y1<10){ 
+	inr=5;
+	}
+	if (y1>300){      
+	inr=-5;
+	}
+	if (y2<10){ 
+	inr2=5;
+	}
+	if (y2>300){      
+	inr2=-5;
+	}
+	t.sleep(10);
+	repaint();
+	y1=y1+inr;
+	y2=y2+inr2;
+
+ }
+   catch(Exception e){ }
+    run();  
+    }
+	int i=5,j=5;
+    public void paint(Graphics g)
+    {
+	g.setColor(Color.orange);
+	g.fillOval(50,y1+10,20,20);
+		g.setColor(Color.red);
+	g.fillOval(100,y2+10,20,20);
+	g.setColor(Color.yellow);
+	g.fillOval(150,y1+10,20,20);
+	g.setColor(Color.magenta);
+	g.fillOval(200,y2+10,20,20);	
+	g.setColor(Color.green);
+	g.fillOval(250,y1+10,20,20);	
+   } 
+}
+to compile : javac BouncingBall.java
+to run: appletviewer BouncingBall.java

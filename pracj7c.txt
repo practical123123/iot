@@ -1,0 +1,35 @@
+import javax.swing.*;
+import java.awt.*;
+public class LayoutTestBorder {
+JFrame jf1;
+JPanel p1;
+JButton b1[]=new JButton[8];
+
+void BorderGUI()
+{
+ jf1=new JFrame("Border layout");
+ p1=new JPanel();
+for (int i=0;i<8;i++)
+{
+    b1[i]=new JButton("Button"+i);   
+}
+p1.setLayout(new BorderLayout());
+p1.add(b1[0],BorderLayout.NORTH);
+p1.add(b1[1],BorderLayout.SOUTH);
+p1.add(b1[2],BorderLayout.CENTER);
+p1.add(b1[3],BorderLayout.EAST);
+p1.add(b1[4],BorderLayout.WEST);
+
+jf1.pack();
+ jf1.setSize(500,500);
+ jf1.setVisible(true);
+jf1.add(p1);
+}
+    public static void main(String[] args) {
+        // TODO code application logic here
+        LayoutTestBorder l1=new LayoutTestBorder();
+      
+     l1.BorderGUI();
+    }
+    
+}

@@ -1,0 +1,29 @@
+import javax.swing.*; //JComponents
+import java.awt.*; //layouts, events
+import java.awt.event.*; //layouts, events
+class GUITest  implements ActionListener
+{
+JPanel p1;
+GUITest()
+{
+JFrame jf1=new JFrame("GUI Test");
+ jf1.setSize(500,500);
+ jf1.setVisible(true);
+ JButton b1=new JButton("Change"); 
+ p1=new JPanel();
+ p1.add(b1);
+ b1.addActionListener(this);
+ jf1.add(p1);
+}
+public static void main(String args[])
+{
+ new GUITest();
+ }
+public  void actionPerformed(ActionEvent ae)
+ {  int R = (int)(Math.random()*100) % 255;
+	int G = (int)(Math.random()*100) % 255;
+	int B = (int)(Math.random()*100) % 255;
+	Color mycolor = new Color(R,G,B);
+	p1.setBackground(mycolor);
+ }
+ }

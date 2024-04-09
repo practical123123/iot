@@ -1,0 +1,17 @@
+class MethodOverloading
+{
+void sum(int x,int y)
+{
+ System.out.println("Sum:"+(x+y));
+ }
+ void sum(int x,int y, int z)
+{
+ System.out.println("Sum:"+(x+y+z));
+ }
+public static void main(String arg[])
+{
+ MethodOverloading m1=new MethodOverloading();
+ m1.sum(10,20);
+ m1.sum(10,20,30);
+}
+}

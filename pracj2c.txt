@@ -1,0 +1,20 @@
+interface P1
+{ public void showP1();
+}
+interface P2
+{ public void showP2();
+}
+class Child implements P1, P2
+{public void showP1(){
+System.out.println("Show P1");
+}
+public void showP2(){
+System.out.println("Show P2");
+}
+public static void main(String arg[])
+{
+Child c1=new Child();
+c1.showP1();
+c1.showP2();
+}
+ }

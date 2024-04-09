@@ -1,0 +1,30 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class MouseAdapterTest extends MouseAdapter {
+JFrame jf1;
+JPanel p1;
+JLabel l1;
+
+void GUI()
+{
+    jf1=new JFrame("Adapter Class Test");
+    p1=new JPanel();
+    l1=new  JLabel();
+    p1.add(l1);
+    jf1.add(p1);
+    jf1.setVisible(true);
+    jf1.setSize(500,500);
+    jf1.addMouseListener(this);
+}
+    public static void main(String[] args) {
+      MouseAdapterTest obj=new MouseAdapterTest();
+      obj.GUI();
+    }
+    public void mousePressed(MouseEvent e) {
+  l1.setText("Mouse Pressed");
+    }
+   public void mouseReleased(MouseEvent e) {
+  l1.setText("Mouse Released");
+    }   
+}

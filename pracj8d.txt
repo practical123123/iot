@@ -1,0 +1,39 @@
+import com.sun.corba.se.pept.transport.Selector;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+public class ListSelectionListenerTest implements ListSelectionListener{
+JFrame jf1;
+JPanel p1;
+JLabel l1;
+JList t1;
+void GUI()
+{
+    jf1=new JFrame("ListSelectionListenerTest");
+    p1=new JPanel();
+    l1=new JLabel("Key Event");
+     final String names[] = { "Shalini", "Sahil", "Akash", "Jay", "Yuvraj" };
+    t1=new JList(names);
+  
+    p1.add(l1);
+    p1.add(t1);
+    jf1.add(p1);
+    jf1.pack();
+    jf1.setSize(500,500);
+    jf1.setVisible(true);
+    t1.addListSelectionListener(this);
+}    
+    public static void main(String[] args) {
+        ListSelectionListenerTest t1=new ListSelectionListenerTest();
+        t1.GUI();
+        
+    }
+
+    public void valueChanged(ListSelectionEvent e) {
+   l1.setText(t1.getSelectedValue().toString());
+    }
+    
+}

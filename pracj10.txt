@@ -1,0 +1,32 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class EventAnonymousClass {
+JFrame jf1;
+JPanel p1;
+JButton b1;
+   void GUI()
+{
+    jf1=new JFrame("Button Test");
+    p1=new JPanel();
+    b1=new JButton("Show1");
+   p1.add(b1);
+    jf1.add(p1);
+    jf1.pack();
+    jf1.setSize(500,500);
+    jf1.setVisible(true);
+    b1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+    JOptionPane.showMessageDialog(p1, "hello1");
+        }
+    });
+    
+   }
+    public static void main(String[] args) {
+        // TODO code application logic here
+        EventAnonymousClass obj=new EventAnonymousClass();
+        obj.GUI();
+    }
+    
+}

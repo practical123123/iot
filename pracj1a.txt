@@ -1,0 +1,26 @@
+class CE
+{int x;
+CE() //default
+{x=1;
+}
+CE(int a) //parameterize
+{x=a;
+}
+CE(CE obj) //copy
+{x=obj.x;
+}
+void display()
+{
+ System.out.println("x="+x);
+ }
+public static void main(String arg[])
+{
+ CE obj1=new CE();// default
+ CE obj2=new CE(10); //parameterize
+  CE obj3=new CE(obj2); //copy
+obj1.display();
+obj2.display();
+obj3.display();
+
+}
+}

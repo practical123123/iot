@@ -1,0 +1,31 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class ActionEventTest implements ActionListener {
+JFrame jf1;
+JPanel p1;
+JButton b1;
+void GUI()
+{
+    jf1=new JFrame("Button Test");
+    p1=new JPanel();
+    b1=new JButton("Show");
+    p1.add(b1);
+    jf1.add(p1);
+    jf1.pack();
+    jf1.setSize(500,500);
+    jf1.setVisible(true);
+    b1.addActionListener(this);
+}
+public void actionPerformed(ActionEvent ae)
+{
+    if(ae.getSource()==b1)
+    {
+        JOptionPane.showMessageDialog(p1, "You have clicked");
+    }
+}  
+public static void main(String[] args) {
+ActionEventTest j1=new ActionEventTest();
+j1.GUI();
+    }
+}

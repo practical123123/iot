@@ -1,0 +1,19 @@
+class Parent
+{void display()
+{System.out.println("Parent display");
+}
+void show()
+{System.out.println("Parent show");
+}}
+class MethodOverriding extends Parent
+{void display()
+{System.out.println("Child");
+} 
+
+public static void main(String arg[])
+{
+ MethodOverriding c1=new MethodOverriding();
+ c1.display(); //display method of parent was overridder by child class
+ c1.show();
+ }
+ }

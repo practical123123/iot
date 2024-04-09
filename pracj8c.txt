@@ -1,0 +1,48 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class KeyEventTest implements KeyListener {
+JFrame jf1;
+JPanel p1;
+JLabel l1;
+JTextField t1;
+void GUI()
+{
+    jf1=new JFrame("Key Event Test");
+    p1=new JPanel();
+    l1=new JLabel("Key Event");
+    t1=new JTextField(20);
+    p1.add(l1);
+    p1.add(t1);
+    jf1.add(p1);
+    jf1.pack();
+    jf1.setSize(500,500);
+    jf1.setVisible(true);
+    t1.addKeyListener(this);
+}
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        KeyEventTest k1=new KeyEventTest();
+        k1.GUI();
+    }
+
+    public void keyTyped(KeyEvent e) {
+      
+        
+          l1.setText(" key typed");
+    }
+
+    public void keyPressed(KeyEvent e) {
+       
+         l1.setText(" key Pressed");
+    }
+
+   public void keyReleased(KeyEvent e) {
+       
+          l1.setText(" key Released");
+   }
+ 
+}

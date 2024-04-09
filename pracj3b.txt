@@ -1,0 +1,24 @@
+public class ExceptionUserDefined
+{
+static void validate(int x)
+{
+if (x<18)
+{
+throw new ArithmeticException("age is not valid");
+}
+else
+{
+System.out.println("Age is valid");
+}
+}
+public static void main(String arg[])
+{
+	try{
+validate(17);
+	}
+	catch(ArithmeticException e)
+	{
+		System.out.println("Error:"+e.getMessage());
+	}
+}
+}
