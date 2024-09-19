@@ -1,0 +1,628 @@
+Practical 1
+
+
+Q)Getting Started with Arduino: Introduction, Arduino Variants, Install
+the Drivers, Arduino IDE
+
+
+Introduction to Arduino circuits and breadboarding
+Blinking of LEDs
+Getting started with arduino
+
+Hardware requirement:
+
+
+Arduino
+USB cable 3
+LEDs
+Register
+Connecting wire
+
+Input :-
+
+// C++ code
+//void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+}
+
+Output:-
+
+------------------------------------------------------
+
+
+
+
+Practical 2
+
+
+Q)Program using Light Sensitive Sensors
+Input:-
+
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(13,OUTPUT);
+}
+void loop(){
+  float sensorValue = analogRead(A0);
+  Serial.println(sensorValue);
+  if(sensorValue<=400)
+  {
+    digitalWrite(13,HIGH);
+  }
+  else
+  digitalWrite(13,LOW);
+}
+
+
+
+
+------------------------------------------------------
+
+
+Practical 3
+Q)Program using temperature sensors
+Code:-
+
+
+int baselineTemp = 0;
+int celsius = 0;
+void setup()
+{
+  pinMode(A0, INPUT);
+  Serial.begin(9600);
+pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+   digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+  }
+void loop()
+{
+  baselineTemp = 20;
+    celsius = map(((analogRead(A0) - 20) * 3.04), 0, 1023, -40, 125);
+    Serial.print(celsius);
+  Serial.print(" C, ");
+     if (celsius < baselineTemp) {
+       digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+    }
+  if (celsius >= baselineTemp && celsius < baselineTemp + 20) {
+    digitalWrite(2, HIGH);
+    digitalWrite(3, LOW);
+    
+  }
+  if (celsius >= baselineTemp + 10 && celsius < baselineTemp + 40) {
+    digitalWrite(2, HIGH);
+    digitalWrite(3, HIGH); 
+  }   
+  if (celsius >= baselineTemp + 30) {
+    digitalWrite(2, HIGH);
+    digitalWrite(3, HIGH);
+  }
+  delay(1000); 
+}
+
+------------------------------------------------------
+
+
+
+PRACTICAL 4  
+DHT Sensor
+
+Hardware component : 
+
+
+Arduino Board UNO
+Breadboard small
+Jumper Wires (For connecting various components) 
+USB Cable  (For uploading code and powering the board) 
+Resistor
+DTH11
+
+
+CODE :
+ 
+
+
+#include "DHT.h"
+
+
+#define DHTPIN 7     // Digital pin connected to the DHT sensor
+// Feather HUZZAH ESP8266 note: use pins 3, 4, 5, 12, 13 or 14 --
+// Pin 15 can work but DHT must be disconnected during program upload.
+
+
+// Uncomment whatever type you're using!
+  #define DHTTYPE DHT11   // DHT 11
+
+
+// Connect pin 1 (on the left) of the sensor to +5V
+// NOTE: If using a board with 3.3V logic like an Arduino Due connect pin 1
+// to 3.3V instead of 5V!
+// Connect pin 2 of the sensor to whatever your DHTPIN is
+// Connect pin 3 (on the right) of the sensor to GROUND (if your sensor has 3 pins)
+// Connect pin 4 (on the right) of the sensor to GROUND and leave the pin 3 EMPTY (if your sensor has 4 pins)
+// Connect a 10K resistor from pin 2 (data) to pin 1 (power) of the sensor
+
+
+// Initialize DHT sensor.
+// Note that older versions of this library took an optional third parameter to
+// tweak the timings for faster processors.  This parameter is no longer needed
+// as the current DHT reading algorithm adjusts itself to work on faster procs.
+DHT dht(DHTPIN, DHTTYPE);
+
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println(F("DHTxx test!"));
+
+
+  dht.begin();
+}
+
+
+void loop() {
+  // Wait a few seconds between measurements.
+  delay(2000);
+
+
+  // Reading temperature or humidity takes about 250 milliseconds!
+  // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
+  float h = dht.readHumidity();
+  // Read temperature as Celsius (the default)
+  float t = dht.readTemperature();
+  // Read temperature as Fahrenheit (isFahrenheit = true)
+  float f = dht.readTemperature(true);
+
+
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(h) || isnan(t) || isnan(f)) {
+    Serial.println(F("Failed to read from DHT sensor!"));
+    return;
+  }
+
+
+  // Compute heat index in Fahrenheit (the default)
+  float hif = dht.computeHeatIndex(f, h);
+  // Compute heat index in Celsius (isFahreheit = false)
+  float hic = dht.computeHeatIndex(t, h, false);
+
+
+  Serial.print(F("Humidity: "));
+  Serial.print(h);
+  Serial.print(F("%  Temperature: "));
+  Serial.print(t);
+  Serial.print(F("°C "));
+  Serial.print(f);
+  Serial.print(F("°F  Heat index: "));
+  Serial.print(hic);
+  Serial.print(F("°C "));
+  Serial.print(hif);
+  Serial.println(F("°F"));
+}
+
+
+------------------------------------------------------
+
+PRACTICAL 5:
+
+
+Q) Programs using Line tracking sensors
+
+Input: -
+
+
+int sensorPin = 7;//line detection sensor interface
+int val;                  //variable to store sensor reading
+
+
+void setup()
+{
+pinMode(sensorPin,INPUT); //define sensor as input
+Serial.begin(9600); //initialize serial communication with PC
+}
+
+
+void loop()
+{
+val = digitalRead(sensorPin); //read value from sensor
+
+
+if(val == HIGH)
+{
+Serial.println("Line detected");
+}
+else
+{
+Serial.println("Line NOT detected");
+}
+
+
+delay(500);
+}
+
+
+------------------------------------------------------
+
+Practical 6
+
+
+Q)Programs using Ultrasonic Sensors
+
+Input:-
+
+
+// defines pins numbers
+const int trigPin=8;
+const int echoPin =9;
+//defines variables
+long duration;
+int distance;
+void setup(){
+pinMode(trigPin,OUTPUT);//sets the trigpin as an output
+pinMode(echoPin,INPUT);//sets the echoPin as an input
+  Serial.begin(9600);//starts the serial communication
+}
+void loop(){
+  //clears the trigPin
+  digitalWrite(trigPin,LOW);
+  delayMicroseconds(2);
+  //sets the trigPin on high state for 10 micro seconds
+  digitalWrite(trigPin,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin,LOW);
+  //read the echoPin,return the sound wave travel time in microseconds
+  duration=pulseIn(echoPin,HIGH);
+  //calculating the distance
+  distance=duration*0.034/2;
+  //prints the distance on the serial monitor
+  Serial.print("Distance: ");
+  Serial.println(distance);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+
+
+
+PRACTICAL 7
+
+
+*PROGRAM USING DIGITAL INFRARED MOTION SENSOR
+HARDWARE REQUIREMENT 
+1.ARDUINO BOARD UNO
+2.BREADBOARD SMALL
+3.JUMPER WIRES
+4.USB CABLE
+5.LED
+6.PIR SENSOR
+7.REGISTER(220 OHM)
+
+
+A PIR sensor is an electronic sensor used in motion detectors such as automatically triggered lighting devices and protection systems that measure devices emitting infrared light in their field of view.
+
+
+Code : 
+
+
+// C++ code
+//
+int sensorState=0;
+void setup()
+{
+  pinMode(2, INPUT);
+  pinMode(13, OUTPUT);
+  Serial.begin(9600);
+}
+
+
+void loop()
+{
+  //read the state of the sensor/digital input
+  sensorState=digitalRead(2);
+  //check if sensor pin is HIGH ,if it is ,set this
+  //LED on
+  if(sensorState==HIGH)
+  {
+  digitalWrite(13, HIGH);
+  Serial.print("sensor activated!");
+  Serial.println("Motion Detected");
+  }
+  else
+  {
+    digitalWrite(13, LOW);
+    Serial.println("Motion Ended");
+  }
+    
+  delay(10); //delay a little bit to improve simultaneously performance
+}
+
+------------------------------------------------------
+
+PRACTICAL 8 
+
+
+
+Programs using gas sensors:-
+           Gas sensors are devices that help us understand the amount of gas in the environment and the natural state of its movement. Gas sensors reveal the amount of gas in the environment and the nature of the gas composition with electrical signals and can provide its change .
+
+
+INPUT:
+
+
+int LED = 13;
+int BUZ = 3;
+
+
+const int gas = 0;
+int readval = A0;
+
+
+void setup() {
+  pinMode(LED, OUTPUT);
+   pinMode(BUZ, OUTPUT);
+    Serial.begin(9600);
+ 
+}
+
+
+void loop()
+{
+  float sensorValue;
+  sensorValue = analogRead(readval);
+  Serial.println(sensorValue);
+ 
+  if(sensorValue >= 450){
+    digitalWrite(LED,HIGH);
+    digitalWrite(BUZ,HIGH);
+   
+  }
+  else{
+    digitalWrite(LED,LOW);
+    digitalWrite(BUZ,LOW);
+   
+  }
+  delay(500);
+}
+
+
+
+
+------------------------------------------------------
+
+Practical 9
+---- Micro servo:-
+
+Hardware Requirement:
+1.Arduino Uno R3
+2.Jumper Wire
+3.Micro Servo
+
+Code:
+
+
+#include <Servo.h>
+int pos = 0;
+Servo servo_9;
+void setup()
+{
+  servo_9.attach(9, 500, 2500);
+}
+void loop()
+{
+ // sweep the servo from 0 to 180 degrees in stepof 1 degrees
+  for (pos = 0; pos <=180; pos +=1) {
+  // tell servo to go position in variable 'pos'
+    servo_9.write(pos);
+    //wait 15 ms for servo to reach the position
+    delay(15); // wait for 15 millisecond(s)
+  }
+  for (pos = 180; pos >= 0; pos -= 1) {
+  // tell servo to go to position in variable 'pos'
+    servo_9.write(pos);
+    //write 15 ms for servo to reach the position
+    delay(15); // wait for 15 millisecond(s)
+  }
+}
+
+
+
+
+
+----  DC MOTOR
+Code:
+
+
+
+
+// C++ code
+//
+void setup()
+{
+ pinMode(11, OUTPUT);
+  pinMode(9, OUTPUT);
+}
+void loop()
+{
+  digitalWrite(11, HIGH);
+  digitalWrite(9, LOW);
+
+  delay(1000);
+  digitalWrite(9, HIGH);
+  digitalWrite(11, LOW);
+  delay(1000);
+}
+
+
+---- Stepper Motor
+Code:
+
+
+//stepper motor
+void setup()
+{
+  for(int i=8;i<=11;i++)
+  { pinMode(i,OUTPUT);
+  }
+}
+
+
+void loop()
+{
+// this is anticlockwise movement
+ // for clockwise movement reverse the inputs
+   
+// step1 1000
+ digitalWrite(11,HIGH);
+ digitalWrite(10,LOW);
+ digitalWrite(9,LOW);
+ digitalWrite(8,LOW);
+ delay(10);
+
+
+
+
+
+
+  //step2 1100
+ digitalWrite(11,HIGH);
+ digitalWrite(10,HIGH);
+ digitalWrite(9,LOW);
+ digitalWrite(8,LOW);
+ delay(10);
+
+
+ //step2 0100            
+ digitalWrite(11,LOW);
+ digitalWrite(10,HIGH);
+ digitalWrite(9,LOW);
+ digitalWrite(8,LOW);
+ delay(10);
+         
+ //step4 0110
+ digitalWrite(11,LOW);
+ digitalWrite(10,HIGH);
+ digitalWrite(9,HIGH);
+ digitalWrite(8,LOW);
+ delay(10);
+           
+              }
+
+
+
+------------------------------------------------------
+
+
+   Practical 10
+PROGRAM MAKING JOYSTICK  WITH ARDUINO JOYSTICK : 
+HARDWARE COMPONENTS :- 
+Arduino Uno.
+BreadBoard.
+Servo Motors.
+Potentiometer.
+Jumper Wires.
+USB cable.
+SCHEMATIC REPRESENTATION :- 
+
+CODE :- 
+#include<Servo.h>
+// Horizontal gives clockwise motion of the motor's fan 
+// Vertical gives Anti-clockwise motion of the motor's fan 
+int ServoHorizontalPin = 2;
+int ServoVerticalPin = 4;
+int HorizontalPotPin = A0;
+int VerticalPotPin = A1;
+int ServoH_Min = 0;
+int ServoH_Max = 180;
+int ServoV_Min = 0;
+int ServoV_Max = 180;
+Servo HorizontalServo;
+Servo VerticalServo;
+int HorizontalPotValue;
+int HorizontalServoPosition;    // Clockwise
+int VerticalPotValue;
+int VerticalServoPosition;     // AntiClockWise
+void setup() 
+{
+  HorizontalServo.attach(ServoHorizontalPin);
+  VerticalServo.attach(ServoVerticalPin);
+}
+void loop() 
+{
+  HorizontalPotValue = analogRead(HorizontalPotPin);
+  VerticalPotValue = analogRead(VerticalPotPin);
+  HorizontalServoPosition = map(HorizontalPotValue,0,1023,ServoH_Min,ServoH_Max);
+  VerticalServoPosition = map(VerticalPotValue,0,1023,ServoV_Min,ServoV_Max);
+  HorizontalServo.write(HorizontalServoPosition);
+  VerticalServo.write(VerticalServoPosition);
+  delay(20);
+}
+
+
+OUTPUT :- 
+After providing the power to the whole setup the Fan of the servo motor can be rotated using the potentiometer which acts like a joy-stick through which we control the movement of the servo motor.
+
+
+
+OUT OF SYLLABUS
+
+
+INPUT:
+
+
+
+
+#include<LiquidCrystal.h>
+
+
+LiquidCrystal lcd(12,11,5,4,3,2);
+void setup()
+{
+ lcd.begin(16,2);
+}
+
+
+void loop()
+{
+ lcd.setCursor(0,0);
+  lcd.print("SYIT");
+  lcd.setCursor(2,1);
+  lcd.print("student");
+}
+
+
+
+
+
+
+
+
+
+OUTPUT:
+
+
+
+
+
+
+
