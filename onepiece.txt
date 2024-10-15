@@ -1,0 +1,1066 @@
+
+ 
+
+Practical no. 1
+
+
+
+
+
+
+
+
+
+
+
+What is Raspberry Pi?
+
+The Raspberry Pi is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse. It is a capable little device that enables people of all ages to explore computing, and to learn how to program in languages like Scratch and Python. It’s capable of doing everything you’d expect a desktop computer to do, from browsing the internet and playing high-definition video, to making spreadsheets, word-processing, and playing games.
+
+What’s more, the Raspberry Pi  has the ability to interact with the outside world, and has been used in a wide array of digital maker projects, from music machines and parent detectors to weather stations and tweeting birdhouses with infra-red cameras. We want to see the Raspberry Pi being used by kids all over the world to learn to program and understand how computers work.  
+
+Raspberry pi 3b:
+
+The Raspberry Pi 3 Model B is a small, affordable single-board computer that is popular for various DIY electronics projects, including IoT, robotics, home automation, and educational purposes. Here are some key features of the Raspberry Pi 3 Model B
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+Features: 
+
+
+
+●	Quad Core 1.2GHz Broadcom BCM2837 64bit CPU.
+
+●	1GB RAM.
+
+●	BCM43438 wireless LAN and Bluetooth Low Energy (BLE) on board.
+
+●	100 Base Ethernet.
+
+●	40-pin extended GPIO.
+
+●	4 USB 2 ports.
+
+●	4 Pole stereo output and composite video port.
+
+●	Full size HDMI.
+
+●	CSI camera port for connecting a Raspberry Pi camera
+
+●	DSI display port for connecting a Raspberry Pi touchscreen display
+
+●	Micro SD port for loading your operating system and storing data
+
+●	Upgraded switched Micro USB power source up to 2.5A
+
+
+
+
+
+
+
+General – Purpose Input / Output (GPIO): 
+
+One powerful feature of the Raspberry Pi is the row of GPIO pins along the top edge of the board. GPIO stands for General-Purpose Input/Output. These pins are a physical interface between the Raspberry Pi and the outside world. At the simplest level, you can think of them as switches that you can turn on or off (input) or that the Pi can turn on or off (output).
+
+The GPIO pins allow the Raspberry Pi to control and monitor the outside world by being connected to electronic circuits. The Pi is able to control LEDs, turning them on or off, run motors, and many other things. It’s also able to detect whether a switch has been pressed, the temperature, and light. We refer to this as physical computing. There are 40 pins on the Raspberry Pi (26 pins on early models), and they provide various different functions.
+
+
+
+ 
+
+
+
+
+
+
+
+●	Voltages: 
+
+Two 5V pins and two 3V3 pins are present on the board, as well as a number of ground pins (0V), which are unconfigurable. The remaining pins are all general purpose 3V3 pins, meaning outputs are set to 3V3 and inputs are 3V3-tolerant
+
+●	Outputs:
+
+A GPIO pin designated as an output pin can be set to high (3V3) or low (0V).
+
+●	Inputs: 
+
+A GPIO pin designated as an input pin can be read as high (3V3) or low (0V). This is made easier with the use of internal pull-up or pull-down resistors. Pins GPIO2 and GPIO3 have fixed pull-up resistors, but for other pins this can be configured in software
+
+As well as simple input and output devices, the GPIO pins can be used with a variety of      alternative functions, some are available on all pins, others on specific pins.
+
+●	PWM (pulse-width modulation) –
+
+●	Software PWM available on all pins
+
+●	Hardware PWM available on GPIO12, GPIO13, GPIO18, GPIO19
+
+●	SPI –
+
+●	SPI0: MOSI (GPIO10); MISO (GPIO9); SCLK (GPIO11); CE0 (GPIO8), CE1 (GPIO7)
+
+●	SPI1: MOSI (GPIO20); MISO (GPIO19); SCLK (GPIO21); CE0 (GPIO18); CE1 (GPIO17); CE2 (GPIO16)
+
+●	I2C-
+
+●	Data: (GPIO2); Clock (GPIO3)
+
+●	EEPROM Data: (GPIO0); EEPROM Clock (GPIO1)
+
+●	Serial- TX (GPIO14); RX (GPIO15)
+
+
+
+Raspbian OS:
+
+Raspberry Pi OS is the recommended operating system for normal use on a Raspberry Pi. Raspberry Pi OS is a free operating system based on Debian, optimized for the Raspberry Pi hardware. Raspberry Pi OS comes with over 35,000 packages: precompiled software bundled in a nice format for easy installation on your Raspberry Pi. Raspberry Pi OS is a community project under active development, with an emphasis on improving the stability and performance of as many Debian packages as possible.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q] Steps to download and install Raspberry Pi OS into SD card.
+
+Ans: - 
+
+
+
+Step 1: Open Google and go to website: - https://www.raspberrypi.com/software 
+
+
+
+ 
+
+
+
+
+
+Step 2: Scroll Down and click on “See all download options”.
+
+
+
+ 
+
+
+
+
+
+Step 3: Scroll down and download the “Raspberry Pi OS with desktop and recommended software”.
+
+ 
+
+
+
+ 
+
+
+
+
+
+Step 4: Extract the downloaded file into a folder.
+
+
+
+Step 5: Insert the SD card with SD card reader and Format the SD card.
+
+
+
+Step 6: Then insert the folder which we have extracted before.
+
+
+
+Step 7: Eject the SD card and insert it into Raspberry Pi model 4B and connect it with rest of the devices (Keyboard, Mouse, Monitor etc.).
+
+
+
+Step 8: Install the Operating System from the SD card and set it up according to your preferences.
+
+
+
+
+
+
+
+
+
+
+
+Steps in installing Raspbian using SD card
+
+1.	 SD card requirements
+
+Raspberry Pi computers use a micro SD card, except for very early models which use a full-sized SD card.
+
+2.	Capacity
+
+We recommend using an SD card of 8GB or greater capacity with Raspberry Pi OS. If you are using the lite version of Raspberry Pi OS, you can use a 4GB card. Other operating systems have different requirements: for example, LibreELEC can run from a smaller card. Please check with the supplier of the operating system to find out what capacity of card they recommend.
+
+3.	Troubleshooting
+
+We recommend buying an official Raspberry Pi SD card from one of our official resellers. The official SD cards are micro SD cards and are supplied with an adaptor which allows them to be used in a full-sized SD card slot.
+
+If you are having problems with your SD card:
+
+● Make sure you are using a genuine SD card. The best way to avoid fake SD cards is to always buy from a reputable supplier.
+
+
+
+● Make sure you are using a good quality power supply: we recommend using an official Raspberry Pi power supply.
+
+
+
+● The cable from the power supply unit to the Raspberry Pi can also cause problems. This is usually due to the resistance of the wires in the USB power cable; to save money, USB cables have as little copper in them as possible, which causes a voltage drop across the cable.
+
+
+
+● Make sure you shut down the operating system correctly before you power down the Raspberry Pi.
+
+
+
+STEPS:
+
+Raspberry Pi has developed a graphical SD card writing tool that works on Mac OS, Ubuntu 18.04 and Windows, and is the easiest option for most users as it will download the image and install it automatically to the SD card. Raspberry Pi Imager is the quick and easy way to install an operating system to a microSD card ready to use with your Raspberry Pi.
+
+● Download the latest version of Raspberry Pi Imager and install it.
+
+
+
+● If you want to use Raspberry Pi Imager on the Raspberry Pi itself, you can install it from a terminal using sudo apt install rpi-imager.
+
+
+
+● Connect an SD card reader with the SD card inside.
+
+
+
+● Open Raspberry Pi Imager and choose the required OS from the list presented.
+
+
+
+● Choose the SD card you wish to write your image to.
+
+
+
+● Review your selections and click 'WRITE' to begin writing data to the SD card
+
+
+
+
+
+Wiring up Rpi
+
+1. Using keyboard, mouse and monitor
+
+
+
+● Connect the Keyboard:
+
+Connect a regular wired PC (or Mac) keyboard to one of the four larger USB A sockets on a Raspberry Pi 4. It doesn’t matter which USB A socket you connect it to (although we think it's better to use the black connection, saving the faster blue one for other devices). It is possible to connect a Bluetooth keyboard, but it’s much better to use a wired keyboard to start with.
+
+
+
+● Connect a mouse:
+
+Connect a USB wired mouse to one of the other larger USB A sockets on Raspberry Pi. As with the keyboard, it is possible to use a Bluetooth wireless mouse, but setup is much easier with a wired connection. A regular wired mouse is connected to any of the USB A sockets. A wired keyboard is connected to another of the USB A sockets. If you have a Raspberry Pi 4, it's best to keep the faster (blue) USB 3.0 sockets free for flash drives or other components.
+
+
+
+2. Using Laptop (Using putty)
+
+Executing python program
+
+●	Before moving to connect our Raspberry Pi to our laptop display, we need an SD card with the OS installed. While the Raspbian image downloads, we also need to download a program called Win32 Disk Imager, which writes the Raspbian image to our microSD card.
+
+
+
+●	Once the image has been written, Raspbian OS is installed. Now we need to add some more files in the SD card that will enable SSH and will connect to Wi-Fi on the boot.
+
+
+
+●	Create a file named "wpa_supplicant.conf" and place the below code with your country code, Wi-Fi name, and password. This will connect your Raspberry Pi to the Wi-Fi network.
+
+
+
+●	To find out the IP address of Raspberry Pi, we will use advanced IP Scanner. Download Advanced IP Scanner, install and open it.
+
+
+
+●	Press on the "Scan" button and it will show you the IP address of your Raspberry Pi along with other devices connected to this network.
+
+
+
+●	To SSH into Raspberry Pi, we will have to use PuTTY software.
+
+
+
+●	Download and install PuTTY software on your PC.
+
+
+
+●	Open it, type the IP address of your Raspberry Pi (We got in the last step) and click on open.
+
+
+
+●	After that, it will ask for username and password. Default username is 'pi' and password is 'raspberry'
+
+
+
+●	We have successfully SSH into the Raspberry Pi and we have to enable VNC so that we can use mouse and keyboard to control it.
+
+
+
+●	Go through following steps: interfacing-->VNC and enable it-->Advanced Options-->Resolution-->resolution other than default-->Finish and reboot.
+
+
+
+●	We have to install a VNC viewer on our PC so that we can view and control the Raspberry Pi from our PC.
+
+
+
+●	Download and install VNC viewer and install it.
+
+
+
+●	Type the IP address-->username is 'pi' and the password is 'raspberry'-->OK
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical no. 2
+
+
+
+
+
+                                            RPi I/O operations
+
+●	Blinking LED
+
+Aim: blinking led to switch on and off
+
+
+
+ 
+
+
+
+Algorithm
+
+Initialize GPIO Library: Import the necessary libraries and configure the GPIO settings.
+
+Setup GPIO Pins:
+
+●	Set up GPIO pin 8 as an output pin.
+
+●	Initialize the pin state to LOW (LED off).
+
+Blinking Loop:
+
+●	Turn the LED on by setting GPIO pin 8 to HIGH.
+
+●	Wait for 1 second.
+
+●	Turn the LED off by setting GPIO pin 8 to LOW.
+
+●	Wait for 1 second.
+
+●	Repeat the above steps indefinitely.
+
+Handle Exit:
+
+●	On a keyboard interrupt (Ctrl+C), clean up GPIO settings to avoid warnings and reset the pin states.
+
+
+
+
+
+
+
+
+
+
+
+Libraries used
+
+
+
+1.	RPi. GPIO
+
+2.	time
+
+Component:
+
+1] LED
+
+2]Raspberry pi
+
+
+
+Code:
+
+import RPi.GPIO as GPIO
+
+from time import sleep
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(7,GPIO.OUT,initial=GPIO.LOW)
+
+while True:
+
+    GPIO.output(7,GPIO.HIGH)
+
+    print("LED on")
+
+    sleep(1)
+
+    GPIO.output(7,GPIO.LOW)
+
+    print("LED off")
+
+sleep(1)
+
+Screenshot:
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+●	4 LED Blink
+
+Aim : 
+
+To study different input-output controls using the Raspberry Pi by implementing a circuit to blink four LEDs in sequence.
+
+Using LED
+
+ we will control four LEDs connected to GPIO pins of the Raspberry Pi, making each LED blink in a sequence.
+
+To study different input-output controls using the Raspberry Pi by implementing a circuit to blink four LEDs in sequence.
+
+Circuit dig
+
+
+
+ 
+
+
+
+Algorithm
+
+1.	Initialize GPIO Library: Import the necessary libraries and configure the GPIO settings.
+
+2.	Setup GPIO Pins:
+
+○	Set up GPIO pins 8, 10, 12, and 16 as output pins.
+
+○	Initialize the pin states to LOW (LEDs off).
+
+3.	Blinking Sequence:
+
+○	Turn LED 1 on, wait for 1 second, and turn it off.
+
+○	Turn LED 2 on, wait for 1 second, and turn it off.
+
+○	Turn LED 3 on, wait for 1 second, and turn it off.
+
+○	Turn LED 4 on, wait for 1 second, and turn it off.
+
+○	Repeat the above sequence indefinitely.
+
+4.	Handle Exit:
+
+○	On a keyboard interrupt (Ctrl+C), clean up GPIO settings to avoid warnings and reset the pin states.
+
+Libraries used
+
+
+
+1.	RPi. GPIO
+
+2.	time
+
+code:
+
+import RPi.GPIO as GPIO
+
+from time import sleep
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(8,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(10,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(3,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(5,GPIO.OUT,initial=GPIO.LOW)
+
+
+
+while True:
+
+    GPIO.output(8,GPIO.HIGH)
+
+    print("LED on")
+
+    sleep(1)
+
+    GPIO.output(8,GPIO.LOW)
+
+    print("LED off")
+
+sleep(1)
+
+    GPIO.output(10,GPIO.HIGH)
+
+    print("LED on")
+
+    sleep(1)
+
+    GPIO.output(10,GPIO.LOW)
+
+    print("LED off")
+
+sleep(1)
+
+    GPIO.output(3,GPIO.HIGH)
+
+    print("LED on")
+
+    sleep(1)
+
+    GPIO.output(3,GPIO.LOW)
+
+    print("LED off")
+
+sleep(1)
+
+    GPIO.output(5,GPIO.HIGH)
+
+    print("LED on")
+
+    sleep(1)
+
+    GPIO.output(5,GPIO.LOW)
+
+    print("LED off")
+
+sleep(1)
+
+
+
+ 
+
+ 
+
+Video:  
+
+
+
+https://drive.google.com/file/d/1A6NwogwIAqdw8m3oKYTwk3jVZlA1yRSV/view?usp=drive_link
+
+
+
+
+
+
+
+
+
+
+
+●	2 ON 2 OFF Pattern
+
+Aim : To study different input-output controls using the Raspberry Pi by implementing a circuit to blink four LEDs in a serial pattern.
+
+
+
+I.	Using LED
+
+we will control four LEDs connected to GPIO pins of the Raspberry Pi. The LEDs will blink in a serial fashion, one after the other, in a loop
+
+
+
+Circuit dig
+
+ 
+
+
+
+
+
+Algorithm
+
+
+
+Initialize GPIO Library: Import the necessary libraries and configure the GPIO settings.
+
+Setup GPIO Pins:
+
+●	Set up GPIO pins 8, 10, 12, and 16 as output pins.
+
+●	Initialize all pins to LOW (LEDs off).
+
+Serial Blinking Pattern:
+
+●	Turn LED 1 on, wait for 0.5 seconds, then turn LED 1 off.
+
+●	Turn LED 2 on, wait for 0.5 seconds, then turn LED 2 off.
+
+●	Turn LED 3 on, wait for 0.5 seconds, then turn LED 3 off.
+
+●	Turn LED 4 on, wait for 0.5 seconds, then turn LED 4 off.
+
+●	Repeat the above sequence indefinitely.
+
+Handle Exit:
+
+●	On a keyboard interrupt (Ctrl+C), clean up GPIO settings to avoid warnings and reset the pin states.
+
+
+
+
+
+Libraries used
+
+
+
+1.	RPi. GPIO
+
+2.	time
+
+
+
+
+
+
+
+Code:
+
+import RPi.GPIO as GPIO
+
+from time import sleep
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(8,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(10,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(3,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(5,GPIO.OUT,initial=GPIO.LOW)
+
+while True:
+
+    GPIO.output(8,GPIO.HIGH)
+
+    GPIO.output(10,GPIO.HIGH)
+
+    GPIO.output(3,GPIO.LOW)
+
+    GPIO.output(5,GPIO.LOW)
+
+    sleep(1)
+
+    GPIO.output(8,GPIO.LOW)
+
+    GPIO.output(10,GPIO.LOW)
+
+    GPIO.output(3,GPIO.HIGH)
+
+    GPIO.output(5,GPIO.HIGH)
+
+    sleep(1)
+
+
+
+
+
+OUTPUT
+
+ 
+
+
+
+ 
+
+
+
+
+
+●	Serial Blinking
+
+Aim : To study different input-output controls using the Raspberry Pi by implementing a circuit to blink four LEDs in a serial pattern.
+
+
+
+I.	Using LED
+
+we will control four LEDs connected to GPIO pins of the Raspberry Pi. The LEDs will blink in a serial fashion, one after the other, in a loop
+
+
+
+Circuit dig
+
+ 
+
+
+
+
+
+Algorithm
+
+
+
+Initialize GPIO Library: Import the necessary libraries and configure the GPIO settings.
+
+Setup GPIO Pins:
+
+●	Set up GPIO pins 8, 10, 12, and 16 as output pins.
+
+●	Initialize all pins to LOW (LEDs off).
+
+Serial Blinking Pattern:
+
+●	Turn LED 1 on, wait for 0.5 seconds, then turn LED 1 off.
+
+●	Turn LED 2 on, wait for 0.5 seconds, then turn LED 2 off.
+
+●	Turn LED 3 on, wait for 0.5 seconds, then turn LED 3 off.
+
+●	Turn LED 4 on, wait for 0.5 seconds, then turn LED 4 off.
+
+●	Repeat the above sequence indefinitely.
+
+Handle Exit:
+
+●	On a keyboard interrupt (Ctrl+C), clean up GPIO settings to avoid warnings and reset the pin states.
+
+
+
+
+
+Libraries used
+
+
+
+1.	RPi. GPIO
+
+2.	time
+
+
+
+
+
+import RPi.GPIO as GPIO
+
+from time import sleep
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(8,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(10,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(3,GPIO.OUT,initial=GPIO.LOW)
+
+GPIO.setup(5,GPIO.OUT,initial=GPIO.LOW)
+
+while True:
+
+    GPIO.output(8,GPIO.HIGH)
+
+    sleep(1)
+
+    GPIO.output(10,GPIO.HIGH)
+
+    sleep(1)
+
+    GPIO.output(3,GPIO.HIGH)
+
+    sleep(1)
+
+    GPIO.output(5,GPIO.HIGH)
+
+    sleep(1)
+
+    GPIO.output(8,GPIO.LOW)
+
+sleep(1)
+
+    GPIO.output(10,GPIO.LOW)
+
+    sleep(1)
+
+    GPIO.output(3,GPIO.LOW)
+
+    sleep(1)
+
+    GPIO.output(5,GPIO.LOW)
+
+sleep(1)
+
+
+
+Output:
+
+
+
+
+
+ 
+
+
+
+
+
+●	Push Button control
+
+
+
+
+
+Aim : To study input-output controls using the Raspberry Pi by implementing a circuit to control an LED based on the state of a push button. The LED will turn on when the button is pressed and turn off when the button is released.
+
+Using LED and Push Button
+
+In this practical, we will control an LED connected to a GPIO pin of the Raspberry Pi. The LED will be turned on or off depending on the state of a push button connected to another GPIO pin.
+
+
+
+
+
+Circuit dig
+
+
+
+ 
+
+
+
+Algorithm
+
+Initialize GPIO Library: Import the necessary libraries and configure the GPIO settings.
+
+Setup GPIO Pins:
+
+●	Set up GPIO pin 8 as an output pin for the LED.
+
+●	Set up GPIO pin 10 as an input pin for the push button with a pull-down resistor.
+
+Button Controlled Blinking:
+
+●	Continuously check the state of the push button.
+
+●	If the button is pressed (GPIO pin 10 reads HIGH), turn the LED on (GPIO pin 8 HIGH).
+
+●	If the button is not pressed (GPIO pin 10 reads LOW), turn the LED off (GPIO pin 8 LOW).
+
+Handle Exit:
+
+●	On a keyboard interrupt (Ctrl+C), clean up GPIO settings to avoid warnings and reset the pin states.
+
+
+
+
+
+Libraries used
+
+
+
+1.	RPi. GPIO
+
+2.	time
+
+
+
+code:
+
+import RPi.GPIO as GPIO
+
+import time
+
+import serial
+
+from time import sleep
+
+
+
+# Setup GPIO pins
+
+GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(3, GPIO.OUT, initial=GPIO.LOW) # LED
+
+GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Push Button
+
+while True:
+
+if(GPIO.input(5)==1):
+
+GPIO.output(3,HIGH)
+
+else
+
+GPIO.output(3,LOW)
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+●	Buzzer with PUSH Button
+
+Aim : To study input-output controls using the Raspberry Pi by implementing a circuit to control an LED and a buzzer based on the state of a push button. The LED and buzzer will turn on when the button is pressed and turn off when the button is released.
+
+Using LED, Buzzer, and Push Button
+
+In this practical, we will control an LED and a buzzer connected to GPIO pins of the Raspberry Pi. Both the LED and the buzzer will be activated when a push button is pressed.
+
+
+
+
+
+Circuit dig
+
+ 
+
+
+
+
+
+Algorithm
+
+Initialize GPIO Library: Import the necessary libraries and configure the GPIO settings.
+
+Setup GPIO Pins:
+
+●	Set up GPIO pin 8 as an output pin for the LED.
+
+●	Set up GPIO pin 12 as an output pin for the buzzer.
+
+●	Set up GPIO pin 10 as an input pin for the push button with a pull-down resistor.
+
+Button Controlled LED and Buzzer:
+
+●	Continuously check the state of the push button.
+
+●	If the button is pressed (GPIO pin 10 reads HIGH), turn the LED on (GPIO pin 8 HIGH) and the buzzer on (GPIO pin 12 HIGH).
+
+●	If the button is not pressed (GPIO 
