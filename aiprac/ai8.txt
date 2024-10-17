@@ -1,0 +1,23 @@
+#associative law
+a=int(input("Enter the value for a :"))
+b=int(input("Enter the value for b :"))
+c=int(input("Enter the value for c :"))
+r1=(a+b)+c
+print("result is:",r1)
+r2=a+(b+c)
+print("After Associative law :")
+print("result is:",r2)
+print("Result1 and Result2 are same")
+
+
+#distributive law
+a=int(input("Enter the value for a :"))
+b=int(input("Enter the value for b :"))
+c=int(input("Enter the value for c :"))
+print("given expression : a * (b+c)")
+r1= a * (b+c)
+print("result 1: ",r1)
+print("distributive expression : (a*b) + (a*c)")
+r2= (a*b) + (a*c)
+print("result 2: ",r2)
+print("result1 and result2 are same")

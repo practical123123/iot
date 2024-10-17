@@ -1,0 +1,57 @@
+# Define the graph as an adjacency list
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F', 'G'],
+    'D': [],
+    'E': [],
+    'F': [],
+    'G': []
+}
+
+# Print the graph
+print("Graph:", graph)
+
+# Create an empty queue
+queue = []
+
+# Define the BFS method
+def mybfs(graph, queue, initialnode):
+    queue.append(initialnode)  # Start with the initial node
+    while queue:
+        m = queue.pop(0)  # Remove the first element from the queue
+        print(m, '=', end=" ")  # Print the current node
+        for neighbour in graph[m]:  # Iterate through the neighbours of the current node
+            if neighbour not in queue:  # Check if the neighbour is not already in the queue
+                queue.append(neighbour)  # Add the neighbour to the queue
+
+# Calling BFS
+print("Traversal with BFS:")
+mybfs(graph, queue, 'A')
+
+
+
+
+# Define the graph as an adjacency list
+graph = {
+    '1': ['2', '3'],
+    '2': ['4', '5'],
+    '3': ['6'],
+    '4': [],
+    '5': ['6'],
+    '6': []
+}
+
+# Set to keep track of visited nodes of the graph
+visited = set()
+
+def dfs(visited, graph, node):
+    if node not in visited:
+        print(node, '-', end="")
+        visited.add(node)
+        for neighbour in graph[node]:
+            dfs(visited, graph, neighbour)
+
+# Main Logic
+print("Following is the DFS:")
+dfs(visited, graph, '1')
