@@ -1,0 +1,41 @@
+Aim: Create a simple application using cookies to dynamically change the color of the page.
+Files Used:
+Project Name: Practical10B
+JSP File: index.jsp
+
+Code: index.jsp
+<%@ page import="javax.servlet.http.Cookie" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+<title>Dynamic Background Color with Cookies</title>
+</head>
+<%
+String bgColor = "white";
+String selectedColor = request.getParameter("color");
+if (selectedColor != null && !selectedColor.isEmpty()) {
+Cookie colorCookie = new Cookie("bgColor", selectedColor);
+colorCookie.setMaxAge(60 * 60 * 24 * 7);
+response.addCookie(colorCookie);
+bgColor = selectedColor;
+} else {
+Cookie[] cookies = request.getCookies();
+if (cookies != null) {
+for (Cookie cookie : cookies) {
+if ("bgColor".equals(cookie.getName())) {
+bgColor = cookie.getValue();
+break;
+}
+}
+}
+}
+%>
+<body style="background-color: <%= bgColor %>;">
+<h1>Select a Background Color</h1>
+<form method="post">
+Choose a color:<input type="color" name="color" value="<%= bgColor %>">
+<br><br>
+<input type="submit" value="Change Background Color">
+</form>
+</body>
+</html>

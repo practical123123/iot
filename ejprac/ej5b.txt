@@ -1,0 +1,55 @@
+Project Name: Prac_5B JSP File 1: index.jsp
+JSP File 2: ExpLang.jsp
+
+Steps for creating project are the same as Practical 1 Part A and steps for creating JSP are
+the same as in Practical 4 Part A.
+Code: index.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Expression Language</title>
+</head>
+<body>
+<h1>Welcome to index page</h1>
+<%
+Cookie ck=new Cookie("color","Orange"); response.addCookie(ck);
+%> <%
+application.setAttribute("name","RR"); session.setAttribute("country","India");
+%>
+<form action="ExpLang.jsp">
+Enter Name:<input type="text" name="name" /><br/><br/>
+<input type="submit" value="Submit"/>
+</form></body> </html>
+
+ExpLang.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Expression Language</title>
+</head>
+<body>
+<h1>Accessing Attribute: Application Level </h1>
+Welcome ${ applicationScope.name }
+<h1>Accessing Attributes: Session Level </h1>
+Country of Residence: ${ sessionScope.country}
+<h1>Accessing Cookie </h1>
+Cookie Color has Value: ${cookie.color.value}
+
+<%-- arithmetic operators --%>
+<h1> Arithmetic Operators </h1>
+5*5+4: ${5*5+4} <br>
+1.4E4+1.4: ${1.4E4+1.4}<br>
+10 mod 4: ${10 mod 4}<br>
+15 div 3: ${15 div 3}<br>
+
+<%-- Logical Operator --%>
+<h1> Logical Operators </h1> true
+and true: ${true and true}<br> true
+&& false: ${true && false}<br>
+true or true: ${true or true}<br> true

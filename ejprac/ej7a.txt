@@ -1,0 +1,66 @@
+Part A:
+
+Aim: Develop simple EJB application to demonstrate Servlet Hit count using Singleton
+Session Beans.
+
+Files Used:
+
+Project Name: Prac_7A
+Java File: counterServlet
+Package Name: demoC
+Java Bean File: CounterBean
+Package Name: mybean
+
+Code: index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hit Counter</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="counterServlet">
+<input type="submit" value="Check Hit Counter">
+</form>
+</body>
+</html>
+
+counterServlet.java
+
+package demoC;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ejb.EJB;
+import mybean.CounterBean;
+
+public class counterServlet extends HttpServlet {
+@EJB mybean.CounterBean obj;
+
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+out.println("<h1> Hit Count: " + obj.getCount() +". </h1>");
+}
+}
+
+CounterBean.java
+
+package mybean;
+import javax.ejb.Singleton;
+@Singleton
+public class CounterBean {
+private int hitcount=0;
+public int getCount()
+{
+hitcount=hitcount+1;
+return hitcount;
+}
+}

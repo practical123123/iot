@@ -1,0 +1,79 @@
+Project Name: Prac_1C
+Package Name: demoReg;
+Java File: RegPage
+
+MySQL Queries:
+
+ create database emplyoee;
+ use emplyoee;
+ create table user(username varchar(20),password varchar(20),email
+varchar(20),country varchar(10));
+ desc user;
+ 
+
+Code: index.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Employee Registration Form</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="RegPage" method="POST">
+Enter User Name: <input type ="text" name ="username"> <br> <br>
+Enter Password: <input type ="password" name ="password"> <br> <br>
+Enter Email: <input type ="email" name ="email"> <br> <br>
+Enter Country: <input type ="text" name ="country"> <br> <br>
+<input type ="reset">
+<input type="submit" value="REGISTER EMPLOYEE">
+</form>
+</body>
+</html>
+
+
+
+RegPage.java
+
+package demoReg;
+import java.io.IOException; import
+java.io.PrintWriter; import
+javax.servlet.ServletException; import
+javax.servlet.http.HttpServlet; import
+javax.servlet.http.HttpServletRequest; import
+javax.servlet.http.HttpServletResponse; import
+java.sql.*;
+
+public class RegPage extends HttpServlet { protected void
+service(HttpServletRequest request, HttpServletResponse response) throws
+ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+String uname=request.getParameter("username");
+String pass=request.getParameter("password");
+String email=request.getParameter("email");
+String country=request.getParameter("country");
+try {
+Class.forName("com.mysql.jdbc.Driver"); Connection
+con=DriverManager.getConnection("jdbc:mysql://localhost:3306/employee","root","r
+oot");
+PreparedStatement pst=con.prepareStatement("insert into user values(?,?,?,?)");
+pst.setString(1,uname);
+ pst.setString(2,pass);
+ pst.setString(3,email);
+pst.setString(4,country); 
+int row=pst.executeUpdate(); 
+if(row==1)
+{
+out.println("Data inserted successfully");
+}
+else
+{
+out.println("Data could not be inserted");
+}
+}
+catch(Exception e)
+{
+out.println(e);
+}
+}

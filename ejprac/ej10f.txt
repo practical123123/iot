@@ -1,0 +1,82 @@
+Part F:
+
+Aim: Create a JSP page to demonstrate the use of Function tag library.
+Files Used:
+Project Name: Prac_10F
+JSP File: index.jsp
+
+Code: index.jsp
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSTL Function Tag Library</title>
+</head>
+<body>
+<!-- Example Strings -->
+<c:set var="str1" value="Hello World!" />
+<c:set var="str3" value="apple-banana-cherry-dragon fruit" />
+<c:set var="strSpaces" value=" Text with leading and trailing spaces " />
+<c:set var="str2" value="Hello, World, How, are, you?" />
+<c:set var="str4" value="Hello, World! Hello, World!" />
+<!-- fn:length -->
+<h2>fn:length</h2>
+<p>Length of "${str1}": ${fn:length(str1)}</p>
+<!-- fn:toUpperCase -->
+<h2>fn:toUpperCase</h2>
+<p>Uppercase of "${str1}": ${fn:toUpperCase(str1)}</p>
+<!-- fn:toLowerCase -->
+<h2>fn:toLowerCase</h2>
+<p>Lowercase of "${str1}": ${fn:toLowerCase(str1)}</p>
+<!-- fn:trim -->
+<h2>fn:trim</h2>
+<p>Trimmed text: "${fn:trim(strSpaces)}"</p>
+<!-- fn:substring -->
+<h2>fn:substring</h2>
+<p>Substring (0, 5) of "${str1}": ${fn:substring(str1, 0, 5)}</p>
+
+<!-- fn:substringAfter -->
+<h2>fn:substringAfter</h2>
+<p>Substring after ', ' in "${str2}": ${fn:substringAfter(str2, ', ')}</p>
+<!-- fn:substringBefore -->
+<h2>fn:substringBefore</h2>
+<p>Substring before ', ' in "${str2}": ${fn:substringBefore(str2, ', ')}</p>
+<!-- fn:contains -->
+<h2>fn:contains</h2>
+<p>Does "${str1}" contain "world"? ${fn:contains(str1, "world")}</p>
+<!-- fn:containsIgnoreCase -->
+<h2>fn:containsIgnoreCase</h2>
+<p>Does "${str1}" contain "world" (ignore case)? ${fn:containsIgnoreCase(str1,
+"wORld")}</p>
+<!-- fn:startsWith -->
+<h2>fn:startsWith</h2>
+<p>Does "${str1}" start with "Hello"? ${fn:startsWith(str1, "Hello")}</p>
+<!-- fn:endsWith -->
+<h2>fn:endsWith</h2>
+<p>Does "${str1}" end with "World!"? ${fn:endsWith(str1, "World!")}</p>
+<!-- fn:indexOf -->
+<h2>fn:indexOf</h2>
+<p>Index of "World" in "${str1}": ${fn:indexOf(str1, "World")}</p>
+<!-- fn:split -->
+<h2>fn:split</h2>
+<c:set var="fruits" value="${fn:split(str3, '#')}" />
+<p>Split "${str3}" by hash:</p>
+<c:forEach var="fruit" items="${fruits}">
+<p>${fruit}</p>
+</c:forEach>
+<!-- fn:replace -->
+<h2>fn:replace</h2>
+<p>Replace "World" with "Universe" in "${str4}": ${fn:replace(str4, "World","Universe")}</p>
+<!-- fn:join -->
+<h2>fn:join</h2>
+<p>Join "${str2}" with * $ *: ${fn:join(fn:split(str2,','), ' * $ * ')}</p>
+<!-- fn:escapeXml -->
+<h2>fn:escapeXml</h2>
+<c:set var="xmlText" value="<b><u><i>Value</i></u></b><hr>" /> <p>Original
+XML: ${xmlText}</p>
+<p>Escaped XML: ${fn:escapeXml(xmlText)}</p>
+</body>
+</html>

@@ -1,0 +1,104 @@
+Part D:
+Aim: Create a JSP page to demonstrate the use of XML tag library.
+Files Used:
+Project Name: Practical10D
+JSP File: index.jsp
+XML File: data.xml
+
+Code: index.jsp
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" %>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+</head>
+<body>
+<c:import url="/WEB-INF/data.xml" var="xmlData" />
+<x:parse var="catalogs" xml="${xmlData}" />
+<h2 align='center'>Book Catalog</h2>
+<ul>
+<x:forEach var="book" select="$catalogs/catalog/book">
+<li type='square'>
+<!-- Display book name -->
+<b>Name:</b> <x:out select="name" /><br />
+<!-- Display book price -->
+<b>Price:</b> ₹<x:out select="price" /><br />
+<!-- Conditionally display discount if it exists -->
+<x:if select="boolean(discount)">
+<b>Discount:</b> <x:out select="discount" />%<br />
+</x:if>
+<!-- Use x:choose to display stock status -->
+<x:choose>
+<x:when select="inStock = 'true'">
+<b>Status:</b> In Stock<br />
+</x:when>
+<x:otherwise>
+<b>Status:</b> Out of Stock<br />
+</x:otherwise>
+</x:choose>
+<!-- Set a new variable to calculate the final price after discount -->
+<x:set var="finalPrice" select="price - (price * discount div 100)" />
+<!-- Display the final price if there is a discount -->
+<x:if select="boolean(discount)">
+<b>Final Price after Discount:</b> ₹<x:out select="$finalPrice" /><br />
+</x:if>
+<br> <hr color='skyblue' size='5'> <br>
+</li>
+</x:forEach>
+</ul>
+</body>
+</html>
+data.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+<book>
+<name>Sneha Raparti </name>
+<price>500.00</price>
+<discount>15</discount>
+<inStock>true</inStock>
+</book>
+<book>
+<name>Harry Potter And Chamber of Secrets</name>
+<price>415.00</price>
+<inStock>false</inStock>
+</book>
+<book>
+<name>Harry Potter And Prisoner of Azkaban</name>
+<price>645.00</price>
+<discount>10</discount>
+<inStock>true</inStock>
+</book>
+<book>
+<name>Harry Potter And Goblet of Fire</name>
+<price>640.00</price>
+<discount>10</discount>
+<inStock>true</inStock>
+</book>
+<book>
+<name>Harry Potter And Order of the Phoenix </name>
+<price>675.00</price>
+<inStock>true</inStock>
+</book>
+<book>
+<name>Harry Potter And Half-Blood Prince</name>
+<price>945.00</price>
+
+<discount>20</discount>
+<inStock>false</inStock>
+</book>
+<book>
+<name>Harry Potter And Deathly Hallows</name>
+<price>767.00</price>
+<discount>13</discount>
+<inStock>true</inStock>
+</book>
+<book>
+<name>It ends with US</name>
+<price>200.00</price>
+<discount>10</discount>
+<inStock>true</inStock>
+</book>
+</catalog>

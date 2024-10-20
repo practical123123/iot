@@ -1,0 +1,152 @@
+Project Name: Prac_2C
+Package Name: demoS
+Java File 1: Servlet1
+Java File 2: Servlet2
+Java File 3: Servlet3
+Java File 4: LogutServlet
+Code: index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Session</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="Servlet1" method="get">
+Enter Username: <input type="text" name="txtName"><br><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+Servlet1.java
+
+package demoS;
+
+import java.io.IOException; import
+java.io.PrintWriter; import java.util.Date;
+import javax.servlet.ServletException; import
+javax.servlet.http.HttpServlet; import
+javax.servlet.http.HttpServletRequest; import
+javax.servlet.http.HttpServletResponse; import
+javax.servlet.http.HttpSession; public class
+Servlet1 extends HttpServlet {
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8"); PrintWriter out =
+response.getWriter();
+out.println("<html><head><title>Page 1</title></head>");
+HttpSession hs = request.getSession(true); if(hs.isNew())
+{
+out.println("<body bgcolor=cyan>");
+String name = request.getParameter("txtName");
+hs.setAttribute("uname", name); hs.setAttribute("visit",
+"1");
+out.println("<h1>Welcome for the first time</h1>");
+}
+else
+{
+out.println("<h1>Welcome Back to the Page</h1>");
+int visit = +Integer.parseInt((String)hs.getAttribute("visit"))+1;
+out.println("<h1>You have visited "+visit+" Times</h1>");
+hs.setAttribute("visit", visit+"");
+} out.println("<h1>Your Session ID: " +hs.getId()+
+"<br>Timeout:"+hs.getMaxInactiveInterval()+
+"</h1>");
+out.println("<h1><br>Last Accessed Time: " +hs.getLastAccessedTime()+"<br>You
+Logged in at: "+new Date(hs.getCreationTime())+ "</h1>");
+out.println("<h1><a href=Servlet2>Click for Page 2 </a></h1>");
+out.println("<h1><a href=Servlet3>Click for Page 3 </a></h1>");
+out.println("<h1><a href=LogoutServlet>Click to Logout </a></h1>");
+}
+}
+
+
+Servlet2.java
+
+package demoS;
+
+import java.io.IOException; import
+java.io.PrintWriter; import
+javax.servlet.ServletException; import
+javax.servlet.http.HttpServlet; import
+javax.servlet.http.HttpServletRequest; import
+javax.servlet.http.HttpServletResponse; import
+javax.servlet.http.HttpSession;
+
+public class Servlet2 extends HttpServlet {
+
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+out.println("<html><head><title>Page 2</title></head>");
+out.println("<body bgcolor='FF9900'>");
+HttpSession hs1 = request.getSession(false);
+out.println("<h1>Welcome to Page No. 2</h1>");
+int visit = Integer.parseInt((String)hs1.getAttribute("visit"))+1;
+out.println("<h1>You have visited "+visit+" times</h1>");
+hs1.setAttribute("visit", ""+visit);
+out.println("<h1>Your Session ID "+hs1.getId()+"</h1>");
+out.println("<h1>You Logged in at "+new java.util.Date(hs1.getCreationTime()) +"</h1>");
+out.println("<h1><a href=Servlet1>Click for Page 1</a></h1>");
+out.println("<h1><a href=Servlet3>Click for Page 3</a></h1>");
+out.println("<h1><a href=LogoutServlet>Click to Logout</a></h1>");
+}
+}
+
+Servlet3.java
+
+package demoS;
+
+import java.io.IOException; import
+java.io.PrintWriter; import
+javax.servlet.ServletException; import
+javax.servlet.http.HttpServlet; import
+javax.servlet.http.HttpServletRequest; import
+javax.servlet.http.HttpServletResponse; import
+javax.servlet.http.HttpSession;
+
+public class Servlet3 extends HttpServlet {
+
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8"); PrintWriter out =
+response.getWriter();
+out.println("<html><head><title>Page 3</title></head>");
+out.println("<body bgcolor=yellow>");
+HttpSession hs1 = request.getSession(false); out.println("<h1>Welcome to
+Page No. 3</h1>");
+int visit = Integer.parseInt((String)hs1.getAttribute("visit"))+1; out.println("<h1>You
+have visited "+visit+" times</h1>");
+hs1.setAttribute("visit", ""+visit);
+out.println("<h1>Your Session ID "+hs1.getId()+"</h1>");
+out.println("<h1>You Logged in at "+new java.util.Date(hs1.getCreationTime()) +"</h1>");
+out.println("<h1><a href=Servlet1>Click for Page 1</a></h1>");
+out.println("<h1><a href=Servlet2>Click for Page 2</a></h1>");
+out.println("<h1><a href=LogoutServlet>Click to Logout</a></h1>");
+}
+}
+
+LogoutServlet.java
+
+package demoS;
+
+import java.io.IOException; import
+java.io.PrintWriter; import
+javax.servlet.ServletException; import
+javax.servlet.http.HttpServlet; import
+javax.servlet.http.HttpServletRequest; import
+javax.servlet.http.HttpServletResponse;
+
+public class LogoutServlet extends HttpServlet {
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8"); PrintWriter out =
+response.getWriter(); javax.servlet.http.HttpSession hs = request.getSession();
+if(hs != null)
+{
+hs.invalidate();
+}
+out.println("<h3>You are now logged out....To Re-join, kindly login again</h3>"); }}

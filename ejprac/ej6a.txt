@@ -1,0 +1,73 @@
+Project Name: Practical6A
+Java File: CCServlet
+Package Name: demoCC
+Java Bean File: CCBean
+Package Name: mybean
+Steps for creating project is same as Practical 1 Part A, steps for creating JSP is same as
+Practical 4 Part A and steps for creating Java Class File is same as Practical 4 Part B.
+
+Code: index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Currency convertor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<center>
+<form action="CCServlet" >
+Enter Amount <input type="text" name="amt"><br> <br>
+Select Conversion Type
+<input type="radio" name="type" value="r2d" checked>Rupees to Dollar
+<input type="radio" name="type" value="d2r" >Dollar to Rupees<br> <br> <br>
+<input type="reset" > <input type="submit" value="CONVERT" > <br> <br>
+</form>
+</center>
+</body>
+</html>
+
+CCServlet.java
+
+package demoCC;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ejb.EJB;
+import mybean.CCBean;
+
+public class CCServlet extends HttpServlet {
+@EJB mybean.CCBean obj;
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+double amt = Double.parseDouble(request.getParameter("amt"));
+if(request.getParameter("type").equals("r2d"))
+{
+out.println("<h1>" + amt + "Rupees = " + obj.r2Dollor(amt) + "Dollars </h1>");
+}
+if(request.getParameter("type").equals("d2r"))
+{
+out.println("<h1>" + amt + "Dollars = " + obj.d2Rupees(amt) + "Rupees </h1>");}}}
+
+
+CCBean.java
+
+package mybean;
+import javax.ejb.Stateless;
+@Stateless
+public class CCBean {
+
+public CCBean(){}
+public double r2Dollor(double r){
+return r/83.95;
+}
+public double d2Rupees(double d){
+return d*83.95;
+}
+}

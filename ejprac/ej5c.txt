@@ -1,0 +1,68 @@
+Aim: Create a JSP application to demonstrate the use of JSTL.
+Files Used:
+Project Name: Prac_5C
+JSP File 1: index.jsp
+JSP File 2: JSTLDemo.jsp
+Steps for creating project are the same as Practical 1 Part A and steps for creating JSP are the same
+as in Practical 4 Part A.
+Code: index.jsp
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSTL Demo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action ="JSTLDemo.jsp">
+User First Name:<input type="text" name="ufname"><br/> <br/>
+User Last Name:<input type="text" name="ulname"><br/> <br/>
+Enter Input: <input type="number" name="input"/><br> <br/>
+<input type="submit"><br/>
+</form>
+</body>
+</html>
+
+
+
+JSTLDemo.jsp
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<!DOCTYPE html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSTL Demo</title>
+</head>
+<body>
+First Name: <b><c:out value="${param.ufname}"></c:out></b><br>
+Last Name: <b><c:out value="${param.ulname}"></c:out></b><br> <br>
+
+Use of Set:
+<c:set var="mycount" value="750"></c:set>
+<c:out value="${mycount}"></c:out>
+
+Use of If:
+<c:if test="${param.input ge 25}">
+<b><c:out value="Your Count is greater than or equal to 25"></c:out></b>
+</c:if> <br> <br>
+
+Use of Choose, When and Otherwise: <br>
+<c:choose>
+<c:when test = "${param.input < 25}">
+<c:out value="Your Count is less than 25"></c:out>
+
+</c:when>
+
+<c:when test = "${param.input > 25}">
+<c:out value="Your Count is greater than 25"></c:out>
+</c:when>
+<c:otherwise>
+<c:out value="Your Count is equal to 25"></c:out>
+</c:otherwise>
+</c:choose>
+<br> Use of For Each:
+<c:forEach var="count" begin="1" end="50" step="5">
+<b> <c:out value="${count}"></c:out> </b>
+</c:forEach>
+</body>
+</html>

@@ -1,0 +1,164 @@
+Project Name: Practical4B
+Java Class: CheckerBean
+JSP File 1: Validate
+JSP File 2: Successful
+Steps for creating project are the same as Practical 1 Part A and steps for creating JSP are the
+same as in Practical 4 Part A.
+Steps for creating Java Class File are as follows,
+1. Right click on project ‘Pract_4B’ → Click on ‘New’ → Click on ‘Java Class’.
+
+ADVANCED JAVA TECHNOLOGIES
+
+Sneha Raparti Roll No 111
+2. Give Class name and Package Name → Click on ‘Finish’.
+
+Code: index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSP Application</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="Validate.jsp">
+Enter Your Name: <input type="text" name="name" ><br><br>
+Enter Your Age: <input type="text" name="age" ><br><br>
+Select Hobbies: <input type="checkbox" name="hob" value="Singing">Business
+<input type="checkbox" name="hob" value="Reading">Reading Books
+<input type="checkbox" name="hob" value="Football">Playing Football<br><br>
+Enter E-mail: <input type="text" name="email" ><br><br>
+Select Gender: <input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="female">Female
+<br><br>
+<input type="hidden" name="error" value="">
+<input type="submit" value="Submit Form">
+</form>
+</body>
+</html>
+CheckerBean.java
+package mypack;
+import java.beans.*;
+import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public class CheckerBean
+{
+String name,hob,email,gender,error; int age;
+public CheckerBean()
+{
+name=""; hob=""; email=""; gender=""; error=""; age=0;
+}
+public void setName(String n)
+{
+name=n;
+}
+public String getName()
+{
+return name;
+}
+public void setAge(int a)
+{
+age=a;
+}
+public int getAge()
+{
+return age;
+}
+public void setHob(String h)
+{
+hob=h;
+}
+public String getHob()
+{
+return hob;
+}
+public void setEmail(String e)
+{
+email=e;
+}
+public String getEmail()
+{
+return email;
+}
+public void setGender(String g)
+{
+gender=g;
+}
+public String getGender()
+{
+return gender;
+}
+public String getError()
+{
+return error;
+}
+public boolean validate()
+{
+boolean res=true;
+if(name.trim().equals(""))
+{
+error+="<br>Enter First Name";
+res=false;
+}
+if(age<0||age>99)
+{
+error+="<br>Age Invalid";
+res=false;
+}
+String emailregex="^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za z0-9-
+]+)*(\\.[A-Za-z]{2,})$";
+Boolean b=email.matches(emailregex);
+if(!b)
+{
+error+="<br>email Invalid";
+res=false;
+}
+return res;
+}
+}
+
+Validate.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Validate</title>
+</head>
+<body>
+<h1>Validation Page</h1>
+<jsp:useBean id="obj" scope="request" class="mypack.CheckerBean" >
+<jsp:setProperty name="obj" property="*"/>
+</jsp:useBean>
+<%
+if (obj.validate())
+{
+%>
+<jsp:forward page="Successful.jsp"/>
+<%
+}
+else {
+%>
+<jsp:include page="index.html"/>
+<%
+}
+%>
+<%=obj.getError() %>
+</body>
+</html>
+Succcessful.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Success</title>
+</head>
+<body>
+<h1> The changes which you have done are successful</h1>>
+</body>
+</html>

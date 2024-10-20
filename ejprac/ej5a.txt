@@ -1,0 +1,77 @@
+Project Name: Practical5A
+JSP File: UpdateEmp.jsp
+Steps for creating project are the same as Practical 1 Part A and steps for creating JSP are
+the same as in Practical 4 Part A.
+MySQL Queries:
+➔ create database empdb;
+➔ use empdb;
+➔ create table employee(eno int(100) primary key, ename varchar(100),salary float(10,2),dept
+varchar(100));
+➔ insert into employee values ('101', 'Priti',70000.00, 'IT');
+➔ insert into employee values ('102', 'Sneha', 50000.00, 'Accounts');
+➔ insert into employee values ('103', 'Diksha', 60000.00, 'HR');
+➔ insert into employee values ('104', 'Drishti', 50000.00, 'Design');
+➔ insert into employee values ('105', 'Shalini', 30000.00, 'Sales');
+
+
+Code: index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update Salary</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="UpdateEmp.jsp" >
+Enter Employee Number: <input type="text" name="txtEno" ><br><br>
+Enter Salary to update: <input type="text" name="txtSal" ><br><br>
+<input type="reset" >
+<input type="submit" value="Update Salary">
+</form>
+</body>
+</html>
+
+UpdateEmp.jsp
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Update Salary</title>
+</head>
+<body>
+<h1>Updating Employee Record</h1>
+<%
+String eno = request.getParameter("txtEno");
+String sal = request.getParameter("txtSal");
+
+try{
+Class.forName("com.mysql.jdbc.Driver");
+Connection con =
+DriverManager.getConnection("jdbc:mysql://localhost:3307/empdb","root","root");
+PreparedStatement pst = con.prepareStatement("update employee set salary=? where
+eno=?");
+pst.setString(1,sal);
+pst.setString(2,eno);
+
+int r = pst.executeUpdate();
+if(r==1)
+{
+out.println("Record Updated");
+}
+else
+{
+out.println("Could not be updated");
+}
+}catch(Exception e)
+{
+out.println("Exception " +e);
+}
+%>
+</body>
+</html>

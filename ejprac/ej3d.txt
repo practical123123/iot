@@ -1,0 +1,66 @@
+Project Name: Practical3D
+Package Name: demoS
+Java File: NIOServlet
+Steps:
+1. Create a text file ‘Testin’ in D drive.
+
+2. To check output, go to D drive. File ‘testout’ will be created. It will have same content as
+‘Textin’.
+
+Code: index.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>TODO supply a title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<a href="NIOServlet">Click here for NIO Example</a>
+</body>
+</html>
+
+NIOServlet.java
+package demoS;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.ByteBuffer;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class NIOServlet extends HttpServlet {
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+FileInputStream input = new FileInputStream ("D:\\testin.txt");
+ReadableByteChannel source = input.getChannel();
+FileOutputStream output = new FileOutputStream ("D:\\testout.txt");
+WritableByteChannel destination = output.getChannel();
+copyData(source, destination);
+out.println("Check Output file: Data Copied");
+source.close();
+destination.close();
+}
+private static void copyData(ReadableByteChannel src, WritableByteChannel dest) throws
+IOException
+{
+ByteBuffer buffer = ByteBuffer.allocateDirect(20 * 1024);
+while (src.read(buffer) != -1)
+{
+buffer.flip();
+while (buffer.hasRemaining())
+{
+dest.write(buffer);
+}
+buffer.clear();
+System.out.println("Close");
+}
+}
+}

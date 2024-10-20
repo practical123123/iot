@@ -1,0 +1,163 @@
+Project Name: Practical4C
+HTML File 1: index.html
+HTML File 2: Loginhtml.html
+JSP File 1: Registrationjsp.jsp
+JSP File 2: Loginjsp.jsp
+Steps for creating project are the same as Practical 1 Part A and steps for creating JSP are the
+same as in Practical 4 Part A.
+Steps for creating HTML File are as follows,
+1. Right click on project ‘Prac_4C’ → Click on ‘New’ → Click on ‘HTML’.
+2. Give Class name → Click on ‘Finish’.
+
+MySQL Queries:
+➔ create database UserDetails1;
+➔ use UserDetails1;
+➔ create table RegistrationDetails(name varchar(30), email varchar(30), password
+varchar(8), country varchar(15));
+
+index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="Registrationjsp.jsp" >
+<h1> New User Registration Page</h1>
+Enter User Name: <input type="text" name="txtName" ><br><br>
+Enter Email: <input type="text" name="txtEmail" ><br><br>
+Enter Password: <input type="password" name="txtPass1" ><br><br>
+Re-Enter Password: <input type="password" name="txtPass2" ><br><br>
+Enter Country: <input type="text" name="txtCon" ><br><br>
+<input type="reset" ><input type="submit" value="REGISTER" ><br><br>
+<a href="Loginhtml.html"> Click to Login</a>
+</form>
+</body>
+</html>
+
+
+Loginhtml.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="Loginjsp.jsp">
+Enter User Name <input type="text" name="txtName" ><br> <br>
+Enter Password <input type="password" name="txtPass" ><br><br>L
+<input type="reset" >
+<input type="submit" value="**LOGIN**" >
+</form>
+</body>
+</html>
+
+
+
+Registrationjsp.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+</head>
+<body>
+<h1>Registration JSP Page</h1>
+<%
+String uname=request.getParameter("txtName");
+String pass1 = request.getParameter("txtPass1");
+String pass2 = request.getParameter("txtPass2");
+String email = request.getParameter("txtEmail");
+String ctry = request.getParameter("txtCon");
+if(pass1.equals(pass2))
+{
+try{
+Class.forName("com.mysql.jdbc.Driver");
+Connection con =
+DriverManager.getConnection("jdbc:mysql://localhost:3307/UserDetails1",
+"root", "root");
+PreparedStatement pstm = con.prepareStatement("insert into RegistrationDetails values
+(?,?,?,?)");
+pstm.setString(1, uname);
+pstm.setString(2, email);
+pstm.setString(3, pass1);
+pstm.setString(4, ctry);
+int row = pstm.executeUpdate();
+if(row==1)
+{
+out.println("Registration Successful");
+%>
+<br> <a href="Loginhtml.html"> Click to Login</a>
+<%
+}
+else
+{
+out.println("Registration Failed !!!!"); %>
+<jsp:include page="index.html" ></jsp:include>
+<%
+}
+}catch(Exception e){out.println(e);}
+}
+else
+{
+out.println("<h1>Password Mismatch</h1>");
+%>
+<jsp:include page="index.html" ></jsp:include>
+<%
+}
+%>
+</body>
+</html>
+
+
+Loginjsp.jsp
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Page</title>
+</head>
+<body>
+<%
+String uname=request.getParameter("txtName");
+String pass = request.getParameter("txtPass");
+try{
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection
+("jdbc:mysql://localhost:3307/UserDetails1", "root", "root");
+PreparedStatement stmt = con.prepareStatement("select password from
+RegistrationDetails where name=?");
+stmt.setString(1, uname);
+ResultSet rs = stmt.executeQuery();
+if(rs.next()){
+if(pass.equals(rs.getString(1)))
+{
+out.println("<h1>~~~ LOGIN SUCCESSFULLL ~~~ </h1>");
+}
+else{
+out.println("<h1>User Name Does Not Exist !!!!!</h1>");
+%>
+<jsp:include page="index.html" ></jsp:include>
+<%
+}
+}
+}
+catch(Exception e)
+{
+out.println(e);
+}
+%>
+</body>
+</html>

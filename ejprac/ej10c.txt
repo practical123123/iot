@@ -1,0 +1,46 @@
+Part C:
+Aim: Create a JSP page to demonstrate the use of SQL tag library.
+Files Used:
+Project Name: Practical10C
+JSP File: index.jsp
+MySQL Queries:
+➔ CREATE DATABASE testdb;
+➔ USE testdb;
+➔ CREATE TABLE employees (id INT PRIMARY KEY AUTO_INCREMENT, name
+VARCHAR(50), department VARCHAR(50));
+➔ INSERT INTO employees (name, department) VALUES ('Sneha’, 'IT'), ('Priti ', 'DS'),
+('Diksha ', 'Chemistry');
+MySQL Output
+
+Code: index.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html>
+<head><title>SQL Tag Library Example</title></head>
+<body>
+<%-- Establish database connection --%>
+<sql:setDataSource var="dataSource"
+driver="com.mysql.jdbc.Driver"
+url="jdbc:mysql://localhost:3306/testdb"
+user="root"
+password="root"/>
+<%-- Execute a SQL query --%>
+<sql:query dataSource="${dataSource}" var="result"> SELECT * FROM employees;
+</sql:query>
+<h2>Employees List</h2>
+<table border="1">
+<tr><th>ID</th>
+<th>Name</th>
+<th>Department</th>
+</tr>
+<%-- Iterate over the result set --%>
+<c:forEach var="row" items="${result.rows}">
+<tr><td><c:out value="${row.id}"/></td>
+<td><c:out value="${row.name}"/></td>
+<td><c:out value="${row.department}"/></td>
+</tr>
+</c:forEach>
+</table>
+</body>
+</html>

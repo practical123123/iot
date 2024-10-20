@@ -1,0 +1,158 @@
+Project Name: Practical3C
+Package Name: demoQ
+Java File 1: QuizServlet
+Java File 2: ShowResult
+
+MySQL Queries:
+➔ create database quiz;
+➔ use quiz➔ create table questions(qno int PRIMARY KEY, question varchar(200), opt1
+varchar(30), opt2 varchar(30), opt3 varchar(30), opt4 varchar(30), ans varchar(30));
+➔ insert into questions values(1, "What does EE Stand for in Java EE", "Express Edition",
+"Enterprise Edition", "Effective Edition", "Enforced Edition", "Enterprise Edition");
+➔ insert into questions values(2, "Which of the following is NOT a Servlet Lifecycle
+Method?", "init", "remove", "destroy", "service", "remove");
+➔ insert into questions values(3, "Which of the following is an ORM tool?", "JSP", "CGI",
+"OpenAccess", "Hibernate", "Hibernate");
+➔ insert into questions values(4, "Which of the following bean uses onMessage() Method?",
+"Stateful Bean", "Stateless Bean", "Message Driven Bean", "Singleton Bean", "Message
+Driven Bean");
+➔ insert into questions values(5, "Which of the Following Class is used to store output from
+Query?", "Statement", "Query", "DriverManager", "ResultSet", "ResultSet");
+➔ insert into questions values(6, "What does JDBC stand for?", "Java Database Connector",
+"Java DataBase Connection", "Java Database Connectivity", "Java Data Connector", "Java
+Database Connectivity");
+➔ insert into questions values(7, "Which method is used to close a Connection in JDBC?",
+"close()", "disconnect()", "terminate()", "end()", "close()");
+➔ insert into questions values(8, "In which package is the `HttpServlet` class located?",
+"javax.servlet", "java.servlet", "javax.http", "java.http", "javax.servlet");
+➔ insert into questions values(9, "Which annotation is used to define a servlet in Java EE?",
+"@WebServlet", "@Servlet", "@HttpServlet", "@WebComponent", "@WebServlet");
+➔ insert into questions values(10, "Which Java class is used to execute parameterized SQL
+queries?", "Connection", "Statement", "PreparedStatement", "ResultSet",
+"PreparedStatement");
+
+
+Code: index.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz Application</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>Welcome to Quiz Servlet</h1>
+<h1><a href="QuizServlet" >CLICK TO START QUIZ</a></h1>
+</body>
+</html>
+
+
+
+QuizServlet.java
+package demoQ;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.*;
+
+public class QuizServlet extends HttpServlet {
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+out.println("<form action=ShowResult >");
+try {
+Class.forName("com.mysql.jdbc.Driver");
+Connection con =
+DriverManager.getConnection("jdbc:mysql://localhost:3307/quiz","root","root");
+Statement stmt = con.createStatement();
+ResultSet res = stmt.executeQuery("select * from questions");
+out.println("<table border=1 >");
+int qno=1;
+while(res.next()){
+out.println("<tr><td>"+res.getString(1)+"</td>");
+out.println("<td>"+res.getString(2)+"</td></tr>");
+String op1=res.getString(3);
+String op2=res.getString(4);
+String op3=res.getString(5);
+String op4=res.getString(6);
+out.println("<tr><td><input type=radio name="+qno+"
+value='"+op1+"'></td><td>"+op1+"</td></tr>");
+out.println("<tr><td><input type=radio name="+qno+"
+value='"+op2+"'></td><td>"+op2+"</td></tr>");
+out.println("<tr><td><input type=radio name="+qno+"
+value='"+op3+"'></td><td>"+op3+"</td></tr>");
+out.println("<tr><td><input type=radio name="+qno+"
+value='"+op4+"'></td><td>"+op4+"</td></tr>");
+qno++;
+}
+}catch(Exception e){out.println(e);}
+out.println("</table>");
+out.println("<input type=reset >");
+out.println("<input type=submit value= Check Score >");
+out.println("</form>");
+}}
+
+
+
+ShowResult.java
+package demoQ;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ShowResult extends HttpServlet {
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+try {
+Class.forName("com.mysql.jdbc.Driver");
+Connection con =DriverManager.getConnection("jdbc:mysql://localhost:3307/quiz", "root", "root");
+Statement stmt = con.createStatement();
+ResultSet res = stmt.executeQuery("select ans from questions");
+
+int count = 0;
+int qno = 1;
+String uans, cans;
+while (res.next()) {
+cans = res.getString(1);
+uans = request.getParameter("" + qno);
+if (cans.equals(uans)) {
+count++;
+out.println("<h1>Question " + qno + ": Correct </h1>");
+} else {
+out.println("<h1>Question " + qno + ": Incorrect </h1>");
+}
+qno++;
+}
+out.println("<h1>Your Score is " + count + " out of " + (qno - 1) + "</h1>");
+if (count == 10) {
+out.println("<h2>Excellent! You got a perfect score!</h2>");
+} else if (count >= 5) {
+out.println("<h2>Very Good! You almost got a perfect score.</h2>");
+} else if (count >= 2) {
+out.println("<h2>Good job! You know quite a bit.</h2>");
+} else if (count >= 1) {
+out.println("<h2>Not bad, but there’s room for improvement.</h2>");
+} else {
+out.println("<h2>Try again! You can do better.</h2>");
+}
+// close
+res.close();
+stmt.close();
+con.close();
+} catch (Exception e) {
+out.println("<h1>An error occurred: " + e.getMessage() + "</h1>");
+} finally {
+out.close();
+}
+}
+}

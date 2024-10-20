@@ -1,0 +1,80 @@
+Aim: Create a JSP page to demonstrate the use of Formatting tag library.
+Files Used:
+Project Name: Practical10E
+JSP File: index.jsp
+Code: index.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSTL Formatting Tag Library</title>
+</head>
+<body>
+<!-- Setting the time attribute directly in JSP -->
+<c:set var="time" value="<%= new java.util.Date() %>" />
+<!-- fmt:formatNumber -->
+<h2>Number and Currency Formatting Options</h2>
+<fmt:setLocale value="en_IN" />
+<p>Number: <fmt:formatNumber value="12345.6789" type="number" /></p>
+<p>Currency: <fmt:formatNumber value="12345.6789" type="currency" /></p>
+<p>Percentage: <fmt:formatNumber value="0.75" type="percent" /></p>
+<!-- fmt:formatNumber with specific number of decimals -->
+<p>Number with 2 decimal places: <fmt:formatNumber value="12345.6789" type="number"
+minFractionDigits="2" maxFractionDigits="2" /></p>
+<p>Number with minimum 3 decimal places: <fmt:formatNumber value="12345.69"
+type="number" minFractionDigits="3" maxFractionDigits="5" /></p>
+<p>Number with no decimal places: <fmt:formatNumber value="12345.6789" type="number"
+minFractionDigits="0" maxFractionDigits="0" /></p>
+<!-- fmt:formatDate -->
+<h2>Different Date and Time Formatting Options</h2>
+<p>Date: <fmt:formatDate value="${time}" pattern="yyyy-MM-dd HH:mm:ss" /></p>
+<p>Standard Date and Time: <fmt:formatDate value="${time}" pattern="yyyy-MM-dd
+HH:mm:ss" /></p>
+<p>Short Date: <fmt:formatDate value="${time}" pattern="MM*/*dd*/*yyyy" /></p>
+<p>Long Date: <fmt:formatDate value="${time}" pattern="EEEE, MMMM dd, yyyy" /></p>
+<p>Full Date and Time: <fmt:formatDate value="${time}" pattern="EEEE, MMMM dd, yyyy
+HH:mm:ss a z" /></p>
+<p>Time (24-hour): <fmt:formatDate value="${time}" pattern="HH:mm:ss" /></p>
+<p>Time (12-hour): <fmt:formatDate value="${time}" pattern="hh:mm:ss a" /></p>
+<p>Year and Month: <fmt:formatDate value="${time}" pattern="yyyy-MM" /></p>
+<p>Day of the Week: <fmt:formatDate value="${time}" pattern="EEEE" /></p>
+<p>Day, Month, and Year: <fmt:formatDate value="${time}" pattern="dd MMMM yyyy"
+/></p>
+
+<p>ISO 8601 Date: <fmt:formatDate value="${time}" pattern="yyyy-MM-
+dd'T'HH:mm:ss.SSSXXX" /></p>
+
+<!-- fmt:parseNumber -->
+<c:set var="numberStr" value="1,234.56" />
+<p>Parsed Number: <fmt:parseNumber value="${numberStr}" type="number" /></p>
+<!-- fmt:parseDate -->
+<c:set var="dateStr" value="2023-12-15 13:45:00" />
+<p>Parsed Date: <fmt:parseDate value="${dateStr}" pattern="yyyy-MM-dd HH:mm:ss"
+/></p>
+<!-- fmt:setLocale and fmt:formatDate with locale -->
+<h2>Date and Time Formatting in Different Locale</h2>
+<fmt:setLocale value="fr_FR" />
+<p>Date in French locale: <fmt:formatDate value="${time}" pattern="EEEE, d MMMM yyyy"
+/></p>
+<p>Time in French locale: <fmt:formatDate value="${time}" pattern="HH:mm:ss" /></p>
+<fmt:setLocale value="de_DE" />
+<p>Date in German locale: <fmt:formatDate value="${time}" pattern="EEEE, d MMMM
+yyyy" /></p>
+<p>Time in German locale: <fmt:formatDate value="${time}" pattern="HH:mm:ss" /></p>
+<fmt:setLocale value="en_US" />
+<p>Date in English locale: <fmt:formatDate value="${time}" pattern="EEEE, d MMMM
+yyyy" /></p>
+<p>Time in English locale: <fmt:formatDate value="${time}" pattern="hh:mm:ss a" /></p>
+<fmt:setLocale value="es_ES" />
+<p>Date in Spanish locale: <fmt:formatDate value="${time}" pattern="EEEE, d MMMM
+yyyy" /></p>
+<p>Time in Spanish locale: <fmt:formatDate value="${time}" pattern="hh:mm:ss a" /></p>
+<fmt:setLocale value="ja_JP" />
+<p>Date in English locale: <fmt:formatDate value="${time}" pattern="EEEE, d MMMM
+yyyy" /></p>
+<p>Time in English locale: <fmt:formatDate value="${time}" pattern="hh:mm:ss a" /></p>
+</body>
+</html>

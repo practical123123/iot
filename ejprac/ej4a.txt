@@ -1,0 +1,73 @@
+Files Used:
+Project Name: Practical4A
+JSP File: Prac4A.jsp
+Steps for creating project are the same as Practical 1 Part A and steps for creating JSP are as
+follows,
+1. Right click on project ‘Prac_4A’ → Click on ‘New’ → Click on ‘JSP’.
+
+2. Provide the name for jsp file → in options select jsp file (standard syntax) → click on finish.
+
+Code: index.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Intrinsic objects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="Prac4A.jsp">
+<h1>Welcome to Registration page</h1><br>
+Enter Username: <input type="text" name="txtName"><br>
+<input type="Submit" value="Submit">
+</form>
+</body>
+</html>
+
+
+
+
+Prac4A.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Intrinsic objects</title>
+</head>
+<body>
+<%@page import="java.io.PrintWriter"%>
+<h1>Use of Intrinsic Objects in JSP</h1>
+<h1>Use of Request Object</h1>
+Query String <%=request.getQueryString()%><br>
+Context Path: <%=request.getContextPath()%><br>
+Remote Host: <%=request.getRemoteHost()%><br>
+Request Parameter: <%=request.getParameter("txtName")%> <br>
+Request URI: <%=request.getRequestURI()%> <br>
+<h1>Use of Response Object</h1>
+Character Encoding Type: <%=response.getCharacterEncoding() %><br>
+Content Type: <%=response.getContentType() %><br>
+Locale: <%=response.getLocale() %><br>
+<% PrintWriter wrt=response.getWriter();%>
+<%wrt.println("<h1>Use of Reponse Object - Writer Example.</h1>");%>
+<h1>Use of Session Object</h1>
+ID <%=session.getId() %><br>
+IS NEW <%=session.isNew()%><br>
+Create Time: <%=new java.util.Date(session.getCreationTime()) %><br>
+Last Access Time: <%=new java.util.Date(session.getLastAccessedTime()) %><br>
+<br>
+<h1>Use of Config Object</h1>
+Servlet Name: <%=config.getServletName()%> <br><br>
+<h1>Use of Application Object</h1>
+Server Info: <%=application.getServerInfo()%>
+<br><br>
+<h1>Use of Page Object </h1>
+Page Name:<%=page.getClass().getName()%>
+<br><br>
+<h1> Use of Page Context Object </h1>
+<%pageContext.setAttribute("color", "Blue");%>
+Class Name:<%=pageContext.getClass().getName()%> <br>
+Attribute Value:<%=pageContext.getAttribute("color")%>
+<br><br>
+</body>
+</html>

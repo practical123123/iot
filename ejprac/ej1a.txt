@@ -1,0 +1,50 @@
+Code: index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action ="SimpleCal">
+Enter Number 1: <input type="text" name="txtnum1"> <br><br>
+Enter Number 2: <input type="text" name="txtnum2"> <br> <br>
+<input type="radio" name="opr" value="+"> Addition <br>
+<input type="radio" name="opr" value="-"> Subtraction <br>
+<input type="radio" name="opr" value="*"> Multiplication <br>
+<input type="radio" name="opr" value="/"> Division <br> <br>
+<input type="reset">
+<input type="submit" value="Calculate">
+</form>
+</body>
+</html>
+
+SimpleCal.java
+
+package demoCal;
+import java.io.IOException;
+import java.io.PrintWriter; 
+import javax.servlet.ServletException; 
+import javax.servlet.http.HttpServlet; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse;
+
+public class calculator extends HttpServlet { protected void
+service(HttpServletRequest request, HttpServletResponse response) throws
+ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+Double n1 = Double.parseDouble(request.getParameter("txtnum1"));
+Double n2 = Double.parseDouble(request.getParameter("txtnum2"));
+Double result = 0.0;
+String opr = request.getParameter("opr");
+if(opr.equals("+")) result = n1+n2;
+if(opr.equals("-")) result = n1-n2;
+if(opr.equals("*")) result = n1*n2;
+if(opr.equals("/")) result = n1/n2;
+out.println("Result is "+result);
+out.close();
+}
+}

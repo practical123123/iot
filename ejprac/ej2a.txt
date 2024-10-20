@@ -1,0 +1,83 @@
+Project Name: Prac_2A
+Package Name 1: demo1
+Java File 1: LoginServlet
+Java File 2: WelcomServlet
+
+Code: index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="LoginServlet" method="POST">
+Enter Username: <input type="text" name="uname"><br> <br>
+Enter Password: <input type="password" name="psw"> <br> <br>
+<input type="reset">
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+LoginServlet.java
+
+package demo1;
+
+import java.io.IOException; import
+java.io.PrintWriter; import
+javax.servlet.RequestDispatcher; import
+javax.servlet.ServletException; import
+javax.servlet.http.HttpServlet; import
+javax.servlet.http.HttpServletRequest; import
+javax.servlet.http.HttpServletResponse;
+
+public class LoginServlet extends HttpServlet { 
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+String uname=request.getParameter("uname");
+String psw=request.getParameter("psw");
+if(uname.equals("Tyitb")&& psw.equals("123"))
+{
+RequestDispatcher rd=request.getRequestDispatcher("WelcomeServlet");
+rd.forward(request,response);
+}
+else
+{
+out.println("<h1>Innvalid!! Try again</h1>");
+RequestDispatcher rd=request.getRequestDispatcher("index.html");
+rd.include(request,response);
+}
+}
+}
+
+
+
+
+WelcomeServlet.java
+
+package demo1;
+
+import java.io.IOException; import
+java.io.PrintWriter; import
+javax.servlet.ServletException; import
+javax.servlet.http.HttpServlet; import
+javax.servlet.http.HttpServletRequest; import
+javax.servlet.http.HttpServletResponse; 
+import javax.servlet.RequestDispatcher;
+ 
+public class WelcomeServlet extends HttpServlet {
+
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out = response.getWriter();
+ 
+String name = request.getParameter("uname");
+out.print("<h1><b>Welcome" + name +"</b></h1>");
+}
+}

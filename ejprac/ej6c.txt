@@ -1,0 +1,153 @@
+Aim: Develop simple shopping cart application using EJB [Stateful Session Bean].
+Files Used:
+Project Name: ShoppingCart
+
+Code: index.jsp
+<%@page import="java.util.Iterator, java.util.List, javax.naming.InitialContext,
+mybean.ShoppingCart"%>
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%!
+private static ShoppingCart cart;
+public void jspInit() {
+try {
+InitialContext ic = new InitialContext();
+cart = (ShoppingCart) ic.lookup("java:global/ShoppingCart/ShoppingCart");
+} catch (Exception e) {
+//System.out.println("Could not create cart bean." + e.getMessage());
+System.out.println(e.toString());}}
+%>
+<%
+if(request.getParameter("txtCustomerName") != null) {
+cart.initialize(request.getParameter("txtCustomerName"));
+} else {
+cart.initialize("Guest");
+}
+if (request.getParameter("btnRmvBook") != null) {
+String books[] = request.getParameterValues("chkBook");
+if (books != null) {
+for (int i=0; i<books.length; i++) {
+cart.removeBook(books[i]);}}}
+if (request.getParameter("btnAddBook") != null) {
+String books[] = request.getParameterValues("chkBook");
+if (books != null) {
+for (int i=0; i<books.length; i++) {
+cart.addBook(books[i]);}}}
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Book Selection</title>
+</head>
+<body style="background-color: lightseagreen;">
+<h1 style="text-align: center;">Books For Sale</h1><br>
+<form name="frmBooks" method="post">
+Customer: <input type="text" name="txtCustomerName" value=<%=
+request.getParameter("txtCustomerName")%> />
+<br>
+<hr>
+<h3> <b>Book Titles</b> <br> <hr>
+<input type="checkbox" name="chkBook" value="Harry Potter and the Sorcerers
+Stone">Harry Potter and the Sorcerers Stone</td>
+<br> <input type="checkbox" name="chkBook" value="Harry Potter and the
+Chamber of Secrets"> Harry Potter and the Chamber of Secrets</td>
+<br><input type="checkbox" name="chkBook" value="Harry Potter and the
+Prisoner of Azkaban"> Harry Potter and the Prisoner of Azkaban</td>
+<br><input type="checkbox" name="chkBook" value="Nothing Lasts
+Forever">Nothing Lasts Forever</td>
+<br><input type="checkbox" name="chkBook" value="The Sands of Time">The
+Sands of Time</td>
+<br><input type="checkbox" name="chkBook" value="Are You Afraid of
+Dark">Are You Afraid of Dark</td>
+<br><input type="checkbox" name="chkBook" value="Alchemist">Alchemist</td>
+<br><input type='submit' value='Add To My Basket' name='btnAddBook'>
+<br><input type='submit' value='Remove From My Basket' name='btnRmvBook'>
+<br><hr> </h3>
+<u><h1> Basket:</h1></u> <br>
+<hr>
+<%
+if(cart!=null){
+List<String> bookList = cart.getContents();
+Iterator iterator = bookList.iterator();
+while (iterator.hasNext()) {
+String title = (String) iterator.next();
+%>
+<h3> <%= title %> </h3> <br>
+<%}}
+%>
+</form>
+</body>
+</html>
+
+
+Create A Stateful bean
+
+ShoppingCart.java
+package mybean;
+import javax.ejb.Stateful;
+import javax.annotation.PreDestroy;
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateful;
+import javax.ejb.Remove;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+@Stateful
+public class ShoppingCart {
+List<String> contents;
+String customerName;
+private Connection conn = null;
+private ResultSet rs;
+private Statement stmt = null;
+private String query = null;
+public void initialize(String person) {
+if (person != null) {
+customerName = person;
+try {
+Class.forName("com.mysql.jdbc.Driver").newInstance();
+conn = DriverManager.getConnection("jdbc:mysql://localhost/Cart", "root",
+"root");
+} catch(Exception e) {
+//System.err.println("Sorry failed to connect to the Database." + e.getMessage());
+System.out.println(e.toString()); }
+}
+contents = new ArrayList<>();
+}
+
+public void addBook(String title) {
+try {
+stmt = conn.createStatement();
+query = "INSERT INTO Cart VALUES('" + customerName + "','" + title + "')";
+stmt.executeUpdate(query);
+} catch(SQLException e) {
+//System.err.println("Sorry failed to insert values from the database table. " +
+e.getMessage());
+System.out.println(e.toString());
+}
+}
+public void removeBook(String title) {
+try {
+stmt = conn.createStatement();
+query = "DELETE FROM Cart WHERE UserName='" + customerName + "' AND
+ItemName='" + title + "'";
+stmt.executeUpdate(query);
+} catch(SQLException e) {
+// System.err.println("Sorry failed to delete values from the database table. " +
+e.getMessage());
+System.out.println(e.toString());}}
+public List<String> getContents() {
+try {
+stmt = conn.createStatement();
+query = "SELECT * FROM Cart WHERE UserName='" + customerName + "'";
+rs = stmt.executeQuery(query);
+while(rs.next()) {
+contents.add(rs.getString("ItemName"));}}
+catch(SQLException e) {
+// System.err.println("Sorry failed to select values from the database table. " +
+e.getMessage());
+System.out.println(e.toString());}
+return contents;}
+@Remove()
+public void remove() {
+contents = null;}}

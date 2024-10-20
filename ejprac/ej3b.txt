@@ -1,0 +1,58 @@
+Project Name: Practical3B
+Package Name: demoD
+Java File: DownloadServlet
+
+Code: index.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Download Example</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>File Download Application</h1>
+<br>Click<a href="DownloadServlet?filename=2a.txt">Text</a><br>
+Click<a href="DownloadServlet?filename=1.png">Image</a><br>
+Click<a href="DownloadServlet?filename=Unit 2.pdf">Sample PDF File</a>
+</body>
+</html>
+
+DownloadServlet.java
+package demoD;
+import java.io.IOException;
+import java.io.*;
+import java.io.PrintWriter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class DownloadServlet extends HttpServlet {
+protected void service(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+String filename=request.getParameter("filename");
+int lenght = 0;
+try (ServletOutputStream outputStream = response.getOutputStream())
+{
+ServletContext context = getServletConfig().getServletContext();
+response.setContentType((context.getMimeType(filename) != null)
+?context.getMimeType(filename) : "application/pdf");
+response.setHeader("Content-Disposition", "attachment; filename=\"" + filename);
+InputStream = context.getResourceAsStream("/" + filename);
+byte[] bytes = new byte[1024];
+while((inputStream != null) && ((lenght = inputStream.read(bytes)) != -1)) {
+outputStream.write(bytes, 0, lenght);
+}
+outputStream.flush();
+}
+catch(Exception e)
+{
+PrintWriter out = response.getWriter();
+out.println("e");
+}
+}
+}
