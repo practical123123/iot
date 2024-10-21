@@ -1,0 +1,91 @@
+Default4.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default4.aspx.cs"
+Inherits="Default4" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+Select the Company</div>
+<p>
+<asp:CheckBox ID="CheckBox1" runat="server" Text="Apple" />
+</p>
+<p>
+<asp:CheckBox ID="CheckBox2" runat="server" Text="Dell" />
+</p>
+<p>
+<asp:CheckBox ID="CheckBox3" runat="server" Text="Lenevo" />
+</p>
+<p>
+<asp:CheckBox ID="CheckBox4" runat="server" Text="Acer" />
+</p>
+<p>
+<asp:CheckBox ID="CheckBox5" runat="server" Text="Wipro" />
+</p>
+<p>
+<asp:CheckBox ID="CheckBox6" runat="server" Text="Google" />
+</p>
+<p>
+<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button"
+/>
+</p>
+<p>
+<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+</p>
+</form>
+</body>
+</html>
+
+Default4.aspx.cs
+using System;
+using System.Web;
+public partial class Default4 : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+HttpCookie c1 = new HttpCookie("creator");
+c1.Value = "Mr.Alex";
+Response.Cookies.Add(c1);
+String author = Response.Cookies["creator"].Value;
+Label1.Text = author;
+Response.Cookies["comp"].Expires = DateTime.Now.AddDays(-1);
+}
+protected void Button1_Click(object sender, EventArgs e)
+{
+Label1.Text = "";
+if (CheckBox1.Checked)
+Response.Cookies["comp"]["apple"] = "apple";
+if (CheckBox2.Checked)
+Response.Cookies["comp"]["dell"] = "dell";
+if (CheckBox3.Checked)
+Response.Cookies["comp"]["lenevo"] = "lenevo";
+if (CheckBox4.Checked)
+Response.Cookies["comp"]["acer"] = "acer";
+if (CheckBox5.Checked)
+Response.Cookies["comp"]["wipro"] = "wipro";
+if (CheckBox6.Checked)
+Response.Cookies["comp"]["google"] = "google";
+//Fetching cookies//
+if (Request.Cookies["comp"].Values.ToString() != null)
+{
+if (Request.Cookies["comp"]["apple"] != null)
+Label1.Text += Request.Cookies["comp"]["apple"] + " ";
+if (Request.Cookies["comp"]["dell"] != null)
+Label1.Text += Request.Cookies["comp"]["dell"] + " ";
+if (Request.Cookies["comp"]["lenevo"] != null)
+Label1.Text += Request.Cookies["comp"]["lenevo"] + " ";
+if (Request.Cookies["comp"]["acer"] != null)
+Label1.Text += Request.Cookies["comp"]["acer"] + " ";
+if (Request.Cookies["comp"]["wipro"] != null)
+Label1.Text += Request.Cookies["comp"]["wipro"] + " ";
+if (Request.Cookies["comp"]["google"] != null)
+Label1.Text += Request.Cookies["comp"]["google"] + " ";
+}
+else
+Label1.Text = "Please select your choice";
+Response.Cookies["comp"].Expires = DateTime.Now.AddDays(-1);
+}
+}

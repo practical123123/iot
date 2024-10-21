@@ -1,0 +1,48 @@
+Code:
+Default3.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default3.aspx.cs"
+Inherits="Default3" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server"><title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="NuGet
+"/>
+ <br />
+ <asp:Label ID="Label1" runat="server" Font-Bold="True"
+Text="Label"></asp:Label>
+ </div>
+ </form>
+</body>
+</html>
+
+Default3.aspx.cs
+using Newtonsoft.Json;
+using System;
+public partial class Default3 : System.Web.UI.Page
+{
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ Account account = new Account
+ {
+ Name = "Alex",
+ Email="alex @gmail.com",
+ DOB=new DateTime(2002,03,05,0,0,0,DateTimeKind.Local),
+ };
+ string json = JsonConvert.SerializeObject(account,
+Newtonsoft.Json.Formatting.Indented);
+ Label1.Text = json;
+ }
+}
+public class Account
+{
+ public string Name { get; set; }
+ public string Email { get; set; }
+ public DateTime DOB { get; set; }
+}

@@ -1,0 +1,48 @@
+Default2.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs"
+Inherits="Default2" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+Floyd&#39;s triangle<br /><br />
+Enter Number of Rows :
+<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br /><br />
+<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Result"
+/><br /><br />
+<asp:Label ID="Label1" runat="server"></asp:Label>
+</div>
+</form>
+</body>
+</html>
+
+
+Default2.aspx.cs
+using System;
+using System.Text;
+public partial class Default2 : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+}
+protected void Button1_Click(object sender, EventArgs e)
+{
+int n = Convert.ToInt32(TextBox1.Text);
+int number = 1;
+StringBuilder result = new StringBuilder();
+for (int i = 1; i <= n; i++)
+{
+for (int j = 1; j <= i; j++)
+{
+result.Append(number + " ");
+number++;
+}
+result.Append("<br />");
+}
+Label1.Text = result.ToString();
+}
+}

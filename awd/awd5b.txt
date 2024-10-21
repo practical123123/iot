@@ -1,0 +1,83 @@
+MasterPage.master
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs"
+Inherits="MasterPage" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+<title></title>
+<asp:ContentPlaceHolder id="head" runat="server">
+</asp:ContentPlaceHolder>
+</head>
+<body>
+<form id="form1" runat="server">
+<asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+<Items>
+<asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home Page" Value="Home
+Page"></asp:MenuItem>
+<asp:MenuItem Text="New Item" Value="New Item"></asp:MenuItem>
+<asp:MenuItem NavigateUrl="~/Default2.aspx" Text="Next Page" Value="New
+Item"></asp:MenuItem>
+<asp:MenuItem Text="New Item" Value="New Item"></asp:MenuItem>
+</Items>
+</asp:Menu>
+<br/><br/>
+<div>
+<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+</asp:ContentPlaceHolder>
+</div> <br/><br/>
+<div>
+<asp:ContentPlaceHolder id="ContentPlaceHolder2" runat="server">
+
+</asp:ContentPlaceHolder>
+</div>
+</form>
+</body>
+</html>
+
+Default.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master"
+AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+Runat="Server"><p>
+&nbsp;&nbsp;&nbsp;
+<asp:Calendar ID="Calendar1" runat="server" style="float:left"></asp:Calendar> </p>
+<p>
+<asp:Button ID="Button1" runat="server" Text="Button" style="float:left"/>
+</p>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2"
+Runat="Server">
+<p>
+&nbsp;
+<asp:TextBox ID="TextBox1" runat="server" style="float:right"></asp:TextBox>
+&nbsp;&nbsp;
+<asp:Button ID="Button2" runat="server" Text="Button" style="float:right"/>
+</p>
+</asp:Content>
+
+
+
+Default2.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master"
+AutoEventWireup="true" CodeFile="Default2.aspx.cs" Inherits="Default2" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1"
+Runat="Server">
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<asp:BulletedList ID="BulletedList1" runat="server" style="float:right">
+<asp:ListItem>segew</asp:ListItem>
+<asp:ListItem>skljheoiw</asp:ListItem>
+</asp:BulletedList>
+<p>
+&nbsp;</p>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2"
+Runat="Server">
+<asp:Label ID="Label1" runat="server" Text="hello" style="float:left"></asp:Label>
+</asp:Content>

@@ -1,0 +1,67 @@
+Default.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs"
+Inherits="Default2" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True"
+OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+<asp:ListItem Text="Option 1" Value="1"></asp:ListItem>
+<asp:ListItem Text="Option 2" Value="2"></asp:ListItem>
+<asp:ListItem Text="Option 3" Value="3"></asp:ListItem>
+</asp:DropDownList>
+<br /><br />
+<asp:Label ID="Label1" runat="server" Text="Select an option from the
+dropdown"></asp:Label>
+<br /><br />
+<asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True"
+OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+<br /><br />
+<asp:Button ID="Button1" runat="server" Text="Click Me"
+OnClick="Button1_Click" />
+<br /><br />
+<asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="True"
+OnCheckedChanged="CheckBox1_CheckedChanged" Text="Check me" />
+<br /><br />
+<asp:Label ID="Label2" runat="server" Text="Type something in the
+textbox"></asp:Label>
+<br /><br />
+<asp:Label ID="Label3" runat="server" Text="Check the checkbox"></asp:Label>
+</div>
+</form>
+</body>
+</html>
+
+Default.aspx.cs
+using System;
+public partial class Default2 : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+}
+protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+{
+// Change the text of the Label based on the selected item in the DropDownList
+Label1.Text = "You selected: " + DropDownList1.SelectedItem.Text;
+}
+protected void TextBox1_TextChanged(object sender, EventArgs e)
+{
+// Change the text of the Label based on the text entered in the TextBox
+Label2.Text = "You typed: " + TextBox1.Text;
+}
+protected void Button1_Click(object sender, EventArgs e)
+{ // Change the text of the Label when the Button is clicked
+Label2.Text = "Button clicked!";
+}
+protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+{
+// Change the text of the Label based on the state of the CheckBox
+Label3.Text = CheckBox1.Checked ? "Checkbox is checked" : "Checkbox is
+unchecked";
+}
+}

@@ -1,0 +1,64 @@
+Default2.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs"
+Inherits="Default2" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<strong>Enter Number1:</strong>
+<asp:TextBox ID="num1" runat="server"></asp:TextBox>
+<br />
+<br />
+<strong>Enter Number2:</strong>
+<asp:TextBox ID="num2" runat="server"></asp:TextBox>
+<br />
+<br />
+<asp:Button ID="add" runat="server" OnClick="add_Click" Text="Add" />
+&nbsp;&nbsp;&nbsp;
+<asp:Button ID="sub" runat="server" OnClick="sub_Click" Text="Subtract" />
+<br />
+<br />
+Res:
+<asp:Label ID="res" runat="server" Text="Label"></asp:Label>
+<br />
+</div>
+</form>
+</body>
+</html>
+
+
+Default2.aspx.cs
+using System;
+public delegate int MathOp(int a, int b);
+public partial class Default2 : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+}
+int Add(int x, int y)
+{
+return x + y;
+}
+int Sub(int x, int y)
+{
+return x - y;
+}
+protected void add_Click(object sender, EventArgs e)
+{
+int n1 = Convert.ToInt32(num1.Text);
+int n2 = Convert.ToInt32(num2.Text);
+MathOp deleg = new MathOp(Add);
+res.Text = deleg(n1, n2).ToString();
+}
+protected void sub_Click(object sender, EventArgs e)
+{
+int n1 = Convert.ToInt32(num1.Text);
+int n2 = Convert.ToInt32(num2.Text);
+MathOp deleg = new MathOp(Sub);
+res.Text = deleg(n1, n2).ToString();
+}
+}

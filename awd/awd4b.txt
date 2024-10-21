@@ -1,0 +1,75 @@
+Default.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs"
+Inherits="_Default" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<asp:ScriptManager ID="ScriptManager1" runat="server">
+</asp:ScriptManager>
+<br />
+<asp:Timer ID="Timer1" interval="2000" runat="server">
+</asp:Timer>
+<br />
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+<Triggers>
+<asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+</Triggers>
+<ContentTemplate>
+<asp:AdRotator ID="AdRotator" runat="server" AdvertisementFile="~/XmlFile.xml"
+Height="400px" Width="400px" />
+<asp:XmlDataSource ID="XmlDataSource1" runat="server"
+DataFile="~/XMLFile.xml"></asp:XmlDataSource>
+</ContentTemplate>
+</asp:UpdatePanel>
+</div>
+</form>
+
+</body>
+</html>
+
+
+
+XMLFile.xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+<Ad>
+<ImageUrl>sponge.jpg</ImageUrl>
+<NavigateUrl>www.google.com</NavigateUrl>
+<AlternateText>Sponge bob</AlternateText>
+<Impressions>3</Impressions>
+<Keyword>sponge</Keyword>
+</Ad>
+<Ad>
+<ImageUrl>oswald.jpg</ImageUrl>
+<NavigateUrl>www.google.com</NavigateUrl>
+<AlternateText>oswald</AlternateText>
+<Impressions>2</Impressions>
+<Keyword>oswald</Keyword>
+</Ad>
+<Ad>
+<ImageUrl>noddy.jpg</ImageUrl>
+<NavigateUrl>www.google.com</NavigateUrl>
+<AlternateText>noddy</AlternateText>
+<Impressions>3</Impressions>
+<Keyword>noddy</Keyword>
+</Ad>
+<Ad>
+<ImageUrl>niyandar.jpg</ImageUrl>
+<NavigateUrl>www.google.com</NavigateUrl>
+<AlternateText>niyandar</AlternateText>
+<Impressions>3</Impressions>
+<Keyword>niyandar</Keyword>
+</Ad>
+<Ad>
+<ImageUrl>Thomas.jpg</ImageUrl>
+<NavigateUrl>www.google.com</NavigateUrl>
+<AlternateText>Thomas</AlternateText>
+<Impressions>1</Impressions>
+<Keyword>Thomas</Keyword>
+</Ad>
+</Advertisements>

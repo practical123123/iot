@@ -1,0 +1,11 @@
+Web.Sitemap
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+<siteMapNode url="Default" title="Home" description="Home">
+<siteMapNode url="Default1" title="Page1" description="Page1" />
+<siteMapNode url="Default2" title="Page2" description="Page2" >
+<siteMapNode url="Default3" title="Page3" description="Page3" />
+<siteMapNode url="Default4" title="Page4" description="Page4" />
+</siteMapNode>
+</siteMapNode>
+</siteMap>

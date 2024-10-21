@@ -1,0 +1,136 @@
+Default.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs"
+Inherits="_Default" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<!-- Name -->
+<asp:Label ID="Label1" runat="server" Text="Enter Name:"></asp:Label>
+<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+ControlToValidate="TextBox1"
+ErrorMessage="Please enter the name."
+ForeColor="Red"
+SetFocusOnError="True" />
+<br /><br />
+<!-- Age -->
+<asp:Label ID="Label2" runat="server" Text="Enter Age (Min 18 & Max
+100):"></asp:Label>
+<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+<asp:RangeValidator ID="RangeValidator1" runat="server"
+ControlToValidate="TextBox2"
+MinimumValue="18"
+MaximumValue="100"
+Type="Integer"
+ErrorMessage="Please provide your age between 18 and 100."
+ForeColor="Red"
+SetFocusOnError="True" />
+<br /><br />
+<!-- Password -->
+<asp:Label ID="Label3" runat="server" Text="Enter Password:"></asp:Label>
+<asp:TextBox ID="TextBox3" runat="server"
+TextMode="Password"></asp:TextBox>
+<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+ControlToValidate="TextBox3"
+ErrorMessage="Password is required."
+ForeColor="Red"
+SetFocusOnError="True" />
+<br /><br />
+<!-- Confirm Password -->
+<asp:Label ID="Label4" runat="server" Text="Re-enter Password:"></asp:Label>
+<asp:TextBox ID="TextBox4" runat="server"
+TextMode="Password"></asp:TextBox>
+<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+ControlToValidate="TextBox4"
+ErrorMessage="Confirm Password is required."
+ForeColor="Red"
+SetFocusOnError="True" />
+<asp:CompareValidator ID="CompareValidator1" runat="server"
+ControlToCompare="TextBox3"
+ControlToValidate="TextBox4"
+ErrorMessage="Passwords do not match."
+ForeColor="Red"
+SetFocusOnError="True" />
+<br /><br />
+<!-- Email -->
+<asp:Label ID="Label5" runat="server" Text="Enter Email:"></asp:Label>
+<asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
+ControlToValidate="TextBox5"
+ErrorMessage="Email is required."
+ForeColor="Red"
+SetFocusOnError="True" />
+<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+ControlToValidate="TextBox5"
+ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+ErrorMessage="Invalid email format."
+ForeColor="Red"
+SetFocusOnError="True" />
+<br /><br />
+<!-- Custom Validator -->
+<asp:Label ID="Label6" runat="server" Text="Enter exactly 8
+characters:"></asp:Label>
+<asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
+ControlToValidate="TextBox6"
+ErrorMessage="This field is required."
+ForeColor="Red"
+SetFocusOnError="True" />
+<asp:CustomValidator ID="CustomValidator1" runat="server"
+ControlToValidate="TextBox6"
+ClientValidationFunction="ServerValidation"
+ErrorMessage="Please enter exactly 8 characters."
+ForeColor="Red"
+SetFocusOnError="True" />
+<br /><br />
+<!-- Submit Button -->
+<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit"
+/>
+<br /><br />
+<asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+</div>
+</form>
+</body>
+</html>
+
+
+
+Default.aspx.cs
+using System;
+using System.Web;
+public partial class _Default : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+}
+protected void ServerValidation(object source, ServerValidateEventArgs args)
+{
+// Check if the input length is exactly 8 characters
+args.IsValid = args.Value.Length == 8;
+}
+protected void Button1_Click(object sender, EventArgs e)
+{
+if (Page.IsValid)
+{
+Label7.Text = "Form submitted. Thank you!";
+}
+}
+}
+
+
+Web.config
+<?xml version="1.0"?>
+<configuration>
+<appSettings>
+<add key="ValidationSettings:UnobtrusiveValidationMode" value="None"/>
+</appSettings>
+<system.web>
+<compilation debug="true" targetFramework="4.7.2" />
+<httpRuntime targetFramework="4.7.2" />
+</system.web>
+</configuration>

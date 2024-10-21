@@ -1,0 +1,36 @@
+Default.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs"
+Inherits="_Default" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+ <link href="bootstrap.css" type="text/css" rel="stylesheet" />
+ <script src="bootstrap.js" type="text/javascript"></script>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:Button ID="Button1" runat="server" Text="Button" class="btn btn-primary"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Button ID="Button5" runat="server" Text="Button" class="btn btn-warning"/>
+<br /><br />
+ <asp:Button ID="Button2" runat="server" Text="Button" class="btn btn-success"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Button ID="Button6" runat="server" Text="Button" class="btn btn-danger"/>
+ <br /><br />
+ <asp:Button ID="Button3" runat="server" Text="Button" class="btn btn-primary btnlg"/>
+&nbsp;&nbsp;&nbsp;&nbsp;
+ <asp:Button ID="Button7" runat="server" Text="Button" class="btn btn-primary
+disabled"/>
+ <br /><br />
+ <asp:Button ID="Button4" runat="server" Text="Button" class="btn btn-primary btnxs"/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br /><br />
+ <asp:Button ID="Button8" runat="server" Text="Button" class="btn btn-primary
+active"/>
+ <br /><br />
+ <asp:Button ID="Button9" runat="server" Text="Button" class="btn btn-primary btnblock" />
+ </div>
+ </form>
+</body>
+</html>

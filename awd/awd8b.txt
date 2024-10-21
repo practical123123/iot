@@ -1,0 +1,44 @@
+Default2.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs"
+Inherits="Default2" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+<br />
+<br />
+<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+</div>
+</form>
+</body>
+</html>
+
+Default2.aspx.cs
+using System;
+class UserDefinedException : Exception
+{
+public UserDefinedException(string str)
+{
+Console.WriteLine("User defined exception");
+}
+}
+public partial class Default2 : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+try
+{
+throw new UserDefinedException("New User Defined Exception");
+}
+catch(Exception ae)
+{
+Label1.Text = "Exception caught here " + ae.ToString();
+}
+Label2.Text = "Final Statement that is executed.";
+}
+}

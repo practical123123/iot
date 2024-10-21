@@ -1,0 +1,42 @@
+Part 5C1: View State
+
+Default3.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default3.aspx.cs"
+Inherits="Default3" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Get
+Data" />
+<br /><br />
+<asp:Label ID="Label1" runat="server" Text="View State Data"></asp:Label>
+</div>
+</form>
+</body>
+</html>
+
+
+Default3.aspx.cs
+using System;
+public partial class Default3 : System.Web.UI.Page
+{protected void Page_Load(object sender, EventArgs e)
+{
+if (!IsPostBack)
+{
+String str = "Alex";
+if (ViewState["nam"] == null)
+{
+ViewState["nam"] = str;
+}
+}
+}
+protected void Button1_Click(object sender, EventArgs e)
+{
+Label1.Text = "Hello World";
+}
+}

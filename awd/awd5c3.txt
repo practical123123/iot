@@ -1,0 +1,48 @@
+Part 5C3: Cookies
+
+Code:
+Default6.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default6.aspx.cs"
+Inherits="Default6" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body id="ABC" runat="server">
+<form id="form1" runat="server">
+<div>
+<asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True"
+OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+<asp:ListItem>white</asp:ListItem>
+<asp:ListItem>red</asp:ListItem>
+<asp:ListItem>amber</asp:ListItem>
+<asp:ListItem>blue</asp:ListItem>
+<asp:ListItem>pink</asp:ListItem>
+</asp:DropDownList>
+</div>
+</form>
+</body>
+</html>
+
+Default6.aspx.cs
+using System;
+using System.Web;
+public partial class Default6 : System.Web.UI.Page
+{
+protected void Page_Load(object sender, EventArgs e)
+{
+if (Request.Cookies["BackgroundColor"] != null) {
+DropDownList1.SelectedValue = Request.Cookies["BackgroundColor"].Value;
+ABC.Style["BackgroundColor"]=DropDownList1.SelectedValue;
+}
+}
+protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+{
+ABC.Style["Background-Color"] = DropDownList1.SelectedValue;
+HttpCookie obj = new HttpCookie("BackgroundColor");
+obj.Value = DropDownList1.SelectedValue;
+obj.Expires = DateTime.Now.AddMilliseconds(10);
+Response.SetCookie(obj);
+}
+}
