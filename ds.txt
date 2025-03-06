@@ -1,0 +1,1292 @@
+Question - 1
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+int i,j,temp,arrA[20],size,choice,num,flag=0,position;
+void main()
+{
+void createA();
+void displayA();
+void reverseA();
+void searchA();
+void sortA();
+clrscr();
+cout<<" 1 Dimentional array Manipulation \n";
+do{
+cout<<"Please select Option from below\n";
+cout<<"1. Create An Array\n";
+cout<<"2. Display An Array\n";
+cout<<"3. Reversing An Array\n";
+cout<<"4. Searching An Array\n";
+cout<<"5. Sorting An Array\n";
+cout<<"6. Exit\n";
+cout<<"What your want to do?\n";
+cin>>choice;
+switch(choice)
+{
+case 1:
+createA();
+break;
+case 2:
+displayA();
+break;
+case 3:
+reverseA();
+break;
+case 4:
+searchA();
+S break;
+case 5:
+sortA();
+break;
+case 6:
+exit(0);
+break;
+default:
+cout<<"Wrong Input.... Try no. from options given \n";
+break;
+}
+}while(choice!=6);
+//createA();
+//reverseA();
+getch();
+}
+void createA()
+{
+cout<<"Enter 1 D Array \n";
+cout<<"size=";
+cin>>size;
+for(i=0;i<size;i++)
+{
+cout<<"arrA["<<i<<"]=\t";
+cin>>arrA[i];
+}
+for(i=0;i<size;i++)
+{
+cout<<"arrA["<<i<<"]=";
+cout<<arrA[i];
+cout<<"\n";
+}
+}
+void displayA()
+{
+cout<<"The Array Contant are as following \n";
+for(i=0;i<size;i++)
+{
+cout<<"arrA["<<i<<"]=";
+cout<<arrA[i];
+cout<<"\n";
+}
+}
+void reverseA()
+{
+j=i-1;
+i=0;
+while(i<j)
+{
+temp=arrA[i];
+arrA[i]=arrA[j];
+arrA[j]=temp;
+i++;
+j--;
+}
+cout<<"Reversed Array\n";
+for(i=0;i<size;i++)
+{
+cout<<"arrA["<<i<<"]=";
+cout<<arrA[i];
+cout<<"\n";
+}
+}
+void searchA()
+{
+cout<<"Enter the number to be searched\n";
+cin>>num;
+for(i=0;i<size;i++)
+{
+if(arrA[i]==num)
+{
+flag=1;
+position=i+1;
+break;
+}
+}
+if(flag==0)
+cout<<"Number not found\n";
+else
+cout<<"Number "<<num<<"Found at position "<<position
+<<"in given array\n";
+}
+void sortA()
+{
+for(i=0;i<size-1;i++)
+{
+for(j=0;j<size-1-i;j++)
+{
+if(arrA[j]>arrA[j+1])
+{
+temp=arrA[j];
+arrA[j]=arrA[j+1];
+arrA[j+1]=temp;
+}
+}
+}
+cout<<"sorted arrat:\n";
+for(i=0; i<size; i++)
+{
+cout<<"arrA[" << i << "] = " << arrA[i] <<"\n";
+ }
+}
+
+
+Question - 2
+
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+int arr1[3], arr2[3], mrr[6];
+void read();
+void merge();
+void display();
+int main() {
+ clrscr();
+ int choice;
+ do {
+ cout<< "Menu:\n"
+ << "1 - Read Arrays\n"
+ << "2 - Merge\n"
+ << "3 - Display\n"
+ << "4 - Exit\n"
+ << "Enter your choice: ";
+ cin >> choice;
+ switch (choice) {
+ case 1:
+read();
+ break;
+ case 2:
+ merge();
+ break;
+ case 3:
+ display();
+ break;
+ case 4:
+ cout << "Exiting ..." << endl;
+ exit(0); // Use exit to terminate the program
+ default:
+ cout << "Invalid Choice!! Please try again.\n";
+ break;
+ }
+ }
+ while (choice != 4);
+ return 0;
+}
+void read() {
+ cout << "Enter the elements of the first array (3
+elements): ";
+ for (int i=0; i<3; i++) {
+ cin >> arr1[i];
+ }
+cout << "Enter the elements of the second array (3
+elements): ";
+ for (int j=0; j<3; j++) {
+ cin >> arr2[j];
+ }
+ cout << "Arrays read successfully.\n\n";
+}
+void merge() {
+ // Merging the arrays
+ for (int i = 0; i < 3; i++) {
+ mrr[i] = arr1[i];
+ mrr[i + 3] = arr2[i];
+ }
+ cout << "Sorted merged array..\n\n";
+}
+void display() {
+ cout << "Your merged array: ";
+ for (int i = 0; i < 6; i++) {
+ cout << mrr[i] << " ";
+ }
+ cout << endl << endl; }
+
+
+
+Question - 3
+
+
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+int mat1[2][2]={{3,2},{4,3}};
+int mat2[2][2]={{4,3},{5,3}};
+int res[2][2];
+int i,j;
+int main(){
+void add();
+void multiply();
+void transA();
+void transB();
+void display();
+clrscr();
+int choice;
+repeat:
+cout<<"Menu:\n"<<"1 - Addition\t\t"<<"2 - Multiply"<<endl;
+cout<<"3 - Transpose Matrix A\t"<<"4 - Transpose Matrix
+B"<<endl;
+cout<<"5 - display Result "<<"6 - Exit/n"<<endl;
+cout<<"Enter your choice:";
+cin>>choice;
+switch(choice){
+case 1:
+ add();
+ break;
+case 2:
+ multiply();
+ break;
+case 3:
+ transA();
+ break;
+case 4:
+ transB();
+ break;
+case 5:
+ display();
+ break;
+case 6:
+ cout<<"exiting..."<<endl;
+ goto end;
+default:
+ cout<<"Invalid Choice!!"<<endl;
+ break;
+}
+goto repeat;
+end:
+getch();
+return 0;
+}
+void add(){
+ for(i=0; i<2; i++){
+ for(j=0; j<2; j++){
+ res[i][j] = 0;
+ }
+ }
+for(i=0; i<2; i++){
+for(j=0; j<2; j++){
+ res[i][j] = mat1[i][j] + mat2[i][j];
+ }
+}
+cout<<"addition of matrix done,,"<<endl<<endl;
+}
+void multiply(){
+for(i=0; i<2; i++){
+ for(j=0; j<2; j++){
+ res[i][j]=0;
+ }
+ }
+for(i=0; i<2; i++){
+ for(j=0; j<2; j++){
+ for(int k=0; k<2; k++){
+ res[i][j] = res[i][j] + mat1[i][k] * mat2[k][j];
+}
+ }
+ }
+ cout<<"multiplication of matrix done .. "<<endl<<endl;
+ }
+void transA(){
+for(i=0; i<2; i++){
+ for(j=0; j<2; j++){
+ res[i][j] = mat1[j][i];
+ }
+ }
+ cout<<"transpose done.."<<endl <<endl;
+}
+void transB(){
+for(i=0; i<2; i++){
+ for(j=0; j<2; j++){
+ res[i][j] = mat2[j][i];
+ }
+ }
+ cout<<"transpose done.."<<endl <<endl;
+}
+void display(){
+for(i=0; i<2; i++){
+ for(j=0; j<2; j++){
+cout<< res[i][j] <<"\n";
+ }
+ cout<<endl;
+ }
+ cout<<endl;
+}
+
+Question - 4
+
+
+#include <iostream.h>
+#include <stdlib.h> // For malloc
+// Represent a node of the singly linked list
+struct node {
+int data;
+struct node *next;
+};
+// Represent the head of the singly linked list
+struct node *head = NULL;
+// addNode() will add a new node to the list
+void addNode(int data) {
+// Create a new node
+struct node *newNode = (struct
+node*)malloc(sizeof(struct node));
+newNode->data = data;
+newNode->next = NULL;
+// Checks if the list is empty
+if (head == NULL) {
+// If list is empty, head will point to the new node
+head = newNode;
+}
+else {
+// Traverse to the last node and add the new
+node there
+struct node *current = head;
+while (current->next != NULL) {
+current = current->next;
+}
+current->next = newNode;
+}
+}
+// reverse() will reverse the order of the list
+void reverse() {
+struct node *prev = NULL;
+struct node *current = head;
+struct node *next = NULL;
+// Traverse the list and reverse the pointers
+while (current != NULL) {
+next = current->next; // Store next node
+current->next = prev; // Reverse current node's
+pointer
+prev = current; // Move prev and current one
+step forward
+current = next;
+}
+// After the loop, prev will be the new head
+head = prev;
+}
+// display() will display all the nodes present in the
+list
+void display() {
+struct node *current = head;
+if (head == NULL) {
+cout << "List is empty\n";
+return;
+}
+while (current != NULL) {
+cout << current->data << " ";
+current = current->next;
+}
+cout << "\n";
+}
+int main() {
+// Add nodes to the list
+addNode(1);
+addNode(2);
+addNode(3);
+addNode(4);
+cout << "Original List: \n";
+display();
+// Reverse the list
+reverse();
+cout << "Reversed List: \n";
+display();
+return 0;
+}
+
+Question - 5
+
+
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+struct node{
+int node;
+struct node *next;
+};
+struct node *start = NULL;
+// Function to insert a node
+void Insert() {
+struct node *newnode = (struct
+node*)malloc(sizeof(struct node));
+struct node *pointer;
+int Temp;
+if(newnode == NULL) {
+cout << "**Overflow: No space available in
+memory" << endl;
+} else {
+cout << "--Enter the node: ";
+cin >> Temp;
+newnode->node = Temp;
+newnode->next = NULL;
+if(start == NULL) {
+start = newnode;
+cout << "--Node is inserted" << endl;
+} else {
+pointer = start;
+while(pointer->next != NULL) {
+pointer = pointer->next;
+}
+pointer->next = newnode;
+cout << "--Node is inserted" << endl;
+}
+}
+}
+// Function to traverse the linked list
+void Traverse() {
+struct node *pointer;
+if(start == NULL) {
+cout << "**Error: Linked list is empty" << endl;
+} else {
+cout << "--Traversing through the linked list: ";
+pointer = start;
+while(pointer != NULL) {
+cout << pointer->node << " ";
+pointer = pointer->next;
+}
+cout << endl;
+}
+}
+// Function to search for an element
+void Search() {
+int temp;
+struct node *pointer;
+pointer = start;
+if(pointer == NULL) {
+cout << "**ERROR: Linked list is empty" << endl;
+} else {
+cout << "Enter the element you want to search in
+the linked list: ";
+cin >> temp;
+while(pointer != NULL && pointer->node != temp)
+{
+pointer = pointer->next;
+}
+if(pointer == NULL) {
+cout << "Element not found" << endl;
+} else {
+cout << pointer->node << " is found" << endl;
+}
+}
+}
+int main() {
+clrscr();
+int choice, i = 0;
+while(i == 0) {
+cout << "Menu :\n"
+<<" 1. Insert A Node \n"
+<<" 2. Traverse through linked list \n"
+<<" 3. Search an element \n"
+<<" 4. Exit \n"
+<<" Enter your choice:";
+cin >> choice;
+switch(choice) {
+case 1:
+Insert();
+break;
+case 2:
+Traverse();
+break;
+case 3:
+Search();
+break;
+case 4:
+exit(0);
+break;
+default:
+cout << "Enter valid choice" << endl;
+break;
+}
+}
+getch();
+return 0;
+}
+
+Question - 6
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+struct node {
+int info;
+struct node* next;
+};
+struct node* start = NULL;
+// Function to insert node at the end
+void BeginInsert() {
+struct node* newnode = (struct
+node*)malloc(sizeof(struct node));
+struct node* pointer;
+int Temp;
+if (newnode == NULL) {
+cout << "**Overflow: No space available in
+memory" << endl;
+} else {
+cout << "--Enter the node: ";
+cin >> Temp;
+newnode->info = Temp;
+newnode->next = NULL;
+if (start == NULL) {
+start = newnode;
+cout << "--Node is inserted" << endl;
+} else {
+pointer = start;
+while (pointer->next != NULL) {
+pointer = pointer->next;
+}
+pointer->next = newnode;
+cout << "--Node is inserted" << endl;
+}
+}
+}
+// Function to traverse the linked list
+void Traverse() {
+struct node* pointer;
+if (start == NULL) {
+cout << "**Error: Linked list is empty" << endl;
+} else {
+cout << "--Traversing through the linked list: ";
+pointer = start;
+while (pointer != NULL) {
+cout << pointer->info << " ";
+pointer = pointer->next;
+}
+cout << endl;
+}
+}
+// Function to sort the linked list
+void Sort() {
+int temp;
+struct node *pointer1,
+*pointer2;
+pointer1 = start;
+if (pointer1 == NULL) {
+cout << "**ERROR: Linked list is empty" << endl;
+} else {
+cout << "\nLinked list before sort operation:\n";
+Traverse();
+while (pointer1 != NULL) {
+pointer2 = pointer1->next;
+while (pointer2 != NULL) {
+if (pointer1->info > pointer2->info) {
+// Swap the values
+temp = pointer1->info;
+pointer1->info = pointer2->info;
+pointer2->info = temp;
+}
+pointer2 = pointer2->next;
+}
+pointer1 = pointer1->next;
+}
+cout << "\nLinked list is sorted:\n";
+Traverse();
+}
+}
+int main() {
+clrscr();
+int choice, i= 0;
+while (i == 0) {
+cout << "Menu :\n"
+<< "1. Insert A Node \n"
+<< "2. Traverse through linked list \n"
+<< "3. Sort the linked list \n”
+<< "4. Exit \n"
+<< "Enter your choice: ";
+cin >> choice;
+switch (choice) {
+case 1:
+BeginInsert();
+break;
+case 2:
+Traverse();
+break;
+case 3:
+Sort();
+break;
+case 4:
+exit(0);
+break;
+default:
+cout << "Enter valid choice" << endl;
+break;
+}
+}
+getch();
+return 0;
+}
+
+Question - 7
+
+
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+void Push();
+void Pop();
+void Display();
+int idx = 0, array[50],size;
+void main()
+{
+ int choice;
+ clrscr();
+ cout<<"Enter the size of stack : ";
+ cin >> size;
+repeat:
+ cout << "\n\n ----- Menu -----";
+ cout<<"\n1.Push \n2.Pop \n3.Display \n4.Exit \nEnter
+your choice : ";
+ cin >>choice;
+ switch(choice){
+ case 1:
+Push();
+ break;
+ case 2:
+ Pop();
+ break;
+ case 3:
+ Display();
+ break;
+ case 4:
+ exit(0);
+ break;
+ default:
+ cout<<"Please enter valid option . ";
+ break;
+ }
+ goto repeat;
+}
+void Push(){
+ int var;
+ cout <<" Enter the elemnt value : " ;
+ cin >> var;
+ if (idx < size){
+array[idx] = var;
+ idx++ ;
+ cout << var <<" Push Successfully\n ";
+ Display();
+ }
+ else{
+ cout << " Stack is full : Does not push " ;
+ }
+}
+void Pop(){
+ cout<<" Removing the element from stack :\n";
+ if (idx >0){
+ cout << " Element "<<array[idx-1] <<" removed from
+Stack .\n" ;
+ array[idx - 1] = 0;
+ idx = idx-1;
+ Display();
+ }
+ else{
+ cout << " Stack is Empty : Does not pop." ;
+ }
+}
+void Display(){
+if (idx >= 0 )
+ {
+ cout << " Stack :" ;
+ for(int i=0; i <idx ;i++)
+ {
+cout<<" "<< array[i];
+ }
+ }
+}
+
+Question - 8
+
+#include<iostream.h>
+#include<conio.h>
+#include<ctype.h>
+char stack[100];
+int top = -1;
+void push(char x)
+{
+ stack[++top] = x;
+}
+char pop()
+{
+if(top == -1)
+{
+ return -1;
+}
+else
+{
+ return stack[top--];
+}
+}
+int priority(char x)
+{
+if(x == '(')
+{ return 0; }
+else if(x == '+' || x == '-')
+{ return 1; }
+else if(x == '*'|| x == '/')
+{ return 2;}
+return 0;
+}
+int main()
+{
+char exp[100] ;
+char *e, x;
+clrscr();
+cout<<"Enter the expression : ";
+cin>>exp;
+cout<<"\n" ;
+e = exp;
+cout<<"Prefix Expression : ";
+while(*e != '\0')
+{
+ if (isalnum(*e))
+ { cout<<*e ; }
+ else if (*e == '(')
+ { push (*e); }
+ else if(*e == ')')
+ {
+ while(x = pop() != '(')
+ { cout<<x; }
+ }
+else
+ {
+ while((priority(stack[top])) >= priority(*e))
+ { cout<<pop(); }
+ push(*e);
+ }
+ e++;
+ }
+ while(top != -1)
+ {
+ cout<<pop();
+ }
+ getch();
+return 0;
+}
+
+Question - 9
+
+#include<iostream.h>
+#include<conio.h>
+void TowerOfHanoi (int num, char A, char B, char C)
+{
+if (num > 0)
+{
+TowerOfHanoi(num-1, A, C, B);
+cout<<"Move a disc"<< num<<" from " << A<<" to "<<
+C<<endl;
+TowerOfHanoi(num-1, B, A, C);
+} }
+int main()
+{
+int numOfDisk;
+clrscr();
+cout<<"Enter the number of disks " ;
+cin>>numOfDisk;
+TowerOfHanoi (numOfDisk, 'A', 'B', 'C');
+//A is the source rod, C is the destination rod, B is the
+auxillary rod
+cout<<endl;
+getch(); return 0;
+}
+
+
+Question - 11
+
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+struct Node {
+int data;
+int priority;
+};
+int idx = -1;
+int size;
+Node queue[20];
+int front = 0;
+void enqueue();
+void display();
+void dequeue();
+int main() {
+cout << "Enter size of priority queue: ";
+cin >> size;
+char choice;
+repeat:
+cout << "Menu:\n"
+<< "E - Enqueue\n"
+<< "R - Dequeue\n"
+<< "D - Display\n"
+<< "X - Exit\n";
+cout << "Enter your choice: ";
+cin >> choice;
+switch (choice) {
+case 'E':
+enqueue();
+break;
+case 'R':
+dequeue();
+break;
+case 'D':
+display();
+break;
+case 'X':
+return 0;
+default:
+cout << "Wrong option chosen" << endl;
+break;
+}
+goto repeat;
+}
+void enqueue() {
+int ele, prio;
+cout << "Enter queue element: ";
+cin >> ele;
+cout << "Enter priority of the element: ";
+cin >> prio;
+if (idx >= size - 1) {
+cout << "Queue is full." << endl << endl;
+} else {
+idx++;
+queue[idx].data = ele;
+queue[idx].priority = prio;
+// Reorder elements based on priority
+for (int i = idx; i > 0; i--) {
+if (queue[i].priority > queue[i - 1].priority) {
+Node temp = queue[i];
+queue[i] = queue[i - 1];
+queue[i - 1] = temp;
+} else {
+break;
+}
+}
+cout << "Element inserted in priority queue." <<
+endl << endl;
+}
+}
+void display() {
+if (idx == -1) {
+cout << "Queue is empty." << endl << endl;
+} else {
+for (int i = 0; i <= idx; i++) {
+cout << "Element: " << queue[i].data << "
+,
+Priority: " << queue[i].priority << endl;
+}
+}
+}
+void dequeue() {
+if (front <= idx) {
+cout << "Element removed: " << queue[front].data
+<< endl << endl;
+queue[front].data = 0;
+queue[front].priority = 0;
+front++;
+} else {
+cout << "Queue is empty." << endl << endl;
+}
+}
+
+
+Practical -12
+
+Algorithm -
+Bubble Sort Algorithm:
+Step 1: Repeat For p = 1 to n - 1
+Step 2: For l = 1 to n - p
+If S[l] > S[l+1] Then
+Exchange S[l] with S[l+1]
+[End If]
+[End Loop]
+[End Loop]
+Step 3: Exit
+
+#include <iostream.h>
+#include <conio.h>
+void bubbleSort(int arr[], int n) {
+ int i, j, temp;
+ 
+ 
+ for (i = 0; i < n-1; i++) {
+ for (j = 0; j < n-i-1; j++) {
+ if (arr[j] > arr[j+1]) {
+ temp = arr[j];
+ arr[j] = arr[j+1];
+ arr[j+1] = temp;
+ }
+ }
+ }
+}
+void printArray(int arr[], int n) {
+ for (int i = 0; i < n; i++) {
+ cout << arr[i] << " ";
+ }
+ cout << endl;
+}
+int main() {
+ clrscr(); 
+ int n;
+ 
+ 
+ cout << "Enter the number of elements: ";
+ cin >> n;
+ 
+ 
+ int arr[50]; 
+ 
+ 
+ cout << "Enter " << n << " elements: " << endl;
+ for (int i = 0; i < n; i++) {
+ cin >> arr[i];
+ }
+ 
+ bubbleSort(arr, n);
+ cout << "Sorted array: " << endl;
+ printArray(arr, n);
+ 
+ getch(); 
+ return 0;
+}
+
+Practical - 13
+
+Algorithm -
+Selection Sort Algorithm:
+Step 1: Repeat for i = 0 to n - 2
+Step 2: Set min_index = i
+Step 3: Repeat for j = i + 1 to n - 1
+If S[j] < S[min_index] Then
+Set min_index = j
+[End If]
+[End Loop]
+Step 4: Swap S[i] with S[min_index]
+[End Loop]
+Step 5: Exit
+
+#include <iostream.h>
+#include <conio.h>
+void selectionSort(int arr[], int n) {
+int i, j, minIdx, temp;
+for (i = 0; i < n - 1; i++) {
+minIdx = i;
+for (j = i + 1; j < n; j++) {
+if (arr[j] < arr[minIdx]) {
+minIdx = j;
+}
+}
+if (minIdx != i) {
+temp = arr[i];
+arr[i] = arr[minIdx];
+arr[minIdx] = temp;
+}
+}
+}
+void printArray(int arr[], int n) {
+for (int i = 0; i < n; i++) {
+cout << arr[i] << " ";
+}
+cout << endl;
+}
+int main() {
+clrscr();
+int n;
+cout << "Enter the number of elements: ";
+cin >> n;
+int arr[50];
+cout << "Enter " << n << " elements: " << endl;
+for (int i = 0; i < n; i++) {
+cin >> arr[i];
+}
+selectionSort(arr, n);
+cout << "Sorted array: " << endl;
+printArray(arr, n);
+getch();
+return 0;
+}
+
+
+Practical - 14
+
+Algorithm -Insertion Sort Algorithm:
+Step 1- Start
+Step 2-Input the number of elements `n`
+Step 3-Input `n` elements into the array `arr[]`
+Step 4- For i = 1 to n-1:
+ a- Set `key = arr[i]`
+ b- Set j = i - 1
+ c-While j >= 0 and arr[j] > key:
+ i- Move arr[j] to arr[j+1]
+ ii-Decrease j by 1
+ d- Insert `key` into arr[j + 1]
+Step 5- Print "Sorted array: "
+Step 6 -For i = 0 to n-1:
+ a. Print arr[i] followed by a space
+Step 7- End
+
+#include <iostream.h>
+#include <conio.h>
+void insertionSort(int arr[], int n) {
+ for (int i = 1; i < n; i++) {
+ int key = arr[i];
+ int j = i - 1;
+ 
+ while (j >= 0 && arr[j] > key) {
+ arr[j + 1] = arr[j];
+ j--;
+ }
+ arr[j + 1] = key;
+ }
+}
+void displayArray(int arr[], int n) {
+ for (int i = 0; i < n; i++) {
+ cout << arr[i] << " ";
+ }
+ cout << endl;
+}
+int main() {
+ clrscr();
+ 
+ int arr[50], n;
+ cout << "Enter the number of elements in the array: ";
+ cin >> n;
+ cout << "Enter " << n << " elements:\n";
+ for (int i = 0; i < n; i++) {
+ cin >> arr[i];
+ }
+ cout << "Array before sorting:\n";
+ displayArray(arr, n);
+ insertionSort(arr, n);
+ cout << "Array after sorting:\n";
+ displayArray(arr, n);
+ getch();
+ return 0; }
+
+Practical - 15
+
+Algorithm -
+MergeSort Algorithm:
+Step 1: If length of array ≤ 1, return array (Base case)
+Step 2: Set mid = length(array) // 2 // Find the middle index
+Step 3: Divide the array into two subarrays:
+ left = array[0...mid-1]
+ right = array[mid...end]
+Step 4: Recursively call MergeSort(left) // Sort the left subarray
+Step 5: Recursively call MergeSort(right) // Sort the right subarray
+Step 6: Merge the two sorted subarrays left and right using the Merge function
+Merge Function:
+Step 1: Initialize two indices i = 0 and j = 0 // Pointers for left and right subarrays
+Step 2: Initialize an empty result array
+Step 3: Repeat steps 4 and 5 while i < length(left) and j < length(right):
+ Step 4: If left[i] < right[j], append left[i] to result and increment i
+ Step 5: Else, append right[j] to result and increment j
+Step 4: Append any remaining elements from the left subarray to result
+Step 5: Append any remaining elements from the right subarray to result
+Step 6: Return the merged result array
+
+#include <iostream.h>
+#include <conio.h>
+void merge(int arr[], int l, int m, int r) {
+ int n1 = m - l + 1;
+ int n2 = r - m;
+ int* L = new int[n1];
+ int* R = new int[n2];
+ for (int i = 0; i < n1; i++) {
+L[i] = arr[l + i];
+}
+ for (int j = 0; j < n2; j++) {
+R[j] = arr[m + 1 + j];
+ }
+ int k = l;
+ int left = 0, right = 0;
+ while (left < n1 && right < n2) {
+if (L[left] <= R[right]) {
+ arr[k] = L[left];
+ left++;
+} else {
+ arr[k] = R[right];
+ right++;
+}
+k++;
+ }
+ while (left < n1) {
+arr[k] = L[left];
+left++;
+k++;
+ }
+ while (right < n2) {
+arr[k] = R[right];
+right++;
+k++;
+ }
+ delete[] L;
+ delete[] R;
+}
+void mergeSort(int arr[], int l, int r) {
+ if (l < r) {
+int m = l + (r - l) / 2;
+mergeSort(arr, l, m);
+mergeSort(arr, m + 1, r);
+merge(arr, l, m, r);
+ }
+}
+void printArray(int arr[], int n) {
+ for (int i = 0; i < n; i++) {
+cout << arr[i] << " ";
+ }
+ cout << endl;
+}
+void main() {
+ clrscr();
+ int choice, n, *arr = NULL;
+ do {
+cout << "\n\n --- Merge Sort Menu --- \n";
+cout << "1. Enter the Elements\n";
+cout << "2. Perform Merge Sort\n";
+cout << "3. Display Sorted Array\n";
+cout << "4. Exit\n";
+cout << "Enter your choice: ";
+cin >> choice;
+switch (choice) {
+ case 1:
+cout << "Enter the number of elements: ";
+cin >> n;
+arr = new int[n];
+cout << "Enter " << n << " elements: " << endl;
+for (int i = 0; i < n; i++) {
+ cin >> arr[i];
+}
+cout << "Array input completed.\n";
+break;
+ case 2:
+if (arr == NULL) {
+ cout << "Please enter elements first.\n";
+ break;
+}
+mergeSort(arr, 0, n - 1);
+cout << "Merge sort completed.\n";
+break;
+ case 3:
+if (arr == NULL) {
+ cout << "Please enter and sort elements first.\n";
+ break;
+}
+cout << "Sorted array: ";
+printArray(arr, n);
+break;
+ case 4:
+cout << "Exiting the program. Thank you!\n";
+break;
+ default:
+cout << "Invalid choice. Please try again.\n";
+break;
+}
+getch();
+ } while (choice != 4);
+}
+
+
+Practical - 16
+
+Algorithm -
+BinarySearch Algorithm:
+Step 1: Set low = 0 and high = length(array) - 1 // Define the search boundaries
+Step 2: Repeat steps 3 to 6 while low ≤ high:
+ Step 3: Set mid = (low + high) // 2 // Find the middle index
+ Step 4: If array[mid] == target:
+ Print "Element found at index mid"
+ Exit the algorithm
+ Step 5: Else if array[mid] < target:
+ Set low = mid + 1 // Narrow the search to the right half
+ Step 6: Else:
+ Set high = mid - 1 // Narrow the search to the left half
+Step 7: If low > high, print "Element not found" // Element not found in the array
+Step 8: Exit
+
+
+#include <iostream.h>
+#include <conio.h>
+int binarySearch(int arr[], int n, int target) {
+ int l = 0, r = n - 1, mid;
+ while (l <= r) {
+ mid = l + (r - l) / 2;
+ if (arr[mid] == target) {
+ return mid;
+ }
+ if (arr[mid] < target) {
+ l = mid + 1;
+ } else {
+ r = mid - 1;
+}
+ }
+ return -1;
+}
+int main() {
+ clrscr();
+ int n, target, result;
+ cout << "Enter the number of elements: ";
+ cin >> n;
+ int arr[50];
+ cout << "Enter " << n << " elements in sorted order: " << endl;
+ for (int i = 0; i < n; i++) {
+ cin >> arr[i];
+ }
+ cout << "Enter the element to search: ";
+ cin >> target;
+ 
+ result = binarySearch(arr, n, target);
+ 
+ if (result != -1) {
+ cout << "Element found at index " << result << endl;
+ } else {
+ cout << "Element not found" << endl;
+ }
+ cout << endl;
+ cout << endl;
+ getch();
+ return 0;
+}
+
+Practical - 17
+
+Algorithm -
+AdjacencyMatrix Algorithm:
+Step 1: Initialize a 2D matrix adj[][] of size n x n, where n is the number of vertices in the
+graph.
+ - Set all elements of adj[][] to 0 initially.
+Step 2: For each edge in the graph:
+ Step 3: If the edge connects vertex u to vertex v:
+ Step 4: Set adj[u][v] = 1
+ Step 5: If the graph is undirected, set adj[v][u] = 1
+Step 6: Print the adjacency matrix adj[][]
+Step 7: Exit
+
+#include <iostream.h>
+#include <conio.h>
+#define true 1
+#define false 0
+void printAdjacencyMatrix(int adjMatrix[][10], int n) {
+ for (int i = 0; i < n; i++) {
+for (int j = 0; j < n; j++) {
+ cout << adjMatrix[i][j] << " ";
+}
+cout << endl;
+ }
+}
+int main() {
+ clrscr();
+ int n, u, v, adjMatrix[10][10] = {0};
+ cout << "Enter the number of vertices: ";
+ cin >> n;
+ cout << "Enter the edges (enter -1 -1 to stop): " << endl;
+ while (true) {
+cin >> u >> v;
+if (u == -1 && v == -1) break;
+adjMatrix[u][v] = 1;
+adjMatrix[v][u] = 1;
+ }
+ cout << "Adjacency Matrix: " << endl;
+ printAdjacencyMatrix(adjMatrix, n);
+ getch();
+ return 0;
+}
+
