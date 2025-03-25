@@ -1,0 +1,41 @@
+Practical No. 6 
+Perform the logistic regression on the given data warehouse data using R/Python  
+
+
+import matplotlib.pyplot as plt 
+from sklearn.datasets import make_classification 
+from sklearn.linear_model import LogisticRegression  
+from sklearn.model_selection import train_test_split  
+from sklearn.metrics import roc_curve, roc_auc_score 
+
+# Generate dataset and split into train/test sets 
+
+X, y = make_classification(n_samples=1000, n_classes=2, random_state=1)  
+trainX, testX, trainy, testy = train_test_split(X, y, test_size=0.5, random_state=2) 
+
+# Fit logistic regression model 
+model = LogisticRegression(solver='lbfgs').fit(trainX, trainy) 
+
+# Predict probabilities 
+lr_probs = model.predict_proba(testX)[:, 1]  
+ns_probs = [0] * len(testy) # No skill model 
+
+# Calculate AUC scores 
+ns_auc = roc_auc_score(testy, ns_probs)  
+lr_auc = roc_auc_score(testy, lr_probs) 
+
+# Print AUC scores 
+print(f'No Skill: ROC AUC={ns_auc:.3f}')  
+print(f'Logistic: ROC AUC={lr_auc:.3f}') 
+
+# Calculate ROC curves 
+ns_fpr, ns_tpr, _ = roc_curve(testy, ns_probs)  
+lr_fpr, lr_tpr, _ = roc_curve(testy, lr_probs)
+
+# Plot ROC curves 
+plt.plot(ns_fpr, ns_tpr, linestyle='--', label='No Skill')  
+plt.plot(lr_fpr, lr_tpr, marker='.', label='Logistic')  
+plt.xlabel('False Positive Rate') 
+plt.ylabel('True Positive Rate')  
+plt.legend() 
+plt.show()

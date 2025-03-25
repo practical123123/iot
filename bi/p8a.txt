@@ -1,0 +1,29 @@
+practical 8a
+Perform data visualization using Python on any sales data. 
+
+pip install pandas matplotlib seaborn
+
+import pandas as pd  
+import seaborn as sns 
+import matplotlib.pyplot as plt 
+# Load the data from the CSV file (with correct path)  df = pd.read_csv('/content/Book1.csv') 
+df.columns = df.columns.str.strip()
+sns.lineplot(data=df, x='Date', y='Sales', marker='o')  
+plt.title('Sales Over Time') 
+plt.xticks(rotation=45)  
+plt.show() 
+
+
+
+1. create CSV file and upload in Collab. 
+Date,Sales  
+2025-01-01,150 
+2025-01-02,200 
+2025-01-03,180 
+1/4/2025,220 
+1/5/2025,190 
+2025-01-06,250 
+2025-01-07,230 
+1/8/2025,270 
+1/9/2025,210 
+2025-01-10,280 
