@@ -1,0 +1,90 @@
+TableLayout
+activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableRow>
+        <TextView
+            android:text="UserName:"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/txtUserName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Password:"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:inputType="textPassword"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView />
+        <CheckBox
+            android:id="@+id/chkRememberPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remember Password"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/buttonSignIn"
+            android:onClick="login"
+            android:text="Log In"/>
+    </TableRow>
+</TableLayout>
+
+MainActivity.java
+
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+
+    public void login(View view) {
+        EditText txtUserName = findViewById(R.id.txtUserName);
+        EditText txtPassword = findViewById(R.id.txtPassword);
+        Toast.makeText(this, ":User  " + txtUserName.getText().toString() + "\nPass: " + txtPassword.getText().toString(), Toast.LENGTH_SHORT).show();
+    }
+}
+
