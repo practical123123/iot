@@ -1,0 +1,249 @@
+Practical 5B
+Aim: Creating Dialog
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:orientation="vertical"
+ android:padding="20dp">
+ <Button
+ android:id="@+id/button_dialog"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:onClick="onClickDialog"
+ android:text="Click to display an AlertDialog" />
+ <Button
+ android:id="@+id/button_progressdialog"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:onClick="onClickProgressDialog"
+ android:text="Click to display a ProgressDialog" />
+ <Button
+ android:id="@+id/button_datedialog"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:onClick="onClickDateDialog"
+ android:text="Click to display a DatePickerDialog" />
+ <Button
+ android:id="@+id/button_timedialog"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:onClick="onClickTimeDialog"
+ android:text="Click to display a TimePickerDialog" />
+ <TextView
+ android:id="@+id/textView_date"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:text="Selected Date:"
+ android:textSize="20sp"
+ android:paddingTop="10dp"/>
+ <TextView
+ android:id="@+id/textView_time"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content" 
+ android:text="Selected Time:"
+ android:textSize="20sp"
+ android:paddingTop="10dp"/>
+</LinearLayout>
+
+MainActivity.java
+package com.example.practical5b;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.Calendar;
+public class MainActivity extends AppCompatActivity {
+ CharSequence[] items = {"Android", "Security", "Cloud"};
+ boolean[] itemsChecked = new boolean[items.length];
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ }
+ public void onClickDialog(View v) {
+ AlertDialog.Builder builder = new AlertDialog.Builder(this);
+ builder.setTitle("This is a dialog with simple Text...");
+ builder.setPositiveButton("OK", (dialog, id) ->
+ Toast.makeText(getBaseContext(), "OK Clicked",
+Toast.LENGTH_SHORT).show());
+ builder.setNegativeButton("CANCEL", (dialog, id) ->
+ Toast.makeText(getBaseContext(), "CANCEL Clicked",
+Toast.LENGTH_SHORT).show());
+ builder.setMultiChoiceItems(items, itemsChecked, (dialog, id, isChecked) ->
+ Toast.makeText(getBaseContext(), items[id] + (isChecked ? " checked" : "
+unchecked"),
+ Toast.LENGTH_SHORT).show());
+ builder.show();
+ }
+ public void onClickProgressDialog(View v) {
+ ProgressDialog pDialog = new ProgressDialog(this);
+ pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+ pDialog.setMessage("Loading.....");
+ pDialog.setMax(100);
+ pDialog.setProgress(0);
+ pDialog.setCancelable(false);
+ pDialog.setButton(DialogInterface.BUTTON_POSITIVE, "STOP PROGRESS", (dialog,
+id) -> pDialog.dismiss());
+ pDialog.show();
+ // Simulate progress update
+ new Thread(() -> {
+ try {
+ for (int i = 0; i <= 100; i += 10) {
+ Thread.sleep(500); // Simulate loading time
+ int finalI = i;
+ runOnUiThread(() -> pDialog.setProgress(finalI));
+ }
+ pDialog.dismiss();
+ } catch (InterruptedException e) {
+ e.printStackTrace();
+ }
+ }).start();
+ }
+ public void onClickDateDialog(View v) {
+ final TextView dateDisplay = findViewById(R.id.textView_date);
+ final Calendar c = Calendar.getInstance();
+ int mYear = c.get(Calendar.YEAR);
+ int mMonth = c.get(Calendar.MONTH);
+ int mDay = c.get(Calendar.DAY_OF_MONTH);
+ DatePickerDialog dateDialog = new DatePickerDialog(this,
+ (view, year, month, day) ->
+ dateDisplay.setText("Selected Date: " + (month + 1) + "-" + day + "-" + year),
+ mYear, mMonth, mDay);
+ dateDialog.show();
+ }
+ public void onClickTimeDialog(View v) {
+ final TextView timeDisplay = findViewById(R.id.textView_time);
+ final Calendar c = Calendar.getInstance();
+ int mHour = c.get(Calendar.HOUR_OF_DAY);
+ int mMinute = c.get(Calendar.MINUTE);
+ TimePickerDialog timeDialog = new TimePickerDialog(this,
+ (view, hour, minute) ->
+ timeDisplay.setText("Selected Time: " + hour + ":" + String.format("%02d",
+minute)),
+ mHour, mMinute, true);
+ timeDialog.show();
+ }
+}
+..........................................
+
+Practical 5C
+Aim: Creating Dialogs Fragments
+DFragment.java
+package com.example.practical5c;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+public class DFragment extends DialogFragment {
+ @Nullable
+ @Override
+ public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup
+container, @Nullable Bundle savedInstanceState) {
+ View rootView = inflater.inflate(R.layout.dialog_fragment, container, false);
+ getDialog().setTitle("DialogFragment Test");
+ return rootView;
+ }
+}
+
+dialog_fragment.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:padding="20dp">
+ <TextView
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:layout_centerInParent="true"
+ android:text="This is a DialogFragment"
+ android:textSize="18sp"/>
+</RelativeLayout>
+
+AlertDFragment.java
+package com.example.practical5c;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+public class AlertDFragment extends DialogFragment {
+ @NonNull
+ @Override
+ public Dialog onCreateDialog(Bundle savedInstanceState) {
+ return new AlertDialog.Builder(getActivity())
+ .setIcon(android.R.mipmap.sym_def_app_icon) // Set Dialog Icon
+ .setTitle("Alert Dialog Fragment") // Set Dialog Title
+ .setMessage("This is an AlertDialogFragment.") // Set Dialog Message
+ .setPositiveButton("OK", (dialog, which) ->
+ Toast.makeText(getContext(), "Ok Clicked", Toast.LENGTH_LONG).show())
+ .setNegativeButton("Cancel", (dialog, which) ->
+ Toast.makeText(getContext(), "Cancel Clicked",
+Toast.LENGTH_LONG).show())
+ .create();
+ }
+}
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity">
+ <Button
+ android:id="@+id/button_dialog_fragment"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:text="Show Dialog Fragment"
+ android:onClick="DialogFragment"/>
+ <Button
+ android:id="@+id/button_alert_fragment"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:text="Show Alert Dialog Fragment"
+ android:layout_below="@id/button_dialog_fragment"
+ android:layout_marginTop="10dp"
+ android:onClick="AlertFragment"/>
+</RelativeLayout>
+
+MainActivity.java
+package com.example.practical5c;
+import android.os.Bundle;
+import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager
+public class MainActivity extends AppCompatActivity {
+ FragmentManager fm;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ fm = getSupportFragmentManager();
+ }
+ public void DialogFragment(View view) {
+ DFragment dFragment = new DFragment();
+ dFragment.show(fm, "Dialog Fragment");
+ }
+ public void AlertFragment(View view) {
+ AlertDFragment alertDFragment = new AlertDFragment();
+ alertDFragment.show(fm, "Alert Dialog Fragment");
+ }
+}

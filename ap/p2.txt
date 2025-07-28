@@ -1,0 +1,158 @@
+Practical 2A
+Aim: Life Cycle of Androids Activity
+MainActivity.java
+package com.example.prac2b;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import android.util.Log;
+public class MainActivity extends AppCompatActivity {
+ String tag = "Lifecycle";
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ Log.d(tag, "In the onCreate() event");
+ }
+ @Override
+ protected void onStart() {
+ super.onStart();
+ Log.d(tag, "In the onStart() event");
+ }
+ @Override
+ protected void onRestart() {
+ super.onRestart();
+ Log.d(tag, "In the onRestart() event");
+ }
+ @Override
+ protected void onResume() {
+ super.onResume();
+ Log.d(tag, "In the onResume() event");
+ }
+  @Override
+ protected void onPause() {
+ super.onPause();
+ Log.d(tag, "In the onPause() event");
+ }
+ @Override
+ protected void onStop() {
+ super.onStop();
+ Log.d(tag, "In the onStop() event");
+ }
+ @Override
+ protected void onDestroy() {
+ super.onDestroy();
+ Log.d(tag, "In the onDestroy() event");
+ }
+}
+........................................
+Practical 2B
+Aim: Creating a Fragment
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity">
+ <!-- Take a fragment in our activity -->
+ <fragment
+ android:id="@+id/test_fragment"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ class="com.example.prac2b.BlankFragment"
+ tools:layout="@layout/fragment_blank" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.java
+package com.example.prac2b;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ }
+}
+
+fragment_blank.xml
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".BlankFragment">
+ <TextView
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:textSize="48dp"
+ android:text="Check Logcat" />
+</FrameLayout>
+
+BlankFragment.java
+package com.example.prac2b;
+import android.content.Context;
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.util.Log;
+public class BlankFragment extends Fragment {
+ String tag = "Fragment Lifecycle";
+ @Override
+ public void onAttach(@NonNull Context context) {
+ super.onAttach(context);
+ Log.d(tag, "In the onAttach() event");
+ }@Override
+ public void onStart() {
+ super.onStart();
+ Log.d(tag, "In the onStart() event");
+ } @Override
+ public void onResume() {
+ super.onResume();
+ Log.d(tag, "In the onResume() event");
+ }@Override
+ public void onPause() {
+ super.onPause();
+ Log.d(tag, "In the onPause() event");
+ }@Override
+ public void onStop() {
+ super.onStop();
+ Log.d(tag, "In the onStop() event");
+ }
+ @Override
+ public void onDestroy() {
+ super.onDestroy();
+ Log.d(tag,"In the onDestroy() event");
+ }
+ private static final String ARG_PARAM1 = "param1";
+ private static final String ARG_PARAM2 = "param2";
+ private String mParam1;
+ private String mParam2;
+ public BlankFragment() {
+ // Required empty public constructor
+ }
+ public static BlankFragment newInstance(String param1, String param2) {
+ BlankFragment fragment = new BlankFragment();
+ Bundle args = new Bundle();
+ args.putString(ARG_PARAM1, param1);
+ args.putString(ARG_PARAM2, param2);
+ fragment.setArguments(args);
+ return fragment;
+ }
+ @Override
+ public void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ if (getArguments() != null) {
+ mParam1 = getArguments().getString(ARG_PARAM1);
+ mParam2 = getArguments().getString(ARG_PARAM2);
+ }}
+ @Override
+ public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+savedInstanceState) {
+ // Inflate the layout for this fragment
+ return inflater.inflate(R.layout.fragment_blank, container, false) }}

@@ -1,0 +1,258 @@
+Practical 10A
+Aim : Programming Media API
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:id="@+id/main"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity">
+ <!-- Button with id for reference -->
+ <Button
+ android:id="@+id/button"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:text="Start"
+ android:layout_centerInParent="true"/>
+</RelativeLayout>
+
+MainActivity.java
+package com.example.practical10a;
+import android.os.Bundle;
+import android.media.MediaPlayer;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+public class MainActivity extends AppCompatActivity {
+ private Button bn;
+ private MediaPlayer mediaPlayer;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ EdgeToEdge.enable(this);
+ setContentView(R.layout.activity_main);
+ // Apply window insets for edge-to-edge display
+ ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) ->
+{
+Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+ v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+ return insets;
+ }); // Initialize the button
+ bn = findViewById(R.id.button);
+ bn.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View v) {
+ mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.song);
+ mediaPlayer.start();
+ bn.setEnabled(false);
+ Toast.makeText(getApplicationContext(), "Playing music",
+Toast.LENGTH_SHORT).show();
+ // Set a completion listener for the media player
+ mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+{ @Override
+ public void onCompletion(MediaPlayer mp) {
+ mediaPlayer.release();
+ mediaPlayer = null;
+ Toast.makeText(getApplicationContext(), "Playing Done",
+Toast.LENGTH_SHORT).show();
+ bn.setEnabled(true);
+ }
+ }); }
+ }); }}
+............................................
+Practical 10B
+Aim : Programming Telephone API
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity">
+ <EditText
+ android:id="@+id/editText"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:layout_centerHorizontal="true"
+ android:layout_marginTop="50dp"
+ android:hint="Enter Phone Number"
+ android:inputType="phone"/>
+ <Button
+ android:id="@+id/button"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:layout_centerHorizontal="true"
+ android:layout_below="@id/editText"
+ android:layout_marginTop="20dp"
+ android:text="Make Call"/>
+</RelativeLayout>
+
+AndroidManifest.xml
+<!-- Corrected permission declaration -->
+<uses-permission android:name="android.permission.CALL_PHONE" />
+<!-- Declare telephony as an optional feature -->
+<uses-feature android:name="android.hardware.telephony" android:required="false" />
+
+MainActivity.java
+package com.example.practical10b;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+public class MainActivity extends AppCompatActivity {
+ EditText editText;
+ Button button;
+ private static final int REQUEST_CALL_PERMISSION = 1;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ editText = findViewById(R.id.editText);
+ button = findViewById(R.id.button);
+ button.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View v) {
+ makePhoneCall();
+ }
+ });
+ }
+ private void makePhoneCall() {
+ String phoneNumber = editText.getText().toString();
+ if (phoneNumber.isEmpty()) {
+ Toast.makeText(this, "Enter a phone number", Toast.LENGTH_SHORT).show();
+ return;
+ }
+ Intent phoneIntent = new Intent(Intent.ACTION_CALL);
+ phoneIntent.setData(Uri.parse("tel:" + phoneNumber));
+ if (ContextCompat.checkSelfPermission(MainActivity.this,
+Manifest.permission.CALL_PHONE)
+ != PackageManager.PERMISSION_GRANTED) {
+ ActivityCompat.requestPermissions(MainActivity.this,
+ new String[]{Manifest.permission.CALL_PHONE},
+REQUEST_CALL_PERMISSION);
+ } else {
+ startActivity(phoneIntent);
+ }
+ }
+ @Override
+ public void onRequestPermissionsResult(int requestCode, String[] permissions, int[]
+grantResults) {
+ super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+ if (requestCode == REQUEST_CALL_PERMISSION) {
+ if (grantResults.length > 0 && grantResults[0] ==
+PackageManager.PERMISSION_GRANTED) {
+ makePhoneCall();
+} else {
+ Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+ }
+........................................
+Practical 10C
+Aim : Programming Security and permissions
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:id="@+id/main"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity">
+ <!-- A TextView example -->
+ <TextView
+ android:id="@+id/textView"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:text="Hello, World!"
+ android:textSize="48sp"
+ android:layout_centerInParent="true" />
+ <!-- A Button example -->
+ <Button
+ android:id="@+id/button"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:text="Click Me"
+ android:layout_below="@id/textView"
+ android:layout_centerHorizontal="true"
+ android:layout_marginTop="30dp" />
+</RelativeLayout>
+
+AndroidManifest.xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:tools="http://schemas.android.com/tools">
+ <uses-permission android:name="android.permission.CAMERA"
+ tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" />
+ <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+ <uses-permission
+android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+MainActivity.java
+package com.example.practical10c;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+public class MainActivity extends AppCompatActivity {
+ private static final int CAMERA_PERMISSION_CODE = 100;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ // Check if the app already has camera permission
+ if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
+ == PackageManager.PERMISSION_GRANTED) {
+ // Permission is already granted
+ Toast.makeText(this, "Permission is already granted",
+Toast.LENGTH_SHORT).show();
+ } else {
+ // Request camera permission
+ Toast.makeText(this, "Requesting Permission", Toast.LENGTH_SHORT).show();
+ requestCameraPermission();
+ }
+ }
+ // Method to request camera permission
+ public void requestCameraPermission() {
+ ActivityCompat.requestPermissions(this,
+ new String[]{android.Manifest.permission.CAMERA},
+ CAMERA_PERMISSION_CODE);
+ }
+ // Handle the result of the permission request
+ @Override
+ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+@NonNull int[] grantResults) {
+ super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+ if (requestCode == CAMERA_PERMISSION_CODE) {
+ if (grantResults.length > 0 && grantResults[0] ==
+PackageManager.PERMISSION_GRANTED) {
+ // Permission was granted
+ Toast.makeText(this, "Camera Permission Granted",
+Toast.LENGTH_SHORT).show();
+ } else {
+ // Permission was denied
+ Toast.makeText(this, "Camera Permission Denied",
+Toast.LENGTH_SHORT).show();
+ }
+ }
+ }
+}

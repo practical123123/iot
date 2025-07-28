@@ -1,0 +1,99 @@
+Aim : The Android Intent Class
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ android:orientation="vertical"
+ tools:context=".MainActivity"
+ android:padding="16dp">
+ <!-- EditText for user input -->
+ <EditText
+ android:id="@+id/editText_text"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:hint="Enter a value"
+ android:textSize="48dp"
+ android:inputType="text" />
+ <!-- Button to trigger action -->
+ <Button
+ android:id="@+id/button_click"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:text="Click"
+ android:layout_gravity="center"
+ android:onClick="showntext" />
+</LinearLayout>
+
+MainActivity.java
+package com.example.prac6;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ }
+ // This method is triggered when the button is clicked
+ public void showntext(View view) {
+ // Get the EditText view
+ EditText ed = findViewById(R.id.editText_text);
+ // Get the text entered in the EditText
+ String msg = ed.getText().toString();
+ // Create an Intent to start the newpage activity
+ Intent in = new Intent(this, newpage.class);
+ // Pass the value to the new activity
+ in.putExtra("my key", msg);
+ // Start the new activity
+ startActivity(in);
+ }
+}
+
+activity_newpage.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+ android:id="@+id/main"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".newpage">
+ <!-- TextView to display some text -->
+ <TextView
+ android:id="@+id/textView_view"
+ android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+ android:text="New Text"
+ android:textSize="20sp"
+ android:layout_centerInParent="true" />
+</RelativeLayout>
+
+newpage.java
+package com.example.prac6;
+import android.os.Bundle;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+public class newpage extends AppCompatActivity {
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_newpage);
+ // Find the TextView
+ TextView tv1 = findViewById(R.id.textView_view);
+ // Get the value passed through the intent
+ String myvalue = getIntent().getStringExtra("my key");
+ // Check if the value is null
+ if (myvalue != null) {
+ tv1.setText("Value = " + myvalue);
+ } else {
+ tv1.setText("No value passed");
+ }
+ }
+}
