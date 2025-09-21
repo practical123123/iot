@@ -1,0 +1,2467 @@
+﻿Index
+
+
+Practical 
+No:
+	Details
+	1
+	Introduction to Android studio and User Interface components 
+1. Design an app to demonstrate use of different views (ButtonView, TextView etc) 
+   2. Design “Hello World” application. That will display “Hello World” in the      middle of the screen in the red color with white background.
+	2
+	Introduction to Activity and Intent 
+1. Create a sample application with a login module. (Check username and password) On successful login, go to the next screen and on failed login,
+alert the user using Toast. Also pass the username to the next screen. 
+2. Create an application to pass numeric values from one screen to another.
+	3 
+	Working with Layout 
+1. Create a calculator app that performs addition, subtraction, division and multiplication operations on numbers using Linear Layout. 
+2. Design an app for the Kilometer Converter using Absolute layout.
+	4
+	Introduction to Widgets 
+1. Design a simple application with datepicker widget in android. 
+2. Design a simple application with TimePicker widget in android.
+	5
+	Understand resource folders: 
+Create a spinner application to use strings taken from the resource directory.
+	6
+	Understand Menu option. 
+1. Create an application that will change the background image of the screen, based on selected options from the menu. 
+2. Create an application using a menu with 5 options. The selected option should appear in the textbox.
+	
+
+
+
+7
+	Understand Notifications 
+Create an application that will display toast (Message) on a specific interval of time
+	8 
+	Working with android Speech 
+Create an application that converts entered text into speech.
+	9
+	Database Programming with SQLite
+	10 
+	Working with Map 
+ Design the mobile app working with Map.
+	11
+	Introduction to Xamarin & First App 
+1. Introduction to Xamarin & Cross-Platform Development 
+Overview of Xamarin, Xamarin.Forms, Xamarin.Android, and Xamarin.iOS Setting up the Xamarin development environment (Visual Studio, SDKs, Emulators) 
+2. Creating Your First Xamarin App 
+Understanding the structure of a Xamarin.Forms project 
+Designing a simple UI using XAML 
+Running the app on an Android emulator
+	12 
+	UI Design & Navigation 
+1. Layouts and Controls in Xamarin.Forms 
+StackLayout, Grid, AbsoluteLayout, FlexLayout 
+Common controls: Button, Label, Entry, ListView 
+2. Navigation and Data Passing 
+ NavigationPage and TabbedPage 
+ Passing data between pages
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 1
+
+
+Introduction to Android studio and User Interface components
+
+
+1. Design an app to demonstrate use of different views (ButtonView, TextView etc)
+
+
+Input:-
+
+
+MainActivity.kt 
+package com.example.shivamproject
+
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+       // Find views by their IDs
+       val editTextName = findViewById<EditText>(R.id.editTextName)
+       val checkboxTerms = findViewById<CheckBox>(R.id.checkboxTerms)
+       val buttonSubmit = findViewById<Button>(R.id.buttonSubmit)
+       val textGreeting = findViewById<TextView>(R.id.textGreeting)
+
+
+       buttonSubmit.setOnClickListener {
+           val name = editTextName.text.toString()
+           val isChecked = checkboxTerms.isChecked
+
+
+           if (isChecked) {
+               textGreeting.text = "Good morning, $name!"
+           } else {
+               textGreeting.text = "Please accept the terms and conditions."
+           }
+       }
+   }
+}
+
+
+Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:padding="24dp">
+
+
+   <!-- Name Input -->
+   <EditText
+       android:id="@+id/editTextName"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:hint="Enter your name"
+       android:padding="12dp"
+       android:background="@drawable/ic_launcher_background"
+       android:textColorHint="#888888"
+       android:inputType="textPersonName"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent" />
+
+
+   <!-- Terms and Conditions Checkbox -->
+   <CheckBox
+       android:id="@+id/checkboxTerms"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Agree to Terms and Conditions"
+       app:layout_constraintTop_toBottomOf="@id/editTextName"
+       app:layout_constraintStart_toStartOf="parent"
+       android:layout_marginTop="16dp" />
+
+
+   <!-- Submit Button -->
+   <Button
+       android:id="@+id/buttonSubmit"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Enter"
+       android:padding="12dp"
+       app:layout_constraintTop_toBottomOf="@id/checkboxTerms"
+       app:layout_constraintStart_toStartOf="parent"
+       android:layout_marginTop="16dp" />
+
+
+   <!-- Greeting Output -->
+   <TextView
+       android:id="@+id/textGreeting"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:text=""
+       android:textSize="18sp"
+       android:textColor="#000000"
+       app:layout_constraintTop_toBottomOf="@id/buttonSubmit"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       android:layout_marginTop="24dp"
+       android:textStyle="bold"
+       android:gravity="center" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+[1B] Design “Hello World” application. That will display ‘Hello World’ in the middle of the red color with white background.
+
+
+SoureCode : 
+
+
+Acitivity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main_layout"
+   android:layout_height="match_parent"
+   android:layout_width="match_parent"
+   android:background="@android:color/white"
+   tools:context=".MainActivity">
+
+
+   <TextView
+       android:id="@+id/helloText"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Hello World"
+       android:textColor="@color/black"
+       android:textSize="24sp"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+MainActivity.kt
+
+
+package com.example.newproject
+
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity () {
+   override fun onCreate(savedInstanceState : Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+   }
+}
+
+
+
+
+
+
+OutPut :
+  
+ 
+
+
+
+
+Practical 2
+Introduction to Activity and Intent 
+
+
+1. Create a sample application with a login module. (Check username and password) On successful login, go to the next screen and on failed login, alert the user using Toast. Also pass the username to the next screen. 
+
+
+Input:-
+
+
+Source Code (MainActivity.kt) :
+package com.example.shivam6464
+
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity(){
+   override fun onCreate(savedInstanceState : Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       val etUsername = findViewById<EditText>(R.id.etUsername)
+       val etPassword = findViewById<EditText>(R.id.etPassword)
+       val btnLogin = findViewById<Button>(R.id.btnLogin)
+
+
+       btnLogin.setOnClickListener {
+           val username =etUsername.text.toString()
+           val password = etPassword.text.toString()
+
+
+           if(username.isNotEmpty() && password.isNotEmpty()) {
+               val intent = Intent(this, WelcomeActivity3::class.java)
+               intent.putExtra("username", username)
+               startActivity(intent)
+           } else {
+               etUsername.error="Required"
+               etPassword.error="Required"
+           }
+       }
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Source Code (activity_main.xml) :
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:gravity="center"
+   android:orientation="vertical"
+   android:padding="24dp">
+
+
+   <EditText
+       android:id="@+id/etUsername"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Username"/>
+
+
+   <EditText
+       android:id="@+id/etPassword"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Password"
+       android:inputType="textPassword"
+       android:layout_marginTop="16dp"/>
+
+
+   <Button
+       android:id="@+id/btnLogin"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Submit"
+       android:layout_marginTop="24dp"/>
+</LinearLayout>
+
+
+
+
+
+
+
+
+Source Code (WelcomeAcitivity3.kt) :
+package com.example.shivam6464
+
+
+import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+
+class WelcomeActivity : AppCompatActivity () {
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_welcome3)
+
+
+       val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
+       val username = intent.getStringExtra("username")
+
+
+       tvWelcome.text="welcome, $username!"
+   }
+}
+
+
+}
+
+
+
+
+
+
+Source Code (acitivity_welcome3.xml) :
+
+
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:gravity="center"
+   android:orientation="vertical"
+   android:padding="24dp">
+
+
+   <TextView
+       android:id="@+id/tvWelcome"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Welcome!"
+       android:textSize="24sp"/>
+</LinearLayout>
+
+
+
+
+
+
+
+
+Source Code (AndroidManifest.xml) :
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   package="com.example.shivam6464">
+
+
+   <application
+       android:allowBackup="true"
+       android:icon="@mipmap/ic_launcher"
+       android:label="@string/app_name"
+       android:roundIcon="@mipmap/ic_launcher_round"
+       android:supportsRtl="true"
+       android:theme="@style/Theme.Shivam6464">
+       <activity
+           android:name=".MainActivity"
+           android:exported="true">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
+       <activity android:name=".WelcomeActivity3" />
+   </application>
+
+
+</manifest>
+
+
+
+
+
+
+Outputs :
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Create an application to pass numeric values from one screen to another.
+
+
+Input:-
+
+
+MainActivity.kt
+
+
+package com.example.shivam6464
+
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity() {
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       val etNumber = findViewById<EditText>(R.id.etNumber)
+       val btnSend = findViewById<Button>(R.id.btnSend)
+
+
+       btnSend.setOnClickListener {
+           val numberText = etNumber.text.toString()
+           if (numberText.isNotEmpty()) {
+               val number = numberText.toIntOrNull()
+               if (number != null) {
+                   val intent = Intent(this, WelcomeActivity3::class.java)
+                   intent.putExtra("number", number)
+                   startActivity(intent)
+               } else {
+                   etNumber.error = "Enter a valid number"
+               }
+           } else {
+               etNumber.error = "Required"
+           }
+       }
+   }
+}
+
+
+Activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:gravity="center"
+   android:orientation="vertical"
+   android:padding="24dp">
+
+
+   <EditText
+       android:id="@+id/etNumber"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Enter a number"
+       android:inputType="number" />
+
+
+   <Button
+       android:id="@+id/btnSend"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Send"
+       android:layout_marginTop="24dp"/>
+</LinearLayout>
+
+
+
+
+WelcomeActivity3.kt
+
+
+package com.example.shivam6464
+
+
+import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+
+class WelcomeActivity3 : AppCompatActivity() {
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_welcome3)
+
+
+       val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
+       val number = intent.getIntExtra("number", 0)
+       tvWelcome.text = "Received Number: $number"
+   }
+}
+
+
+
+
+Activity_welcome3.xml
+
+
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:gravity="center"
+   android:orientation="vertical"
+   android:padding="24dp">
+
+
+   <TextView
+       android:id="@+id/tvWelcome"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Received Number!"
+       android:textSize="24sp"/>
+</LinearLayout>
+AndroidManifest.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   package="com.example.shivam6464">
+
+
+   <application
+       android:allowBackup="true"
+       android:icon="@mipmap/ic_launcher"
+       android:label="@string/app_name"
+       android:roundIcon="@mipmap/ic_launcher_round"
+       android:supportsRtl="true"
+       android:theme="@style/Theme.Shivam6464">
+       <activity
+           android:name=".MainActivity"
+           android:exported="true">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
+       <activity android:name=".WelcomeActivity3" />
+   </application>
+
+
+</manifest>
+
+
+Output:-
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 3
+
+
+Working with Layout
+1. Create a calculator app that performs addition, subtraction, division and multiplication operations on numbers using Linear Layout.
+
+
+Source Code ( MainActivity.kt ) :
+
+
+package com.example.shivam6464
+
+
+import android.os.Bundle
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   private lateinit var number1: EditText
+   private lateinit var number2: EditText
+   private lateinit var btnAdd: Button
+   private lateinit var btnSubtract: Button
+   private lateinit var btnMultiply: Button
+   private lateinit var btnDivide: Button
+   private lateinit var resultText: TextView
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       number1 = findViewById(R.id.number1)
+       number2 = findViewById(R.id.number2)
+       btnAdd = findViewById(R.id.btnAdd)
+       btnSubtract = findViewById(R.id.btnSubtract)
+       btnMultiply = findViewById(R.id.btnMultiply)
+       btnDivide = findViewById(R.id.btnDivide)
+       resultText = findViewById(R.id.resultText)
+
+
+       btnAdd.setOnClickListener { calculate("+") }
+       btnSubtract.setOnClickListener { calculate("-") }
+       btnMultiply.setOnClickListener { calculate("*") }
+       btnDivide.setOnClickListener { calculate("/") }
+   }
+
+
+   private fun calculate(operator: String) {
+       val input1 = number1.text.toString()
+       val input2 = number2.text.toString()
+
+
+       if (input1.isEmpty() || input2.isEmpty()) {
+           resultText.text = "Please enter both numbers"
+           return
+       }
+
+
+       val num1 = input1.toDouble()
+       val num2 = input2.toDouble()
+       val result: Double = when (operator) {
+           "+" -> num1 + num2
+           "-" -> num1 - num2
+           "*" -> num1 * num2
+           "/" -> {
+               if (num2 == 0.0) {
+                   resultText.text = "Cannot divide by zero"
+                   return
+               } else {
+                   num1 / num2
+               }
+           }
+           else -> 0.0
+       }
+
+
+       resultText.text = "Result: $result"
+   }
+}
+
+
+
+
+
+
+Source Code (activity_main.xml) :
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:orientation="vertical"
+   android:padding="20dp"
+   android:gravity="center_horizontal">
+
+
+   <EditText
+       android:id="@+id/number1"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Enter first number"
+       android:inputType="numberDecimal" />
+
+
+   <EditText
+       android:id="@+id/number2"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Enter second number"
+       android:inputType="numberDecimal" />
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:gravity="center"
+       android:layout_marginTop="20dp">
+
+
+       <Button
+           android:id="@+id/btnAdd"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="+" />
+
+
+       <Button
+           android:id="@+id/btnSubtract"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="-" />
+
+
+       <Button
+           android:id="@+id/btnMultiply"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="×" />
+
+
+       <Button
+           android:id="@+id/btnDivide"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="÷" />
+   </LinearLayout>
+
+
+   <TextView
+       android:id="@+id/resultText"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Result: "
+       android:textSize="18sp"
+       android:layout_marginTop="20dp" />
+</LinearLayout>
+
+
+
+
+OutPut :
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Design an app for the Kilometer Converter using Absolute layout.
+
+
+Input:-
+
+
+MainActivity.kt
+
+
+package com.example.shivam6464
+
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       val kmInput = findViewById<EditText>(R.id.kmInput)
+       val convertButton = findViewById<Button>(R.id.convertButton)
+       val resultView = findViewById<TextView>(R.id.resultView)
+
+
+       convertButton.setOnClickListener {
+           val kmText = kmInput.text.toString().trim()
+
+
+           if (kmText.isNotEmpty()) {
+               try {
+                   val km = kmText.toDouble()
+
+
+                   // Converting kilometers to other units
+                   val miles = km * 0.621371
+                   val meters = km * 1000
+                   val feet = km * 3280.84
+
+
+                   resultView.text = "Miles: %.2f\nMeters: %.2f\nFeet: %.2f".format(miles, meters, feet)
+               } catch (e: NumberFormatException) {
+                   resultView.text = "Invalid number format"
+               }
+           } else {
+               resultView.text = "Please enter a value"
+           }
+       }
+   }
+}
+
+
+
+
+Activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity"
+   android:padding="16dp">
+
+
+   <EditText
+       android:id="@+id/kmInput"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:hint="enter km"
+       android:inputType="numberDecimal"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toStartOf="@id/convertButton"
+       app:layout_constraintTop_toTopOf="parent"
+       android:layout_marginEnd="8dp"
+       />
+
+
+   <Button
+       android:id="@+id/convertButton"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="convert"
+       app:layout_constraintTop_toTopOf="@id/kmInput"
+       app:layout_constraintBottom_toBottomOf="@id/kmInput"
+       app:layout_constraintEnd_toEndOf="parent" />
+
+
+   <TextView
+       android:id="@+id/resultView"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:text="converted:"
+       android:textSize="18sp"
+       app:layout_constraintTop_toBottomOf="@id/kmInput"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       android:layout_marginTop="24dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Practical 4
+Introduction to Widgets
+
+
+1. Design a simple application with datepicker widget in android.
+
+
+Input:-
+ MainActivity.kt
+package com.example.shivam6464
+
+
+import android.app.DatePickerDialog
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.TextView
+import java.util.*
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   private lateinit var btnSelectDate: Button
+   private lateinit var tvSelectedDate: TextView
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       btnSelectDate = findViewById(R.id.btnSelectDate)
+       tvSelectedDate = findViewById(R.id.tvSelectedDate)
+
+
+       btnSelectDate.setOnClickListener {
+           val calendar = Calendar.getInstance()
+           val year = calendar.get(Calendar.YEAR)
+           val month = calendar.get(Calendar.MONTH)
+           val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+
+           val datePickerDialog = DatePickerDialog(
+               this,
+               { _, selectedYear, selectedMonth, selectedDay ->
+                   val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                   tvSelectedDate.text = "Selected Date: $selectedDate"
+               },
+               year, month, day
+           )
+
+
+           datePickerDialog.show()
+       }
+   }
+}
+
+
+Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:orientation="vertical"
+   android:gravity="center"
+   android:padding="20dp">
+
+
+   <Button
+       android:id="@+id/btnSelectDate"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Select Date" />
+
+
+   <TextView
+       android:id="@+id/tvSelectedDate"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Selected date will appear here"
+       android:layout_marginTop="20dp"
+       android:textSize="18sp"/>
+</LinearLayout>
+
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Design a simple application with TimePicker widget in android.
+
+
+Input:-
+
+
+MainActivity.kt
+
+
+package com.example.shivam6464
+
+
+import android.app.TimePickerDialog
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
+
+
+
+
+class MainActivity : AppCompatActivity (){
+
+
+   private lateinit var btnSelectTime: Button
+   private lateinit var tvSelectedTime: TextView
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       btnSelectTime = findViewById(R.id.btnSelectTime)
+       tvSelectedTime = findViewById(R.id.tvSelectedTime)
+
+
+       btnSelectTime.setOnClickListener {
+           val calendar = Calendar.getInstance()
+           val hour = calendar.get(Calendar.HOUR_OF_DAY)
+           val minute = calendar.get(Calendar.MINUTE)
+
+
+           val timePickerDialog = TimePickerDialog(
+               this,
+           { _, selectedHour, selectedMinute->
+               val time =String.format("%02d:%02d", selectedHour, selectedMinute)
+               tvSelectedTime.text="selected time: $time"
+           },
+           hour,
+           minute,
+           true
+         )
+
+
+           timePickerDialog.show()
+       }
+   }
+}
+
+
+Activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:orientation="vertical"
+   android:gravity="center"
+   android:padding="20dp"
+   tools:context=".MainActivity">
+
+
+   <Button
+       android:id="@+id/btnSelectTime"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Select Time"/>
+
+
+   <TextView
+       android:id="@+id/tvSelectedTime"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="selected date will appear hear"
+       android:layout_marginTop="20dp"
+       android:textSize="18sp"/>
+</LinearLayout>
+
+
+Output:-
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL-5
+
+
+
+
+Create a spinner application to use strings taken from the resource directory.
+
+
+Input:-
+
+
+MainActivity.kt
+
+
+package com.example.myapplication
+import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   private lateinit var spinnerCity: Spinner
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)  // ✅ Correct placement
+
+
+       spinnerCity = findViewById(R.id.spinnerCity)
+
+
+       // Load string-array from resources
+       val cityArray = resources.getStringArray(R.array.city_Array)
+
+
+       // Setup ArrayAdapter
+       val adapter = ArrayAdapter(
+           this,
+           android.R.layout.simple_spinner_item,
+           cityArray
+       )
+       adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+       spinnerCity.adapter = adapter
+
+
+       // Handle item selection
+       spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+           override fun onItemSelected(
+               parent: AdapterView<*>,
+               view: View,
+               position: Int,
+               id: Long
+           ) {
+               val selectedCity = parent.getItemAtPosition(position).toString()
+               Toast.makeText(applicationContext, "Selected: $selectedCity", Toast.LENGTH_SHORT)
+                   .show()
+           }
+
+
+           override fun onNothingSelected(parent: AdapterView<*>) {
+               // Do nothing
+           }
+       }
+   }
+}
+
+
+
+
+Activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:orientation="vertical"
+   android:padding="24dp"
+   android:gravity="center"
+   >
+
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="select a City:"
+       android:textSize="18sp"
+       android:paddingBottom="12dp"/>
+
+
+   <Spinner
+       android:id="@+id/spinnerCity"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
+</LinearLayout>
+
+
+
+
+Strings.xml
+
+
+<string-array name="city_Array">
+   <item>Mumbai</item>
+   <item>Pune</item>
+   <item>Delhi</item>
+   <item>Bangalore</item>
+   <item>Hyderabad</item>
+</string-array>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OutPut :
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 6
+Understand Menu option. 
+
+
+1. Create an application that will change the background image of the screen, based on selected options from the menu.
+
+
+Input:-
+Main activity.kt
+package com.example.myap
+
+
+import android.os.Bundle
+import android.view.MenuInflater
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.PopupMenu
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   private lateinit var mainLayout: ConstraintLayout
+   private lateinit var btnChangeBg: Button
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       mainLayout = findViewById(R.id.mainLayout)
+       btnChangeBg = findViewById(R.id.btnChangeBg)
+
+
+       btnChangeBg.setOnClickListener{showPopupMenu(it)}
+   }
+   private fun showPopupMenu(view: View){
+       val popup = PopupMenu(this, view)
+       val inflater: MenuInflater = popup.menuInflater
+       inflater.inflate(R.menu.menu_main, popup.menu)
+
+
+       popup.setOnMenuItemClickListener { item ->
+           when(item.itemId){
+               R.id.bg1 ->
+                   mainLayout.setBackgroundResource(R.drawable.bg1)
+               R.id.bg2 ->
+                   mainLayout.setBackgroundResource(R.drawable.bg2)
+               R.id.bg3 ->
+      mainLayout.setBackgroundResource(R.drawable.bg3)
+           }
+           true
+       }
+       popup.show()
+   }
+}
+
+
+Activity main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id ="@+id/mainLayout"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity">
+
+
+   <Button
+       android:id ="@+id/btnChangeBg"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Change Background"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+Menu_main.xml
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   tools:context="com.example.myap.MainActivity">
+
+
+   <item
+       android:id="@+id/bg1"
+       android:title="@string/background_1"/>
+   <item
+       android:id="@+id/bg2"
+       android:title="@string/background_2"/>
+   <item
+       android:id="@+id/bg3"
+       android:title="@string/background_3"/>
+</menu>
+
+
+String file : 
+Add this
+
+
+ <string name="background_1">Background 1</string>
+    <string name="background_2">Background 2</string>
+    <string name="background_3">Background 3</string>
+ 
+Output: 
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Create an application using a menu with 5 options. The selected option
+should appear in the textbox.
+
+
+Main_Activity.kt
+package com.example.myapp
+
+
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.appbar.MaterialToolbar
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   private lateinit var txtSelectedOption: TextView
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+       setSupportActionBar(toolbar)
+
+
+       txtSelectedOption = findViewById(R.id.txtSelectedOption)
+   }
+
+
+   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+       menuInflater.inflate(R.menu.menu_main, menu)
+       return true
+   }
+
+
+   override fun onOptionsItemSelected(item: MenuItem): Boolean {
+       when (item.itemId) {
+           R.id.option1 -> txtSelectedOption.text = "You selected Option 1"
+           R.id.option2 -> txtSelectedOption.text = "You selected Option 2"
+           R.id.option3 -> txtSelectedOption.text = "You selected Option 3"
+           R.id.option4 -> txtSelectedOption.text = "You selected Option 4"
+           R.id.option5 -> txtSelectedOption.text = "You selected Option 5"
+       }
+       return super.onOptionsItemSelected(item)
+   }
+}
+
+
+Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:fitsSystemWindows="true"
+ tools:context=".MainActivity">
+
+
+   <!-- Toolbar -->
+   <com.google.android.material.appbar.MaterialToolbar
+       android:id="@+id/toolbar"
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       android:background="?attr/colorPrimary"
+       app:title="Menu Example"
+       app:titleTextColor="@android:color/white"/>
+
+
+   <!-- ConstraintLayout to manage other UI elements -->
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_marginTop="?attr/actionBarSize">
+
+
+       <!-- TextView to show selected option -->
+       <TextView
+           android:id="@+id/txtSelectedOption"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Select option"
+           android:textSize="20sp"
+           android:textStyle="bold"
+           android:layout_marginTop="50dp"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"/>
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+Androidmainfest.xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools">
+
+
+   <application
+       android:allowBackup="true"
+       android:dataExtractionRules="@xml/data_extraction_rules"
+       android:fullBackupContent="@xml/backup_rules"
+       android:icon="@mipmap/ic_launcher"
+  android:label="@string/app_name"
+       android:roundIcon="@mipmap/ic_launcher_round"
+       android:supportsRtl="true"
+       android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+       tools:targetApi="31">
+       <activity
+           android:name=".MainActivity"
+           android:exported="true"
+           android:theme="@style/Theme.Myapp">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
+   </application>
+
+
+
+
+</manifest>
+
+
+Menu_main.xml
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+   <item android:id="@+id/option1"
+       android:title="option1" />
+
+
+   <item android:id="@+id/option2"
+       android:title="option2" />
+
+
+   <item android:id="@+id/option3"
+       android:title="option3" />
+
+
+   <item android:id="@+id/option4"
+       android:title="option4" />
+
+
+   <item android:id="@+id/option5"
+       android:title="option5" />
+
+
+</menu>
+
+
+
+
+Output:- 
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical No.7
+
+
+1. Create an application that will display toast (Message) on a specific interval of time.
+
+
+MainActivity.kt
+
+
+package com.example.myapp
+
+
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   private val handler = Handler(Looper.getMainLooper())
+   private val interval: Long = 5000 // 5 seconds interval
+
+
+   private val showToastRunnable = object : Runnable {
+       override fun run() {
+           Toast.makeText(applicationContext, "This is a Toast message!", Toast.LENGTH_SHORT).show()
+           handler.postDelayed(this, interval) // repeat again after interval
+       }
+   }
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       // Start showing toast at interval
+       handler.postDelayed(showToastRunnable, interval)
+   }
+}
+
+
+Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:orientation="vertical"
+   android:gravity="center"
+   android:padding="16dp">
+ <!-- A simple TextView for reference -->
+   <TextView
+       android:id="@+id/textMessage"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Toast App Running..."
+       android:textSize="18sp"
+       android:textColor="@android:color/black"
+       android:gravity="center" />
+
+
+</LinearLayout>
+
+
+
+
+Output:- 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical No.8
+
+
+Create an application that converts entered text into speech.
+
+
+main_Activity.kt
+package com.example.myaman
+import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
+
+
+class MainActivity :AppCompatActivity(), TextToSpeech.OnInitListener {
+   private lateinit var tts: TextToSpeech
+   private lateinit var etText: EditText
+   private lateinit var btnSpeak: Button
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       etText = findViewById(R.id.etText)
+       btnSpeak = findViewById(R.id.btnSpeak)
+
+
+       tts = TextToSpeech(this, this)
+       btnSpeak.setOnClickListener {
+           val text = etText.text.toString()
+           if (text.isNotEmpty()) {
+               tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
+           }
+       }
+   }
+
+
+   override fun onInit(status: Int) {
+       if(status == TextToSpeech.SUCCESS){
+           val result = tts.setLanguage(Locale.US)
+           if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+
+
+           }
+       }
+   }
+}
+
+
+
+
+Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:orientation="vertical"
+   android:padding="20dp"
+   android:gravity="center">
+
+
+   <EditText
+       android:id="@+id/etText"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Enter text here"
+       android:textSize="18sp"
+       android:layout_marginBottom="20dp"/>
+
+
+   <!--speak Button-->
+   <Button
+       android:id="@+id/btnSpeak"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Speak Text"/>
+</LinearLayout>
+
+
+Output:- 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical-9
+
+
+A-Database Programming with SQLite.
+
+
+
+
+MainActivity.Kt-
+
+
+package com.example.practical9
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.*
+class MainActivity : AppCompatActivity() {
+   private lateinit var db: StudentDatabaseHelper
+   private lateinit var etName : EditText
+   private lateinit var etCourse : EditText
+   private lateinit var btnAdd : Button
+   private lateinit var btnShow : Button
+   private lateinit var tvResult: TextView
+   override fun onCreate(savedInstanceState: Bundle?){
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+       db = StudentDatabaseHelper(this)
+       etName = findViewById(R.id.etName)
+       etCourse = findViewById(R.id.etCourse)
+       btnAdd = findViewById(R.id.btnAdd)
+       btnShow = findViewById(R.id.btnShow)
+       tvResult = findViewById(R.id.tvResult)
+       btnAdd.setOnClickListener {
+           val name = etName.text.toString().trim()
+           val course = etCourse.text.toString().trim()
+           if (name.isEmpty() || course.isEmpty()) {
+               Toast.makeText(this, "Enter Name and Course", Toast.LENGTH_SHORT).show()
+           } else {
+               val success = db.insertStudent(name, course)
+               if (success) {
+                   Toast.makeText(this, "Student Added", Toast.LENGTH_SHORT).show()
+                   etName.text.clear()
+                   etCourse.text.clear()
+               } else {
+                   Toast.makeText(this, "Insert Failed", Toast.LENGTH_SHORT).show()
+               }
+           }
+       }
+       btnShow.setOnClickListener {
+           val list = db.getAllStudents()
+           tvResult.text = if(list.isEmpty())"No Student yet." else list.joinToString("\n")
+       }
+   }
+}
+
+
+StudentHelper.kt
+package com.example.practical9
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+class StudentDatabaseHelper (context: Context):
+   SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+   companion object {
+       private const val DATABASE_NAME = "studentDB.db"
+       private const val DATABASE_VERSION = 1
+       const val TABLE_NAME = "Student"
+       const val COL_ID = "id"
+       const val COL_NAME = "name"
+       const val COL_COURSE = "course"
+   }
+   override fun onCreate(db: SQLiteDatabase?) {
+       val createTable = """
+           CREATE TABLE $TABLE_NAME(
+           $COL_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+           $COL_NAME TEXT NOT NULL,
+           $COL_COURSE TEXT NOT NULL
+           )
+       """.trimIndent()
+       db?.execSQL(createTable)
+   }
+   override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+       db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+       onCreate(db)
+   }
+   fun insertStudent(name: String, course: String): Boolean {
+       val db = writableDatabase
+       val values = ContentValues().apply {
+           put(COL_NAME, name)
+           put(COL_COURSE, course)
+       }
+       val rowId = db.insert(TABLE_NAME, null, values)
+       db.close()
+       return rowId != -1L
+   }
+   fun getAllStudents(): List<String> {
+       val result = mutableListOf<String>()
+       val db = readableDatabase
+       val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME ORDER BY $COL_ID ASC", null)
+       cursor.use {
+           if (it.moveToFirst()) {
+               do {
+                   val id = it.getInt(it.getColumnIndexOrThrow(COL_ID))
+                   val name = it.getString(it.getColumnIndexOrThrow(COL_NAME))
+                   val course = it.getString(it.getColumnIndexOrThrow(COL_COURSE))
+                   result.add("$id.$name---$course")
+               } while (it.moveToNext())
+           }
+       }
+       db.close()
+       return result
+   }
+}
+
+
+Activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/layout_main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:orientation="vertical"
+   android:padding="16dp"
+   tools:context=".MainActivity">
+   <!-- Name Input -->
+   <EditText
+       android:id="@+id/etName"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Enter Name"
+       android:inputType="textPersonName"
+       android:padding="10dp" />
+   <!-- Course Input -->
+   <EditText
+       android:id="@+id/etCourse"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="Enter Course"
+       android:inputType="text"
+       android:padding="10dp"
+       android:layout_marginTop="8dp" />
+   <!-- Add Button -->
+   <Button
+       android:id="@+id/btnAdd"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Add Student"
+       android:layout_marginTop="16dp" />
+   <!-- Show Button -->
+   <Button
+       android:id="@+id/btnShow"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Show Students"
+       android:layout_marginTop="8dp" />
+   <!-- Result Text -->
+   <TextView
+       android:id="@+id/tvResult"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Student List will appear here"
+       android:textSize="16sp"
+       android:paddingTop="16dp"
+       android:padding="10dp"
+       android:textColor="#000000" />
+</LinearLayout>
+Output:-
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       Practical 10 
+Working with Map 
+ Design the mobile app working with Map.
+
+
+Source Code:-
+MainActivity.kt 
+package com.example.a6464
+
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+
+
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+
+
+   private lateinit var map : GoogleMap
+
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+
+       val mapFragment = supportFragmentManager
+           .findFragmentById(R.id.map) as SupportMapFragment
+       mapFragment.getMapAsync(this)
+   }
+
+
+   override fun onMapReady(googleMap: GoogleMap) {
+       map = googleMap
+
+
+       // Marker at Google HQ
+       val googleHQ = LatLng(37.4220, -122.0841)
+       map.addMarker(MarkerOptions().position(googleHQ).title("Google HQ"))
+       map.moveCamera(CameraUpdateFactory.newLatLngZoom(googleHQ, 15f))
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Activitymain.Xml
+<?xml version="1.0" encoding="utf-8"?>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/map"
+   android:name="com.google.android.gms.maps.SupportMapFragment"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:ignore="MissingClass" />
+
+
+AndroidManifest.Xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools">
+
+
+   <application
+       android:allowBackup="true"
+       android:dataExtractionRules="@xml/data_extraction_rules"
+       android:fullBackupContent="@xml/backup_rules"
+       android:icon="@mipmap/ic_launcher"
+       android:label="@string/app_name"
+       android:roundIcon="@mipmap/ic_launcher_round"
+       android:supportsRtl="true"
+       android:theme="@style/Theme._6466"
+       tools:targetApi="31">
+       <meta-data
+           android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyClU7hdQQwNiya1fwo6RmIg9x7jnw60Yhw" />
+       <activity
+           android:name=".MainActivity"
+           android:exported="true"
+           android:theme="@style/Theme._6466">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
+   </application>
+
+
+</manifest>
+
+
+Build.Gradle.Kts
+plugins {
+   alias(libs.plugins.android.application)
+   alias(libs.plugins.kotlin.android)
+}
+
+
+android {
+   namespace = "com.example.a6466"
+   compileSdk = 36
+
+
+   defaultConfig {
+       applicationId = "com.example.a6466"
+       minSdk = 24
+       targetSdk = 36
+       versionCode = 1
+       versionName = "1.0"
+
+
+       testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+   }
+
+
+   buildTypes {
+       release {
+           isMinifyEnabled = false
+           proguardFiles(
+               getDefaultProguardFile("proguard-android-optimize.txt"),
+               "proguard-rules.pro"
+           )
+       }
+   }
+   compileOptions {
+       sourceCompatibility = JavaVersion.VERSION_11
+       targetCompatibility = JavaVersion.VERSION_11
+   }
+   kotlinOptions {
+       jvmTarget = "11"
+   }
+   buildFeatures {
+       viewBinding = true
+   }
+}
+
+
+dependencies {
+
+
+   implementation(libs.androidx.core.ktx)
+   implementation(libs.androidx.appcompat)
+   implementation(libs.material)
+   implementation(libs.androidx.constraintlayout)
+   implementation(libs.androidx.navigation.fragment.ktx)
+   implementation(libs.androidx.navigation.ui.ktx)
+   implementation("com.google.android.gms:play-services-maps:18.1.0")
+   testImplementation(libs.junit)
+   androidTestImplementation(libs.androidx.junit)
+   androidTestImplementation(libs.androidx.espresso.core)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In Gradle Scripts In Module App Change Compile Sdk & Target Sdk To 36
+Output
