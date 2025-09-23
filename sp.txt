@@ -1,0 +1,2081 @@
+﻿Full Stack Development using MERN Technologies Index
+
+
+Practical No
+
+
+	Details
+	Date
+	1 
+	Introduction to MERN & Project Setup
+	
+
+	a
+	Create a Simple “Hello World” React application using JSX.
+	27-06-2025
+	b
+	Install and configure Node.js &amp; npm, and create a basic Express server.
+	04-07-2025
+	c
+	Explore and list down the tools and libraries commonly used in MERN development.
+
+
+	04-07-2025
+	2 
+	React Components  State & Management
+	
+
+	a
+	Create a simple React app demonstrating Class Form components with Props and Children.
+
+
+	11-07-2025
+	b
+	Implement event handling and state updates using the useState Hook.
+	11-07-2025
+	3
+	Express.JS & GraphQL Basics
+	
+
+	a
+	Set up a simple Express server with routing and middleware.
+	18-07-2025
+	b
+	Create a REST API endpoint that returns a list of students.
+	18-07-2025
+	4
+	MongoDB Integration & CRUD Operations
+	
+
+	a
+	Set up a MongoDB and perform CRUD operations using the MongoDB shell.
+	25-07-2025
+	b
+	Create a Node.js application that connects to MongoDB and performs CRUD operations.
+	01-08-2025
+	5
+	Modularization & Webpack Configuration
+	Remove 
+	6
+	React-Router & Navigation
+	
+
+	a
+	Implement basic navigation using React Router with different router components.
+
+
+	03-08-2025
+	b
+	Use route parameters and query parameters to pass data between pages.
+	03-08-2025
+	7
+	React Forms & API Integration
+	
+
+	a
+	Build a form using React-controlled components &amp; validate inputs.
+	10-09-2025
+	b
+	Integrate the form with an API to store form data in MongoDB.
+	10-09-2025
+	8
+	React-Bootstrap & UI Components
+	
+
+	a
+	Create a UI layout using React-Bootstrap components like Navbar, Buttons and Tables.
+
+
+	22-08-2025
+	b
+	Implement a responsive grid system with Bootstrap.
+	
+
+	9
+	Server Rendering & Performance Optimization
+	REMOVE
+	10
+	Authentication & Deployment
+	
+
+	a
+	Implement Google Sign-In and JWT-based authentication in a MERN app.
+	12-09-2025
+	b
+	Configure Role-Based Access Control (RBAC) using React Context API.
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+Practical-1
+
+
+* Introduction to MERN & Project Setup
+A]Create a Simple “Hello World” React application using JSX.
+
+
+Source code:-
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pro MERN Stack</title>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+0<script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+</head>
+<body>
+<div id="contents"></div>
+<script type="text/babel">
+const element = (
+<div title="Outer div">
+<h1>Hello World!</h1>
+</div>
+);
+ReactDOM.render(element, document.getElementById('contents'));
+</script>
+</body>
+</html>
+
+
+
+
+	
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Output:-
+  
+
+________________
+
+
+B]Install and configure Node.js & npm, and create a basic Express server.
+Source code:-Node.js Installation & Setup:
+  
+
+  
+
+  
+
+
+
+Check the node install version using Command line:
+  
+
+
+
+React Install:                                                                                                                                                                                                             Command: npm install -g create-react-app test(folder name)
+Creating React Project: 
+Command: npm create react-app test(Project file name)
+
+
+
+
+
+Practical-2
+
+
+
+
+Code : 
+App.js 
+
+
+import React from 'react'
+import './App.css';
+import Message from './message';
+
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Hello from class component</h1>
+        <Message name="Amod">This is passed as children to the message component</Message>
+        <Message children ="Myself"></Message>
+        This is children props
+      </header>
+    </div>
+  );
+}
+export default App;
+	
+
+
+
+message .js
+
+
+import react from 'react';
+function Message(props){
+    return(
+        <div className='message-card'>
+        <h2> {props.name}</h2>
+        <p>{props.children}</p>
+        </div>
+    );    
+}
+export default Message;
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________
+
+
+
+
+B]Implement event handling and state updates using the useState Hook.
+Code : 
+App .js
+ 
+import React from 'react'
+import './App.css';
+import  TextForm from './TextForm';
+
+
+function App() {
+  return (
+    <div className="App">
+      <center> <TextForm heading="Enter the text to analysis below"/>
+      </center>
+    </div>
+  );
+}
+export default App;
+
+
+	
+
+
+
+TextForm.js 
+import React, { useState } from 'react'
+export default function Textform(props) {
+
+
+  const handleUpClick = () => {
+    console.log("Uppercase was clicked: " + text);
+    let newText = text.toUpperCase();
+    setText(newText);
+  }
+
+
+  const handleLowClick = () => {
+    console.log("Lowercase was clicked: " + text);
+    let newText = text.toLowerCase();
+    setText(newText);
+  }
+
+
+  const handleOnChange = (event) => {
+    console.log("On Change");
+    setText(event.target.value);
+  }
+
+
+  const [text, setText] = useState('Enter text here');
+
+
+  return (
+    <div>
+      <h1>{props.heading}</h1>
+      <textarea
+        className="textarea"  
+        value={text}
+        onChange={handleOnChange}
+        id="myBox"
+        rows="8">
+      </textarea>
+      <br />
+      <button className="Button" onClick={handleUpClick}>
+        Convert to Uppercase
+      </button>
+      <button className="Button" onClick={handleLowClick}>
+        Convert to Lowercase
+      </button>
+    </div>
+  );
+}
+
+
+	
+
+
+
+
+
+Output:
+  
+
+  
+
+  
+
+
+
+________________
+
+
+Practical-3
+
+
+
+
+* Express.JS & GraphQL Basics
+A]Set up a simple Express server with routing and middleware.
+
+
+Express install command :-
+=> npm init -y
+=> npm i express
+
+
+Output:-
+
+
+1. Set up a simple Express server with routing and middleware.
+
+
+
+
+Step to install Express : 
+
+
+Step 1 : npm init -y
+Step 2: npm install express
+
+
+
+
+
+
+
+
+Index.js
+const express = require('express');
+const path = require('path');
+
+
+const app = express();
+const port = 3000;
+
+
+// static files serve karne ke liye
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// home route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
+
+
+// server start
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+
+
+
+
+  
+
+Home.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>My First Heading</h1>
+  <p>My first paragraph.</p>
+</body>
+</html>
+
+
+
+
+  
+
+
+
+
+
+OUTPUT : 
+  
+
+
+
+
+
+
+
+
+
+B]Create a REST API endpoint that returns a list of students.
+
+
+Source code:-
+index.js
+
+
+const express = require('express');
+const app = express();
+const port = 3000;
+app.listen (
+    port,
+    () => console.log(`Server is running on ${port}`)
+);
+const students = [
+    {RollNo: 6526, Name:'Sandeep yadav', Age: 21},
+    {RollNo: 6509, Name:'Rupesh kanojiya', Age: 20},
+    {RollNo: 6403, Name:'shivam maurya, Age: 20},
+    {RollNo: 6405, Name:'neeraj maurya, Age: 21}
+]
+app.get ('/students', (req, res) => {
+    res.json(students)
+});
+Input:
+  
+
+
+
+Output:
+  
+
+
+
+
+
+
+
+
+Practical-4
+
+
+
+
+* MongoDB Integration & CRUD Operations
+Step 1: Download mongodb 
+Step 2: Download Mongodb shell
+Step3 : set environment of both 
+Step 4 : open cmd run this mongod – version
+Step 5: create new folder open in cmd and run this command mongod --dbpath Folder Path
+Step 6: open one more cmd and run this mongosh
+
+
+
+
+A]Set up a MongoDB and perform CRUD operations using the MongoDB shell
+
+
+=> commands & output : 
+1.  Create db use it
+  
+
+2. Create collection(table) & insert documents(records)
+  
+
+3)
+Show collections:
+  
+
+
+
+4)
+Find Documents:
+  
+
+
+
+5)insertOne()
+
+
+      
+
+
+
+
+6)insertMany()
+       
+
+
+7)find()
+      
+8)findOne({})  //with condition    
+
+
+9)findOne ({})   
+  
+
+10)updateOne
+   
+      
+
+
+11)updateMany
+
+
+  
+
+
+
+12)deleteOne
+
+
+  
+
+
+
+13)deleteMany
+
+
+  
+
+
+
+14)delete the entire collection
+
+
+
+
+  
+
+
+
+
+
+B. Create a Node.js application that connects to MongoDB and performs CRUD operations.
+   
+In case MongoDB is not functioning, execute the following command in PowerShell.
+Launch PowerShell : 
+Run this command (Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned)
+
+
+
+
+Install in vs code Terminal one By one 
+1. npm init -y
+2. npm install express
+3. npm install mongoose
+4. npm install mongodb
+Open Mongodb compass
+1. In the Mongo shell, select Save and Connect to initiate your connection. 
+2. Copy the generated connection URL and paste it into your app.js
+Create file 
+app.js
+
+
+const { MongoClient } = require("mongodb");
+async function run() {
+    const client = new MongoClient("mongodb://localhost:27017/");
+    await client.connect();
+
+
+
+
+   
+
+
+
+
+    const db = client.db("XAVERS");
+    const EX_STUDENTS = db.collection("EX_STUDENTS");
+
+
+
+
+    await EX_STUDENTS.insertOne({name: "Sandeep Yadav", roll_no: "6526", class: "TYIT"});
+    await EX_STUDENTS.insertMany([
+        {name: "Amod", roll_no: "6508", class: "TYIT"},
+        {name: "Ray", roll_no: "1003", class: "TYCS"},
+        {name: "Rax", roll_no: "1004", class: "FYCS"},
+        {name: "Aarushi", roll_no: "1005", class: "TYIT"},
+        {name: "Rebecca", roll_no: "1006", class: "FYCS"}
+    ]);
+    const studentCursor = EX_STUDENTS.find();
+    for await (const i of studentCursor){
+        console.log(i);
+    }
+    //await EX_STUDENTS.deleteOne({name : "Aarushi"});
+
+
+
+
+    //await EX_STUDENTS.updateOne({name : "Rebecca"}, {$set:{roll_no : "1005"}});
+    await client.close();
+}
+// Call the async function
+run().catch(console.error);
+
+
+  
+
+
+
+
+
+OUTPUT:
+  
+
+
+
+OUTPUT (MongoDb Compass):
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+DeleteOne & UpdateOne : 
+const { MongoClient } = require("mongodb");
+async function run() {
+    const client = new MongoClient("mongodb://localhost:27017/");
+    await client.connect();
+
+
+
+
+    const db = client.db("XAVERS");
+    const EX_STUDENTS = db.collection("EX_STUDENTS");
+    const studentCursor = EX_STUDENTS.find();
+    for await (const i of studentCursor){
+        console.log(i);
+    }
+    await EX_STUDENTS.deleteOne({name : "Aarushi"});
+    await EX_STUDENTS.updateOne({name : "Rebecca"}, {$set:{roll_no : "1005"}});
+    await client.close();
+}
+// Call the async function
+run().catch(console.error);
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+OUTPUT
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical-6
+
+
+* React-Router & Navigation
+1. Implement basic navigation using React Router with different route components.
+Step  to installation : 
+
+
+Step 1 : create New folder and open with vs code.
+Step 2 : npm install -g create-react-app
+Step 3: npx create -react- app pract6a
+Step  4 : cd pract6a
+Step 5 :npm install react-router-dom
+
+
+Source Code:
+App.js
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+import './App.css';
+function App() {
+  return (
+    <Router>
+      <nav className="navbar">
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+      </nav>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/about" element={<About/>} />
+          <Route path="/contact" element={<Contact/>} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+export default App;
+
+
+
+
+
+
+Home.js
+function Home(){
+  return(
+    <div>
+      <h1>Welcome to home page</h1>
+      <p>
+        Hello this is me testing react router program.
+      </p>
+    </div>
+  );
+}
+export default Home;
+
+
+	
+
+Contact.js
+function Contact(){
+  return(
+    <div>
+      <h1>Contact Us</h1>
+      <p>
+        If you have questions, feel free to contact us
+      </p>
+    </div>
+  );
+}
+export default Contact;
+
+
+	
+
+
+
+
+
+
+
+
+
+About.js
+function About(){
+  return(
+    <div>
+      <h1>About Us</h1>
+      <p>
+        Navigation between multiple pages.
+      </p>
+    </div>
+  );
+}
+export default About;
+
+
+	
+
+
+
+Output:
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+2) Use route parameters and query parameters to pass data between pages
+
+
+app.js
+
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import UserDetails from "./UserDetails";
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/user/:id" element={<UserDetails />} />
+      </Routes>
+    </Router>
+  );
+}
+export default App;
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Home.js
+
+
+import React from "react";
+import { Link } from "react-router-dom";
+function Home() {
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <p>Select a user:</p>
+      <ul>
+        {/* Adding query parameters after ? */}
+        <li>
+          <Link to="/user/1?theme=dark&showPosts=true">User 1</Link>
+        </li>
+        <li>
+          <Link to="/user/2?theme=light&showPosts=false">User 2</Link>
+        </li>
+      </ul>
+    </div>
+  );
+}
+export default Home;
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+UserDetails.js
+import React from "react";
+import { useParams, useLocation, Link } from "react-router-dom";
+function UserDetails() {
+  const { id } = useParams(); // Get user id from route
+  const location = useLocation(); // Get query string
+  // Extract query parameters
+  const queryParams = new URLSearchParams(location.search);
+  const theme = queryParams.get("theme");
+  const showPosts = queryParams.get("showPosts");
+  // Decide background color based on theme
+  const backgroundStyle = {
+    backgroundColor: theme === "dark" ? "#333" : "#f4f4f4",
+    color: theme === "dark" ? "#fff" : "#000",
+    padding: "20px",
+    minHeight: "100vh"
+  };
+  return (
+    <div style={backgroundStyle}>
+      <h1>User Details Page</h1>
+      <p>User ID: {id}</p>
+      <p>Selected Theme: {theme}</p>
+      <p>Show Posts: {showPosts}</p>
+      {/* Back button */}
+      <Link to="/">⬅ Go Back Home</Link>
+    </div>
+  );
+}
+export default UserDetails;
+
+
+	
+
+
+
+Output:
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+PRACTICAL 7
+
+
+1. Build a form using React-controlled components & validate inputs.
+
+
+Source Code :- 
+studentform.js
+import React, { useState } from "react";
+import "./App.css";
+
+
+function StudentForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+
+
+  // Validation inputs
+  const validation = () => {
+    let newErrors = {};
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+
+    if (!name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (!nameRegex.test(name)) {
+      newErrors.name = "Name can only contain letters and spaces";
+    }
+
+
+    if (!email.includes("@")) {
+      newErrors.email = "Enter a valid Email";
+    }
+
+
+    if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+
+    setErrors(newErrors);
+
+
+    // Return true if no errors
+    return Object.keys(newErrors).length === 0;
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+
+    if (validation()) {
+      alert("Form submitted successfully");
+      console.log({ name, email, password });
+
+
+      // Reset form fields
+      setName("");
+      setEmail("");
+      setPassword("");
+      setErrors({});
+    }
+  };
+
+
+  return (
+    <div className="Form-container">
+      <h2>Student</h2>
+
+
+      <form onSubmit={handleSubmit}>
+        {/* Name */}
+        <div className="form-group">
+          <label>Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          {errors.name && <p className="error">{errors.name}</p>}
+        </div>
+
+
+        {/* Email */}
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errors.email && <p className="error">{errors.email}</p>}
+        </div>
+
+
+        {/* Password */}
+        <div className="form-group">
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && <p className="error">{errors.password}</p>}
+        </div>
+
+
+        <button type="submit" className="btn">
+          Register
+        </button>
+      </form>
+    </div>
+  );
+}
+
+
+export default StudentForm;
+
+
+
+
+app.js
+import React from "react";
+import StudentForm from "./studentform";
+
+
+function App() {
+  return (
+    <div className="App">
+      <StudentForm/>
+    </div>
+  );
+}
+
+
+export default App;
+
+
+
+
+App.css
+/* .App {
+  text-align: center;
+}
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+
+
+
+/*form container*/
+.from-container {
+  width: 350px;
+  margin: 50px auto;
+  padding: 20px;
+  border:2px solid #ddd;
+  border-radius:10px;
+  background: #f9f9f9;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/*form group*/
+.form-group {
+  margin-bottom: 15px;
+}
+
+
+/*Input Style*/
+.input{
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border:1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+/*Button*/
+.btn{
+  width: 100%;
+  padding: 10px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.btn:hover{
+  background: #45a049;
+}
+
+
+/*Error message*/
+.error{
+  color:red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
+
+
+Output:-
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7.B. Integrate the form with an API to store form data in MongoDB.
+Steps to Run the Program:
+Step 1 : Create  a New React App
+* Npm create react-app pract_7
+* Cd pract_7
+Step 2 :  Create Folder Server 
+* Mkdir server
+* Cd server
+* Npm install -y
+* Npm install express mongoose cors
+Step 3 : Create a File inside server folder server.js 
+Step 4 : Test the App
+Start backend: node server.js
+
+
+
+
+
+
+1st code
+
+
+App.js
+import React, { useState, useEffect } from "react";
+function App() {
+  const [form, setForm] = useState({ name: "", age: "", email: "" });
+  const [students, setStudents] = useState([]);
+  // Handle input changes
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+  // Submit form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await fetch("http://localhost:5000/api/students", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    setForm({ name: "", age: "", email: "" });
+    loadStudents();
+  };
+  // Load students
+  const loadStudents = async () => {
+    const res = await fetch("http://localhost:5000/api/students");
+    setStudents(await res.json());
+  };
+
+
+  useEffect(() => {
+    loadStudents();
+  }, []);
+  return (
+    <div style={{ padding: 20 }}>
+      <h2>Add Student</h2>
+<form onSubmit={handleSubmit}>
+        <input
+          name="name"
+          placeholder="Name"
+          value={form.name}
+          onChange={handleChange}
+        />
+        <input
+          type="number"
+          name="age"
+          placeholder="Age"
+          value={form.age}
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+        />
+        <button type="submit">Save</button>
+      </form>
+      <h3>All Students</h3>
+      <ul>
+        {students.map((s, i) => (
+          <li key={i}>
+            {s.name} ({s.age}) - {s.email}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+export default App;
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+Server.js
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+app.use(express.json());
+// Connect MongoDB (local)
+mongoose.connect("mongodb://localhost:27017/studentdb");
+
+
+// Schema + Model
+const Student = mongoose.model("Student", new mongoose.Schema({
+  name: String,
+  age: Number,
+  email: String
+}));
+// Save student
+app.post("/api/students", async (req, res) => {
+  try {
+    const student = new Student(req.body);
+    await student.save();
+    res.json({ message: "Student saved!" });
+  } catch (err) {
+  res.status(500).json({ error: err.message });
+  }
+});
+// Get all students
+app.get("/api/students", async (_req, res) => {
+  const students = await Student.find();
+  res.json(students);
+});
+app.listen(5000, () => console.log(" Server running on http://localhost:5000"));
+
+
+
+
+  
+
+Output:
+  
+
+
+
+2nd code
+
+
+Source Code:
+Index.html
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Form Submission</title>
+ 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+
+    form {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 10px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+      resize: vertical;
+      transition: border-color 0.3s;
+    }
+
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+
+    button {
+      width: 100%;
+      background-color: #007BFF;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+
+    /* Responsive */
+    @media (max-width: 400px) {
+      form {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
+
+
+</head>
+<body>
+
+
+  <form id="myForm">
+    <input type="text" name="name" placeholder="Name" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <textarea name="message" placeholder="Message" rows="5" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+
+  <script>
+    const form = document.getElementById('myForm');
+
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+      };
+
+
+      try {
+        const response = await fetch('http://localhost:5000/api/form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+
+        if (response.ok) {
+          alert('Form submitted successfully!');
+          form.reset();
+        } else {
+          alert('Failed to submit form');
+        }
+      } catch (error) {
+        alert('Error submitting form');
+        console.error(error);
+      }
+    });
+  </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+Server.js
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+app.use(express.json());
+// Connect MongoDB (local)
+mongoose.connect("mongodb://localhost:27017/studentdb");
+
+
+// Schema + Model
+const Student = mongoose.model("Student", new mongoose.Schema({
+  name: String,
+  age: Number,
+  email: String
+}));
+// Save student
+app.post("/api/students", async (req, res) => {
+  try {
+    const student = new Student(req.body);
+    await student.save();
+    res.json({ message: "Student saved!" });
+  } catch (err) {
+  res.status(500).json({ error: err.message });
+  }
+});
+// Get all students
+app.get("/api/students", async (_req, res) => {
+  const students = await Student.find();
+  res.json(students);
+});
+app.listen(5000, () => console.log(" Server running on http://localhost:5000"));
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+Output:
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL 8
+
+
+React-Bootstrap & UI Component
+
+
+A- Create the UI Layout using React-Bootstrap Component LIke navbar, Buttons and Tables.
+
+
+Install bootstrap
+Run command —-> npm install react-bootstrap
+Step 1: Create new folder 
+Step 2: npm create react-app pract8a
+Step 3: cd pract8a
+Step 4 : npm install react-bootstrap bootstrap
+Step 5: create new file (xyz . js) inside src folder. 
+
+
+Source code:
+App.js
+import React from 'react';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavbarComponent from './components/navbar';
+
+
+function App() {
+  return (
+    <NavbarComponent />
+  );
+}
+
+
+export default App;
+
+
+
+
+Navbar.jsx
+
+
+import React from "react";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+
+
+function NavbarComponent() {
+  return (
+    <Navbar bg="primary" variant="dark" expand="lg" sticky="top">
+      <Container>
+        <Navbar.Brand href="#home">MyApp</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" /> {/* Hamburger menu for mobile */}
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <NavDropdown title="More" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/2">Another action</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3">Something else</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
+
+
+export default NavbarComponent;
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+Output 
+  
+
+
+
+
+
+B-Implement a responsive grid system with Bootstrap.
+Gridsystem 
+
+
+Source code
+App.js
+
+
+import React from 'react';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavbarComponent from './components/navbar';
+import GridExample from './components/gridexample';
+
+
+function App() {
+  return (
+    <>
+    <GridExample/>
+    </>
+  );
+}
+
+
+export default App;
+
+
+  
+
+
+
+grid.js
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+
+
+const GridExample = () => {
+  return (
+    <Container>
+      <Row>
+        {/* Column 1 */}
+        <Col xs={12} sm={6} md={4} lg={3}>
+          <div className="p-3 bg-primary text-white">Column 1</div>
+        </Col>
+
+
+        {/* Column 2 */}
+        <Col xs={12} sm={6} md={4} lg={3}>
+          <div className="p-3 bg-secondary text-white">Column 2</div>
+        </Col>
+
+
+        {/* Column 3 */}
+        <Col xs={12} sm={6} md={4} lg={3}>
+          <div className="p-3 bg-success text-white">Column 3</div>
+        </Col>
+
+
+        {/* Column 4 */}
+        <Col xs={12} sm={6} md={4} lg={3}>
+          <div className="p-3 bg-danger text-white">Column 4</div>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
+
+
+export default GridExample;
+
+
+
+
+
+
+
+
+Output:
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 10
+
+
+A.Implement Google Sign-In and JWT-based authentication in a MERN app.
+Code:
+App.js:
+import React, { useState } from "react";
+import { AuthProvider, useAuth } from "./AuthContext";  // Correct import
+
+
+function LoginForm() {
+  const { login, user, logout } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
+
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(username, password, token);
+  };
+
+
+  if (user) {
+    return (
+      <div>
+        <h2>Welcome, {user.name}!</h2>
+        <p>Role: {user.role}</p>
+        <button onClick={logout}>Logout</button>
+      </div>
+    );
+  }
+
+
+  return (
+    <form onSubmit={handleLogin}>
+      <div>
+        <label>Username:</label>
+        <input
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Token (admin only):</label>
+        <input
+          value={token}
+          onChange={(e) => setToken(e.target.value)}
+        />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+
+
+function App() {
+  return (
+    <AuthProvider>
+      <LoginForm />
+    </AuthProvider>
+  );
+}
+
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AuthContext.js
+import React, { createContext, useContext, useState } from "react";
+
+
+const AuthContext = createContext();
+
+
+export const useAuth = () => useContext(AuthContext);
+
+
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+
+
+  const login = (u, p, t) => {
+    if (u === "admin" && p === "1234" && t === "admintoken123") {
+      setUser({ name: u, role: "Admin" });
+    } else if (u && p) {
+      setUser({ name: u, role: "Student" });
+    }
+  };
+
+
+  const logout = () => setUser(null);
+
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+
+  
+  
+
+
+
+Output:

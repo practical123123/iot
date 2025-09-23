@@ -1,167 +1,3318 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
-import java.util.List;
-import java.util.Set;
-import static java.util.concurrent.TimeUnit.SECONDS;
+﻿INDEX
+Sr.No.
+	Practical
+	Date
+	1
+	OOPs concepts in Java – 1
+1. Write a program to create a class and implement a default, overloaded and copy constructor.
+2. Write a program to create a class and implement the concepts of Method Overloading.
+3. Write a program to create a class and implement the concepts of Static methods.
+	
 
-public class mongodb_connection{
-   public static void main( String args[] ){
-      try{  
-MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-System.out.println("Database Connection Successful!");
-        DB db = mongoClient.getDB( "Iqra6461" );
-   }catch(Exception e){
-    System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	2
+	OOPs concepts in Java – 2
+1. Write a program to implement the concepts of Inheritance and Method overriding.
+2. Write a program to implement the concepts of Abstract classes and methods.
+3. Write a program to implement the concept of interfaces.
+	
+
+	3
+	Exceptions
+1. Write a program to raise built-in exceptions and raise them as per the requirements.
+2. Write a program to define user defined exceptions and raise them as per the requirements. 
+	
+
+	    4
+	Multithreading: 
+Write a java application to demonstrate 5 bouncing balls of different colors using threads.
+	
+
+	    5
+	Layouts and Event Handling using Java Framework
+1. Design an AWT program to perform various string operations like reverse string, string concatenation etc.
+2. Design a Swing application to demonstrate different layouts.
+3. Write a java program to implement Java events like Text Events, Mouse Events, Windows Event and so on.
+	
+
+	  6
+	Servlet Programming
+1. Create a simple calculator application using servlet.
+2. Create a servlet for a login page. If the username and password are correct then it says message “Hello <username>” else a message “login failed”.
+	
+
+	  7
+	Servlet with Cookies
+Design a servlet with textboxes for accepting Cookie Name and Cookie Value. On click of a submit button, display the values on the same servlet in a table.
+Servlet with Session
+	
+
+	8
+	Working with JDBC
+1. Write a JDBC program that displays the data of a given table in a GUI Table.
+2. Write a servlet program to demonstrate simple database connectivity.
+	
+
+	9
+	JSP
+1. Write a simple JSP program.
+2. Request Dispatcher JSP - Design a jsp page to call servlet - welcome servlet and then hello servlet to display data accepted on jsp page.
+3. JSP using intrinsic objects - out, request, response, exception etc.
+	
+
+	10
+	JSF:
+Implement a simple JavaServer Faces Application.
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL NO 1
+
+
+OOPs concepts in Java – 1:-
+
+
+A- Write a program to create a class and implement a default, overloaded and copy constructor.
+
+
+CODE : 
+
+
+class DemoConstructor {
+  int a,b,c ;
+  
+   DemoConstructor() {
+    a=1;
+   b=2;
+  System.out.println("Calling Empty Constructor");
+}
+
+
+   DemoConstructor(int ax, int bx ) {
+    a=ax;
+   b=bx;
+  System.out.println("Calling Parameterized constructor with 2 parameters");
+}
+
+
+
+
+   DemoConstructor(int ax, int bx , int cx) {
+    a=ax;
+   b=bx;
+  c=cx;
+  System.out.println("Calling Parameterized constructor with 3 parameters");
+}
+
+
+  DemoConstructor(DemoConstructor D ) {
+    a=D.a;
+   b=D.b;
+  System.out.println("Calling copy constructor");
+}
+
+
+
+
+     void Display() {
+         System.out.println("A:"+a);
+         System.out.println("B:" +b);
+         System.out.println("C:"+c);
+}
+
+
+     public static void main(String args[]) {
+          DemoConstructor D1 = new DemoConstructor();
+          D1.Display();
+
+
+          DemoConstructor D2 = new DemoConstructor(3,4);
+          D2.Display();
+
+
+          DemoConstructor D3 = new DemoConstructor(D2);
+          D3.Display();
+
+
+
+
+          DemoConstructor D4 = new DemoConstructor(5,6,7);
+          D4.Display();
+       }
+}
+
+
+	
+
+  
+
+
+
+  
+
+
+
+OUTPUT:
+
+  
+
+
+
+
+
+
+
+
+B- Write a program to create a class and implement the concepts of Method Overloading.
+
+
+CODE:
+class addition {
+   void add(int a ,int b) {
+      int c;
+      c= a+b;
+     System.out.println("addition of "+a+" and "+b+"="+c);
+}    
+      void add(double a, double b) {
+      double c;
+      c=a+b;
+      System.out.println("addition of "+a+" and "+b+"="+c);
+}
+     public static void main(String args[]){
+     addition a1=new addition();
+
+
+   a1.add(4,5);
+   a1.add(4.2,5.5);
+     }
+} 
+	
+
+  
+
+OUTPUT:
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C-Write a program to create a class and implement the concepts of Static methods.
+
+
+CODE : 
+class Task {
+    static String clg=" RJ College ";
+   void Display(int roll , String name)
+   {
+   System.out.println("Roll : " +roll  + "\nName :" +name +"\nCollege Name :"+clg );
+  }
+}
+
+
+class ExStatic {
+    public static void main(String [] args){
+ 
+    Task t1=new Task();
+    t1.Display(1001,"Amod");
+   
+   Task t2=new Task();
+   t2.Display(1002,"Suraj");
+   }
+}
+	
+
+  
+
+
+
+
+
+OUTPUT:
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL NO 2
+
+
+OOPs concepts in Java – 2
+
+
+A-Write a program to implement the concepts of Inheritance and Method overriding.
+
+
+Single Inheritance:-
+CODE:
+class Parent {
+    void Display()
+      {
+           System.out.println("This is Parent class");
+      }
+}
+
+
+  class childs extends Parent
+{
+    public void show()
+      {
+              System.out.println("This is child class");
+      }
+
+
+ public static void main (String [] args)
+    {
+       childs c = new childs();
+       c.Display();
+      c.show();
+   }
+}
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+OUTPUT : 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Multilevel Inheritance:-
+
+
+CODE :
+class A {
+ void show_A()
+   {
+  System.out.println("Show method of class A");
+    }
+}
+
+
+class B extends A {
+ void show_B()
+  {
+  System.out.println("Show method of class B");
+  }
+}
+
+
+class C extends B {
+ void show_C()
+  {
+  System.out.println("Show method of class C");
+  }
+}
+
+
+class ExMultilevelInherit extends C  {
+ public static void main(String args[]) {
+ 
+  ExMultilevelInherit obj1 = new ExMultilevelInherit();
+  System.out.println(" **Demonstration of Multi Level Inheritance** ");
+ 
+  obj1.show_A();
+  obj1.show_B();
+  obj1.show_C();
+   }
+}
+	
+
+  
+
+
+
+OUTPUT:
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hierarchical Inheritance:-
+
+
+CODE : 
+
+
+class A{
+ void show_A(){
+  System.out.println("Show method of class A");
  }
+}
+
+
+class B extends A{
+ void show_B(){
+  System.out.println("Show method of class B");
+ }
+}
+
+
+class C extends A{
+ void show_C(){
+  System.out.println("Show method of class C");
+ }
+}
+
+
+class ExHierarchicalInherit {
+ public static void main(String args[]){
+ 
+  B obj1 = new B();
+  C obj2 = new C();
+
+
+  System.out.println("\n **Demonstration of Hierarchical Inheritance** ");
+  System.out.println("\n ** Accessing method of parent class A by object of child class B");
+ 
+  obj1.show_A();
+  obj1.show_B();
+
+
+  System.out.println("\n ** Accessing method of parent class A by object of child class C");
+  obj2.show_A();
+  obj2.show_C();
+ }
+}
+
+
+	  
+
+
+
+OUTPUT:
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+B-Write a program to implement the concepts of Abstract classes and methods.
+
+
+CODE : 
+
+
+abstract class Greet {
+abstract void wish(String wish);
+}
+
+
+class Emp extends Greet {
+void wish(String wish) {
+ System.out.println("Hello "+wish);
+}
+}
+
+
+class ExAbstract {
+ public static void main(String args[]) {
+ Emp obj = new Emp();
+ obj.wish("Amod yadav");
    }
+}
+	
+
+  
+
+
+
+
+
+
+
+
+
+OUTPUT : 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C-Write a program to implement the concept of interfaces.
+
+
+CODE :
+interface Square{
+int areaSquare(int d);
+}
+
+
+interface Circle{
+double areaCircle(int    r);
 }
 
 
 
-Insert a Document : 
+
+
+
+class ExMultipleInherit implements Square,Circle {
+ @Override
+ public int areaSquare(int d){
+  return d*d;
+ }
+
+
+
+
+ public double areaCircle(int r){
+ return ((3.1412) * (r*r));
+}
+
+
+ public static void main(String args[]){
+  ExMultipleInherit obj1 = new ExMultipleInherit();
+ 
+  System.out.println("\n **Demonstration of Multiple Inheritance** ");
+  System.out.println("\n ** calling method of Interface Square");
+  System.out.println("Area of Square with side 2  is "+obj1.areaSquare(2));
+  
+
+
+  System.out.println("\n ** calling method of Interface Circle");
+  System.out.println("Area of Circle with radius 2 is "+obj1.areaCircle(2));
+  
+ }
+}
+	
+
+
+
+
+
+  
+
+
+
+OUTPUT : 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+Function Overriding : 
+
+
+CODE :
+class Shape{
+ double area(double x)
+  {
+return(x);
+  }
+}
+
+
+class Square extends Shape {
+@Override
+ public double area(double d) {
+ return d*d;
+   }
+}
+
+
+class Circle extends Shape {
+@Override
+ public double area(double r) {
+ return (3.14 * r * r);
+  }
+}
+
+
+class ExOverride  {
+
+
+ public static void main(String args[]){
+ Square obj1 = new Square();
+ 
+  System.out.println("\n **Demonstration of Method Overriding** ");
+  System.out.println("\n ** calling  Override function area for find area of square");
+  System.out.println("Area of Square with side 2  is "+obj1.area(2));
+  
+  Circle obj2 = new Circle();
+  System.out.println("\n ** calling  Override function area for find area of Circle");
+  System.out.println("Area of Circle with radius 2 is "+obj2.area(2));
+  
+ }
+}
+	  
+
+
+
+OUTPUT : 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL NO 3
+
+
+Exceptions:-
+
+
+A -Write a program to raise built-in exceptions and raise them as per the requirements.
+
+
+CODE :
+public class ExceptionDemo {
+    public static void main(String[] args) {
+
+
+        // 1. ArithmeticException (Divide by zero)
+       
+ try {
+            int a = 10 / 0;  // divide by zero
+        } catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException: " + e);
+        }
+
+
+        // 2. ArrayIndexOutOfBoundsException
+       
+ try {
+            int arr[] = {1, 2, 3};
+            System.out.println(arr[5]); // invalid index
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Caught ArrayIndexOutOfBoundsException: " + e);
+        }
+
+
+        // 3. NullPointerException
+       
+ try {
+            String str = null;
+            System.out.println(str.length()); // calling method on null
+        } catch (NullPointerException e) {
+            System.out.println("Caught NullPointerException: " + e);
+        }
+
+
+        // 4. Manually raising exception using throw
+        
+try {
+            int age = 15;
+            if (age < 18) {
+                throw new IllegalArgumentException("Age must be 18 or above");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Caught manually thrown exception: " + e);
+        }
+
+
+        System.out.println(" Program continues normally after handling exceptions...");
+    }
+}
+
+
+	
+
+OUTPUT :
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+B-Write a program to define user defined exceptions and raise them as per the requirements. 
+
+
+CODE :
+// Step 1: Create User-Defined Exception Class
+
+
+class InvalidAgeException extends Exception {
+    // Constructor
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+
+// Step 2: Main class to test exception
+
+
+public class UserDefinedExceptionDemo {
+
+
+    // Method to check age
+
+
+    public static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            // Raise custom exception
+            throw new InvalidAgeException(" Invalid Age: Must be 18 or above.");
+        } else {
+            System.out.println("Age is valid, you can vote!");
+        }
+    }
+
+
+    public static void main(String[] args) {
+        try {
+            // Test case 1: Age < 18
+            checkAge(15);
+
+
+            // Test case 2: Age >= 18
+            checkAge(20);
+
+
+        } catch (InvalidAgeException e) {
+            System.out.println("Caught User Defined Exception: " + e.getMessage());
+        }
+
+
+        System.out.println("Program continues normally...");
+    }
+}
+	
+
+  
+
+
+
+OUTPUT : 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL NO 4
+Multithreading:- 
+
+
+1.  Write a java application to demonstrate 5 bouncing balls of different colors using threads.
+
+
+CODE: 
+
+
+import java.awt.*;
+import javax.swing.*;
+
+
+// Ball class (implements Runnable for threading)
+class Ball implements Runnable {
+    private int x, y, dx, dy, diameter;
+    private Color color;
+    private JPanel panel;
+
+
+    public Ball(JPanel panel, int x, int y, int dx, int dy, int diameter, Color color) {
+        this.panel = panel;
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.diameter = diameter;
+        this.color = color;
+    }
+
+
+    // Drawing the ball
+    public void draw(Graphics g) {
+        g.setColor(color);
+        g.fillOval(x, y, diameter, diameter);
+    }
+
+
+    // Ball movement logic
+    @Override
+    public void run() {
+        while (true) {
+            x += dx;
+            y += dy;
+
+
+            // Bounce on panel edges
+            if (x < 0 || x + diameter > panel.getWidth()) dx = -dx;
+            if (y < 0 || y + diameter > panel.getHeight()) dy = -dy;
+
+
+            panel.repaint();
+
+
+            try {
+                Thread.sleep(20); // slow down movement
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+
+// Panel to draw multiple balls
+class BallPanel extends JPanel {
+    private Ball[] balls;
+
+
+    public BallPanel() {
+        setBackground(Color.BLACK);
+
+
+        // Create 5 balls with random directions
+        balls = new Ball[] {
+            new Ball(this, 50, 50, 2, 3, 30, Color.RED),
+            new Ball(this, 100, 80, 3, 2, 30, Color.GREEN),
+            new Ball(this, 150, 120, 4, 3, 30, Color.BLUE),
+            new Ball(this, 200, 160, 2, 4, 30, Color.YELLOW),
+            new Ball(this, 250, 200, 3, 3, 30, Color.MAGENTA)
+        };
+
+
+        // Start each ball in a separate thread
+        for (Ball b : balls) {
+            Thread t = new Thread(b);
+            t.start();
+        }
+    }
+
+
+    // Paint all balls
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (Ball b : balls) {
+            b.draw(g);
+        }
+    }
+}
+
+
+// Main class
+public class BouncingBallsDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Bouncing Balls using Threads");
+        BallPanel panel = new BallPanel();
+
+
+        frame.add(panel);
+        frame.setSize(500, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
+	
+
+  
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OUTPUT : 
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Second Method :-
+
+
+CODE : 
+
+
+import java.awt.*;
+public class BouncingBall extends java.applet.Applet implements Runnable {
+    Thread t;
+    int f, y, f1;
+
+
+    public void init() {
+        t = new Thread(this);
+        t.start();
+        f = 0;
+        y = 0;
+        f1 = 0;
+    }
+
+
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(10);
+                if (f == 0) {
+                    y = y + 5;
+                    if (y >= 400) {
+                        f1++;
+                        f = 1;
+                    }
+                } else {
+                    y = y - 5;
+                    if (y <= 0) {
+                        f1++;
+                        f = 0;
+                    }
+                }
+                repaint();
+            } catch (Exception e) {}
+        }
+    }
+
+
+    public void paint(Graphics g) {
+        if (f1 == 1) g.setColor(Color.green);
+        if (f1 == 2) g.setColor(Color.blue);
+        if (f1 == 3) g.setColor(Color.red);
+        if (f1 == 4) g.setColor(Color.yellow);
+        if (f1 == 5) g.setColor(Color.orange);
+        if (f1 > 5) f1 = 1;
+
+
+        g.fillOval(150, y, 20, 20);
+    }
+}
+	
+
+ BouncingBall.html
+
+
+<html>
+  <head>
+    <title>Bouncing Ball Applet</title>
+  </head>
+  <body>
+    <applet code="BouncingBall.class" width="400" height="400"></applet>
+  </body>
+</html>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL NO 5
+
+
+Layouts and Event Handling using Java Framework
+
+
+A-  Design an AWT program to perform various string operations like reverse string, string concatenation etc.
+
+
+CODE :
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class StringOperationsAWT extends Frame implements ActionListener {
+    TextField t1, t2, result;
+    Button b1, b2, b3;
+    Label l1, l2, l3;
+
+
+    public StringOperationsAWT()  {
+        setLayout(new FlowLayout() );
+
+
+        l1 = new Label("First String:");
+        l2 = new Label("Second String:");
+        l3 = new Label("Result:");
+
+
+        t1 = new TextField(20);
+        t2 = new TextField(20);
+        result = new TextField(25);
+        result.setEditable(false);
+
+
+        b1 = new Button("Reverse First String");
+        b2 = new Button("Concatenate");
+        b3 = new Button("Clear");
+
+
+        add(l1); add(t1);
+        add(l2); add(t2);
+        add(l3); add(result);
+
+
+        add(b1); add(b2); add(b3);
+
+
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+
+
+        setTitle("String Operations using AWT");
+        setSize(400, 250);
+        setVisible(true);
+
+
+        // Window close handler
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String s1 = t1.getText();
+        String s2 = t2.getText();
+
+
+        if (ae.getSource() == b1) {
+            result.setText(new StringBuilder(s1).reverse().toString());
+        }
+        else if (ae.getSource() == b2) {
+            result.setText(s1 + s2);
+        }
+        else if (ae.getSource() == b3) {
+            t1.setText("");
+            t2.setText("");
+            result.setText("");
+        }
+    }
+
+
+    public static void main(String[] args) {
+        new StringOperationsAWT();
+    }
+}
+
+
+
+
+	
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+OUTPUT :
+
+
+REVERSE STRING : 
+
+
+  
+
+
+
+CONCATENATE : 
+
+
+  
+
+
+
+CLEAR : 
+
+
+  
+
+
+
+
+
+B-Design a Swing application to demonstrate different layouts.
+
+
+CODE : 
+
+
+import javax.swing.*;
+import java.awt.*;
+
+
+public class LayoutDemo extends JFrame {
+
+
+    public LayoutDemo() {
+        setTitle("Swing Layout Demo");
+        setSize(600, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(2, 2, 10, 10)); // 2x2 panels
+
+
+        // ----- BorderLayout -----
+
+
+        JPanel borderPanel = new JPanel(new BorderLayout());
+        borderPanel.setBorder(BorderFactory.createTitledBorder("BorderLayout"));
+        borderPanel.add(new JButton("North"), BorderLayout.NORTH);
+        borderPanel.add(new JButton("South"), BorderLayout.SOUTH);
+        borderPanel.add(new JButton("East"), BorderLayout.EAST);
+        borderPanel.add(new JButton("West"), BorderLayout.WEST);
+        borderPanel.add(new JButton("Center"), BorderLayout.CENTER);
+
+
+        // ----- FlowLayout -----
+
+
+        JPanel flowPanel = new JPanel(new FlowLayout());
+        flowPanel.setBorder(BorderFactory.createTitledBorder("FlowLayout"));
+        flowPanel.add(new JButton("Button 1"));
+        flowPanel.add(new JButton("Button 2"));
+        flowPanel.add(new JButton("Button 3"));
+        flowPanel.add(new JButton("Button 4"));
+
+
+        // ----- GridLayout -----
+
+
+        JPanel gridPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+        gridPanel.setBorder(BorderFactory.createTitledBorder("GridLayout"));
+        gridPanel.add(new JButton("1"));
+        gridPanel.add(new JButton("2"));
+        gridPanel.add(new JButton("3"));
+        gridPanel.add(new JButton("4"));
+
+
+        // ----- BoxLayout -----
+
+
+        JPanel boxPanel = new JPanel();
+        boxPanel.setBorder(BorderFactory.createTitledBorder("BoxLayout (Y_AXIS)"));
+        boxPanel.setLayout(new BoxLayout(boxPanel, BoxLayout.Y_AXIS));
+        boxPanel.add(new JButton("Button A"));
+        boxPanel.add(new JButton("Button B"));
+        boxPanel.add(new JButton("Button C"));
+        boxPanel.add(new JButton("Button D"));
+
+
+        // Add panels to Frame
+
+
+        add(borderPanel);
+        add(flowPanel);
+        add(gridPanel);
+        add(boxPanel);
+
+
+        setVisible(true);
+    }
+
+
+    public static void main(String[] args) {
+        new LayoutDemo();
+    }
+}
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+OUTPUT  :
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C- Write a java program to implement Java events like Text Events, Mouse Events, Windows Event and so on.
+
+
+Text Events:-
+ 
+CODE : 
+
+
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class TextEventExample extends Frame implements TextListener {
+    TextField tf;
+    Label l;
+
+
+    public TextEventExample() {
+        l = new Label("Type something in the TextField...");
+        l.setBounds(50, 100, 300, 30);
+
+
+        tf = new TextField();
+        tf.setBounds(50, 50, 200, 30);
+        tf.addTextListener(this);
+
+
+        add(tf);
+        add(l);
+
+
+        setSize(400, 300);
+        setLayout(null);
+        setVisible(true);
+    }
+
+
+    public void textValueChanged(TextEvent e) {
+        l.setText("Text Changed: " + tf.getText());
+    }
+    public static void main(String[] args) {
+        new TextEventExample();
+    }
+}
+	  
+
+
+
+OUTPUT: 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mouse Events:-
+
+
+CODE : 
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class MouseEventExample extends Frame implements MouseListener {
+    Label l;
+
+
+    public MouseEventExample() {
+        l = new Label("Perform Mouse Action...");
+        l.setBounds(50, 100, 250, 30);
+
+
+        add(l);
+
+
+        addMouseListener(this);
+
+
+        setSize(400, 300);
+        setLayout(null);
+        setVisible(true);
+    }
+
+
+    public void mouseClicked(MouseEvent e) {
+        l.setText("Mouse Clicked at (" + e.getX() + ", " + e.getY() + ")");
+    }
+
+
+    public void mouseEntered(MouseEvent e) {
+        l.setText("Mouse Entered Window");
+    }
+
+
+    public void mouseExited(MouseEvent e) {
+        l.setText("Mouse Exited Window");
+    }
+
+
+    public void mousePressed(MouseEvent e) {
+        l.setText("Mouse Pressed");
+    }
+
+
+    public void mouseReleased(MouseEvent e) {
+        l.setText("Mouse Released");
+    }
+
+
+    public static void main(String[] args) {
+        new MouseEventExample();
+    }
+}
+	
+
+OUTPUT : 
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+Windows Event:
+
+
+CODE : 
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class WindowEventExample extends Frame implements WindowListener {
+    Label l;
+
+
+    public WindowEventExample() {
+        l = new Label("Perform Window Actions...");
+        l.setBounds(50, 100, 300, 30);
+
+
+        add(l);
+
+
+        addWindowListener(this);
+
+
+        setSize(400, 300);
+        setLayout(null);
+        setVisible(true);
+    }
+
+
+    public void windowOpened(WindowEvent e) {
+        l.setText("Window Opened");
+    }
+
+
+    public void windowClosing(WindowEvent e) {
+        System.exit(0); // close window
+    }
+
+
+    public void windowClosed(WindowEvent e) {
+        l.setText("Window Closed");
+    }
+
+
+    public void windowIconified(WindowEvent e) {
+        l.setText("Window Minimized");
+    }
+
+
+    public void windowDeiconified(WindowEvent e) {
+        l.setText("Window Restored");
+    }
+
+
+    public void windowActivated(WindowEvent e) {
+        l.setText("Window Activated");
+    }
+
+
+    public void windowDeactivated(WindowEvent e) {
+        l.setText("Window Deactivated");
+    }
+
+
+    public static void main(String[] args) {
+        new WindowEventExample();
+    }
+}
+	
+
+OUTPUT :
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL NO 6
+
+
+Servlet Programming
+
+
+A-Create a simple calculator application using servlet.
+
+
+Calculator App.html
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator App</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+   
+    <div><h1>Calculator</h1></div>
+
+
+    <form action="calculator" method="post">
+        <table>
+            <tr>
+                <td><label for="number1">Enter first number :</label></td>
+                <td><input type="number" id="number1" name="Number1" /></td>
+            </tr>
+            <tr>
+                <td><label for="number2">Enter second number :</label></td>
+                <td><input type="number" id="number2" name="Number2" /></td>
+            </tr>
+            <tr>
+                <td>Operation:</td>
+                <td>
+                    <input type="radio" id="Addition" name="operation" value="+" />
+                    <label for="Addition">Addition</label><br />
+
+
+                    <input type="radio" id="Subtract" name="operation" value="-" />
+                    <label for="Subtract">Subtract</label><br />
+
+
+                    <input type="radio" id="Multiplication" name="operation" value="*" />
+                    <label for="Multiplication">Multiplication</label><br />
+
+
+                    <input type="radio" id="Division" name="operation" value="/" />
+                    <label for="Division">Division</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;">
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+calculator.java
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+
+public class calculator extends HttpServlet {
+    public void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet calculator</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet calculator at " + request.getContextPath() + "</h1>");
+           
+            
+            double n1 = Double.parseDouble(request.getParameter("Number1"));
+            double n2 = Double.parseDouble(request.getParameter("Number2"));
+            double result =0;
+            String opr=request.getParameter("operation");
+            if(opr.equals("+"))
+            result=n1+n2;
+            if(opr.equals("*"))
+
+
+            result=n1*n2;
+           
+            if(opr.equals("-"))
+            result=n1-n2;
+            if(opr.equals("/"))
+            result=n1/n2;
+            out.println("<h1> Result = "+result+"</h1>");
+
+
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+
+     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+
+      @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+
+}
+
+
+	
+
+
+
+
+
+OUTPUT : 
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+B) Create a servlet for a login page. If the username and password are correct then it says message “Hello <username>” else a message “login failed”.
+
+
+Login.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="LoginServlet" method="post">
+        <table>
+            <tr>
+                <td><label for="username">Username:</label></td>
+                <td><input type="text" id="username" name="username" required></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;">
+                    <button type="submit">Login</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+
+	________________
+
+
+LoginServlet.java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class LoginServlet extends HttpServlet {
+
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+
+
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+
+
+            // Simple hardcoded authentication (for demo)
+            String correctUsername = "admin";
+            String correctPassword = "12345";
+
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Login Result</title>");
+            out.println("</head>");
+            out.println("<body>");
+
+
+            if(username.equals(correctUsername) && password.equals(correctPassword)) {
+                out.println("<h1>Hello " + username + "</h1>");
+            } else {
+                out.println("<h1 style='color:red;'>Login failed</h1>");
+            }
+
+
+            out.println("<a href='index.html'>Back to Login</a>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+
+    @Override
+    public String getServletInfo() {
+        return "Simple Login Servlet";
+    }
+}
+
+
+	
+
+Output:
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRACTICAL NO 7
+
+
+Design a servlet with textboxes for accepting Cookie Name and Cookie Value. On click of a submit button, display the values on the same servlet in a table.
+
+
+Step 1 : Create New Project
+Step 2: go to Source Package 
+Step 3: java class create new file 
+
+
+
+
+CookieServlet.java
+
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet(name = "CookieServlet", urlPatterns = {"/CookieServlet"})
+public class CookieServlet extends HttpServlet {
+
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+           
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Cookies</title>");
+            out.println("</head>");
+            out.println("<body>");
+
+
+            // --- Handle POST request (Set Cookie) ---
+            if ("POST".equalsIgnoreCase(request.getMethod())) {
+                String cName = request.getParameter("cookieName");
+                String cValue = request.getParameter("cookieValue");
+
+
+                if (cName != null && cValue != null && !cName.isEmpty() && !cValue.isEmpty()) {
+                    Cookie newCookie = new Cookie(cName, cValue);
+                    response.addCookie(newCookie);
+                }
+            }
+
+
+            // --- Always display the form ---
+            out.println("<h3>Add a Cookie</h3>");
+            out.println("<form action='CookieServlet' method='post'>");
+            out.println("Cookie Name: <input type='text' name='cookieName'><br><br>");
+            out.println("Cookie Value: <input type='text' name='cookieValue'><br><br>");
+            out.println("<input type='submit' value='Submit'/>");
+            out.println("</form><hr>");
+
+
+            // --- Display all cookies ---
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null && cookies.length > 0) {
+                out.println("<h3>Stored Cookies</h3>");
+                out.println("<table border='2' cellpadding='8' bgcolor='lightyellow'>");
+                out.println("<tr><th>Name</th><th>Value</th></tr>");
+                for (Cookie ck : cookies) {
+                    out.println("<tr><td>" + ck.getName() + "</td><td>" + ck.getValue() + "</td></tr>");
+                }
+                out.println("</table>");
+            } else {
+                out.println("<p>No cookies found.</p>");
+            }
+
+
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+}
+	
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Index.html
+
+
+ <html>
+    <head>
+        <title>Cookies with Servlet </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Cookies with Servlet Demo</div>
+        <a href="CookieServlet">cookie
+    </a>
+
+
+    </body>
+</html>
+
+
+
+
+	
+
+
+
+  
+
+
+
+
+
+
+
+OUTPUT : 
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2) Task: Write a servlet program using cookies to remember user preferences.
+
+
+Index .html 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- send the form data to the url store and the post method is used -->
+<form action="store" method="post">
+<!-- Display the Radio button with three option -->
+RED:<input type="radio" name="color" value="RED"/><br>
+GREEN:<input type="radio" name="color" value="GREEN"/><br>
+BLUE:<input type="radio" name="color" value="BLUE"/><br>
+<input type="submit" value="submit"/>
+</form></body</html>
+	  
+
+Store.java
+
+
+import java.io.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/store")
+public class store extends HttpServlet {
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
+ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out=response.getWriter();
+try
+{
+String s1=request.getParameter("color");
+if (s1.equals("RED")||s1.equals("BLUE")||s1.equals("GREEN"))
+{
+Cookie ck1=new Cookie("color",s1);
+response.addCookie(ck1);
+out.println("<html>");
+out.println("<body>");
+out.println("You selected: "+s1);
+out.println("<form action='retrieve' method='post'>");
+out.println("<input type='Submit' value='submit'/>");
+out.println("</form>");
+out.println("</body>");
+out.println("</html>");
+}
+
+
+}
+finally
+{
+ out.close();
+}
+ }
+}
+	
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+Retrieve.java
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+@WebServlet("/retrieve")
+public class retrieve extends HttpServlet {
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
+ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+PrintWriter out=response.getWriter();
+try
+{
+Cookie ck[]=request.getCookies();
+out.println("<html>");
+out.println("<head>");
+out.println("<title>servlet</title>");
+out.println("</head>");
+out.println("<body bgcolor="+ck[0].getValue()+">");
+out.println("You selected color is: "+ck[0].getValue()+"</h1>");
+out.println("</body>");
+out.println("</html>");
+}
+finally
+{
+out.close();
+}
+}
+}
+	
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OUTPUT : 
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+PRACTICAL NO 8
+A) Write a JDBC program that displays the data of a given table in a GUI Table.
+
+
+Step 1 : Open Mysql commend line enter Password mysql
+Step 2: Perform All table creation Query 
+Step 3 :  goto source package click new select servlet and create File StudentD.java
+Step4 : goto service select database goto Driver select  mysql connect using  
+Step 5: enter your database name and password 
+Step 6: goto project LAbires add JAR File 
+Code: 
+
+
+index.html
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Enter Your Records In RJCIT DataBase</h1>
+        <div>Database Connectivity</div>
+        <form action='studentD' method='post'>
+            <input type="submit" value='GET DATA FOR DATABASE'>
+        </form>
+    </body>
+</html>
+
+
+
+
+	
+
+  
+
+
+
+studentD.java
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.annotation.WebServlet;
+
+
+/**
+ *
+ * @author RJC
+ */
+@WebServlet(urlPatterns = {"/studentD"})
+
+
+public class studentD extends HttpServlet {
+
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @para
+m response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use the following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet StudentDataServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet StudentDataServlet at " + request.getContextPath() + "</h1>");
+
+
+            out.println("<p>Servlet called</p>");
+           
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student1", "root", "mysql");
+            out.println("Connection established<br>");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("Select * from student_R");
+
+
+            out.println("<table border = 2>");
+            out.println("<tr>");
+            out.println("<td align='center'>Roll No</td>");
+            out.println("<td align='center'>Name</td>");
+            out.println("<td align='center'>Class</td>");
+            out.println("</tr>");
+            while (rs.next()) {
+                out.println("<tr>");
+                out.println("<td align='center'>" + rs.getInt(1) + "</td>");
+                out.println("<td align='center'>" + rs.getString(2) + "</td>");
+                out.println("<td align='center'>" + rs.getString(3) + "</td>");
+                out.println("</tr>");
+            }
+
+
+            out.println("</table>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+   @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(studentD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(studentD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+        
+    }
+}
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mysql Command line : 
+
+
+Create Database : 
+
+
+  
+
+
+
+Use Database : 
+
+
+  
+
+
+
+Create Table  : 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+Insert Value : 
+
+
+
+
+  
+
+
+
+Show Data : 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ PRACTICAL NO 9
+
+
+1. Write a simple JSP program 
+
+
+Write a java program to calculate the factorial values for a integer number, while the input is taken form an html 
+
+
+Index .html
+
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <a href="factorial.jsp">Click to navigate</a>
+        <form action="factorial.jsp" method="post">
+            Enter he value for n:<input type="number" name="val">
+            <input type="submit" value="submit">
+        </form>
+    </body>
+</html>
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Factorial.jsp
+
+
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Factorial Program</h1>
+        <%!
+        long n,result;
+        String str;
+        
+        long fact(long n) {
+            if(n==0)
+                return 1;
+            else
+                return n*fact(n-1);
+        }
+        %>
+        <% 
+            str=request.getParameter("val");
+            n = Long.parseLong(str);
+            result =fact(n);
+        %>
+        
+        <b>Factorial value:</b> <%= result %>  
+    </body>
+</html>
+
+
+
+
+	
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+OUTPUT: 
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Request Dispatcher JSP - Design a jsp page to call servlet - welcome servlet and then hello servlet to display data accepted on jsp page.
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Factorial Program</h1>
+        
+        <%--Action Tag--%>
+        <font color="red">Include the first file:</font>
+        <br><br>
+        <jsp:include page="newjsp.jsp"/>
+         <font color="red">Include the Second file:</font>
+        <br><br>
+        
+        <%--Declaration Tag --%>
+        
+        <%!
+        long n,result;
+        String str;
+        
+        long fact(long n) {
+            if(n==0)
+                return 1;
+            else
+                return n*fact(n-1);
+        }
+        %>
+        <% 
+            str=request.getParameter("val");
+            n = Long.parseLong(str);
+            result =fact(n);
+        %>
+        
+        <b>Factorial value:</b> <%= result %>  
+    </body>
+</html>
+
+
+	
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+PRACTICAL NO 10
+
+
+1. Write a JSF program to greet the user when he enter the name in form and submit 
+JSF:
+
+
+Step 1: create New project 
+Step2: click web app add New go to jsf page and create index.xhtml file
+Step 3 : same but Success.xhtml
+Step 4: click on source package add new go to servlet create Product
+Step 5: connect server go to tool select server add server and change http port : write 8282
+
+
+
+
+1. Implement a simple JavaServer Faces Application.
+
+
 Code : 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoException;
-import com.mongodb.WriteConcern;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.DBCursor;
-import com.mongodb.ServerAddress;
-import java.util.Arrays;
 
-public class mongodb_connection_insert{
-   public static void main( String args[] ){
-      try{   
-		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-		DB db = mongoClient.getDB( "Iqra6461");
-		System.out.println("Database Connection Successful!");
-		DBCollection collec = db.getCollection("stucollec");
-        BasicDBObject doc = new BasicDBObject("student", "Iqra6461")
-        .append("name", "Iqra")
-        .append("class", 'G')
-		.append("rollno", 61);
-collec.insert(doc);
- System.out.println("Document is inserted successfully");
-	    }catch(Exception e){
-	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	  }
-   }
+
+Index.xhtml
+
+
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+   <h:head>
+    <title>Product Entry</title>
+</h:head>
+
+
+<h:body>
+    <h:form>
+        <h3>Enter Product Details</h3>
+
+
+        <h:outputLabel for="id" value=" Enter Product ID: " />
+        <h:inputText id="id" value="#{product.id}" /><br/>
+
+
+        <h:outputLabel for="name" value=" Enter Name: " />
+        <h:inputText id="name" value="#{product.name}" /><br/>
+
+
+        <h:outputLabel for="quantity" value=" Enter Quantity: " />
+        <h:inputText id="quantity" value="#{product.quantity}" /><br/>
+
+
+        <h:outputLabel for="price" value=" Enter Price: " />
+        <h:inputText id="price" value="#{product.price}" /><br/><br/>
+
+
+        <h:commandButton value="Submit" action="#{product.submit}" />
+    </h:form>
+</h:body>
+
+
+</html>
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Success.xhtml
+
+
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+   <h:head>
+    <title>Product Details</title>
+</h:head>
+<h:body>
+    <h2>Product Submitted Successfully!</h2>
+    <p><b>Product ID:</b> #{product.id}</p>
+    <p><b>Name:</b> #{product.name}</p>
+    <p><b>Quantity:</b> #{product.quantity}</p>
+    <p><b>Price:</b> #{product.price}</p>
+</h:body>
+</html>
+
+
+
+
+	
+
+
+
+  
+
+
+
+
+
+Product.java
+
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+
+@ManagedBean
+@SessionScoped
+public class Product  {
+
+
+    private int id;
+    private String name;
+    private int quantity;
+    private double price;
+
+
+    public Product() {
+    }
+   
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+   
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+
+    public double getPrice() {
+        return price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+
+    public String submit() {
+       
+        return "Success";
+    }
 }
+	
 
 
 
-Update a Document   : 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoException;
-import com.mongodb.WriteConcern;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.DBCursor;
-import com.mongodb.ServerAddress;
-import com.mongodb.WriteResult;
-import java.util.Arrays;
-
-public class mongodb_connection_update{
-   public static void main( String args[] ){
-      try{   
-		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-		DB db = mongoClient.getDB( "Iqra6461" );
-		DBCollection collec = db.getCollection("stucollec");
-		
-		DBObject query = new BasicDBObject("name", "Sk.Iqra");
-        DBObject update = new BasicDBObject();
-        update.put("$set", new BasicDBObject("name","Shaikh_Iqra" ));
-         
-        WriteResult result = collec.update(query, update);
-         
-       	DBCursor cursor = collec.find();
-        try {
-          while(cursor.hasNext()) {
-          System.out.println(cursor.next());
-         }
-         } finally {
-           cursor.close();
-             }
-      }catch(Exception e){
-	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	  }
-   }
-}
 
 
-Retrieve  a Document :
-Code :  
-import com.mongodb.MongoClient;
-import com.mongodb.MongoException;
-import com.mongodb.WriteConcern;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.DBCursor;
-import com.mongodb.ServerAddress;
-import java.util.Arrays;
+  
 
-public class mongodb_connection_find_all{
-   public static void main( String args[] ){
-      try{   
-		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-		DB db = mongoClient.getDB( "Iqra6461" );
-		DBCollection collec = db.getCollection("stucollec");
-		DBCursor cursor = collec.find();
-        try {
-          while(cursor.hasNext()) {
-          System.out.println(cursor.next());
-         }
-         } finally {
-           cursor.close();
-             }
-        }catch(Exception e){
-	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	  }
-   }
-}
 
-Delete a Document : 
-Code : 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoException;
-import com.mongodb.WriteConcern;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.DBCursor;
-import com.mongodb.ServerAddress;
-import com.mongodb.WriteResult;
-import java.util.Arrays;
-public class mongodb_connection_delete{
-   public static void main( String args[] ){
-      try{   
-		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-		DB db = mongoClient.getDB( "Iqra6461" );
-		DBCollection collec = db.getCollection("stucollec");
-		DBObject query = new BasicDBObject("rollno",61);
-        WriteResult result = collec.remove(query);
-        System.out.println("Number of documents are deleted : " + result.getN());
-		DBCursor cursor = collec.find();		
-        try {
-          while(cursor.hasNext()) {
-          System.out.println(cursor.next());
-         }
-         } finally {
-           cursor.close();
-             }
-      }catch(Exception e){
-	     System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	  }
-   }
-}
+
+  
+
+
+
+
+
+OUTPUT :
