@@ -1,0 +1,1120 @@
+﻿PRACTICAL NO 1
+
+
+a)  Implement Depth First Search Algorithm.
+Explanation:
+
+
+DFS (Depth First Search) – Short Overview
+* Starts at root node
+
+* Goes left side first, then left’s child, then adjacent (right), and finally right side
+
+* For each node:
+Go deep → then backtrack
+
+Traversal Order:
+   1. Root
+
+   2. Left child
+
+   3. Left’s child (repeat till no left)
+
+   4. Backtrack → visit adjacent (right)
+
+   5. Move to right node → repeat same steps
+Uses Stack (LIFO):
+      * Last pushed node is visited first
+
+      * Can be done via recursion or manual stack
+        A
+       / \
+      B   C
+     / \    \
+    D   E    F
+         \  /
+          F
+
+
+
+
+
+
+
+
+
+
+
+
+Code:
+
+
+graph1 = {
+    'A': set(['B', 'C']),
+    'B': set(['A', 'D', 'E']),
+    'C': set(['A', 'F']),
+    'D': set(['B']),
+    'E': set(['B', 'F']),
+    'F': set(['C', 'E']),
+}
+
+
+def dfs(graph1, node, visited):
+    if node not in visited:
+        visited.append(node)
+        for n in graph1[node]:
+            dfs(graph1, n, visited)
+    return visited;
+
+
+visited = dfs(graph1, 'A', [])
+print(visited)
+
+
+
+
+  
+
+
+
+Output:-
+  
+
+
+
+
+
+B) Implement Breadth First Search Algorithm.
+BFS (Breadth-First Search) 
+Meaning:
+ BFS starts from a root node and visits all adjacent (neighboring) nodes level by level, moving left to right (if data is in order), before going deeper.
+         1. Start from the root node (starting point).
+
+         2. Visit all its direct neighbors (adjacent nodes).
+
+         3. Then, go to the next level and visit their neighbors.
+
+         4. Keep repeating until all nodes are visited.
+
+It uses:
+            * A queue to keep track of the next node to visit.
+
+            * A visited list to avoid revisiting nodes.
+
+               * Level-wise traversal, not depth-wise.
+
+               * Good for finding the shortest path in an unweighted graph.
+       A
+      / \
+     B   C
+    / \   \
+   D   E   F
+        \
+         F
+
+
+Code:-
+graph = {
+'A': set(['B','C']),
+'B': set(['A','D','E']),
+'C': set(['A','F']),
+'D': set(['B']),
+'E': set(['B','F']),
+'F': set(['C','E'])
+}
+#Implement Logic Of BFS
+def bfs(start):
+    queue=[start]
+    levels={}# This dict keeps track of levels
+    levels[start]=0#Depth of start node is 0
+    visited=set([start])
+    while queue:
+        node=queue.pop(0)
+        neighbours=graph[node]
+        for neighbor in neighbours:
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.add(neighbor)
+                levels[neighbor]= levels[node]+1
+    print(levels)#print graph level
+    return visited
+print(str(bfs('A'))) #print graph node
+# for finding Breadth first search path
+def bfs_paths(graph,start,goal):
+    queue=[(start,[start])]
+    while queue:
+        (vertex,path)=queue.pop(0)
+        for next in graph[vertex]-set(path):
+            if next == goal:
+                yield path + [next]
+            else:
+                queue.append((next,path +[next]))
+result=list(bfs_paths(graph,'A','F'))
+print(result)#[['A','C','F'],['A','B','F']]
+#for finding shortest path
+def shortest_path(graph,start,goal):
+    try:
+        return next(bfs_paths(graph, start,goal))
+    except StopIteration:
+        return None
+result1=shortest_path(graph,'A','F')
+print(result1) # ['A','C','F']
+
+
+
+
+  
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  PRACTICAL NO 2
+
+
+
+
+a) Simulate 4-Queen /N-Queen problem.
+
+
+Explanation:
+
+
+Code: 
+def solveNQueens(board, row, N):
+    if row == N:
+        print(board)
+        return
+    for col in range(0,N):
+        if isSafe(board, row, col , N):
+            board[row][col]=1
+            solveNQueens(board,row+1,N)
+            board[row][col]= 0
+def isSafe(board,row,col,N):
+    for i in range(0,row):
+        if board[i][col]== 1:
+            return False
+    for i ,j in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[i][j]== 1:
+            return False
+    for i, j  in zip(range(row, -1, -1), range(col, N)):
+        if board [i][j]== 1:
+            return False
+    return True
+def printSolution(board):
+    for row in board:
+        print(" ".join("Q" if col == 1 else "." for col in row))
+    print()
+def solveNQueensUtil(board,row,N):
+    if row==N:
+        printSolution(board)
+        return True
+    res = False
+    for col in range (N):
+        if isSafe(board, row, col, N):
+            board[row][col]=1
+            res=solveNQueensUtil(board, row+1, N) or res
+            board [row][col] = 0#Backtrack
+    return res
+def solveNQueens(N):
+    board = [[0 for _ in range(N)] for _ in range(N)]
+    if not solveNQueensUtil(board, 0, N):
+        print ("No SOLUTION exists")
+N=6
+solveNQueens(N)
+
+
+  
+
+
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b) Solve the Tower of Hanoi problem.
+
+
+Explanation:
+
+
+code:
+def moveTower(height , fromPole , toPole , withPole):
+    if height >=1:
+        moveTower(height-1,fromPole,withPole,toPole)
+        moveDisk(fromPole ,toPole)
+        moveTower(height-1,withPole,toPole,fromPole)
+def moveDisk(fp,tp):
+    print("moving disk from",fp,"to",tp)
+moveTower(3,"A","B","C")
+
+
+  
+
+
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+  PRACTICAL NO 3
+
+
+ a)Solve the water jug problem
+
+
+Explanation:
+
+
+Code: 
+#3 water jugs capacity -> (x,y,z) where x>y>z
+#initial state (12,0,0)
+#final state (6,6,0)
+capacity = (12, 8, 5)
+#maximum capacities of 3 jugs ->x,y,z
+x = capacity[0]
+y = capacity[1]  
+z = capacity[2]
+#to mark visited states
+memory = {}
+#store solution path
+ans = []
+
+
+def get_all_states(state):
+    #Let  the 3 jugs be called a,b,c
+    a = state[0]
+    b = state[1]
+    c = state[2]
+    if (a == 6 and b == 6):
+        ans.append(state)
+        return True
+
+
+    #if current state is already visited earlier
+    if ((a, b, c) in memory):
+        return False
+    memory[(a, b, c)] = 1
+
+
+    #empty jug a
+    if (a > 0):
+        #empty a into b (water should not exceeds capacity)
+        if (a + b <= y):
+            if (get_all_states((0, a + b, c))):
+                ans.append(state)
+                return True
+        else:
+            if (get_all_states((a - (y - b), y, c))):
+                ans.append(state)
+                return True
+
+
+        #empty a into c
+        if (a + c <= z):
+            if (get_all_states((0, b, a + c))):
+                ans.append(state)
+                return True
+        else:
+            if (get_all_states((a - (z - c), b, z))):
+                ans.append(state)
+                return True
+
+
+    if (b > 0):
+        #empty b into a
+        if (a + b <= x):
+            if (get_all_states((a + b, 0, c))):
+                ans.append(state)
+                return True
+        else:
+            if (get_all_states((x, b - (x - a), c))):
+                ans.append(state)
+                return True
+
+
+        #empty b into c
+        if (b + c <= z):
+            if (get_all_states((a, 0, b + c))):
+                ans.append(state)
+                return True
+        else:
+            if (get_all_states((a, b - (z - c), z))):
+                ans.append(state)
+                return True
+
+
+    if (c > 0):
+        #empty c into a
+        if (a + c <= x):
+            if (get_all_states((a + c, b, 0))):
+                ans.append(state)
+                return True
+        else:
+            if (get_all_states((x, b, c - (x - a)))):
+                ans.append(state)
+                return True
+
+
+        #empty c into b
+        if (b + c <= y):
+            if (get_all_states((a, b + c, 0))):
+                ans.append(state)
+                return True
+        else:
+            if (get_all_states((a, y, c - (y - b)))):
+                ans.append(state)
+                return True
+
+
+    return False
+
+
+initial_state = (12, 0, 0)
+print("Starting work...\n")
+get_all_states(initial_state)
+ans.reverse()
+for i in ans:
+    print(i)
+
+
+2nd code
+
+
+capacity = (12, 8, 5)
+x, y, z = capacity
+memory = {}     # visited states
+ans = []        # solution path
+ # Helper function to pour water
+def pour(from_amt, from_cap, to_amt, to_cap):
+    """Return new (from, to) after pouring"""
+    transfer = min(from_amt, to_cap - to_amt)
+    return from_amt - transfer, to_amt + transfer
+def get_all_states(state):
+    a, b, c = state
+    # Goal: 6 liters in A and 6 liters in B
+    if a == 6 and b == 6:
+        ans.append(state)
+        return True
+    if (a, b, c) in memory:
+        return False
+    memory[(a, b, c)] = 1
+    # All possible moves using pour()
+    moves = [
+        ("A->B", (pour(a, x, b, y)[0], pour(a, x, b, y)[1], c)),
+        ("A->C", (pour(a, x, c, z)[0], b, pour(a, x, c, z)[1])),
+        ("B->A", (pour(b, y, a, x)[1], pour(b, y, a, x)[0], c)),
+        ("B->C", (a, pour(b, y, c, z)[0], pour(b, y, c, z)[1])),
+        ("C->A", (pour(c, z, a, x)[1], b, pour(c, z, a, x)[0])),
+        ("C->B", (a, pour(c, z, b, y)[1], pour(c, z, b, y)[0])),
+    ]
+    for _, new_state in moves:
+        if new_state != state and get_all_states(new_state):
+            ans.append(state)
+            return True
+    return False
+ # Start
+initial_state = (12, 0, 0)
+print("Starting Work...\n")
+get_all_states(initial_state)
+ans.reverse()
+ # Print solution path
+for state in ans:
+ print(state)
+  
+
+
+
+
+  
+
+  
+
+  
+
+Output: 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b) Simulate the TIc-Tac-Toe problem.
+
+
+Explanation
+
+
+code:
+board = [' ']*9
+
+
+def print_board():
+    for i in range(3):
+        print(' | '.join(board[i*3:(i+1)*3]))
+        print('--'*5)
+
+
+def check_win(mark):
+    wins = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    return any(all(board[i] == mark for i in combo) for combo in wins)
+
+
+def tic_tac_toe():
+    for turn in range(9):
+        print_board()
+        player = 'X' if turn % 2 == 0 else 'O'
+        move = int(input(f"Player {player}, choose (1-9): ")) - 1
+        if board[move] == ' ':
+            board[move] = player
+            if check_win(player):
+                print_board()
+                print(f"Player {player} wins!")
+                return
+        else:
+            print("Invalid move, try again.")
+            continue
+    print_board()
+    print("It's a draw!")
+
+
+tic_tac_toe()
+
+
+
+
+
+
+  
+
+  
+
+Output:
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 4
+1.Solve constraint satisfaction problems. 
+
+
+Explanation:
+
+
+code:
+maze_size=6
+obstacles=[(0,1),(1,1),(3,2),(3,3),(3,4),(3,5),(0,4),(4,1),(4,2),(4,3)]
+start=(0,0)
+goal=(0,5)
+
+
+#check whether a given position of (x,y) is valid to move or not
+def is_valid(x,y):
+    return 0 <=  x < maze_size and 0 <= y < maze_size and (x,y) not in obstacles
+#DFS function(Depth-first search)
+def dfs (current,visited, path):
+    x, y = current
+    if current == goal:
+        path.append(current)
+        return True
+    visited.add(current)
+    moves=[(x-1,y),(x+1, y),(x, y+1),(x, y+1)]
+    for move in moves:
+        if is_valid(*move) and move not in visited:
+            if dfs(move, visited, path):
+                path.append(current)
+                return True
+    return False
+
+
+#Call DFS function to find path
+visited = set()
+path = []
+if dfs(start,visited,path):
+    path.reverse()
+    print("Path found:")
+    for position in path:
+        print(position)
+else:
+    print("Not path found")
+
+
+  
+
+
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 5
+1.Hill Climbing search
+
+
+Code:-
+
+
+import math
+increment = 0.1
+startingPoint = [1,1]
+point1 =[1,5]
+point2 =[6,4]
+point3 =[5,2]
+point4 =[2,1]
+def distance(x1,y1,x2,y2):
+    dist = math.pow(x2-x1,2)+math.pow(y2-y1,2)
+    return dist
+def sumOfDistances(x1,y1,px1,py1,px2,py2,px3,py3,px4,py4):
+    d1 = distance(x1,y1,px1,py1)
+    d2 = distance(x1,y1,px2,py2)
+    d3 = distance(x1,y1,px3,py3)
+    d4 = distance(x1,y1,px4,py4)
+    return d1 + d2 + d3 + d4
+def newDistance(x1,y1,point1,point2,point3,point4):
+    d1=[x1,y1]
+    d1temp=sumOfDistances(x1,y1,point1[0],point1[1],point2[0],point2[1],point3[0],point3[1],
+                          point4[0],point4[1])
+    d1.append(d1temp)
+    return d1
+minDistance = sumOfDistances(startingPoint[0],startingPoint[1],point1[0],point1[1],
+                             point2[0],point2[1],point3[0],point3[1],point4[0],point4[1])
+flag = True
+
+
+def newPoints(minimum,d1,d2,d3,d4):
+    if d1[2]==minimum:
+        return[d1[0],d1[1]]
+    elif d2[2]==minimum:
+        return[d2[0],d2[1]]
+    elif d3[2]==minimum:
+        return[d3[0],d3[1]]
+    elif d4[2]==minimum:
+        return[d4[0],d4[1]]
+i=1
+while flag:
+    d1 = newDistance(startingPoint[0]+increment,startingPoint[1],point1,point2,point3,point4)
+    d2 = newDistance(startingPoint[0]-increment,startingPoint[1],point1,point2,point3,point4)
+    d3 = newDistance(startingPoint[0],startingPoint[1]+increment,point1,point2,point3,point4)
+    d4 = newDistance(startingPoint[0],startingPoint[1]-increment,point1,point2,point3,point4)
+    print(i,'',round(startingPoint[0],2),round(startingPoint[1],2))
+    minimum = min(d1[2],d2[2],d3[2],d4[2])
+    if minimum < minDistance:
+        startingPoint = newPoints(minimum,d1,d2,d3,d4)
+        minDistance = minimum
+        i+=1
+    else:
+        flag = False
+  
+
+  
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+
+
+B. Write a program to demonstrate the astar problem
+
+
+Code:-
+
+
+Import module on command prompt:-
+1-pip install simpleai
+  
+
+
+
+2-pip install pydot flask
+  
+
+
+
+Code:-
+
+
+from simpleai.search import SearchProblem, astar
+GOAL = 'HELLO WORLD'
+class Helloproblem(SearchProblem):
+    def actions(self, state):
+        if len(state) < len(GOAL):
+            return list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ ')
+        else:
+            return[]
+    def result(self, state, action):
+        return state+action
+    def is_goal(self, state):
+        return state == GOAL
+    def heuristic(self, state):
+        #How far are we from the goal?
+        wrong = sum([1 if state[i] != GOAL[i] else 0
+                     for i in range(len(state))])
+        missing = len(GOAL) - len(state)
+        return wrong + missing
+problem = Helloproblem(initial_state = '')
+result = astar(problem)
+print(result.state)
+print(result.path())
+
+
+  
+
+
+
+Output:-
+  
+
+
+
+Second method:-
+
+
+Code:-
+
+
+from queue import PriorityQueue
+
+
+# Graph with edge weights (adjacency list)
+graph = {
+    'A': [('B', 6), ('F', 3)],
+    'B': [('A', 6), ('D', 2)],
+    'C': [('D', 1), ('E', 5)],
+    'D': [('B', 2), ('C', 1), ('E', 8), ('G', 7)],
+    'E': [('C', 5), ('D', 8), ('J', 5)],
+    'F': [('A', 3), ('G', 1)],
+    'G': [('F', 1), ('D', 7), ('H', 5), ('I', 3)],
+    'H': [('G', 5), ('I', 1)],
+    'I': [('G', 3), ('H', 1), ('E', 5), ('J', 3)],
+    'J': [('E', 5), ('I', 3)]
+}
+
+
+# Heuristic values
+heuristic = {
+    'A': 10,
+    'B': 6,
+    'C': 5,
+    'D': 3,
+    'E': 3,
+    'F': 7,
+    'G': 5,
+    'H': 3,
+    'I': 3,
+    'J': 0
+}
+
+
+# A* Algorithm
+def a_star_search(start, goal):
+    pq = PriorityQueue()
+    pq.put((0, start))  # (f = g + h, node)
+    came_from = {}
+    cost_so_far = {start: 0}
+    
+    while not pq.empty():
+        _, current = pq.get()
+        
+        if current == goal:
+            break
+        
+        for neighbor, cost in graph[current]:
+            new_cost = cost_so_far[current] + cost
+            if neighbor not in cost_so_far or new_cost < cost_so_far[neighbor]:
+                cost_so_far[neighbor] = new_cost
+                f = new_cost + heuristic[neighbor]
+                pq.put((f, neighbor))
+                came_from[neighbor] = current
+    
+    # Reconstruct path
+    if goal not in came_from:
+        return None  # No path found
+    
+    path = []
+    node = goal
+    while node != start:
+        path.append(node)
+        node = came_from[node]
+    path.append(start)
+    path.reverse()
+    return path
+
+
+# Run the search
+path = a_star_search('A', 'J')
+if path:
+    print("Shortest path using A* Search:", " -> ".join(path))
+else:
+    print("No path found from A to J")
+
+
+  
+
+  
+
+  
+
+
+
+Output:-
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical 6
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+6.B. Data Types and Structure:
+1. Prolog Commands using facts:
+Source Code:
+
+
+girl(priya).
+girl(tiyasha).
+girl(jaya).
+can_cook(priya).
+Input:
+  
+
+
+
+
+
+Output:
+  
+
+
+
+2. Prolog Commands using facts:
+Source Code:
+
+
+sing_a_song(raj).
+listens_to_music(abhishek).
+listens_to_music(raj) :- sing_a_song(raj).
+happy(raj) :- sing_a_song(raj).
+happy(akshat) :- listens_to_music(akshat).
+happy(abhishek) :- listens_to_music(abhishek).
+playes_guitar(abhishek) :- listens_to_music(abhishek).
+Input:
+  
+
+Output:
+  
+
+
+
+
+
+3. Prolog Commands using facts:
+Source Code:
+
+
+can_cook(priya).
+can_cook(jaya).
+can_cook(tiyasha).
+likes(priya,jaya) :- can_cook(jaya).
+likes(priya,tiyasha) :- can_cook(tiyasha).
+
+
+Input:
+  
+
+
+
+Output:
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical No. 7
+Prolog:
+7.A. Facts, Rules and Queries:
+Source Code:
+
+
+female(pam).
+female(liz).
+female(pat).
+female(ann).
+
+
+male(jim).
+male(bob).
+male(tom).
+male(peter).
+
+
+parent(pam,bob).
+parent(tom,bob).
+parent(tom,liz).
+parent(bob,ann).
+parent(bob,pat).
+parent(pat,jim).
+parent(bob,peter).
+parent(peter,jim).
+
+
+
+
+mother(X,Y):-parent(X,Y),female(X).
+father(X,Y):-parent(X,Y),male(X).
+haschild(X):-parent(X,_).
+
+
+sister(X,Y):-parent(Z,X),parent(Z,Y),female(X),X\==Y.
+brother(X,Y):-parent(Z,X),parent(Z,Y),male(X),X\==Y.
+
+
+
+
+Input:
+  
+
+
+Output:
+  
+
+
+
+7.B.I. Operations:
+Source Code:
+5+5=:=5+6.
+3+P=Q+6.
+25>15.
+25>=25.
+2+7>4-1.
+Output:
+  
+
+
+
+7.B.II. Operations:
+Source Code:
+calc :- X is 100 + 200,write('100 + 200 is '),write(X),nl,
+Y is 400 - 150,write('400 - 150 is '),write(Y),nl,
+Z is 10 * 300,write('10 - 300 is '),write(Z),nl,
+
+
+A is 100 / 30,write('100 / 30 is '),write(A),nl,
+B is 100 // 30,write('100 // 30 is '),write(B),nl,
+C is 100 ** 2,write('100 ** 2 is '),write(C),nl,
+D is 100 mod 30,write('100 mod 30 is '),write(D),nl.
+Input:
+  
+
+Output:
+  
+
+                              
+
+
+
+
+
+
+      Practical 8
+Problem Solving using Backtracking
+Source Code :-
+boy(tom). 
+boy(bob). 
+girl(alice). 
+girl(lili). 
+pay(X,Y) :- boy(X),girl(Y).
+  
+
+
+
+
+
+Output:-
