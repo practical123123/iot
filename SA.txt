@@ -1,0 +1,2242 @@
+﻿INDEX
+SR. NO.
+	TITLE
+	DATE
+	1
+	Manual Testing 1:
+1. Boundary Value Analysis, Equivalence Partitioning
+2. Decision table Testing
+	
+
+21/11/2025
+22/11/2025
+	2
+	Manual Testing 2:
+1. Path Testing
+2. State Transition Testing
+	
+
+28/11/2025
+
+
+	3
+	1. Introduction to Selenium: Installation
+2. Web Driver Manager:  Write First Test Case in Selenium
+3. Locators: Different Types of Locators
+	
+
+05/12/2025
+
+
+	4
+	1. WebElement Methods in Selenium
+2. Perform wait operation in selenium
+	12/12/2025
+	5
+	1. Handle multiple windows in Selenium
+2. Taking a screenshot using Selenium WebDriver
+3. To capture browser console logs
+	
+
+13/12/2025
+	6
+	Perform Unit Testing with JUnit Tool
+	02/01/2026
+	7
+	Performance Testing using JMeter - HTTP
+	19/12/2025
+	8
+	Performance Testing using JMeter - Other Samlers
+	19/12/2025
+	9
+	1. Declaring Variables, Joining Variables and strings, Scope of the variables, Strings and Integers.
+2. Implement Iterative and decision-making structures
+	
+
+19/12/2025
+	10
+	1. Handling different windows application
+2. Calculator, MS Excel, MS Word, Notepad using AutoIt
+	19/12/2025
+	________________
+Practical No 1                                                         Date: 21/11/2025
+Functional Testing Techniques
+A) Boundary Value Analysis, Equivalence Partitioning
+B) State Transition Testing, Decision Testing
+A. Boundary Value Analysis, Equivalence Partitioning
+1. Implement Triangle problem:
+Write test cases (boundary value and equivalence class) to check all the combinations. 
+The triangle problem accepts three integers (a, b and c) as its input, each of which are taken to be sides of a triangle. The values of these inputs are used to determine the type of the triangle (Equilateral, Isosceles, Scalene or not a triangle)
+Conditions to be implemented:
+C1: 1 ≤ a ≤ 200
+C2: 1 ≤ b ≤ 200
+C3: 1 ≤ c ≤ 200
+C4: a < b + c
+C5: b < a + c 
+C6: c < a + b
+If all the above conditions are met, the type of triangle is determined as follows: 
+1. If all three sides are equal, the output is Equilateral. 
+2. If exactly one pair of sides is equal, the output is lsosceles.
+3. If no pair of sides is equal, the output is Scalene.
+
+
+Boundary Value Analysis (BVA):
+Test Case
+	Values of 
+	Expected Result
+	a
+	b
+	c
+	1
+	100
+	100
+	1
+	Isosceles Triangle
+	2
+	100
+	100
+	2
+	Isosceles Triangle
+	3
+	100
+	100
+	100
+	Equilateral Triangle
+	4
+	100
+	100
+	199
+	Isosceles Triangle
+	5
+	100
+	100
+	200
+	Not a Triangle
+	6
+	100
+	100
+	100
+	Equilateral Triangle
+	7
+	100
+	2
+	100
+	Isosceles Triangle
+	8
+	70
+	100
+	50
+	Scalene Triangle
+	9
+	100
+	200
+	100
+	Not a Triangle
+	10
+	1
+	100
+	100
+	Isosceles Triangle
+	Equivalence Partitioning:
+Invalid Partitions
+(Not a Triangle)
+	Test Case 1: a < 1
+Test Case 2: b < 1
+Test Case 3: c < 1
+Test Case 4: a > 200
+Test Case 5: b > 200
+Test Case 6: c > 200
+	Valid Equilateral Triangle
+	Test Case 7: a = b= c = 1
+Test Case 8: a = b = c = 200
+Test Case 9: 1 < a = b = c < 200
+	Valid Isosceles Triangle
+	Test Case 10: 1 < a = b < 200, c > a
+Test Case 11: 1 < a = c < 200, b > a
+Test Case 12: 1 < b = c < 200, a > b
+	Valid Scalene Triangle
+	Test Case 13 : 1 < a < 200, b < 200, c > a + b
+Test Case 14 : 1 < b < 200, c < 200, a > c + b
+Test Case 15 : 1 < c < 200, a < 200, b > a + c
+	
+
+Problem Question:
+Python Code:
+def knowTriangle(s1, s2, s3):
+    isTriangle = True
+    if s1 < 1 or s2 < 1 or s3 < 1 or s1 > 200 or s2 > 200 or s3 > 200:
+        print("Conditions not met. \nHence, it's not a Triangle")
+        isTriangle = False
+    elif s1 >= s2 + s3 or s2 >= s1 + s3 or s3 >= s1 + s2:
+        print("The value of one of the sides is greater than the sum of the other two sides. \nHence,it's not a Triangle")
+        isTriangle = False
+    else:
+        isTriangle = True
+    if isTriangle:
+        if s1 == s2 and s2 == s3:
+            print("It is an Equilateral Triangle")
+        elif s1 == s2 or s2 == s3 or s1 == s3:
+            print("It is an Isosceles Triangle")
+        else:
+            print("It is an Scalene Triangle")
+s1 = int(input("Side 1: "))
+s2 = int(input("Side 2: "))
+s3 = int(input("Side 3: "))
+knowTriangle(s1, s2, s3)
+
+
+Input:
+  
+
+
+
+Output:
+  
+________________
+
+2. Password Problem:
+Suppose you have to check the User Name and Password field that accepts:
+• minimum 8 characters
+• maximum 12 characters
+• Valid range 8–12
+• Invalid range 7 or less than 7
+• Invalid range 13 or more than 13
+
+
+Test Cases for Valid partition value, Invalid partition value and exact boundary value:
+• Test Cases 1: Consider password length less than 8.
+• Test Cases 2: Consider a password of length exactly 8.
+• Test Cases 3: Consider passwords of length between 9 and 11.
+• Test Cases 4: Consider a password of length exactly 12.
+• Test Cases 5: Consider passwords of length more than 12.
+Python Code:
+password = input("Enter password please: ")
+if(len(password) >= 8 and len(password) <= 12):
+    print("The length of password is",len(password),"Valid.")
+else:
+    print("The length of password is",len(password),"Invalid.")
+
+
+Input:
+  
+
+
+
+Output:
+  
+________________
+
+3. Next Date Problem:
+Design a simple page which will take a date (dd/mm/yyyy) as an input and a nextDate button. Write the test cases to test the next date button function.
+
+
+Problem Domain:
+“Next Date” is a function consisting of three variables like: month, date and year. It returns the date of the next day as output. It reads the current date as input date.
+The conditions are:
+C1: 1 ≤ month ≤ 12
+C2: 1 ≤ day ≤ 31
+C3: 1900 ≤ year ≤ 2025
+
+
+If any one condition out of C1, C2 or C3 fails, then this function produces an output "value of month not in the range 1…12".
+
+
+Python Code:
+def next_date(day, month, year):
+    if not (1 <= month <= 12):
+        return "value of month not in the range 1…12"
+    if not (1 <= day <= 31):
+        return "value of day not in the range 1…31"
+    if not (1900 <= year <= 2025):
+        return "value of year not in the range 1900…2025"
+
+
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        month_days[1] = 29
+
+
+    if day > month_days[month - 1]:
+        return "invalid day for the given month"
+
+
+    day += 1
+    if day > month_days[month - 1]:
+        day = 1
+        month += 1
+
+
+    if month > 12:
+        month = 1
+        year += 1
+
+
+    return f"{day:02d}/{month:02d}/{year}"
+
+
+
+
+if __name__ == "__main__":
+    date_input = input("Enter date (dd/mm/yyyy): ")
+    d, m, y = map(int, date_input.split("/"))
+    print("Next Date:", next_date(d, m, y))
+
+
+Input:
+  
+
+
+
+Output:
+  
+________________
+
+4. Create Decision Table for below problems
+Airline Discount Policy
+        Conditions
+                1. Passenger Age (<= 2, > 2 && < 18, > 18)
+                2. Depart on Monday or Friday (Yes, No)
+                3. Stay 6 days or more (Yes, No)
+        Actions
+                1. Travel Free when age <= 2
+                2. 0% discount - When age is > 18 and staying >= 6 days is NO
+                3. 10% discount - When staying >= 6 days is Yes
+                4. 20% discount - When age <= 18
+                5. 40% discount - When age is 3-18 and staying >= 6 days
+
+
+Decision Table
+Age
+	Departure Day
+	Stay 6 Days or More
+	Action
+	<= 2
+	Any
+	Any 
+	Travel Free
+	> 2
+	Mon or Fri
+	No
+	0% discount
+	> 2 
+	Mon or Fri
+	Yes
+	10% discount
+	>2 
+	Not Mon or Fri
+	No 
+	0% discount
+	> 2 
+	Not Mon or Fri
+	Yes
+	10% discount
+	<= 18
+	Any
+	Any
+	20% discount
+	3-18
+	Any
+	No
+	0% discount
+	3-18
+	Any
+	yes
+	40% discount
+	> 18 
+	Any
+	No
+	0% discount
+	> 18 
+	Any
+	Yes
+	10% discount
+	
+
+Python Code:
+def normalize_day(value):
+    v = value.strip().lower()
+    days_map = {
+        "mon": "mon", "monday": "mon",
+        "fri": "fri", "friday": "fri",
+        "tue": "tue", "tuesday": "tue",
+        "wed": "wed", "wednesday": "wed",
+        "thu": "thu", "thursday": "thu",
+        "sat": "sat", "saturday": "sat",
+        "sun": "sun", "sunday": "sun",
+    }
+    if v not in days_map:
+        raise ValueError("Invalid day entered")
+    return days_map[v] in ("mon", "fri")
+
+
+def normalize_yn(value):
+    v = value.strip().lower()
+    if v in ("yes", "y"):
+        return True
+    if v in ("no", "n"):
+        return False
+    raise ValueError("Expected Yes or No")
+
+
+def calculate_discount(age, is_mon_fri, stay6):
+    if age <= 2:
+        return "Travel free"
+    if 3 <= age <= 18:
+        if stay6:
+            return "40% discount"
+        else:
+            return "0% discount"
+    if age <= 18:
+        return "20% discount"
+    if age > 18:
+        if stay6:
+            return "10% discount"
+        else:
+            return "0% discount"
+
+
+print("Airline Discount Calculator")
+valid = True
+
+
+try:
+    age = int(input("Enter your age: ").strip())
+    if not (0 <= age <= 120):
+        print("Error: Age must be between 0 and 120.")
+        valid = False
+    if valid:
+        travel_mf = normalize_day(input("Enter departure day (e.g., Mon, Tue, Fri): "))
+        stay6 = normalize_yn(input("Stay 6 days or more? Yes/No: "))
+except ValueError as e:
+    print("Input Error:", e)
+    valid = False
+
+
+if valid:
+    result = calculate_discount(age, travel_mf, stay6)
+    print("Age:", age)
+    print("Travelling on Monday/Friday:", "Yes" if travel_mf else "No")
+    print("Stay >= 6 days:", "Yes" if stay6 else "No")
+    print("Result:", result)
+
+
+Input:
+  
+
+  
+
+
+
+
+
+
+
+
+
+Output:
+  
+
+
+
+5. Photo Upload:
+Now consider a dialogue box that will ask the user to upload a photo with certain conditions like 
+1. You can upload only “.jpg” format image
+2. File size less than 32kb
+3. Resolution 137*177
+If any of the conditions fails the system will throw a corresponding error message stating the issue and if all conditions are met photo will upload successfully
+
+
+Decision table
+Conditions
+	Test cases
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	Format (.jpg)
+ Y/N
+	Y
+	Y
+	Y
+	Y
+	N
+	N
+	N
+	N
+	Size ( < 32 kb) Y/N
+	Y
+	Y
+	N
+	N
+	Y
+	Y
+	N
+	N
+	Resolution (137*177) Y/N
+	Y
+	N
+	Y
+	N
+	Y
+	N
+	Y
+	N
+	Result
+	OK
+	E1
+	E2
+	E3
+	E4
+	E5
+	E6
+	E7
+	
+
+
+
+OK - Photo Uploaded
+E1 - Error message resolution mismatch
+E2 - Error message size mismatch
+E3 - Error message size and resolution mismatch
+E4 - Error message for format mismatch
+E5 - Error message format and resolution mismatch
+E6 - Error message format and size mismatch
+E7 - Error message for format, size ,and resolution mismatch
+
+
+Python Code:
+# Photo Upload Validation Program
+def validate_photo(file_name, file_size_kb, resolution):
+    """ Validates the uploaded photo based on:
+    - Format: must be .jpg
+    - Size: must be < 32 KB
+    - Resolution: must be 137x177
+    """
+    format_ok = file_name.lower().endswith(".jpg")
+    size_ok = file_size_kb < 32
+    resolution_ok = resolution == (137, 177)
+    
+    if format_ok and size_ok and resolution_ok:
+        return "OK - Photo Uploaded"
+    elif format_ok and size_ok and not resolution_ok:
+        return "E1 - Error: resolution mismatch"
+    elif format_ok and not size_ok and resolution_ok:
+        return "E2 - Error: size mismatch"
+    elif format_ok and not size_ok and not resolution_ok:
+        return "E3 - Error: size and resolution mismatch"
+    elif not format_ok and size_ok and resolution_ok:
+        return "E4 - Error: format mismatch"
+    elif not format_ok and size_ok and not resolution_ok:
+        return "E5 - Error: format and resolution mismatch"
+    elif not format_ok and not size_ok and resolution_ok:
+        return "E6 - Error: format and size mismatch"
+    else:  # not format_ok and not size_ok and not resolution_ok
+        return "E7 - Error: format, size, and resolution mismatch"
+
+
+if __name__ == "__main__":
+    file_name = input("Enter file name (with extension): ")
+    file_size_kb = float(input("Enter file size in KB: "))
+    width = int(input("Enter photo width: "))
+    height = int(input("Enter photo height: "))
+    
+    resolution = (width, height)
+    result = validate_photo(file_name, file_size_kb, resolution)
+    print(result)
+
+
+Input:
+  
+
+
+
+Output:
+  
+
+6. Merchandise (COD):
+Company X sells merchandise to wholesale and retail outlets. Wholesale customers receive a two percent discount on all orders. The company also encourages both wholesale and retail customers to pay cash on delivery by offering a two percent discount for this method of payment. Another two percent discount is given on orders of 50 or more units. Each column represents a certain type of order.
+
+
+Decision Table
+Less than 50 units ordered 
+	Y
+	Y
+	Y
+	Y
+	N
+	N
+	N
+	N
+	Cash on delivery 
+	Y
+	Y
+	N
+	N
+	Y
+	Y
+	N
+	N
+	WholeSales Outlet
+	Y
+	N
+	Y
+	N
+	Y
+	N
+	Y
+	N
+	Discount Rate 0%
+	
+
+	
+
+	
+
+	X
+	
+
+	
+
+	
+
+	
+
+	Discount Rate 2%
+	
+
+	X
+	X
+	
+
+	
+
+	
+
+	
+
+	X
+	Discount Rate 4%
+	X
+	
+
+	
+
+	
+
+	
+
+	X
+	X
+	
+
+	Discount Rate 6%
+	
+
+	
+
+	
+
+	
+
+	X
+	
+
+	
+
+	
+
+	
+
+Python Code:
+def calculate_discount(units_ordered, cod, wholesale):
+    """
+    Calculate discount rate for merchandise orders.
+    
+    Parameters:
+    - units_ordered: int
+    - cod: bool, True if Cash on Delivery
+    - wholesale: bool, True if Wholesale Outlet
+    
+    Returns:
+    - discount_rate: int (0, 2, 4, 6)
+    """
+    discount = 0
+    # Wholesale discount
+    if wholesale:
+        discount += 2
+    # COD discount
+    if cod:
+        discount += 2
+    # Bulk order discount
+    if units_ordered >= 50:
+        discount += 2
+    return discount
+
+
+test_cases = [
+    {"units": 30, "cod": True,  "wholesale": True},   # 4%
+    {"units": 30, "cod": True,  "wholesale": False},  # 2%
+    {"units": 30, "cod": False, "wholesale": True},   # 2%
+    {"units": 30, "cod": False, "wholesale": False},  # 0%
+    {"units": 50, "cod": True,  "wholesale": True},   # 6%
+    {"units": 50, "cod": True,  "wholesale": False},  # 4%
+    {"units": 50, "cod": False, "wholesale": True},   # 4%
+    {"units": 50, "cod": False, "wholesale": False},  # 2%
+]
+print("=== Merchandise Discount Test Cases ===")
+for i, test in enumerate(test_cases, 1):
+    rate = calculate_discount(test["units"], test["cod"], test["wholesale"])
+    print(f"Test Case {i}: Units={test['units']}, COD={test['cod']}, Wholesale={test['wholesale']} → Discount: {rate}%")
+
+
+Input:
+  
+
+
+
+Output:
+  
+
+7. Money Transfer
+Take an example of transferring money online to an account which is already added and
+approved. Here the conditions to transfer money are 
+1. ACCOUNT ALREADY APPROVED 
+2. OTP (One Time Password) MATCHED 
+3. SUFFICIENT MONEY IN THE ACCOUNT 
+And the actions performed are 
+1. TRANSFER MONEY 
+2. SHOW A MESSAGE AS INSUFFICIENT AMOUNT
+3. BLOCK THE TRANSACTION INCASE OF SUSPICIOUS TRANSACTION
+
+
+Decision Table
+
+
+ID
+	
+
+Conditions/Action
+	Test Case
+	1
+	2
+	3
+	4
+	C1
+	Account already approved
+	T
+	T
+	T
+	T
+	C2
+	OTP (One Time Password) matched
+	T
+	T
+	F
+	F
+	C3
+	Sufficient money in Account
+	T
+	F
+	T
+	F
+	A1
+	Transfer Money
+	Execute
+	
+
+	
+
+	
+
+	A2
+	Show message for insufficient amount 
+	
+
+	Execute
+	
+
+	
+
+	A3
+	Block transaction in case of suspicious transaction
+	
+
+	
+
+	Execute
+	Execute
+	
+
+Python Code:
+def money_transfer(account_approved, otp_matched, sufficient_money):
+    # If account is not approved, block immediately (safety rule)
+    if not account_approved:
+        return "Block Transaction"
+
+
+    # If OTP fails, it's suspicious -> block
+    if not otp_matched:
+        return "Block Transaction"
+
+
+    # If money is insufficient -> show message
+    if not sufficient_money:
+        return "Insufficient Amount"
+
+
+    # All good -> transfer money
+    return "Transfer Money"
+# -------------------------
+# Test Cases based on table
+# -------------------------
+test_cases = [
+    {"id": 1, "approved": True, "otp": True,  "money": True},   # Transfer Money
+    {"id": 2, "approved": True, "otp": True,  "money": False},  # Insufficient Amount
+    {"id": 3, "approved": True, "otp": False, "money": True},   # Block Transaction
+    {"id": 4, "approved": True, "otp": False, "money": False},  # Block Transaction
+]
+
+
+print("=== Money Transfer Decision Table Results ===")
+for test in test_cases:
+    action = money_transfer(test["approved"], test["otp"], test["money"])
+    print(f"Test Case {test['id']}: Account Approved={test['approved']}, "
+          f"OTP={test['otp']}, Money={test['money']} → Action: {action}")
+
+
+Input:
+  
+
+
+
+Output:
+  
+
+________________
+
+
+Practical No 2                                                        Date: 28/11/2025
+Cyclomatic Complexity
+A) Path Testing (Compute Cyclomatic Complexity)
+Cyclomatic complexity is a metric that measures the complexity of a program by counting its decision points. It determines the number of unique paths through the code, indicating how complex the logic is. Lower complexity suggests simpler and more manageable code, reducing the chances of errors and making the program easier to maintain and modify. In essence, it helps assess the code’s readability and the risk associated with making changes.
+If a piece of source code contains no control-flow statements, then its cyclomatic complexity is 1, meaning the code has a single execution path.
+Similarly, if the source code contains one if condition, then the cyclomatic complexity will be 2, because there are two possible paths: one for the condition being true and another for it being false.
+Formula for calculating Cyclomatic Complexity
+M = E-N+2P
+Where 
+E = the number of edges in the control flow graph
+N = the number of nodes in the control flow graph
+P = the number of connected components (usually 1)
+Problem 1: Draw a control flow graph and calculate Cyclomatic Complexity 
+A = 10
+  IF B > C THEN 
+       A = C
+  ELSE 
+       A = B
+  ENDIF
+Print A
+Print B
+Print C
+	
+
+
+
+________________
+
+
+Control Flow Graph of the above code:
+  
+
+
+
+Cyclomatic Complexity V(G) = E-N+2
+E = 7
+N = 7
+V(G) = 7-7+2 = 2
+
+
+Problem 2: Calculate cyclomatic for the given code:
+{
+  int i,j,k;
+  for (i = 0 ;  i <= N ; i++) {
+   p[i] = 1;
+    for (j = 2; j <= N; j++) {
+      k = p[i];
+      j = 1;
+      while(a[p[j-1]] > a[k]) {
+         P[j] = p[j-1]
+         j--;
+      }
+    }
+   P[j] = k;
+  }
+	
+
+________________
+
+
+Control Flow Graph of the above code:
+
+
+  
+
+
+
+
+
+Cyclomatic Complexity V(G) = E - N + 2
+E = No. of Edges = 12
+N = No. of Nodes = 10
+V(G) = 12 - 10 + 2 = 4
+
+
+
+
+________________
+
+
+Problem 3: Calculate cyclomatic complexity for the given code –
+Begin
+int x, y, power;
+      float z;
+      input(x, y);
+      if (y < 0)
+            power = -y;
+      else
+            power = y;
+      z = 1;
+      while (power != 0)
+      {
+            z = z * x;
+            power = power - 1;
+      }
+
+
+      if (y < 0)
+            z = 1 / z;
+
+
+      output(z);
+End
+	 
+Control Flow Graph of the above code:
+  
+
+Cyclomatic Complexity V(G) = E - N + 2
+E = No. of Edges = 14
+N = No. of Nodes = 12
+V(G) = 14 - 12 + 2 = 4
+Problem 4:
+public class CyclomaticComplexityDemo {
+    public static void main(String[] args) {
+
+
+        int var1 = 10;
+        int var2 = 9;
+        int var3 = 8;
+        int var4 = 7;
+
+
+        if (var1 == 10) {
+
+
+            if (var2 > var3) {
+                var2 = var3;
+
+
+            } else {
+
+
+                if (var3 > var4) {
+                    var3 = var4;
+                } else {
+                    var4 = var1;
+                }
+            }
+
+
+        } else {
+            // Empty else block
+        }
+
+
+        var1 = var4;
+
+
+        System.out.println("Printing value for var1, var2, var3, and var4 " 
+                            + var1 + " " + var2 + " " + var3 + " " + var4);
+    }
+}
+	________________
+
+
+Control Flow Graph of the above code:
+  
+
+Cyclomatic Complexity V(G) = E − N + 2
+ E = No. of Edges = 13
+N = No. of Nodes = 11
+V(G) = 13 - 11 + 2 = 4
+________________
+
+
+Practical No 3                                                        Date: 05/12/2025
+Automation Testing (Selenium Webdriver)
+Features of Selenium:
+* Open Source and Portable - Selenium is an open source and portable Web testing Framework.
+* Combination of tool and DSL - Selenium is combination of tools and DSL. (Domain Specific Language) in order to carry out various types of tests.
+* Easier to understand and implement - Selenium commands are categorized in terms of different classes which make it easier to understand and implement.
+* Reduce test execution time - Selenium supports parallel test execution that reduces the time taken in executing parallel tests.
+* Lesser resource required - Selenium requires lesser resource when compared to its
+
+
+A) Introduction to Selenium - Installation
+Step 1: Open the FireFox Browser: 
+  
+
+
+
+Step 2: Go to Extensions and Themes.
+  
+
+Step 3: In the search bar, type Selenium IDE.
+  
+
+Step 4: From the search results, click on Selenium IDE (it should appear at the top).
+  
+
+Step 5: Click Add to Firefox to install the extension.
+  
+  
+
+  
+
+Step 5: Install Completed.
+  
+
+B) Web Driver Manager - Write First TestCase in Selenium 
+1. Open the Selenium IDE extension and When the Selenium IDE window opens, click Create a New Project.
+  
+
+
+
+2. Enter a project name (e.g., “Wikipedia Test”) and click OK.
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+
+
+  
+
+
+
+  
+________________
+
+Practical No 4                                                        Date: 12/12/2025
+Selenium Locators
+Demonstrate Relative XPath Expressions in detail:
+1. Install ChroPath extension
+Go to the Firefox Browser and download the chropath extension.
+  
+
+
+
+2. Open your HTML web page(basic Web Application for demonstration) in Chrome
+Browser, where ChroPath is already installed.
+Follow this instruction.
+  
+
+  
+
+  
+
+
+
+3. Locate the entire web page
+All Relative XPath Expressions starts with //.
+And in order to locate the entire web page, we need to locate the html tag.
+Hence we need to create a Relative XPath Expression ‘//html‘ to locate the html tag directly.
+Now type ‘//html‘ and press ‘Enter’ key as shown below.
+Observe that on pressing the ‘Enter’ keyboard key, the //html RelativeXPath Expression will be locating the entire HTML page. (i.e. xpath=1 attribute will be added in the html tag by ChroPath to state the same.)
+  
+
+
+
+4. Locate the head section of the web page i.e. head tag.
+create a Relative XPath Expression: ‘//head‘ to locate the head tag directly.
+  
+
+________________
+
+
+5. Locate the title of the web page i.e. title tag.
+create a Relative XPath Expression: ‘//title‘ to locate the title tag directly
+  
+
+
+
+6. Locate the body section of the web page i.e. body tag.
+create a Relative XPath Expression: ‘//body‘ to locate the body tag directly
+  
+
+
+
+________________
+
+
+7. Locate all the Paragraphs on the web page i.e. p tags.
+create a Relative XPath Expression: ‘//p‘ to locate all the p tags directly.
+  
+
+
+
+8. Locate the first paragraph only by adding the index value [1] to the above Relative XPath Expression to from the Relative XPath Expression
+Relative XPath Expression: //p[1]
+  
+
+
+
+________________
+
+
+9. Locate the second paragraph only by adding the index value [2] to the above Relative
+XPath Expression to from the Relative XPath Expression
+Relative XPath Expression: //p[2]
+  
+
+
+
+10. Locate the paragraph having the id attribute value as ‘para1′
+Relative XPath Expression to from: //p[@id=’para1′]
+  
+
+
+
+________________
+
+
+11. Locate the paragraph having the id attribute value as ‘para2′
+Relative XPath Expression to from: //p[@id=’para2’]
+  
+
+
+
+12. Locate the paragraph having the class attribute value as ‘main’
+Relative XPath Expression to from: //p[@class=’main’]
+  
+
+
+
+________________
+
+
+13. Locate the paragraph having the class attribute value as ‘sub’
+Relative XPath Expression to from: //p[@class=’sub’]
+  
+
+
+
+14. Take two different attribute names and values to locate the p tags in the above web page.
+Relative XPath Expression to form: ‘//p[@id=’para1′][@class=’main’]‘
+  
+
+
+
+________________
+
+
+15. Locate all the paragraphs having the id attribute value as ‘para1’ and also class attribute value as ‘main’.
+Relative XPath Expression to form: ‘//p[@id=’para1′][@class=’main’]‘
+  
+
+
+
+16. Locate all the p tags having id attribute value as ‘para1’ and also class attribute value as ‘sub’ using the Relative XPath Expression
+Relative XPath Expression to form: ‘//p[@id=’para1′][@class=’sub’]‘
+  
+
+
+
+________________
+
+
+17. Locate all the p tags in the above web page having any of the id values as ‘para1’ or
+‘para2’.
+Relative XPath Expression: //p[@id=’para1′ or @id=’para2′]
+  
+
+________________
+
+
+Practical No 5                                                        Date: 13/12/2025
+Selenium Locators
+Relative XPath Expression to Locate/ Identify Web Elements (Text box, Button, Drop Down, Check Box, Radio Button)
+
+
+1. Open your own HTML registration form or (http://omayo.blogspot.com/ ) in Chrome
+Browser, where ChroPath is already installed.
+  
+
+
+
+2. Locate all the input tags in the HTML page using the relative XPath Expression.
+//input
+  
+
+
+
+Total 10 Input are there in the webpage
+3. Locate the first input tag and modify it. Then observe that it is locating the first UI element having input tag
+(//input)[1] – will locate the first UI element
+  
+
+
+
+4. Locate only the input tags having the name attribute by executing the Relative XPath
+Expression – //input[@name]
+  
+
+
+
+________________
+
+
+All 10 input tags having the name attribute
+5. Locate the input tag having attribute name ‘value’ and its value as ‘orange’
+//input[@name='value'][@value='orange']
+  
+
+
+
+6. locate the input tag having two attribute names and values where,
+The first attribute name is ‘name’ and its value is ‘color’
+//input[@name='name'][@value='color']
+  
+
+
+
+________________
+
+
+The second attribute name is ‘value’ and its value is ‘blue’
+//input[@name='value'][@value='blue']
+  
+
+
+
+7. Locate the Radio and Checkbox options that are in the selected mode.
+//input[@checked]
+  
+
+
+
+________________
+
+
+8. Locate all the images (i.e. img tags) in the HTML page
+//img
+  
+
+
+
+9. Locate the dropdown
+//select[@id='dropdown']
+  
+
+
+
+________________
+
+
+10. Locate the another UI element, say hyperlink
+//a[@id='exampleLink']
+  
+
+
+
+11. Locate the button
+//button
+  
+
+
+
+________________
+
+
+12. Locate all the anchor tags
+//a
+  
+
+
+
+13. Locate all the tags (input, a, button and other tags) in the HTML.
+//*
+  
+
+
+
+________________
+
+
+14. Locate all the tags in the web page having id attribute value as radio1 and name attribute value as gender 
+//*[@id='radio1'][@name='gender']
+  
+
+________________
+
+
+Practical No 6                                                        Date: 02/01/2025
+Perform Unit Testing with JUnit Tool
+Step 1: Verify Java Installation in Your Machine
+If you do not have Java installed on your system, then download the Java Software Development Kit (SDK) from the following link https://www.oracle.com. We are assuming Java 1.8.0_101 as the installed version for this tutorial.
+
+
+Step 2: Set JAVA Environment
+Set the JAVA_HOME environment variable to point to the base directory location where Java is installed on your machine.
+Set the environment variable JAVA_HOME to C:\Program Files\Java\jdk1.8.0_101
+	Append Java compiler location to the System Path.
+Verify Java installation using the command java -version as explained above.
+Step 3: Download JUnit Archive
+Download the latest version of JUnit jar file from https://junit.org/junit5/. At the time of writing this tutorial, we have downloaded Junit-4.12.jar and copied it into the C:\>JUnit folder.
+https://sourceforge.net/projects/junit-4.mirror/files/r4.12/junit-4.12.jar/download
+https://jarcasting.com/artifacts/org.hamcrest/hamcrest-all/1.3/
+  
+
+
+
+Step 4: Set JUnit Environment
+Set the JUNIT_HOME environment variable to point to the base directory location where the JUNIT jar is stored on your machine. Let's assume we've stored junit4.12.jar in the JUNIT folder.
+Set the environment variable JUNIT_HOME to C:\JUNIT
+  
+
+
+
+Step 5: Set CLASSPATH Variable
+Set the CLASSPATH environment variable to point to the JUNIT jar location.
+  
+
+
+
+Set the environment variable CLASSPATH to %CLASSPATH%;%JUNIT_HOME%\junit4.12.jar;.;
+
+
+
+
+Step 6: Test JUnit Setup
+Create a java class file name TestJunit in C:\>JUNIT_WORKSPACE
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+
+public class TestJunit {
+   @Test
+        
+   public void testAdd() {
+      String str = "Junit is working fine";
+      assertEquals("Junit is working fine",str);
+   }
+}
+	
+
+Create a java class file name TestRunner in C:\>JUNIT_WORKSPACE to execute test case(s).
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+
+public class TestRunner {
+   public static void main(String[] args) {
+      Result result = JUnitCore.runClasses(TestJunit.class);
+                
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }        
+      System.out.println(result.wasSuccessful());
+   }
+}  
+	
+
+Step 7: Verify the Result
+Open Command Prompt : 
+cd C:\JUNIT_WORKSPACE
+javac TestJunit.java TestRunner.java
+java TestRunner
+  
+
+
+
+B. Create the Java Class to Be Tested:
+Calculator.java 
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+}
+
+
+CalculatorTest.java : 
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+
+public class CalculatorTest {
+
+
+    @Test
+    public void testAdd() {
+        Calculator calc = new Calculator();
+        int result = calc.add(2, 3);
+        assertEquals(5, result);
+    }
+
+
+    @Test
+    public void testSubtract() {
+        Calculator calc = new Calculator();
+        int result = calc.subtract(5, 3);
+        assertEquals(2, result);
+    }
+}
+
+
+TestRunner.java : 
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+
+public class TestRunner {
+
+
+    public static void main(String[] args) {
+
+
+        Result result = JUnitCore.runClasses(CalculatorTest.class);
+
+
+        for (Failure failure : result.getFailures()) {
+            System.out.println(failure.toString());
+        }
+
+
+        System.out.println(result.wasSuccessful());
+    }
+}
+
+
+Open Command Prompt : 
+Compile Calculator.java , CalculatorTest.java and TestRunner.java then Execute TestRunner
+  
+
+________________
+
+
+Practical No 7                                                        Date: 19/12/2025
+Performance Testing using JMeter - HTTP
+Steps to Perform Performance Testing & Load Testing with JMeter
+Step 1: Launch JMeter
+Extract the JMeter archive to your desired location and launch it by running the JMeter Windows Batch file from the 'bin' directory. Ensure Java is installed on your system as JMeter requires Java to run.
+  
+
+  
+
+Step 2: Create a Test Plan
+Open JMeter, navigate to File → New Test Plan and provide a name for your test plan to create a new testing project within the JMeter interface.
+  
+
+Once the Test Plan gets created, we can change the name of the Test Plan. Along with this, we can configure various settings of the Test Plan.
+  
+
+________________
+Step 3: Add a Thread Group
+Right-click on the Test Plan, and select Add → Threads (Users) → Thread Group in the tree view.
+  
+
+Configure the Thread Group by setting the number of threads, ramp-up period, and loop count for simulating user behavior and load in the performance test. Adjust as needed for your specific scenario.
+  
+
+Step 4: Add Sampler (HTTP Request)
+Inside the Thread Group, right-click and choose Add → Sampler → HTTP Request to add an HTTP Request Sampler.
+  
+
+Configure the sampler by providing the server details such as server name, port, and path to simulate HTTP requests in the performance test. Performance and Load Testing were conducted on the GeeksforGeeks official website, utilizing its server name without specifying a path and employing '/' to assess the overall website performance. Additionally, HTTP requests were incorporated, and it is worth noting that various other protocols can be employed for testing as well.
+  
+
+Step 5: Add Listeners
+Within the Thread Group, right-click and select Add → Listener. Common listeners, such as View Results Tree, Summary Report, and Response Times Over Time, can be added. Configure listeners to display pertinent information about the test results.
+  
+
+Step 6: Configure Additional Elements (Optional)
+If necessary, configure additional elements by adding Config Elements to set variables, Assertions to validate responses, and Timers to introduce think time. Customize these elements based on your specific test requirements.
+Step 7: Configure Load Scenarios
+Fine-tune the Thread Group settings to configure load scenarios. Adjust the number of threads, ramp-up period, and loop count to simulate realistic user behavior and define load scenarios in your performance test.
+Step 8: Run the Test
+Save your test plan with a meaningful name using the "File → Save Test Plan" option.
+  
+
+________________
+
+
+Click on the "Run" menu, then select "Start," or press the "Play" button to initiate the test. Monitor the test progress in the listeners to analyze the performance metrics.
+  
+
+Clicking on the Start button which is situated at the top of the option bar.
+  
+
+________________
+Step 9: Analyze Results
+Review the test results after completion, utilizing the configured listeners. Examine response times, errors, throughput, and other pertinent metrics to assess the performance of the application under load.
+ Analyzing Results 
+
+Conclusion
+In conclusion, load testing with JMeter is an important step in making sure your applications meet the demands of today's digital landscape. By using realistic user loads, identifying performance bottlenecks, and analyzing key metrics, you can proactively optimize your software for scalability and deliver a consistent, high-quality user experience. The comprehensive steps outlined above provide a structured approach for conducting performance testing and load testing with JMeter, empowering you to enhance user satisfaction and achieve business success.
+
+
+
+
+
+
+________________
+Practical No 8                                                        Date: 19/12/2025
+Performance Testing using JMeter - Other Samplers
+LAB 1 : JAVA Request Sampler 
+
+Open JMeter
+Right-click Test Plan → Add → Threads → Thread Group
+  
+
+Set:
+   Number of Threads: 1
+   Loop Count: 1
+  
+
+
+
+Right-click Thread Group → Add → Sampler → Java Request
+  
+
+Select:
+         Classname: org.apache.jmeter.protocol.java.test.SleepTest
+         Method: sleep
+Set parameter:
+            Sleep Time = 1000
+  
+
+________________
+
+
+Add Listener:
+       View Results Tree
+  
+
+
+Output: 
+  
+
+
+
+________________
+
+
+LAB 2 : JSR223 Sampler (Groovy)
+Step 1: Right-click Thread Group → Add → Sampler → JSR223 Sampler
+  
+
+  
+
+
+
+Step 2: Configure:
+Language: groovy
+Enter Script:
+log.info("JSR223 Sampler Executed")
+vars.put("username","admin")
+  
+
+
+
+Step 3: Add View Results Tree
+  
+
+________________
+
+
+Step 4: Run the test
+  
+
+
+
+Expected Result
+* Script executed successfully
+* Variable username created
+Step-by-step (where to check)
+1. Right-click Thread Group
+→ Add → Sampler → Debug Sampler
+  
+
+
+
+________________
+
+
+   2. Right-click Thread Group
+→ Add → Listener → View Results Tree
+  
+
+
+
+      3. Run the test
+  
+
+
+
+      4. In View Results Tree:
+      * Click Debug Sampler
+      * Go to Response Data tab
+You will see
+      * JMeter Variables:
+      * username=admin
+  
+
+
+
+LAB 3: BeanShell Sampler
+Steps:
+1. Add BeanShell Sampler
+  
+
+  
+
+
+
+Enter Script:
+ log.info("BeanShell Sampler Running");
+  
+
+
+
+2. Add View Results Tree
+  
+
+
+
+3. Run test
+  
+
+
+
+4. Add debug sampler
+  
+
+  
+
+
+
+5. Add view result tree and then go to debug sampler
+  
+
+  
+
+
+
+LAB 4: Test Action Sampler
+Flow Control Action = Test Action Sampler
+Steps / Procedure
+      1. Open Apache JMeter.
+      2. Create a new Test Plan.
+      3. Right-click on Test Plan → Add → Threads (Users) → Thread Group.
+  
+
+________________
+
+
+      4. Right-click on Thread Group → Add → Sampler → HTTP Request.
+  
+
+
+
+      5.  Select the HTTP Request sampler and configure the following:
+      * Protocol: https
+      * Server Name or IP: www.google.com
+      * Path: null
+  
+
+________________
+
+
+      6. Right-click on Thread Group → Add → Sampler → Flow Control Action.
+  
+
+
+
+      7. Select Flow Control Action and configure:
+      * Action: Pause
+      * Duration: 3000 milliseconds
+  
+
+________________
+
+
+      8. Right-click on Thread Group → Add → Sampler → HTTP Request.
+  
+
+
+
+      9. Select the HTTP Request sampler and configure the following:
+      * Protocol: https
+      * Server Name or IP: www.google.com
+      * Path: null
+  
+
+________________
+
+
+      10. Arrange the elements in the following order:
+      * HTTP Request
+      * Flow Control Action (Pause – 3000 ms)
+      * HTTP Request
+  
+
+
+
+      11. Right-click on Thread Group → Add → Listener → View Results Tree.
+  
+
+
+
+________________
+
+
+      12. Click on the Start (▶) button to execute the test.
+  
+
+
+
+Expected Result
+  
+
+  
+
+
+
+LAB 5: SMTP Sampler
+Aim: To send an email using SMTP Sampler in Apache JMeter for functional validation.
+
+
+Steps / Procedure
+      1. Open Apache JMeter.
+      2. Create a new Test Plan.
+      3. Right-click on Test Plan → Add → Threads (Users) → Thread Group.
+  
+
+________________
+
+
+      4. Right-click on Thread Group → Add → Sampler → SMTP Sampler.
+  
+
+  
+
+
+
+Go to GoogleAccount -> Manage Account - > search for App password -> give App Name as JMeter Password will automatically create copy and save it somewhere 
+
+
+  
+
+
+
+      5. Configure:
+      * Server: smtp.gmail.com
+      * Port: 587
+      * Use StartTLS , Trust All Certificates , Enforce StartTLS: True
+      * From: sender@gmail.com  (kajalyadavrjcollege@gmail.com)
+      * To: receiver@gmail.com   (vandanayadavcsccollege@gmail.com)
+      * Username :  sender@gmail.com  (kajalyadavrjcollege@gmail.com )
+      * Password : Copied App password
+      * Add Subject & Message
+  
+
+
+
+
+
+  
+
+
+
+      6. Add view result tree
+  
+
+________________
+
+
+      7. Run test
+  
+
+  
+
+
+
+________________
+
+
+      8. Expected Result:
+  
+
+
+
+LAB 6: TCP Sampler
+Steps / Procedure
+1. Open Apache JMeter.
+2. Create a new Test Plan.
+3. Right-click on Test Plan → Add → Threads (Users) → Thread Group.
+  
+
+
+
+________________
+
+
+4. Add TCP Sampler
+      * Thread Group → Right click → Add → Sampler → TCP Sampler
+  
+
+  
+
+
+
+5. Configure:
+      * Server Name: localhost
+      * Port Number:9000
+      * Text to Send: Hello Server
+  
+
+
+
+Open command prompt and run this cmd
+python -c "import socket;s=socket.socket();s.bind(('localhost',9000));s.listen(1);c,a=s.accept();print(c.recv(1024));c.send(b'Hello Client');c.close()"
+
+
+6. Add Listener
+      * Thread Group → Right click → Add → Listener → View Results Tree
+  
+
+
+
+
+
+
+
+7. Run test
+  
+
+  
+
+
+
+8. Expected Result
+      * TCP response captured (if server is running)
+  
+
+LAB 7: OS Process Sampler
+Steps / Procedure
+1. Open Apache JMeter.
+2. Create a new Test Plan.
+3. Right-click on Test Plan → Add → Threads (Users) → Thread Group.
+  
+
+
+
+4. Add OS Process Sampler
+      * Right-click on Thread Group
+      * Click Add → Sampler → OS Process Sampler
+  
+
+  
+
+
+
+5. Configure:
+Command: ipconfig
+  
+
+
+
+________________
+
+
+6. Add View Results Tree
+  
+
+
+
+7. Run test.
+  
+
+
+
+________________
+
+
+8. Expected Result.
+  
+
+  
+
+  
+
+
+
+LAB 8: Debug Sampler
+Steps / Procedure
+1. Open Apache JMeter.
+2. Create a new Test Plan.
+3. Right-click on Test Plan → Add → Threads (Users) → Thread Group.
+  
+
+
+
+4. Add Debug Sampler
+      * Right-click on Thread Group
+      * Click Add → Sampler → Debug Sampler
+  
+
+  
+
+
+
+5. Add View Results Tree
+      * Right-click on Thread Group
+      * Click Add → Listener → View Results Tree
+
+
+  
+
+
+
+6. Run the Test
+Click the Start  
+________________
+
+
+Expected Result
+      * All JMeter variables printed
+  
+
+________________
+Practical No 9                                                        Date: 19/12/2025
+1. Declaring Variables, Joining Variables and strings, Scope of the variables, Strings and Integers.
+2. Implement Iterative and decision-making structures
+What is AutoIt?
+AutoIt is a Windows automation scripting language used to:
+      * Automate mouse and keyboard actions
+      * Control windows and dialogs
+      * Create simple GUIs
+      * Automate repetitive tasks
+It is commonly used for software testing, system administration, and task automation.
+2. Install AutoIt
+      1. Download AutoIt from the official site:
+https://www.autoitscript.com
+      2. Install AutoIt (default settings are fine)
+      3. Install SciTE Script Editor (usually included)
+  
+
+3. Create Your First AutoIt Script
+         1. Right-click on Desktop → New → Text Document
+         2. Rename it to: hello.au3
+         3. Open it in SciTE Editor
+
+
+________________
+
+
+1) Declaring Variables, Joining Variables and Strings, Scope of the variables, Strings and Integers.
+i. Display Message: 
+  
+
+Explanation: The MsgBox function displays a message box on the screen. The first parameter defines the type of message box, where 0 specifies a standard box with an OK button and no icon. The second parameter sets the title of the message box as AutoIt. The third parameter contains the message text, which displays Hello, AutoIt! to the user.
+
+
+ii. Declaring Variable and Display the same: 
+  
+
+Explanation: The code assigns the value "Alex" to the variable $name and the value 20 to the variable $age. The MsgBox function is then used to display this information in a message box. The text combines labels and variable values using the & operator, while @CRLF inserts a new line between the name and age. The message box appears with the title "Info", showing the name on one line and the age on the next line.
+
+
+iii. Mouse and KeyBoard automation: 
+  
+
+Explanation: The Send function simulates keyboard input by typing “Hello World” followed by pressing the Enter key, indicated by {ENTER}. After that, the MouseClick function simulates a left mouse button click at the screen coordinates (500, 300). This allows the script to automatically type text and then interact with a specific location on the screen using the mouse.
+
+
+________________
+
+
+iv. Working On Windows: 
+  
+
+Explanation: The WinActivate function brings the window titled “Untitled - Notepad” to the foreground and makes it the active window. The WinWaitActive function then pauses the script until that same Notepad window becomes active, ensuring it is ready to receive input.
+
+
+In the example, the Run function starts the Notepad application. The script waits for the Notepad window to become active using WinWaitActive, and once it is ready, the Send function automatically types the text “This is automated using AutoIt.” into the Notepad window.
+
+
+________________
+
+
+2) Implement Iterative and decision-making structures.
+i. Example of FOR LOOP in AutoIt
+Code:
+for $i=1 To 5 step 1
+        ConsoleWrite("iteration" & $i & @CRLF)
+        Next
+  
+
+
+
+Explanation: This For loop will iterate from 1 to 5 with a step size of 1. Inside the loop, ConsoleWrite is used to print the current iteration. @CRLF is a predefined constant that represents a new line. (The $ prefix is used when declaring a variable. In this example, $myVariable is assigned the string value "Hello, AutoIt!").
+
+
+ii. Example of a WHILE LOOP in AutoIt
+Code:
+Local $counter=1
+While $counter <=5
+        ConsoleWrite("Iteration"&$counter &@CRLF)
+        $counter +=1
+        WEnd
+  
+
+
+
+Explanation: This While loop will continue as long as the condition $counter <= 5 is true. Inside the loop, ConsoleWrite is used to print the current iteration, and $counter is incremented.
+
+
+iii. Example of an if-Then statement in AutoIt
+Code:
+Local $number=10
+If $number>5 Then
+        MsgBox(0,"Result","$number is greater than 5.")
+        EndIf
+  
+
+
+
+Explanation: This If-Then statement checks if the $number is greater than 5. If the condition is true, a message box is displayed indicating that the $number is greater than 5.
+
+
+iv. Example of an If-Else statement in AutoIt
+Code:
+Local $value = 8
+If $value > 10 Then
+    MsgBox(0, "Result", $value & " is greater than 10.")
+Else
+    MsgBox(0, "Result", $value & " is not greater than 10.")
+EndIf
+  
+
+
+
+Explanation: This If-Else statement checks if $value is greater than 10. If true, it displays a message stating that $value is greater than 10; otherwise, it indicates that $value is not greater than 10.
+v. Example of Switch case statement
+Code:
+Local $day = "Tuesday"
+Switch $day
+    Case "Monday"
+        MsgBox(0, "Day", "It's Monday")
+    Case "Tuesday"
+        MsgBox(0, "Day", "It's Tuesday")
+    Case "Wednesday"
+        MsgBox(0, "Day", "It's Wednesday")
+    Case "Thursday"
+        MsgBox(0, "Day", "It's Thursday")
+    Case "Friday"
+        MsgBox(0, "Day", "It's Friday")
+    Case Else
+        MsgBox(0, "Day", "It's a Weekend")
+EndSwitch
+  
+
+
+
+Explanation: The Switch statement evaluates the value of the variable $day. It compares it against several Case scenarios (Monday through Friday). When a match is found, it executes the corresponding MsgBox command. If none of the specific days match (the Case Else), it displays a message indicating it is a weekend day.
+________________
+Practical No 10                                                        Date: 19/12/2025
+Handling different windows application:
+         1. Notepad
+         2. Calculator
+         3. MS Excel
+         4. MS Word
+using AutoIt
+
+
+1. Notepad:
+Code:
+; Open Notepad
+Run("notepad.exe")
+sleep(1000)
+; Type some text
+Send("Hey there,Its Raj here at SQA Practical")
+; wait for a moment
+sleep(2000)
+; close Notepad
+WinClose("[Class:Notepad]")
+  
+
+
+
+
+
+
+
+
+
+2. Calculator:
+Code:
+;Open Calculator
+Run("calc.exe")
+WinWaitActive("Calculator")
+
+
+;Add a brief delay (adjust as needed)
+Sleep(1000)
+
+
+;Send the calculation command
+Send("20*8")
+
+
+;Wait for the result to appear (adjust the sleep time as needed)
+Sleep(5000)
+
+
+;Close Calculator
+WinClose("Calculator")
+  
+
+
+
+3. Microsoft Excel:
+Code:
+; Create Excel application object
+Global $oExcel = ObjCreate("Excel.Application")
+; Check if Excel was successfully created
+If IsObj($oExcel) Then
+    ; Make Excel visible (optional)
+    $oExcel.Visible = True
+    ; Add a new workbook
+    Global $oWorkbook = $oExcel.Workbooks.Add()
+
+
+    ; Get the first worksheet
+    Global $oSheet = $oWorkbook.Worksheets(1)
+    $oSheet.Activate()
+
+
+    ; Write data to cells
+    $oSheet.Range("A1").Value = "6431"
+    $oSheet.Range("A2").Value = "Raj"
+    $oSheet.Range("A3").Value = "SQA"
+
+
+    ; Wait for 2 seconds (optional)
+    Sleep(4000)
+
+
+    ; Save the workbook
+    $oWorkbook.SaveAs(@ScriptDir & "\AutoItExcelExample.xlsx")
+
+
+    ; Close workbook
+    $oWorkbook.Close()
+
+
+    ; Quit Excel
+    $oExcel.Quit()
+
+
+    ; Release object
+    ObjRelease($oExcel)
+
+
+EndIf
+  
+
+
+
+  
+
+
+
+4. Microsoft Word:
+Code:
+;Create Word application object
+Global $oWord = ObjCreate("Word.Application")
+
+
+;Check if Word was successfully created
+
+
+If IsObj($oWord) Then
+        ;Make Word visible (optional)
+        $oWord.Visible = True
+
+
+        ;Add a new document
+        Global $oDoc = $oWord.Documents.Add()
+
+
+        ;Write "Hello, Autolt!" to the document
+        $oDoc.Range.Text = "Hello I'm Raj! - SEM 6 Subject List.SOA 2.SIC 3.ITSM 4.HCI 5.B16.GIS"
+
+
+        Sleep(10000)
+
+
+        ;Save and close the document
+        $oDoc.SaveAs(@ScriptDir & "\AutoltWordExample.docx")
+        $oDoc.Close()
+
+
+        ;Quit Word
+        $oWord.Quit()
+        ObjRelease($oWord)
+Endif
+  
+
+
+
+  
+
+
+
+6431_Jaiswal Raj Ramji Tara
