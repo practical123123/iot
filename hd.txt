@@ -1,0 +1,1929 @@
+﻿PRACTICAL NO 1
+
+
+ A ) Basic- Excel Shortcuts, RANDBETWEEN, relative and absolute cell reference, Conditional formatting- create new rules 
+
+
+First you can select any of the columns to list any of the rand numbers given to students into the subject columns formula=RANDBETWEEN(33,75) THEN you can list down to scroll the first number and list it excel can give you rand value into the table.
+
+
+Columns formula=RANDBETWEEN(33,75)
+
+
+1.Excel Shortcuts
+
+
+  
+
+
+
+2.Random between function
+Generates a random integer between a lower and upper limit.
+Syntax
+=RANDBETWEEN(bottom, top)
+=RandBetween(G4,G3)
+
+
+
+
+  
+
+3.Relative and Absolute cell reference
+1)Relative cell reference
+A relative reference changes automatically when the formula is copied to another cell.
+* Example: A1 → A2 → A3
+* Used when you want Excel to adjust the cell reference by row or column.
+* Formula : =([price]*[Qty])
+  
+
+2)Absolute cell reference
+An absolute reference does not change when copied.
+It is locked using the $ symbol.
+* Example: $A$1 always remains A1.
+* Used when one value must stay fixed (like tax rate, discount, GST, etc.)
+Mixed Reference
+* A$1 → row fixed
+* $A1 → column fixed
+Formula : =([@price]*$K$3)
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.Conditional formatting- create new rules 
+
+
+1)Select the data cells (without column header)
+
+
+2)Under Data->conditional formatting->select new rule
+
+
+
+
+Step : 
+
+
+1. Create one more column Highlight 
+     2) Select All Table go to Conditional Formatting Select New Rule &
+        Go to Use a formula to determine 
+     3) Then First select Highlight Cell then enter = and select Department Now     /press F4 two time 
+     4)  go to formate , Fill section select color and then press okk
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+B )  Functions - Aggregation- SUM, AVERAGE, COUNT, COUNTA, MIN/MAX, Conditional - IF, SUMIF/COUNTIF, PMT , FV
+1. SUM
+       =SUM(Table5[@[Unit Test 1]:[Final Test]])
+  
+
+2. AVERAGE
+Calculates the average (mean) of numbers. 
+ =AVERAGE(Table5[Unit Test 1])
+
+
+  
+
+3. COUNT
+Counts only the cells that contain numbers.
+=COUNT(Table5[Final Test])
+  
+
+4. COUNTA
+Counts all non-empty cells (text + numbers).
+  
+
+5. MIN
+Finds the smallest number in a range. (Unit Test 1 to Final Test)
+=MIN(Table5[@[Unit Test 1]:[Final Test]])
+  
+
+6. MAX
+Finds the largest number in a range.
+  
+Conditional Functions (Work based on conditions)
+7. IF
+Checks a condition and returns a result based on TRUE or FALSE.
+IF(F2>=84,”PASS”,”FAIL”)
+  
+
+
+
+PMT Scenario: 
+
+
+Calculate the monthly EMI for a loan amount of 35,00,000 at an interest rate of 9.5% for a period of 5 years. 
+
+
+Loan Amount: ₹35,00,000
+Interest Rate: 9.5% per year
+Tenure: 5 years (60 months)
+Step 1: Convert values
+* Monthly interest rate = 9.5% / 12 = 0.791666%
+* Number of months = 5 × 12 = 60
+
+
+Step 2: Excel Formula
+
+
+
+
+
+
+  
+
+
+
+
+
+2.FV Scenario: 
+
+
+Suppose, John invested rs 10000 for 24 months at an interest rate of 8 % in RD. Apply FV formula for calculating the future value
+
+
+Step 1: Convert values
+* Monthly interest rate = 8% / 12 = 0.6666%
+* Number of months = 24
+Step 2: Excel Formula
+
+
+  
+
+
+
+C . Advanced- What-if Analysis- Scenario Manager, Goal Seek, Data Table, Pivot Table
+
+
+What-If Analysis allows you to test different scenarios and see how changing inputs affects outputs.
+Excel provides three main What-If tools:
+1. Data Table
+2. Goal Seek
+3. Scenario Manager
+1.Data Table
+* One-variable Data Table(Interest Rate)
+Use when you want to change one input (e.g., interest rate).
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pivot table Scenario :
+
+
+  
+
+
+
+1. Show Region-wise sales of stationery.
+
+
+  
+
+
+
+
+
+2 State wise average sales.
+
+
+  
+
+
+
+3 Clothing total sales in the South region.
+  
+
+
+
+
+
+
+
+4 Region-wise quantity sold of Rice 
+
+
+  
+
+
+
+5  Product wise Highest quantity sold  in each state
+
+
+  
+
+
+
+
+
+PRACTICAL NO 2
+
+
+
+
+Data Wrangling and Visualization.
+Data Wrangling
+Data wrangling is the process of cleaning, organizing, and transforming raw data into a structured and usable format. It involves removing errors, duplicates, inconsistencies, and formatting issues in data. The goal is to make the dataset accurate, consistent, and ready for analysis. In short, it turns messy data into clean and reliable information.
+Data Visualization
+Data visualization is the method of presenting data in graphical or visual formats such as charts, graphs, and dashboards. It helps convert complex datasets into easily understandable visuals. The purpose is to highlight trends, comparisons, and patterns in data. It allows users to grasp insights quickly and make informed decisions.
+Difference:
+* Data wrangling = preparing the data
+* Data visualization = presenting the data
+a. Remove duplicate, remove blank rows, Remove spaces -trailing and leading
+
+
+-Remove Duplication
+
+
+Step 1 :  Highlight Duplication Line
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 2 : Go to data > Data Tools > Remove duplicate >  click ok.
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+-Remove blank rows
+
+
+Go to Home > Find & Select > Go to Special > Blank > Right click on blank rows > Delete > Row Table
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+After Removing  blank rows
+
+
+  
+
+
+
+
+
+* Remove spaces -trailing and leading
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+B. Change cases using formula
+
+
+Changing cases using formulas in Excel means converting text into uppercase, lowercase, or proper case automatically using specific functions. This helps maintain data consistency, formatting, and readability. It ensures that names, titles, or text values follow a uniform style across the dataset.
+
+
+1. LOWERCASE : 
+  
+
+
+
+  
+
+2.UPPERCASE 
+
+
+UPPERCASE means converting all letters of a text into capital letters.
+  
+
+
+
+  
+
+
+
+
+
+3.PROPER
+
+
+Proper case means capitalizing the first letter of each word and making the remaining letters lowercase.
+
+
+  
+
+
+
+  
+
+
+
+
+
+D. Split data - Splitting a Single Field into Multiple Fields. (Using Text to column feature and  Left/Right function)
+
+
+Select data > Go to Data > text to Column > Delimited > Next > Click Tab , Space option > Finish 
+  
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+2 concatenate
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+USING Left  : 
+
+
+  
+
+
+
+  
+
+
+
+
+
+RIGHT : 
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E . Validation - 
+
+
+Age Validation : 
+
+
+  
+
+
+
+  
+
+
+
+
+
+Set Age value 18 to 45
+
+
+  
+
+
+
+After Enter = 15 Error Message Show 
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+Email Validation :  
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+* Visualization : 
+
+
+1. TreeMap : 
+Step : 
+
+
+Select Entire Column -> Go to insert -> Click Insert Hierarchy Chart -> Select TreeMap
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+2. WaterHall Map : 
+
+
+Step : 
+Select Entire Column > Go To insert Tab > Click Insert WaterFall Chart  -> Select Waterfall
+  
+
+
+
+  
+
+
+
+3. Stock Chart
+Step  : 
+
+
+Select Entire Column > Go to Insert Tab > Click Insert ->select stock
+
+
+  
+
+
+
+  
+
+
+
+
+
+4. Parallel -Coordination Chart
+
+
+Select Entire Column > Go to Insert Tab > Click Insert Line Chart ->Choose Line With Markers
+
+
+  
+
+
+
+  
+
+
+
+Practical No 4
+Association Rules:
+
+
+1. mydata<-read.csv("D:/6431_BA/Pract4_6431.csv",header=T, colClasses="factor")
+
+
+
+
+Explanation of arguments:
+* "D:/6431_BA/Pract4_6431.csv" → File path of the CSV file.
+* header = T → The first row of the CSV contains column names (T is short for TRUE).
+* colClasses = "factor" → Converts all columns into factors.
+This is commonly done for association rule mining (e.g., Apriori algorithm), where data should be categorical.
+
+
+  
+
+
+
+2. View(mydata)
+Working of View():
+* Open a spreadsheet-like window in RStudio.
+* Allows you to visually inspect the dataset.
+
+
+  
+
+
+
+3. install.packages("arules")
+Working:
+* Downloads and installs the arules package from CRAN.
+* The arules package is used for:
+Association rule mining
+Market basket analysis
+Apriori and Eclat algorithms
+
+
+  
+
+
+
+4. library(arules)
+Working of library():
+* Loads the arules package into the current R session.
+* Makes its functions (like apriori(), inspect(), etc.) available for use.
+
+
+  
+
+
+
+5. rules<-apriori(mydata)
+Working:
+* Applies the Apriori algorithm on the dataset mydata.
+* Generates association rules from the data.
+* Stores the generated rules in the variable rules.
+Details:
+* apriori() is a function from the arules package.
+* Since mydata contains factor (categorical) data, it is suitable for association rule mining.
+* By default, Apriori uses:
+   * Support = 0.1
+   * Confidence = 0.8
+   * Minimum rule length = 1
+________________
+
+
+The rules are created in the form:
+{Item(s) on LHS} → {Item(s) on RHS}
+
+
+  
+
+
+
+6. summary(rules)
+Working:
+* Displays a summary of all the association rules generated.
+Summary shows:
+* Total number of rules generated
+* Distribution of:
+   * Support
+   * Confidence
+   * Lift
+* Rule lengths (number of items in each rule)
+* Most frequent items involved in the rules
+  
+
+
+
+7. rules<-apriori(mydata,parameter=list(minlen=2, maxlen=3,supp=.5))
+Working:
+* Generates association rules from mydata using the Apriori algorithm with custom parameters.
+
+Explanation of parameters:
+minlen = 2 : Minimum number of items in a rule must be 2 (LHS + RHS)
+maxlen = 3 : Maximum number of items in a rule must be 3
+supp = 0.5 : Minimum support is 50%
+  
+
+
+
+   8. inspect(rules)
+Working:
+   * Displays all the generated association rules in a readable table format.
+What is shown:
+   * LHS (Left-Hand Side) of the rule
+   * RHS (Right-Hand Side) of the rule
+   * Support
+   * Confidence
+   * Lift
+
+Example output format:
+{Milk, Bread} => {Butter}  support=0.6  confidence=0.85  lift=1.2
+
+
+Meaning of the Measures:
+      * Support (0.5)
+→ Rule appears in 50% of all transactions
+      * Confidence
+→ Probability that RHS occurs when LHS occurs
+      * Lift
+→ Strength of the association
+         * Lift > 1 → Strong rule
+         * Lift = 1 → No association
+         * Lift < 1 → Weak rule
+
+
+  
+
+  
+
+
+
+         9. install.packages("arulesViz")
+Working:
+         * Downloads and installs the arulesViz package from CRAN.
+         * arulesViz is used to visualize association rules generated by the arules package
+  
+
+  
+
+
+
+         10. library(arulesViz)
+Working:
+         * Loads the arulesViz package into the current R session.
+         * Makes visualization functions like plot() available.
+  
+
+
+
+         11. plot(rules, method="grouped")
+Working:
+         * Creates a grouped matrix visualization of the association rules.
+Explanation:
+         * Groups rules based on:
+         * LHS (antecedents) and RHS (consequents)
+
+            * Color intensity represents:
+            * Strength of rules (usually lift)
+Use:
+            * Helps identify strong rule groups quickly.
+            * Useful when there are many rules.
+  
+
+  
+
+
+
+
+
+
+
+            12. plot(rules, method="graph", control=list(type="items"))
+Working:
+            * Displays association rules as a network graph.
+Explanation:
+            * Items are shown as nodes.
+            * Rules are shown as edges (arrows).
+            * Arrow direction: LHS → RHS
+control = list(type = "items"):
+            * Nodes represent items (not rules).
+            * Shows how items are connected to each other.
+  
+
+  
+
+            13. rules<-apriori(mydata,parameter=list(minlen=1, maxlen=3,supp=.3), appearance = list(rhs=c("Milk=Yes","Butter=Yes"), lhs=c("Bread=Yes" ), default="none"))
+  
+
+  
+
+rules<-apriori(mydata,parameter=list(minlen=2, maxlen=2, supp=0.5, conf=0.8))
+  
+
+
+
+____Alternative Code____________________________________________________________
+> mydata<-read.csv("D:/Punam/Prac4.csv",header=T, colClasses="factor")
+> mydata_logical<- mydata=="Yes"
+> mydata_logical
+> transactions <- as(mydata_logical, "transactions")
+> transactions
+> summary(transactions)
+> rules <- apriori(transactions,
++                 parameter = list(supp = 0.3, 
++                                  conf = 0.6, 
++                                  minlen = 2))
+
+
+
+
+____________________________________________________________________
+Alternative - 2
+> data.logical <- as.data.frame(lapply(mydata, function(x) x == "Yes"))
+> trans <- as(data.logical, "transactions")
+> summary(trans)
+> rules <- apriori( trans, parameter = list( supp = 0.3, conf = 0.7,minlen = 2))
+> inspect(rules)
+> rules_lift <- sort(rules, by = "lift", decreasing = TRUE)
+> inspect(rules_lift)
+> strong_rules <- subset(rules, lift > 1)
+> inspect(strong_rules)
+> plot(rules, method = "grouped", engine = "htmlwidget")
+_____________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical No 5
+Regression algorithms:
+Code:
+
+
+
+
+1. Create the data frame:
+bike.data <- data.frame(
+  model = c("Fierro 7B", "HX 5000", "Durbin Ultralight", "Schmidt",
+            "WSilton Advanced", "bicyclette vélo", "Supremo Team",
+            "XTC Racer", "D'Onofrio Pro", "Americana #6"),
+  
+  weight = c(17.9, 16.2, 15.0, 16.0, 17.3, 13.2, 16.3, 17.2, 17.7, 14.2),
+  
+  price = c(2200, 6350, 8470, 6300, 4100, 8700, 6100, 2680, 3500, 8100)
+)
+2. Scatter plot:
+plot(bike.data$weight, bike.data$price,
+     xlab = "Weight (lb)",
+     ylab = "Price ($)",
+     main = "Bike Price vs Weight")
+
+
+3.Simple linear regression:
+simple.regression <- lm(price ~ weight, data = bike.data)
+summary(simple.regression)
+
+
+4. Add regression line:
+abline(simple.regression, col = "red", lwd = 2)
+simple.regression
+
+
+5. Plot all variables
+plot(bike.data)
+
+
+
+
+new.data <- data.frame(weight = 15)
+predict(simple.regression, newdata = new.data)
+
+
+Practical 6
+
+
+Clustering Algorithms
+            1. Python Code For above customer Cluster example 
+
+
+Step 1 : Create a folder in C drive. 
+Step 2: put the CSV file in the folder. 
+Step 3: Run this Command in CMD.
+          >py -m pip install matplotlib
+         > py -m pip install scikit-learn
+           > py -m pip install pandas.
+
+
+
+
+Code:
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+
+# Load CSV file (Forward slash use kiya hai - safest method)
+data = pd.read_csv("C:/Users/acer/Downloads/6526.csv”)
+# Select features
+X = data[['Annual_Income_k$', 'Spending_Score']]
+
+
+# Apply K-Means Clustering
+kmeans = KMeans(n_clusters=3, random_state=0)
+data['Cluster'] = kmeans.fit_predict(X)
+
+
+# Print clustered data
+print(data)
+
+
+# Plot clusters
+plt.figure(figsize=(8,6))
+
+
+plt.scatter(
+    data['Annual_Income_k$'],
+    data['Spending_Score'],
+    c=data['Cluster'],
+    cmap='viridis',
+    s=100
+)
+
+
+# Plot centroids
+plt.scatter(
+    kmeans.cluster_centers_[:, 0],
+    kmeans.cluster_centers_[:, 1],
+    marker='X',
+    s=300,
+    c='red'
+)
+
+
+plt.xlabel("Annual Income (k$)")
+plt.ylabel("Spending Score")
+plt.title("Customer Segmentation using K-Means")
+plt.grid(True)
+
+
+plt.show()
+
+
+R studio code
+
+
+
+
+
+
+            1. data("iris") is an R command used to load a built-in dataset called iris into your working environment.
+
+
+Command : 
+
+
+   > data("iris")
+    > force(iris)
+
+
+
+
+
+
+2) newiris <- iris
+This line creates a new object called newiris and assigns it the same data as the iris dataset.
+In simple terms:
+            * <- is the assignment operator in R.
+            * You are copying the dataset iris into a new variable named newiris.
+So now:
+            * iris and newiris contain the same data.
+            * If you modify newiris, the original iris dataset will remain unchanged.
+            * Command : 
+  > newiris<-iris
+             > print(newiris)
+  
+           
+
+
+    3) newiris$Species <- NULL
+This line removes the Species column from the newiris dataset.
+Explanation:
+            * $ is used in R to access a specific column of a data frame.
+            * newiris$Species refers to the Species column.
+            * Assigning NULL to it deletes that column.
+After running this command:
+            * newiris will now have only 4 columns:
+
+               * Sepal.Length
+               * Sepal.Width
+               * Petal.Length
+               * Petal.Width
+               *                * The Species column will no longer exist in newiris.
+
+               * The original iris dataset is still unchanged.
+
+
+
+
+
+
+Command : 
+        > newiris$Species <- NULL
+          > print(newiris)
+                       
+
+
+       3)    (kc <- kmeans(newiris, 3))
+This line performs K-means clustering on the dataset newiris and stores the result in an object called kc.
+Explanation:
+                  * kmeans(newiris, 3)
+→ Applies the K-means algorithm to the data.
+→ 3 means you are asking R to divide the data into 3 clusters.
+
+                  * kc <-
+→ Saves the clustering result into a variable named kc.
+
+                  * The parentheses ( )
+→ Make R print the result immediately while also saving it.
+
+
+
+
+        Command : 
+
+
+           > (kc <- kmeans(newiris,3))
+
+
+  
+
+  
+4) table(iris$Species, kc$cluster)
+This line creates a cross-tabulation (confusion table) between the actual species in the iris dataset and the clusters assigned by K-means.
+Explanation:
+                     * iris$Species → The true species of each flower (setosa, versicolor, virginica).
+
+                     * kc$cluster → The cluster number (1, 2, or 3) assigned by K-means.
+
+                     * table() → Counts how many observations fall into each combination of true species vs cluster.
+
+       Command : 
+
+
+        >table(iris$Species,kc$cluster)
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+    5) plot(newiris[c("Sepal.Length","Sepal.Width")], col=kc$Cluster)
+This line creates a scatter plot of the newiris dataset using Sepal measurements and colors the points according to the K-means cluster assignments.
+Command :
+ 
+> plot(newiris[c("Sepal.Length","Sepal.Width")], col=kc$Cluster)
+                   
+
+
+
+
+ 6)  This line adds the cluster centers to your scatter plot.
+points(kc$centers[,c("Sepal.Length","Sepal.Width")], col=1:3, pch=8, cex=2)
+  Command : 
+       >points(kc$centers[,c("Sepal.Length","Sepal.Width")],col=1:3,pch=8, cex=2)
+
+
+             
+
+
+   > plot(newiris[c("Sepal.Length","Sepal.Width")],col=kc$cluster)
+   > points(kc$centers[,c("Sepal.Length","Sepal.Width")],col=1:3,pch=8, cex=2)
+
+
+  
+
+
+
+  
+
+
+
+>dev.off()
+  
+
+
+
+ >plot(newiris[c("Sepal.Length","Sepal.Width")],col=kc$cluster)
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+Practical No 7
+Classification Algorithms: K-NN
+Installation for python:
+pip install numpy
+pip install scikit-learn
+Alternate Command: py -m pip install numpy scikit-learn
+
+
+Python - Code:
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import StandardScaler
+
+
+# 1. Load the Dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+target_names = iris.target_names
+
+
+# 2. Split Data into Training and Testing Sets
+# 70% for training, 30% for testing (test_size=0.3)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+
+# 3. Feature Scaling (Recommended for distance-based algorithms like KNN)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+
+# 4. Initialize and Train the KNN Classifier
+# Choose a value for k (n_neighbors). An odd number helps avoid ties in voting.
+k = 5
+knn = KNeighborsClassifier(n_neighbors=k)
+knn.fit(X_train_scaled, y_train)
+
+
+# 5. Make Predictions
+y_pred = knn.predict(X_test_scaled)
+
+
+# 6. Evaluate the Model
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy with k={k}: {accuracy:.2f}")
+
+
+# Print a detailed classification report
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred, target_names=target_names))
+
+
+# 7. Use the Model to Predict a New Data Point
+# Example: a new data point (sepal length, sepal width, petal length, petal width)
+new_point = np.array([[5.8, 2.7, 4.1, 1.0]])
+# The new point must also be scaled using the same scaler object
+new_point_scaled = scaler.transform(new_point)
+
+
+prediction = knn.predict(new_point_scaled)
+print(f"\nPrediction for new point {new_point}: {target_names[prediction[0]]}")
+
+
+
+
+
+
+
+
+RStudio - Code:
+install.packages(“caret”)  # Installing the packages
+# Load required libraries
+library(caret)
+library(class)
+# Load dataset
+data(iris)
+# Separate features and target
+X <- iris[, 1:4]
+y <- iris$Species
+
+
+# Train–test split (70% train, 30% test)
+set.seed(42)
+index <- createDataPartition(y, p = 0.7, list = FALSE)
+X_train <- X[index, ]
+X_test  <- X[-index, ]
+y_train <- y[index]
+y_test  <- y[-index]
+
+
+# Feature scaling (important for KNN)
+X_train_scaled <- scale(X_train)
+X_test_scaled <- scale(
+  X_test,
+  center = attr(X_train_scaled, "scaled:center"),
+  scale  = attr(X_train_scaled, "scaled:scale")
+)
+
+
+# Train KNN model (k = 5)
+pred <- knn(
+  train = X_train_scaled,
+  test  = X_test_scaled,
+  cl    = y_train,
+  k     = 5
+)
+
+
+# Calculate and print accuracy
+accuracy <- mean(pred == y_test)
+print(paste("Accuracy:", accuracy))
+# Predict a new data point
+new_point <- data.frame(
+  Sepal.Length = 5.8,
+  Sepal.Width  = 2.7,
+  Petal.Length = 4.1,
+  Petal.Width  = 1.0
+)
+
+
+# Scale the new data point using training statistics
+new_point_scaled <- scale(
+  new_point,
+  center = attr(X_train_scaled, "scaled:center"),
+  scale  = attr(X_train_scaled, "scaled:scale")
+)
+
+
+# Predict class for the new data point
+prediction <- knn(
+  train = X_train_scaled,
+  test  = new_point_scaled,
+  cl    = y_train,
+  k     = 5
+)
+# Print prediction
+print(paste("Predicted class:", prediction))
+
+
+
+
+________________
+
+
+Practical No 8
+Logistic Regression Algorithm:
+Code:
+# Load data (corrected path – use forward slashes)
+data <- read.csv("C:/Users/Admin/Downloads/classification_data_Students.og.csv")
+
+
+# View first few rows
+head(data)
+
+
+# Convert Result to factor
+data$Result <- factor(data$Result,
+                      levels = c(0, 1),
+                      labels = c("Fail", "Pass"))
+
+
+# Check structure
+str(data)
+# Logistic regression model
+model <- glm(Result ~ Age + Study_Hours + Attendance_Percent,
+             data = data,
+             family = binomial)
+
+
+# Model summary
+summary(model)
+
+
+# Predict probabilities
+probabilities <- predict(model, type = "response")
+
+
+# Convert probabilities to class labels
+predicted_class <- ifelse(probabilities > 0.5, "Pass", "Fail")
+# Convert to factor
+predicted_class <- factor(predicted_class,
+                          levels = c("Fail", "Pass"))
+
+
+# Confusion Matrix
+table(Predicted = predicted_class, Actual = data$Result)
+# Accuracy
+accuracy <- mean(predicted_class == data$Result)
+accuracy
+
+
+# Predict for new student
+new_student <- data.frame(
+  Age = 22,
+  Study_Hours = 6,
+  Attendance_Percent = 85
+)
+predict(model, new_student, type = "response")
+
+
+Practical  9
+Hypothesis Testing
+
+
+Q1)  Suppose the manufacturer claims that the mean lifetime of a light bulb is more than 10,000 hours. In a sample of 30 light bulbs, it was found that they only last 9,900 hours on average. Assume the population standard deviation is 120 hours. At .05 significance level, can we reject the claim by the manufacturer?
+
+
+CODE : 
+
+
+# One-sample Z-test in R
+
+
+# Given values
+xbar <- 9900
+mu0 <- 10000
+sigma <- 120
+n <- 30
+alpha <- 0.05
+
+
+# Z-test statistic
+z <- (xbar - mu0) / (sigma / sqrt(n))
+
+
+# P-value (left-tailed test)
+p_value <- pnorm(z)
+
+
+# Critical value
+z_critical <- qnorm(alpha)
+
+
+# Print results
+cat("Z value:", z, "\n")
+cat("P-value:", p_value, "\n")
+cat("Critical Z value:", z_critical, "\n")
+
+
+# Decision
+if (p_value < alpha) {
+  cat("Decision: Reject the manufacturer's claim\n")
+} else {
+  cat("Decision: Fail to reject the manufacturer's claim\n")
+}
+
+
+
+
+Function Used:
+1. sqrt()
+Syntax: sqrt(x)
+Explanation: sqrt() calculates the square root of a number. It is used when computing the standard error of the mean or proportion.
+2. pt()
+Syntax: pt(q, df)
+Explanation: pt() computes the cumulative probability (area under the curve) of the Student’s t-distribution up to a given t-value q, with df degrees of freedom. In hypothesis testing, it is used to calculate the p-value. For a right-tailed (upper-tailed) test, the p-value is found by subtracting this cumulative probability from 1, i.e., 1 - pt(t_stat, df).
+
+
+
+
+input:
+  
+
+Output:
+  
+
+  
+
+
+
+
+
+Final conclusion 
+At the 0.05 significance level, there is sufficient evidence to reject the manufacturer’s claim.
+The data suggest that the mean lifetime of the light bulbs is less than 10,000 hours.
+
+
+
+
+
+
+
+
+Q2) A stenographer claims that she can type at the rate of 120 words per minute. Can we reject her claim on the basis of 100 trails in which she demonstrates a mean of 116 words and a standard deviation of 15 words? Use 5% level of significance.
+
+
+CODE : 
+
+
+# Given values
+x_bar <- 116
+mu0 <- 120
+s <- 15
+n <- 100
+alpha <- 0.05
+
+
+# Test type
+test_type <- "Two-tailed Z-test"
+
+
+# Z statistic
+z <- (x_bar - mu0) / (s / sqrt(n))
+
+
+# P-value (two-tailed test)
+p_value <- 2 * pnorm(abs(z), lower.tail = FALSE)
+
+
+# Critical value
+z_critical <- qnorm(1 - alpha/2)
+
+
+# Output
+cat("Test Type:", test_type, "\n")
+cat("Z statistic:", round(z, 4), "\n")
+cat("P-value:", round(p_value, 6), "\n")
+cat("Critical values: ±", round(z_critical, 3), "\n")
+
+
+# Comparison and decision
+if (abs(z) > z_critical) {
+  cat("Decision: Reject the null hypothesis\n")
+} else {
+  cat("Decision: Fail to reject the null hypothesis\n")
+}
+
+
+input:
+  
+
+
+
+
+
+Output:
+  
+
+  
+
+
+
+
+
+Final conclusion 
+At the 5% level of significance, the calculated z-value exceeds the critical value.
+Therefore, we reject the stenographer’s claim that she types at 120 words per minute.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q3)  A sample of 900 members has a mean 3.4 cms and s.d 2.61 cms. Can the sample be regarded as one drawn from the population with mean 3.25 cms? Using the level of significance as 0.05, is the claim acceptable? (Two tailed test)
+
+
+CODE : 
+
+
+# Given values
+
+
+x_bar <- 3.4
+mu0 <- 3.25
+s <- 2.61
+n <- 900
+alpha <- 0.05
+
+
+# Test type
+test_type <- "Two-tailed Z-test"
+
+
+# Z statistic
+z <- (x_bar - mu0) / (s / sqrt(n))
+
+
+# P-value (two-tailed test)
+p_value <- 2 * pnorm(abs(z), lower.tail = FALSE)
+
+
+# Critical value
+z_critical <- qnorm(1 - alpha/2)
+
+
+# Output
+cat("Test Type:", test_type, "\n")
+cat("Z statistic:", round(z, 4), "\n")
+cat("P-value:", round(p_value, 6), "\n")
+cat("Critical values: ±", round(z_critical, 3), "\n")
+
+
+# Comparison and decision
+
+
+if (abs(z) > z_critical) 
+{
+  cat("Decision: Reject the null hypothesis\n")
+} 
+else 
+{
+  cat("Decision: Fail to reject the null hypothesis\n")
+}
+
+
+input:
+
+
+  
+
+
+
+Output:
+  
+
+  
+
+
+
+
+
+Final Conclusion
+At the 5% level of significance, the calculated Z-value does not exceed the critical value.
+Therefore, we fail to reject the null hypothesis and accept the claim that the population mean is 3.25 cm.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q4. A manufacturer claimed that at least 95% of the equipment which he supplied to a factory confronted to specification. An examination of a sample of 200 pieces of equipment revealed that 18 were faulty. Test this claim at a significance level of 0.05.
+
+
+CODE : 
+
+
+
+
+# Given values
+x <- 182          # number of conforming items
+n <- 200          # sample size
+p0 <- 0.95        # claimed proportion
+alpha <- 0.05
+
+
+# Test type
+test_type <- "Left-tailed one-sample Z-test (p-value approach)"
+
+
+# Sample proportion
+p_hat <- x / n
+
+
+# Z statistic
+z <- (p_hat - p0) / sqrt((p0 * (1 - p0)) / n)
+
+
+# P-value (left-tailed test)
+p_value <- pnorm(z)
+
+
+# Output
+cat("Test Type:", test_type, "\n")
+cat("Sample proportion:", round(p_hat, 4), "\n")
+cat("Z statistic:", round(z, 4), "\n")
+cat("P-value:", round(p_value, 6), "\n")
+
+
+# Decision using p-value approach
+if (p_value < alpha) 
+{
+  cat("Decision: Reject the null hypothesis\n")
+} 
+else 
+{
+  cat("Decision: Fail to reject the null hypothesis\n")
+}
+
+
+
+
+
+
+
+
+Function Used:
+1. pnorm()
+Syntax: pnorm(z)
+Explanation: pnorm() computes the cumulative probability of a standard normal (Z) distribution up to a given value.
+It is used in:
+                        * Z-tests for means (when population standard deviation is known)
+                        * Z-tests for proportions
+
+
+input:
+  
+
+
+
+Output:
+  
+
+  
+
+
+
+
+
+Final Conclusion: 
+Since the p-value < 0.05, we reject the null hypothesis.
+There is sufficient evidence at the 5% significance level to conclude that less than 95% of the equipment conforms to specification.
+
+
+
+
+
+
+Q 5) A CEO of a light bulb manufacturing company claims that an average light bulb lasts 300 days. A researcher randomly selects 15 bulbs for testing. The sample bulbs last an average of 290 days with a S.D of 50 days. If the CEO claim were true, what is the probability that 15 randomly selected bulbs would have an average life of no more than 290 days.
+
+
+CODE : 
+
+
+# Given values
+xbar <- 290        # sample mean
+mu0 <- 300         # claimed population mean
+s <- 50            # sample standard deviation
+n <- 15            # sample size
+alpha <- 0.05
+
+
+# Test type
+test_type <- "Left-tailed one-sample t-test (probability approach)"
+
+
+# Degrees of freedom
+df <- n - 1
+
+
+# t statistic
+t_value <- (xbar - mu0) / (s / sqrt(n))
+
+
+# Probability (left-tailed test)
+p_value <- pt(t_value, df)
+
+
+# Output
+
+
+cat("Test Type:", test_type, "\n")
+cat("Sample mean:", xbar, "\n")
+cat("t statistic:", round(t_value, 4), "\n")
+cat("Probability (p-value):", round(p_value, 6), "\n")
+
+
+if (p_value < alpha)
+ {
+  cat("Decision: Reject the null hypothesis (H0)\n")
+} else
+ {
+  cat("Decision: Fail to reject the null hypothesis (H0)\n")
+}
+
+
+
+
+
+
+Function Used:
+1. pt()
+Syntax: pt(t, df)
+Explanation: pt() computes the cumulative probability of a Student’s t-distribution up to a given t-value with specified degrees of freedom.
+It is used when:
+                        * Population standard deviation is unknown
+                        * Sample size is small or moderate
+
+
+input:
+  
+
+
+
+
+
+
+
+Output:
+
+
+  
+
+  
+
+
+
+Final Conclusion: 
+The sample does not provide sufficient evidence to doubt the CEO's claim. The average life of 15 randomly selected bulbs is reasonably consistent with 300 days.  
+
+
+
+
+Practical  10
+Performing Time Series Analysis and Forecasting using python and Excel -
+1. Implement Moving Average Method:
+
+
+CODE : 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+data = {'Date': pd.date_range(start='2025-01-01', periods=10, freq='D'),
+
+
+        'Sales': [10, 15, 12, 18, 20, 17, 24, 22, 28, 30]}
+
+
+df = pd.DataFrame(data)
+df['MA_3'] = df['Sales'].rolling(window=3).mean()
+forecast = df['MA_3'].iloc[-1]
+
+
+print(df)
+print(f"\nForecasted value for next period: {forecast}")
+plt.title('SANDEEP YADAV')
+plt.plot(df['Date'], df['Sales'], label='Actual Sales', marker='o')
+
+
+plt.plot(df['Date'], df['MA_3'], label='3-Day Moving Average', color='orange')
+
+
+plt.legend()
+plt.show()
+
+
+
+
+Practical 11
+
+
+Working with Geospatial Data - Visualizing Geospatial Data
+Libraries Used:
+GeoPandas – for handling geospatial data
+Matplotlib – for plotting maps
+Pandas – for managing data
+Source code:-- 
+
+
+import geopandas as gpd
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# Load Natural Earth countries GeoJSON directly
+url = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
+
+
+world = gpd.read_file(url)
+print(world.head(10))
+
+
+data = pd.DataFrame({
+    'name': ['India', 'United States of America', 'China', 'Brazil', 'Australia', 'Libya'],
+    'Sales': [500, 800, 650, 300, 200, 800] })
+
+
+world = world.merge(data, on='name', how='left')
+world['Sales'] = world['Sales'].fillna(0)
+
+
+fig, ax = plt.subplots(figsize=(12, 6))
+
+
+world.plot(
+    column='Sales',
+    cmap='OrRd',
+    legend=True,
+    edgecolor='black',
+    ax=ax
+)
+
+
+ax.set_title("Choropleth Map - Country Wise Sales")
+ax.axis('off')
+plt.show()
