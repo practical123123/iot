@@ -1,0 +1,1641 @@
+Hindi Vidya Prachar Samiti’s
+Ramniranjan Jhunjhunwala College of Arts, Science
+& Commerce
+(Empowered Autonomous College)
+
+Affiliated to
+UNIVERSITY OF MUMBAI
+DEPARTMENT OF INFORMATION TECHNOLOGY
+2025-2026
+T.Y.B.Sc. (IT) SEM VI
+PAPER RJDSCitP361 – principles OF INformation Security
+
+SHRADDHA SANDEEP KATKAR
+6406
+
+Hindi Vidya Prachar Samiti’s
+
+Ramniranjan Jhunjhunwala College of Arts,
+Science & Commerce
+(Empowered Autonomous College)
+
+Affiliated to
+UNIVERSITY OF MUMBAI
+
+This is to certify that Ms.Shraddha Sandeep Katkar , Roll No. 6406
+of TY BSc IT class has completed the required number of Experiment
+of Practical Principles OF Information security, in partial
+fulfillment of the Requirements for the award of the degree of
+Bachelor of Science (Information Technology) during the academic
+year 2025-2026.
+
+College seal​
+
+Teacher Incharge
+
+Sign of Co-Ordinator
+
+PRINCIPLES OF INFORMATION SECURITY PRACTICALS
+
+Practical No:-1
+Write program to implement the following Cipher Techniques:
+A. Caesar Cipher
+The Caesar cipher is a simple encryption technique that was used by Julius Caesar to send
+secret messages to his allies. It works by shifting the letters in the plaintext message by a
+certain number of positions, known as the "shift" or "key". The Caesar Cipher technique is
+one of the earliest and simplest methods of encryption techniques.
+It's simply a type of substitution cipher, i.e., each letter of a given text is replaced by a letter
+with a fixed number of positions down the alphabet. For example with a shift of 1, A would
+be replaced by B, B would become C, and so on. The method is apparently named after Julius
+Caesar, who apparently used it to communicate with his officials.
+Code:def caesar_cipher(text,key):
+result=""
+for c in text:
+if 'a'<= c <='z':
+c=chr(((ord(c)-ord('a')+key)%26)+ord('a'))
+elif 'A'<= c <='Z':
+c=chr(((ord(c)-ord('A')+key)%26)+ord('A'))
+result+=c
+return result
+#Taking input
+text=input("Enter a plaintext to encrypt:\n")
+key=int(input("Enter key:\n"))
+#Output
+print("Encrypted message: ",caesar_cipher(text,key))
+def caesar_decrypt(text,key):
+result=""
+for c in text:
+if 'a'<= c <='z':
+c=chr(((ord(c)-ord('a')-key)%26)+ord('a'))
+elif 'A'<= c <='Z':
+c=chr(((ord(c)-ord('A')-key)%26)+ord('A'))
+result+=c
+return result
+#Taking input
+text=input("Enter a plaintext to decrypt:\n")
+key=int(input("Enter key:\n"))
+#Output
+print("Encrypted message: ",caesar_decrypt(text,key))
+
+Screenshot:-
+
+Output:-
+
+Hill Cipher
+Hill cipher is a polygraphic substitution cipher based on linear algebra.Each letter is
+represented by a number modulo 26. Often the simple scheme A = 0, B = 1, ..., Z = 25 is
+used, but this is not an essential feature of the cipher. To encrypt a message, each block of n
+letters (considered as an n-component vector) is multiplied by an invertible n × n matrix,
+against modulus 26. To decrypt the message, each block is multiplied by the inverse of the
+matrix used for encryption.​
+The matrix used for encryption is the cipher key, and it should be chosen randomly from the
+set of invertible n × n matrices (modulo 26).​
+Examples: ​
+Input : Plaintext: ACT
+Key: GYBNQKURP
+Output : Ciphertext: POH
+Code:import numpy as np
+from math import gcd
+# Convert key to 3x3 matrix
+def get_key_matrix(key):
+key_matrix = np.zeros((3, 3), dtype=int)
+k=0
+for i in range(3):
+for j in range(3):
+key_matrix[i][j] = ord(key[k]) - 65
+k += 1
+return key_matrix
+# Modular multiplicative inverse
+def mod_inverse(a, m):
+a=a%m
+for x in range(1, m):
+if (a * x) % m == 1:
+return x
+return None
+# Matrix inverse mod 26
+def matrix_mod_inverse(matrix):
+det = int(np.round(np.linalg.det(matrix))) % 26
+if gcd(det, 26) != 1:
+raise ValueError("Matrix not invertible under mod 26")
+det_inv = mod_inverse(det, 26)
+# Cofactor matrix
+cofactor = np.zeros((3, 3), dtype=int)
+
+for r in range(3):
+for c in range(3):
+minor = np.delete(np.delete(matrix, r, axis=0), c, axis=1)
+cofactor[r][c] = ((-1) ** (r + c)) * int(np.round(np.linalg.det(minor)))
+# Adjugate = transpose of cofactor
+adjugate = cofactor.T % 26
+# Final inverse
+return (det_inv * adjugate) % 26
+def encrypt(message, key_matrix):
+vector = np.array([[ord(message[i]) - 65] for i in range(3)])
+cipher = np.dot(key_matrix, vector) % 26
+return ''.join(chr(cipher[i][0] + 65) for i in range(3))
+def decrypt(ciphertext, key_matrix):
+vector = np.array([[ord(ciphertext[i]) - 65] for i in range(3)])
+inv_key = matrix_mod_inverse(key_matrix)
+message = np.dot(inv_key, vector) % 26
+return ''.join(chr(message[i][0] + 65) for i in range(3))
+# ------------------- MAIN -------------------key = input("Enter 9-letter KEY: ").upper()
+message = input("Enter 3-letter MESSAGE: ").upper()
+key_matrix = get_key_matrix(key)
+cipher = encrypt(message, key_matrix)
+print("\nEncrypted:", cipher)
+plain = decrypt(cipher, key_matrix)
+print("Decrypted:", plain)
+
+Screenshot:-
+
+Output:-
+
+C.Vernam Cipher
+Vernam Cipher is a method of encrypting alphabetic text. It is one of the Substitution
+techniques for converting plain text into cipher text. In this mechanism, we assign a number
+to each character of the Plain-Text, like (a = 0, b = 1, c = 2, ... z = 25). ​
+Method to take key: In the Vernam cipher algorithm, we take a key to encrypt the plain text
+whose length should be equal to the length of the plain text.
+Encryption Algorithm
+●​ Assign a number to each character of the plain text and the key according to
+alphabetical order.
+●​ Bitwise XOR both the number (Corresponding plain-text character number and
+Key character number).
+●​ Subtract the number from 26 if the resulting number is greater than or equal to 26,
+if it isn't then leave it.
+Code:def makeVernamCypher(text, key):
+"""Returns the Vernam Cipher for a given string and key"""
+answer = ""
+# cipher text
+p=0
+# pointer for key
+for char in text:
+answer += chr(ord(char) ^ ord(key[p]))
+p += 1
+if p == len(key):
+p=0
+return answer
+MY_KEY = "cvwopslweinedvq9fnasdlkfn2"
+while True:
+print("\n\n--- Vernam Cipher ---")
+PlainText = input("Enter text to encrypt: ")
+# Encrypt
+Cypher = makeVernamCypher(PlainText, MY_KEY)
+print("Cipher text:", Cypher)
+# Decrypt (same function)
+Decrypt = makeVernamCypher(Cypher, MY_KEY)
+print("Decrypted:", Decrypt)
+
+ScreenShot:-
+
+Output:-
+
+Practical No:-2
+Write program to implement the following Cipher Techniques:
+1. Playfair Cipher
+The Playfair cipher was the first practical digraph substitution cipher. The scheme was
+invented in 1854 by Charles Wheatstone but was named after Lord Playfair who promoted
+the use of the cipher. In playfair cipher unlike traditional cipher we encrypt a pair of
+alphabets(digraphs) instead of a single alphabet.
+It was used for tactical purposes by British forces in the Second Boer War and in World War I
+and for the same purpose by the Australians during World War II. This was because Playfair
+is reasonably fast to use and requires no special equipment.
+Example:
+PlainText: "instruments"​
+After Split: 'in' 'st' 'ru' 'me' 'nt' 'sz'​
+Explanation: Pair cannot be made with the same letter. Break the letter in single and add a
+bogus letter to the previous letter. Here 'z' is the bogus letter.
+Code:-
+
+def generate_matrix(key):
+key = key.upper().replace("J", "I")
+matrix = []
+used = set()
+for c in key:
+if c not in used and c.isalpha():
+used.add(c)
+matrix.append(c)
+for c in "ABCDEFGHIKLMNOPQRSTUVWXYZ": # J excluded
+if c not in used:
+used.add(c)
+matrix.append(c)
+return [matrix[i:i+5] for i in range(0, 25, 5)]
+def find_pos(matrix, ch):
+if ch == "J":
+ch = "I"
+for i in range(5):
+for j in range(5):
+if matrix[i][j] == ch:
+
+return i, j
+return None
+def prepare_text(text):
+text = text.upper().replace("J", "I")
+text = "".join([c for c in text if c.isalpha()])
+result = ""
+i=0
+while i < len(text):
+a = text[i]
+if i + 1 < len(text):
+b = text[i + 1]
+if a == b:
+result += a + "X"
+i += 1
+else:
+result += a + b
+i += 2
+else:
+result += a + "X"
+i += 1
+return result
+def encrypt_pair(a, b, matrix):
+r1, c1 = find_pos(matrix, a)
+r2, c2 = find_pos(matrix, b)
+if r1 == r2:
+return matrix[r1][(c1 + 1) % 5] + matrix[r2][(c2 + 1) % 5]
+if c1 == c2:
+return matrix[(r1 + 1) % 5][c1] + matrix[(r2 + 1) % 5][c2]
+return matrix[r1][c2] + matrix[r2][c1]
+def decrypt_pair(a, b, matrix):
+r1, c1 = find_pos(matrix, a)
+r2, c2 = find_pos(matrix, b)
+if r1 == r2:
+return matrix[r1][(c1 - 1) % 5] + matrix[r2][(c2 - 1) % 5]
+if c1 == c2:
+
+return matrix[(r1 - 1) % 5][c1] + matrix[(r2 - 1) % 5][c2]
+return matrix[r1][c2] + matrix[r2][c1]
+def playfair_encrypt(key, text):
+matrix = generate_matrix(key)
+text = prepare_text(text)
+cipher = ""
+for i in range(0, len(text), 2):
+cipher += encrypt_pair(text[i], text[i + 1], matrix)
+return cipher
+def playfair_decrypt(key, text):
+matrix = generate_matrix(key)
+plain = ""
+for i in range(0, len(text), 2):
+plain += decrypt_pair(text[i], text[i + 1], matrix)
+return plain
+# ---------------------------------------------------------# USER INPUT
+# ---------------------------------------------------------print("---- Playfair Cipher ----")
+key = input("Enter Key: ")
+choice = input("Enter 1 for Encryption, 2 for Decryption: ")
+if choice == "1":
+plaintext = input("Enter Plaintext: ")
+cipher = playfair_encrypt(key, plaintext)
+print("\nEncrypted Text:", cipher)
+elif choice == "2":
+ciphertext = input("Enter Ciphertext: ").upper()
+decrypted = playfair_decrypt(key, ciphertext)
+print("\nDecrypted Text:", decrypted)
+
+else:
+print("Invalid choice!")
+Screenshot:-
+
+Output:-
+
+2. Rail Fence Cipher
+Code:def rail_fence_encrypt(text, key):
+# Remove spaces
+text = text.replace(" ", "")
+# Create empty rails
+rails = [""] * key
+row = 0
+direction = 1 # 1 = down, -1 = up
+for char in text:
+rails[row] += char
+# Change direction at top or bottom rail
+if row == 0:
+direction = 1
+elif row == key - 1:
+direction = -1
+row += direction
+return "".join(rails)
+def rail_fence_decrypt(cipher, key):
+# Determine pattern of positions
+pattern = [[] for _ in range(key)]
+row = 0
+direction = 1
+# First pass: mark positions
+for i in range(len(cipher)):
+pattern[row].append(i)
+if row == 0:
+direction = 1
+
+elif row == key - 1:
+direction = -1
+row += direction
+# Fill pattern with cipher text
+result = [''] * len(cipher)
+index = 0
+for r in range(key):
+for pos in pattern[r]:
+result[pos] = cipher[index]
+index += 1
+# Read plaintext by following zig-zag again
+plaintext = ""
+row = 0
+direction = 1
+for i in range(len(cipher)):
+plaintext += result[pattern[row].pop(0)]
+if row == 0:
+direction = 1
+elif row == key - 1:
+direction = -1
+row += direction
+return plaintext
+# ---------------------------------------------------------# USER INPUT
+# ---------------------------------------------------------print("---- Rail Fence Cipher ----")
+key = int(input("Enter number of rails: "))
+choice = input("Enter 1 for Encryption, 2 for Decryption: ")
+if choice == "1":
+plaintext = input("Enter Plaintext: ")
+cipher = rail_fence_encrypt(plaintext, key)
+print("\nEncrypted Text:", cipher)
+elif choice == "2":
+ciphertext = input("Enter Ciphertext: ")
+decrypted = rail_fence_decrypt(ciphertext, key)
+print("\nDecrypted Text:", decrypted)
+else:
+print("Invalid choice!")
+
+Screenshot:-
+
+Output:-
+
+3. Vignere Cipher
+Code:def generate_key(text, key):
+key = list(key)
+if len(text) == len(key):
+return "".join(key)
+else:
+for i in range(len(text) - len(key)):
+key.append(key[i % len(key)])
+return "".join(key)
+def encrypt_vigenere(plaintext, key):
+ciphertext = []
+key = generate_key(plaintext, key)
+for p, k in zip(plaintext, key):
+if p.isalpha():
+shift = (ord(p.upper()) - 65 + ord(k.upper()) - 65) % 26
+ciphertext.append(chr(shift + 65))
+else:
+ciphertext.append(p)
+return "".join(ciphertext)
+def decrypt_vigenere(ciphertext, key):
+plaintext = []
+key = generate_key(ciphertext, key)
+for c, k in zip(ciphertext, key):
+if c.isalpha():
+shift = (ord(c.upper()) - 65 - (ord(k.upper()) - 65)) % 26
+plaintext.append(chr(shift + 65))
+else:
+plaintext.append(c)
+return "".join(plaintext)
+
+# ---- User Input ---print("=== Vigenère Cipher ===")
+choice = input("Encrypt or Decrypt (e/d): ").strip().lower()
+text = input("Enter text: ")
+key = input("Enter key: ")
+if choice == "e":
+result = encrypt_vigenere(text, key)
+print("\nEncrypted Text:", result)
+elif choice == "d":
+result = decrypt_vigenere(text, key)
+print("\nDecrypted Text:", result)
+else:
+print("Invalid choice!")
+
+ScreenShot:-
+
+Output:-
+
+Practical No:-3
+DES Algorithm
+Data Encryption Standard (DES) is a symmetric block cipher. By 'symmetric', we mean that
+the size of input text and output text (ciphertext) is the same (64-bits). The 'block' here means
+that it takes a group of bits together as input instead of encrypting the text bit by bit. Data
+encryption standard (DES) has been found vulnerable to very powerful attacks and therefore,
+it was replaced by Advanced Encryption Standard (AES).
+
+a. Write program to encrypt and decrypt strings using
+First install pycryptodome using this command
+
+Code:from Crypto.Cipher import DES
+from Crypto.Random import get_random_bytes
+from Crypto.Util.Padding import pad, unpad
+def encrypt_des(key, plaintext):
+"""Encrypts plaintext using DES in ECB mode."""
+cipher = DES.new(key, DES.MODE_ECB)
+padded_plaintext = pad(plaintext, DES.block_size)
+ciphertext = cipher.encrypt(padded_plaintext)
+return ciphertext
+def decrypt_des(key, ciphertext):
+"""Decrypts ciphertext using DES in ECB mode."""
+cipher = DES.new(key, DES.MODE_ECB)
+padded_plaintext = cipher.decrypt(ciphertext)
+plaintext = unpad(padded_plaintext, DES.block_size)
+return plaintext
+if __name__ == "__main__":
+# Generate a random 8-byte DES key
+key = get_random_bytes(8)
+print(f"Generated DES Key: {key.hex()}")
+# Message to encrypt
+message = b"This is a secret message for DES encryption."
+print(f"Original Message: {message.decode('utf-8')}")
+# Encrypt the message
+encrypted_message = encrypt_des(key, message)
+print(f"Encrypted Message (hex): {encrypted_message.hex()}")
+# Decrypt the message
+decrypted_message = decrypt_des(key, encrypted_message)
+print(f"Decrypted Message: {decrypted_message.decode('utf-8')}")
+
+Screenshot:-
+
+Output:-
+
+RSA Algorithm
+RSA ) is a widely used asymmetric cryptographic algorithm that secures data by utilizing two
+keys: a public key for encryption and a private key for decryption. Developed in 1977 by Ron
+Rivest, Adi Shamir, and Leonard Adleman, RSA relies on the mathematical difficulty of
+factoring large composite numbers to ensure its security. The public key is shared with
+anyone who wants to send an encrypted message, while the private key, known only to the
+owner, is used to decrypt the message.
+b. Write a program to implement an RSA algorithm to perform encryption / decryption
+of a given string.
+Code:# RSA Algorithm in Python (WITHOUT external libraries)
+def gcd(a, b):
+while b != 0:
+a, b = b, a % b
+return a
+# Function to find modular inverse (d)
+def mod_inverse(e, phi):
+for d in range(1, phi):
+if (d * e) % phi == 1:
+return d
+return None
+# RSA Implementation
+def rsa():
+print("=== RSA Algorithm Implementation ===")
+# Step 1: Choose two prime numbers
+p = int(input("Enter prime number p: "))
+q = int(input("Enter prime number q: "))
+# Step 2: Compute n = p*q
+n=p*q
+# Step 3: Compute phi(n) = (p-1)*(q-1)
+phi = (p - 1) * (q - 1)
+# Step 4: Choose e such that gcd(e, phi) = 1
+e = int(input("Enter public key exponent e (1 < e < phi) & gcd(e,phi)=1: "))
+if gcd(e, phi) != 1:
+print("Invalid e value. gcd(e,phi) must be 1.")
+return
+# Step 5: Compute private key d (modular inverse of e)
+d = mod_inverse(e, phi)
+print(f"\nPublic Key: (e={e}, n={n})")
+print(f"Private Key: (d={d}, n={n})\n")
+# Step 6: Encryption
+msg = int(input("Enter message (number) to encrypt: "))
+cipher = (msg ** e) % n
+print(f"Encrypted Message: {cipher}")
+# Step 7: Decryption
+
+decrypted = (cipher ** d) % n
+print(f"Decrypted Message: {decrypted}")
+rsa()
+Screenshot:-
+
+Output:-
+
+Diffie Hellman Key Exchange Algorithm
+Diffie-Hellman is a mathematical problem that is the foundation for many cryptographic
+protocols. Diffie-Hellman is one of the greatest inventions in Cybersecurity. This
+revolutionary algorithm was proposed by Whitfield Diffie and Martin Hellman in 1976,
+enabling two entities to agree upon a secret key without prior arrangements, even in the
+presence of potential eavesdroppers. Diffie-Hellman offers a powerful solution to secure key
+exchange which has always been challenging and prone to alteration, thus ensuring
+confidentiality and integrity in information.
+C. Write a program to implement the Diffie-Hellman Key Agreement algorithm to
+generate symmetric keys.
+Code:# Simple Diffie-Hellman demo (easy)
+# Classic small numbers used for clarity (DO NOT use in real security)
+def diffie_hellman_demo():
+# Publicly known (both parties agree)
+p = 23 # prime modulus
+g = 5 # generator (primitive root mod p)
+print("Publicly known: p =", p, ", g =", g, "\n")
+# Alice chooses a private key (a)
+a = int(input("Alice private key (small integer) choose e.g. 6: ") or "6")
+A = pow(g, a, p) # Alice's public key
+print("Alice computes public A = g^a mod p ->", A)
+# Bob chooses a private key (b)
+b = int(input("Bob private key (small integer) choose e.g. 15: ") or "15")
+B = pow(g, b, p) # Bob's public key
+print("Bob computes public B = g^b mod p ->", B)
+print("\nThey exchange A and B (over insecure channel).")
+
+# Each computes the shared secret
+alice_shared = pow(B, a, p) # (g^b)^a mod p = g^(ab) mod p
+bob_shared = pow(A, b, p) # (g^a)^b mod p = g^(ab) mod p
+print("\nAlice's computed shared secret:", alice_shared)
+print("Bob's computed shared secret: ", bob_shared)
+if alice_shared == bob_shared:
+print("\nSuccess! Shared secret matches.")
+else:
+print("\nSomething went wrong — secrets differ.")
+if __name__ == "__main__":
+diffie_hellman_demo()
+
+Screenshot:-
+
+Output:-
+
+Practical No:-4
+Configure Routers
+a. OSPF MD5 authentication
+b. NTP, To log messages to the syslog server
+c. To support SSH connections
+
+Configuration
+PC-A
+
+PC-B
+
+PC-C
+
+Router 1→Assign IP Address
+port→ GigabitEthernet0/0
+
+port→ Serial 0/0/0
+
+Router 2
+
+Router 3
+
+Router 1→Configure OSPF
+
+Router 2→Configure OSPF
+
+Router 3→Configure OSPF
+
+Part 1: Configure OSPF MD5 Authentication
+Step 1: Test connectivity. All devices should be able to ping all other IP addresses.
+Step 2: Configure OSPF MD5 authentication for all the routers in area 0. Configure
+OSPF MD5 authentication for all the routers in area 0.
+
+Step 3: Configure the MD5 key for all the routers in area 0. Configure an MD5 key on the
+serial interfaces on R1, R2 and R3. Use the password MD5pa55 for key 1.
+
+Step 4: Verify configurations.
+a. Verify the MD5 authentication configurations using the commands show ip ospf interface.
+b.Verify end-to-end connectivity.
+
+Part 2: Configure NTP
+Step 1: Enable NTP authentication on PC-A.
+a. On PC-A, click NTP under the Services tab to verify NTP service is enabled.
+b. To configure NTP authentication, click Enable under Authentication. Use key 1 and
+password NTPpa55 for authentication.
+Step 2: Configure R1, R2, and R3 as NTP clients.
+
+b. To configure NTP authentication, click Enable under Authentication. Use key 1 and
+password NTPpa55 for authentication.
+
+Step 2: Configure R1, R2, and R3 as NTP clients.
+
+Verify client configuration using the command show ntp status.
+
+Step 3: Configure routers to update hardware clock. Configure R1, R2, and R3 to
+periodically update the hardware clock with the time learned from NTP.
+
+Exit global configuration and verify that the hardware clock was updated using the command
+show clock.
+Step 4: Configure NTP authentication on the routers. Configure NTP authentication on R1,
+R2, and R3 using key 1 and password NTPpa55.
+
+Step 5: Configure routers to timestamp log messages. Configure timestamp service for
+logging on the routers.
+
+Part 3: Configure Routers to Log Messages to the Syslog Server
+Step 1: Configure the routers to identify the remote host (Syslog Server) that will receive
+logging messages.
+R1(config)# logging host 192.168.1.6
+
+R2(config)# logging host 192.168.1.6
+
+R3(config)# logging host 192.168.1.6
+
+The router console will display a message that logging has started.
+Step 2: Verify logging configuration.
+Use the command show logging to verify logging has been enabled.
+
+Step 3: Examine logs of the Syslog Server.
+From the Services tab of the Syslog Server’s dialogue box, select the Syslog services button.
+Observe the logging messages received from the routers.
+Note: Log messages can be generated on the server by executing commands on the router.
+For example, entering and exiting global configuration mode will generate an informational
+configuration message. You may need to click a different service and then click Syslog again
+to refresh the message display.
+Go to syslog server → services tab → Ensure Syslog: ON
+
+Part 4: Configure R3 to Support SSH Connections.
+Step 1: Configure a domain name. Configure a domain name of ccnasecurity.com on
+R3.
+R3(config)# ip domain-name ccnasecurity.com
+Step 2: Configure users for login to the SSH server on R3.
+Create a user ID of SSHadmin with the highest possible privilege level and a secret password
+of
+ciscosshpa55.
+R3(config)# username SSHadmin privilege 15 secret ciscosshpa55
+Step 3: Configure the incoming vty lines on R3. Use the local user accounts for
+mandatory login and validation. Accept only SSH connections.
+R3(config)# line vty 0 4
+R3(config-line)# login local
+R3(config-line)# transport input ssh
+Step 4: Erase existing key pairs on R3. Any existing
+RSA key pairs should be erased on the router.
+R3(config)# crypto key zeroize rsa
+Note: If no keys exist, you might receive this message: % No Signature RSA Keys found in
+configuration.
+
+Step 5: Generate the RSA encryption key pair for R3.
+The router uses the RSA key pair for authentication and encryption of transmitted SSH data.
+Configure the RSA keys with a modulus of 1024. The default is 512, and the range is from
+360 to 2048.
+R3(config)# crypto key generate rsa
+
+Step 6: Verify the SSH configuration.
+Use the show ip ssh command to see the current settings. Verify that the authentication
+timeout and retries are at their default values of 120 and 3.
+Run this command on Router 3 because ssh configuring on Router 3.
+
+Step 7: Configure SSH timeouts and authentication parameters.
+The default SSH timeouts and authentication parameters can be altered to be more restrictive.
+Set the timeout to 90 seconds, the number of authentication retries to 2, and the version to 2.
+R3(config)# ip ssh time-out 90
+R3(config)# ip ssh authentication-retries 2
+R3(config)# ip ssh version 2
+
+Issue the show ip ssh command again to confirm that the values have been changed.
+
+Step 8: Attempt to connect to R3 via Telnet from PC-C.
+Open the Desktop of PC-C. Select the Command Prompt icon. From PC-C, enter the
+command to connect to
+R3 via Telnet.
+PC> telnet 192.168.3.1
+This connection should fail because R3 has been configured to accept only SSH connections
+on the virtual terminal lines.
+
+Step 9: Connect to R3 using SSH on PC-C.
+Open the Desktop of PC-C. Select the Command Prompt icon. From PC-C, enter the
+command to connect to R3 via SSH. When prompted for the password, enter the password
+configured for the administrator ciscosshpa55.
+PC> ssh –l SSHadmin 192.168.3.1
+
+Step 10: Connect to R3 using SSH on R2.
+To troubleshoot and maintain R3, the administrator at the ISP must use SSH to access the
+router CLI. From the CLI of R2, enter the command to connect to R3 via SSH version 2
+using the SSHadmin user account. When prompted for the password, enter the password
+configured for the administrator: ciscosshpa55.
+R2# ssh –v 2 –l SSHadmin 10.2.2.1
+
+Practical No:-5
+Aim: - Configuring Extended ACLs
+A. Configure, Apply and Verify an Extended Numbered ACL - Scenario 1
+Topology: -
+
+Configuration
+PC-A
+
+PC-B
+
+PC-C
+
+TACACS + SERVER
+
+RADIUS SERVER
+
+ROUTER 1
+Gig 0/0
+
+Serial 0/0/0
+
+ROUTER 2
+Gig 0/0
+
+Serial 0/0/0
+
+Serial 0/0/1
+
+ROUTER 3
+Gig 0/0
+
+Serial 0/0/1
+
+RIP Routing
+Router 1
+
+Router 2
+
+Router 3
+
+Objectives
+• Configure a local user account on R1 and configure authenticate on the console and vty
+lines using local
+AAA.
+• Verify local AAA authentication from the R1 console and the PC-A client.
+• Configure server-based AAA authentication using TACACS+.
+• Verify server-based AAA authentication from the PC-B client.
+• Configure server-based AAA authentication using RADIUS.
+• Verify server-based AAA authentication from the PC-C client.
+Background / Scenario
+
+The network topology shows routers R1, R2 and R3. Currently, all administrative security is
+based on knowledge of the enable secret password. Your task is to configure and test local
+and server-based AAA solutions.
+You will create a local user account and configure local AAA on router R1 to test the console
+and vty logins.
+You will then configure router R2 to support server-based authentication using the TACACS+
+protocol. The TACACS+ server has been pre-configured with the following:
+o Client: R2 using the keyword tacacspa55 o User account: Admin2
+and password admin2pa55
+Finally, you will configure router R3 to support server-based authentication using the
+RADIUS protocol. The RADIUS server has been pre-configured with the following:
+o Client: R3 using the keyword radiuspa55 o User account: Admin3
+and password admin3pa55
+The routers have also been pre-configured with the following:
+o Enable secret password: ciscoenpa55
+o OSPF routing protocol with MD5 authentication using password:
+MD5pa55
+Note: The console and vty lines have not been pre-configured.
+Note: IOS version 15.3 uses SCRYPT as a secure encryption hashing algorithm; however, the
+IOS version that is currently supported in Packet Tracer uses MD5. Always use the most
+secure option available on your equipment.
+
+Step 1: Test connectivity.
+• Ping from PC-A to PC-B.
+• Ping from PC-A to PC-C.
+
+• Ping from PC-B to PC-C.
+
+Step 2: Configure a local username on R1.
+Configure a username of Admin1 with a secret password of admin1pa55.
+R1(config)# username Admin1 secret admin1pa55
+
+Step 3: Configure local AAA authentication for console access on R1.
+Enable AAA on R1 and configure AAA authentication for the console login to use the
+local database.
+R1(config)# aaa new-model
+
+Configure AAA Authentication on Cisco Routers
+R1(config)# aaa authentication login default local
+
+Step 4: Configure the line console to use the defined AAA authentication method.
+Enable AAA on R1 and configure AAA authentication for the console login to use the
+default method list.
+R1(config)# line console 0
+R1(config-line)# login authentication default
+
+Step 5: Verify the AAA authentication method.
+Verify the user EXEC login using the local database.
+R1(config-line)# end
+%SYS-5-CONFIG_I: Configured from console by console
+R1# exit
+R1 con0 is now available Press
+RETURN to get started.
+
+Continue
+************ AUTHORIZED ACCESS ONLY *************
+UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED.
+User Access Verification
+Username: Admin1
+Password: admin1pa55 R1>
+
+Part 2: Configure Local AAA Authentication for vty Lines on R1
+Step 1: Configure domain name and crypto key for use with SSH.
+a. Use ccnasecurity.com as the domain name on R1.
+R1(config)# ip domain-name ccnasecurity.com
+
+b. Create an RSA crypto key using 1024 bits.
+R1(config)# crypto key generate rsa
+
+2: Configure a named list AAA authentication method for the vty lines on R1.
+Configure a named list called SSH-LOGIN to authenticate logins using local AAA.
+R1(config)# aaa authentication login SSH-LOGIN local
+
+Step 3: Configure the vty lines to use the defined AAA authentication method.
+Configure the vty lines to use the named AAA method and only allow SSH for remote
+access.
+R1(config)# line vty 0 4
+R1(config-line)# login authentication SSH-LOGIN
+R1(config-line)# transport input ssh
+R1(config-line)#end
+
+Step 4: Verify the AAA authentication method.
+Verify the SSH configuration SSH to R1 from the command prompt of PC-A..
+PC> ssh –l Admin1 192.168.1.1
+Open
+Password: admin1pa55
+
+Part 3: Configure Server-Based AAA Authentication Using TACACS+ on R2
+Step 1: Configure a backup local database entry called Admin.
+For backup purposes, configure a local username of Admin2 and a secret password of
+admin2pa55.
+R2(config)# username Admin2 secret admin2pa55
+
+Step 2: Verify the TACACS+ Server configuration.
+Click the TACACS+ Server. On the Services tab, click AAA. Notice that there is a
+Network configuration
+entry for R2 and a User Setup entry for Admin2.
+Go to TACACS Server → services → Click AAA
+
+Click on Add
+
+Setup for R2
+
+Click on add and save
+
+Step 3: Configure the TACACS+ server specifics on R2.
+Configure the AAA TACACS server IP address and secret key on R2.
+Note: The commands tacacs-server host and tacacs-server key are deprecated. Currently,
+Packet Tracer does not support the new command tacacs server.
+R2(config)# tacacs-server host 192.168.2.2
+R2(config)#tacacs-server key tacacspa55
+
+Step 4: Configure AAA login authentication for console access on R2.
+Enable AAA on R2 and configure all logins to authenticate using the AAA TACACS+
+server. If it is not
+available, then use the local database.
+R2(config)# aaa new-model
+R2(config)# aaa authentication login default group tacacs+ local
+
+Step 5: Configure the line console to use the defined AAA authentication method.
+Configure AAA authentication for console login to use the default AAA authentication
+method.
+R2(config)# line console 0
+R2(config-line)# login authentication default
+
+Step 6: Verify the AAA authentication method.
+Verify the user EXEC login using the AAA TACACS+ server.
+
+R2(config-line)# end
+%SYS-5-CONFIG_I: Configured from console by console
+R2# exit
+R2 con0 is now available Press
+RETURN to get started.
+
+************ AUTHORIZED ACCESS ONLY *************
+UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED.
+User Access Verification
+Username: Admin2
+Password: admin2pa55
+R2>
+
+Part 4: Configure Server-Based AAA Authentication Using RADIUS on R3
+Step 1: Configure a backup local database entry called Admin.
+For backup purposes, configure a local username of Admin3 and a secret password of
+admin3pa55.
+R3(config)# username Admin3 secret admin3pa55
+
+Step 2: Verify the RADIUS Server configuration.
+Click the RADIUS Server. On the Services tab, click AAA. Notice that there is a
+Network configuration entry
+for R3 and a User Setup entry for Admin3.
+Go to RADIUS Server → services → Click AAA
+
+Step 3: Configure the RADIUS server specifics on R3.
+Configure the AAA RADIUS server IP address and secret key on R3.
+Note: The commands radius-server host and radius-server key are deprecated. Currently
+Packet Tracer does not support the new command radius server.
+R3(config)# radius-server host 192.168.3.2
+R3(config)#radius-server key radiuspa55
+
+Step 4: Configure AAA login authentication for console access on R3.
+Enable AAA on R3 and configure all logins to authenticate using the AAA RADIUS server.
+If it is not available, then use the local database.
+R3(config)# aaa new-model
+R3(config)# aaa authentication login default group radius local
+
+Step 5: Configure the line console to use the defined AAA authentication method.
+Configure AAA authentication for console login to use the default AAA authentication
+method.
+R3(config)# line console 0
+R3(config-line)# login authentication default
+
+Step 6: Verify the AAA authentication method.
+Verify the user EXEC login using the AAA RADIUS server.
+R3(config-line)# end
+%SYS-5-CONFIG_I: Configured from console by console
+R3# exit
+R3 con0 is now available Press
+RETURN to get started.
+
+************ AUTHORIZED ACCESS ONLY *************
+UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED.
+User Access Verification
+
+Username: Admin3
+Password: admin3pa55 R3>
+
+Step 7: Check results.
+Your completion percentage should be 100%. Click Check Results to see feedback and
+verification of which required components have been completed.
+Router 1
+
+Router 2
+
+Router 3
+
+Practical no: 06
+Aim: - Configuring Extended ACLs
+A. Configure, Apply and Verify an Extended Numbered ACL - Scenario 1
+
+Topology: -
+
+Configuration of pcs ,router and server
+
+Configuration
+PC-1
+
+PC-2
+
+Router 0
+GigabitEthernet0/0
+
+GigabitEthernet0/2
+
+GigabitEthernet0/1
+
+Server 0
+
+Objectives
+Part 1: Configure, Apply and Verify an Extended Numbered ACL
+Part 2: Configure, Apply and Verify an Extended Named ACL
+
+Background / Scenario
+Two employees need access to services provided by the server. PC1 needs only FTP access
+while PC2needs only web access. Both computers are able to ping the server, but not each
+other.
+Part 1: Configure, Apply and Verify an Extended Numbered ACL
+Step 1: Configure an ACL to permit FTP and ICMP.
+a. From global configuration mode on R1, enter the following command to determine the first
+valid number
+for an extended access list.
+R1(config)# access-list ?
+<1-99> IP standard access list
+<100-199> IP extended access list
+
+b. Add 100 to the command, followed by a question mark.
+R1(config)# access-list 100 ?
+deny Specify packets to reject
+permit Specify packets to forward
+remark Access list entry comment
+
+c. To permit FTP traffic, enter a permit, followed by a question mark.
+R1(config)# access-list 100 permit ?
+ahp Authentication Header Protocol
+eigrp Cisco's EIGRP routing protocol
+esp Encapsulation Security Payload
+gre Cisco's GRE tunneling icmp
+Internet Control Message Protocol ip
+Any Internet Protocol ospf OSPF
+routing protocol tcp Transmission
+Control Protocol udp User Datagram
+Protocol
+
+d. This ACL permits FTP and ICMP. ICMP is listed above, but FTP is not, because
+FTP uses TCP.
+Therefore,enter tcp to further refine the ACL help.
+R1(config)# access-list 100 permit tcp ?
+A.B.C.D Source address any
+Any source host host A
+single source host
+
+e. Notice that we could filter just for PC1 by using the host keyword or we could allow
+any host. In this case,
+any device is allowed that has an address belonging to the 172.22.34.64/27 network.
+Enter the network
+address, followed by a question mark.
+R1(config)# access-list 100 permit tcp 172.22.34.66 ?
+A.B.C.D Source wildcard bits
+
+f. Calculate the wildcard mask determining the binary opposite of a subnet mask.
+11111111.11111111.11111111.11100000 = 255.255.255.224
+00000000.00000000.00000000.00011111 = 0.0.0.31
+g. Enter the wildcard mask, followed by a question mark.
+R1(config)# access-list 100 permit tcp 172.22.34.66 0.0.0.31 ?
+A.B.C.D Destination address any Any destination
+host eq Match only packets on a given port number
+gt Match only packets with a greater port number
+host A single destination host lt Match only
+packets with a lower port number neq Match only
+packets not on a given port number range Match only
+packets in the range of port numbers
+
+h. Configure the destination address. In this scenario, we are filtering traffic for a single
+destination, which is
+the server. Enter the host keyword followed by the server’s IP address.
+R1(config)# access-list 100 permit tcp 172.22.34.66 0.0.0.31 host 172.22.34.62?
+
+i. Notice that one of the options is <cr> (carriage return). In other words, you can press
+Enter and the statement would permit all TCP traffic. However, we are only permitting
+FTP traffic; therefore, enter the eq keyword, followed by a question mark to display the
+available options. Then, enter ftp and press
+Enter.
+
+R1(config)# access-list 100 permit tcp 172.22.34.64 0.0.0.31 host 172.22.34.62 eq ftp
+
+j. Create a second access list statement to permit ICMP (ping, etc.) traffic from PC1 to
+Server. Note that the access list number remains the same and no particular type of
+ICMP traffic needs to be specified.
+
+k. All other traffic is denied, by default.
+Step 2: Apply the ACL on the correct interface to filter traffic.
+From R1’s perspective, the traffic that ACL 100 applies to is inbound from the network
+connected to Gigabit Ethernet 0/0 interface. Enter interface configuration mode and
+apply the ACL.
+R1(config)# interface gigabitEthernet 0/0
+R1(config-if)# ip access-group 100 in
+
+Verify the ACL implementation.
+a. Ping from PC1 to Server. If the pings are unsuccessful, verify the IP addresses before
+continuing.
+
+b. FTP from PC1 to Server. The username and password are both cisco.
+PC> ftp 172.22.34.62
+
+c. Exit the FTP service of the Server.
+ftp> quit
+
+d. Ping from PC1 to PC2. The destination host should be unreachable, because the
+traffic was not explicitly permitted.
+
+Part 2: Configure, Apply and Verify an Extended Named ACL
+Step 1: Configure an ACL to permit HTTP access and ICMP.
+a. Named ACLs start with the ip keyword. From the global configuration mode of R1, enter
+the following command, followed by a question mark.
+R1(config)# ip access-list ?
+
+b. You can configure named standard and extended ACLs. This access list filters both source
+and
+destination IP addresses; therefore, it must be extended. Enter HTTP_ONLY as the name.
+(For Packet Tracer scoring, the name is case-sensitive.)
+R1(config)# ip access-list extended HTTP_ONLY
+
+c. The prompt changes. You are now in extended named ACL configuration mode. All
+devices on the PC2 LAN need TCP access. Enter the network address, followed by a question
+mark.
+R1(config-ext-nacl)# permit tcp 172.22.34.98 ?
+
+d. An alternative way to calculate a wildcard is to subtract the subnet mask from
+255.255.255.255.
+255.255.255.255
+- 255.255.255.240
+----------------= 0. 0. 0. 15
+R1(config-ext-nacl)# permit tcp 172.22.34.96 0.0.0.15 ?
+
+e. Finish the statement by specifying the server address as you did in Part 1 and filtering
+www traffic.
+R1(config-ext-nacl)# permit tcp 172.22.34.98 0.0.0.15 host 172.22.34.62 eq www
+
+f. Create a second access list statement to permit ICMP (ping, etc.) traffic from PC2 to
+Server. Note: The prompt remains the same and a specific type of ICMP traffic does not need
+to be specified.
+R1(config-ext-nacl)# permit icmp 172.22.34.98 0.0.0.15 host 172.22.34.62
+
+g. All other traffic is denied, by default. Exit out of extended named ACL configuration
+mode.
+
+Step 2: Apply the ACL on the correct interface to filter traffic.
+From R1’s perspective, the traffic that access list HTTP_ONLY applies to is inbound
+from the network connected to Gigabit Ethernet 0/1 interface. Enter the interface
+configuration mode and apply the ACL.
+R1(config)# interface gigabitEthernet 0/1
+R1(config-if)# ip access-group HTTP_ONLY in
+
+3: Verify the ACL implementation.
+a. Ping from PC2 to Server. The ping should be successful, if the ping is unsuccessful, verify
+the IP addresses before continuing.
+
+b. FTP from PC2 to Server. The connection should fail.
+
+c. Open the web browser on PC2 and enter the IP address of Server as the URL. The
+connection should be
+successful.
+PC2 → Desktop → Web Browser → In URL Enter Server’s ip i.e: 172.22.34.62
+
+B. Configure, Apply and Verify an Extended Named ACL - Scenario 2.
+Objectives:
+
+• Blocking web browser communication from PC A to Server0.
+• Blocking FTP connection from PC B to Server0.
+• Blocked ICMP connection Laptop to Server0.
+Topology: -
+
+Configuration
+PC-A
+
+Laptop
+
+PC-B
+
+PC-C
+
+Router 1
+●​ Serial0/1/0
+
+●​ Gig0/0
+
+Router 2
+●​ Serial0/1/1
+
+●​ Serial0/1/0
+
+●​ Gig0/1
+
+Router 3
+●​ Serial0/1/0
+
+●​ Gig0/0
+
+RIP Routing
+●​ Router 1
+
+●​ Router 2
+
+●​ Router 3
+
+Configuration of Router 3
+Router#conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+Router(config)#access-list 100 deny tcp host 192.168.1.1 host 192.168.19.1 eq www
+Router(config)#access-list 100 deny tcp host 192.168.17.1 host 192.168.19.1 eq ftp
+Router(config)#access-list 100 deny icmp host 192.168.1.5 host 192.168.19.1
+Router(config)#access-list 100 permit ip any any
+Router(config)#interface Serial0/1/0
+Router(config-if)#ip access-group 100 in
+Router#show access-lists
+
+Test 1: HTTP check (PC-A)
+PC-A se:
+1.​ Desktop → Web Browser → Enter 192.168.19.1
+
+Test 2: FTP check (PC-B)
+PC-B
+1.​ Desktop → Command Prompt
+2.​ Type: ftp 192.168.19.1
+
+Test 3: Ping check (Laptop)
+
+For Unblocking the ports
+To continue the code
+
+Check in Web browser
+
+Check ftp in PC-B
+
+Check in laptop
+
+Practical No: 07
+A. Configuring a Zone-Based Policy Firewall.
+Give DCE wire to router 1 and 2 and automatic wire to router 3.
+
+Topology
+
+Configuration: PC-C
+
+Router1
+●​ Gig 0/1
+
+●​ Serial0/0/0
+
+Router 2
+●​ Serial0/0/1
+
+●​ Serial0/0/0
+
+Router 3
+Serial0/0/1
+
+●​ Gig0/1
+
+Server configuration
+
+Giving RIP Routing
+Router 1
+
+Router 2
+
+Router 3
+
+Part 1: Verify Basic Network Connectivity
+Verify network connectivity prior to configuring the zone-based policy firewall.
+Step 1: From the PC-A command prompt, ping PC-C at 192.168.3.3.
+
+Step 2: Access R2 using SSH.
+First Enable the connection
+Go to CLI on Router 2
+
+a. From the PC-C command prompt, SSH to the S0/0/1 interface on R2 at 10.2.2.2. Use the
+username Admin and password ciscosshpa55 to log in. PC> ssh -l SSHadmin 10.2.2.2
+b. Exit the SSH session.
+
+Step 3: From PC-C, open a web browser to the PC-A server.
+a. Click the Desktop tab and then click the Web Browser application. Enter the PC-A IP
+address
+192.168.1.3 as the URL. The Packet Tracer welcome page from the web server should be
+displayed.
+B. Close the browser on PC-C.
+Go to the PC-C → desktop → web browser → Enter server’s URL: 192.168.1.3
+
+Part 2: Create the Firewall Zones on R3
+Note: For all configuration tasks, be sure to use the exact names as specified.
+Step 1: Enable the Security Technology package.
+a. On R3, issue the show version command to view the Technology Package license
+information.
+
+b. If the Security Technology package has not been enabled, use the following command to
+enable the package.
+R3(config)# license boot module c1900 technology-package securityk9
+
+c. Accept the end-user license agreement.
+
+d. Save the running-config and reload the router to enable the security license.
+
+e. Verify that the Security Technology package has been enabled by using the show version
+command.
+
+Step 2: Create an internal zone. Use the zone security command
+to create a zone named IN-ZONE. R3(config)# zone security
+IN-ZONE
+R3(config-sec-zone) exit
+
+Step 3: Create an external zone. Use the zone security command to
+create a zone named OUT-ZONE.
+R3(config-sec-zone)# zone security OUT-ZONE R3(config-sec-zone)# exit
+
+Part 3: Identify Traffic Using a Class-Map
+Step 1: Create an ACL that defines internal traffic.
+Use the access-list command to create extended ACL 101 to permit all IP protocols from the
+192.168.3.0/24 source network to any destination.
+R3(config)# access-list 101 permit ip 192.168.3.0 0.0.0.255 any
+
+Step 2: Create a class map referencing the internal traffic ACL.
+Use the class-map type inspect command with the match-all option to create a class map
+named IN-NETCLASS-MAP. Use the match access-group command to match ACL 101.
+R3(config)# class-map type inspect match-all IN-NET-CLASS-MAP
+R3(config-cmap)# match access-group 101
+R3(config-cmap)# exit
+
+Part 4: Specify Firewall Policies
+Step 1: Create a policy map to determine what to do with matched traffic. Use the
+policy-map type inspect command and create a policy map named IN-2-OUT-PMAP.
+R3(config)# policy-map type inspect IN-2-OUT-PMAP
+
+Step 2: Specify a class type of inspect and reference class map IN-NET-CLASS-MAP.
+R3(config-pmap)# class type inspect IN-NET-CLASS-MAP
+
+Step 3: Specify the action of inspect for this policy map.
+The use of the inspect command invokes context-based access control (other options include
+pass and drop).
+R3(config-pmap-c)# inspect
+
+%No specific protocol configured in class IN-NET-CLASS-MAP for inspection. All
+protocols will be inspected. Issue the exit command twice to leave config-pmap-c mode and
+return to config mode.
+R3(config-pmap-c)# exit
+R3(config-pmap)# exit
+
+Part 5: Apply Firewall Policies
+Step 1: Create a pair of zones.
+Using the zone-pair security command, create a zone pair named IN-2-OUT-ZPAIR. Specify
+the source and destination zones that were created in Task 1.
+R3(config)# zone-pair security IN-2-OUT-ZPAIR source IN-ZONE destination
+OUT-ZONE
+
+Step 2: Specify the policy map for handling the traffic between the two zones.
+Attach a policy-map and its associated actions to the zone pair using the service-policy type
+inspect command and reference the policy map previously created, IN-2-OUT-PMAP.
+R3(config-sec-zone-pair)# service-policy type inspect IN-2-OUT-PMAP
+R3(config-sec-zone-pair)# exit
+R3(config)#
+
+Step 3: Assign interfaces to the appropriate security zones.
+Use the zone-member security command in interface configuration mode to assign G0/1 to
+IN-ZONE and S0/0/1 to OUT-ZONE.
+R3(config)# interface g0/1
+R3(config-if)# zone-member security IN-ZONE
+R3(config-if)# exit
+R3(config)# interface s0/0/1
+R3(config-if)# zone-member security OUT-ZONE
+R3(config-if)#exit
+
+Step 4: Copy the running configuration to the startup configuration.
+Verify that internal hosts can still access external resources after configuring the ZPF.
+Step 1: From internal PC-C, ping the external PC-A server.
+From the PC-C command prompt, ping PC-A at 192.168.1.3. The ping should succeed.
+
+Step 2: From internal PC-C, SSH to the R2 S0/0/1 interface.
+a. From the PC-C command prompt, SSH to R2 at 10.2.2.2. Use the username Admin and the
+password ciscosshpa55 to access R2. The SSH session should succeed.
+
+b. While the SSH session is active, issue the command show policy-map type inspect zone-pair
+sessions on R3 to view established sessions.
+R3# show policy-map type inspect zone-pair sessions
+
+What is the source IP address and port number?
+192.168.3.3:1028 (port 1028 is random)
+What is the destination IP address and port number?
+10.2.2.2:22 (SSH = port 22)
+Step 3: From PC-C, exit the SSH session on R2 and close the command prompt window.
+
+Step 4: From internal PC-C, open a web browser to the PC-A server web page.
+Enter the server IP address 192.168.1.3 in the browser URL field, and click Go. The HTTP
+session should succeed. While the HTTP session is active, issue the command show
+policy-map type inspect zone-pair sessions on R3 to view established sessions.
+Note: If the HTTP session times out before you execute the command on R3, you will have
+to click the Go button on PC-C to generate a session between PC-C and PC-A.
+R3# show policy-map type inspect zone-pair sessions
+
+Part 7: Test Firewall Functionality from OUT-ZONE to IN-ZONE
+Verify that external hosts CANNOT access internal resources after configuring the ZPF.
+Step 1: From the PC-A server command prompt, ping PC-C.
+From the PC-A command prompt, ping PC-C at 192.168.3.3. The ping should fail.
+
+Step 2: From R2, ping PC-C.
+From R2, ping PC-C at 192.168.3.3. The ping should fail.
+
+Step 3: Check results.
+Your completion percentage should be 100%. Click Check Results to see feedback and
+verification of which required components have been completed.
+Go to PC-A and check
+
+Go to PC-C and check
+
+Go to CLI on Router 3
+
+Practical No:-8
+Configure IOS Intrusion Prevention System (IPS)
+Using the CLI
+Objectives
+• Enable IOS IPS.
+• Configure logging.
+• Modify an IPS signature.
+• Verify IPS.
+Topology
+
+Configuration: PC-A
+
+PC-C
+
+Server
+
+Router 1
+Gig 0/0
+
+Serial 0/0/0
+
+Router 2
+Serial0/0/0
+
+Serial 0/0/1
+
+Router 3
+Gig 0/1
+
+Do the RIP routing
+Check connection:
+Ping PC-A to PC-C
+
+Part 1: Enable IOS IPS
+Note: Within Packet Tracer, the routers already have the signature files imported and in place.
+They are the default xml files in flash. For this reason, it is not necessary to configure the
+public crypto key and complete a manual import of the signature files.
+Step 1: Enable the Security Technology package.
+a. On R1, issue the show version command to view the Technology Package license
+information.
+
+b. If the Security Technology package has not been enabled, use the following command to
+enable the package.
+R1(config)# license boot module c1900 technology-package securityk9
+
+c. Accept the end user license agreement.
+
+d. Save the running-config and reload the router to enable the security license.
+
+e. Verify that the Security Technology package has been enabled by using the show version
+command.
+
+Step 2: Verify network connectivity.
+a. Ping from PC-C to PC-A. The ping should be successful.
+
+b. Ping from PC-A to PC-C. The ping should be successful.
+
+Step 3: Create an IOS IPS configuration directory in flash. On R1,
+create a directory in flash using the mkdir command. Name the directory ipsdir.
+R1# mkdir ipsdir
+Create a directory filename [ipsdir]? <Enter> Created dir flash:ipsdir
+
+Step 4: Configure the IPS signature storage location.
+On R1, configure the IPS signature storage location to be the directory you just created.
+R1(config)# ip ips config location flash:ipsdir
+
+Step 5: Create an IPS rule.
+On R1, create an IPS rule name using the ip ips name name command in global configuration
+mode. Name the IPS rule iosips.
+R1(config)# ip ips name iosips
+
+Step 6: Enable logging.
+a.IOS IPS supports the use of syslog to send event notifications. Syslog notification is
+enabled by default. If the logging console is enabled, IPS syslog messages display. a. Enable
+syslog if it is not enabled.
+
+R1(config)# ip ips notify log
+
+b. If necessary, use the clock set command from privileged EXEC mode to reset the clock.
+R1#clock set 10:20:00 10 january 2014
+
+c. Verify that the timestamp service for logging is enabled on the router using the show run
+command.Enable the timestamp service if it is not enabled.
+R1(config)# service timestamps log datetime msec
+
+d. Send log messages to the syslog server at IP address 192.168.1.50.
+R1(config)#logging host 192.168.1.50
+
+Step 7: Configure IOS IPS to use the signature categories.
+Retire the all signature category with the retired true command (all signatures within the
+signature release).Unretire the IOS_IPS Basic category with the retired false command.
+R1(config)# ip ips signature-category
+R1(config-ips-category)# category all
+R1(config-ips-category-action)# retired true
+R1(config-ips-category-action)# exit
+R1(config-ips-category)# category ios_ips basic
+R1(config-ips-category-action)# retired false
+R1(config-ips-category-action)# exit
+R1(config-ips-cateogry)# exit
+Do you want to accept these changes? [confirm] <Enter>
+
+Step 8: Apply the IPS rule to an interface.
+Apply the IPS rule to an interface with the ip ips name direction command in interface
+configuration mode. Apply the rule outbound on the G0/1 interface of R1. After you enable
+IPS, some log messages will be sent to the console line indicating that the IPS engines are
+being initialized.
+Note: The direction in means that IPS inspects only traffic going into the interface. Similarly,
+out means that IPS inspects only traffic going out of the interface.
+R1(config)# interface g0/1
+R1(config-if)# ip ips iosips out
+
+Part2: Modify the Signature
+Step 1: Change the event-action of a signature.
+Un-retire the echo request signature (signature 2004, subsig ID 0), enable it, and change the
+signature action to alert and drop.
+R1(config)# ip ips signature-definition
+R1(config-sigdef)# signature 2004 0
+R1(config-sigdef-sig)# status
+R1(config-sigdef-sig-status)# retired false
+R1(config-sigdef-sig-status)# enabled true
+R1(config-sigdef-sig-status)# exit
+
+R1(config-sigdef-sig)# engine
+R1(config-sigdef-sig-engine)# event-action produce-alert
+R1(config-sigdef-sig-engine)# event-action deny-packet-inline
+R1(config-sigdef-sig-engine)# exit
+R1(config-sigdef-sig)# exit
+R1(config-sigdef)# exit
+Do you want to accept these changes? [confirm] <Enter>
+
+Step 2: Use show commands to verify IPS.
+Use the show ip ips all command to view the IPS configuration status summary.
+To which interfaces and in which direction is the iosips rule applied?
+G0/1 outbound.
+
+Step 3: Verify that IPS is working properly.
+a. From PC-C, attempt to ping PC-A. Were the pings successful? Explain.
+The pings should fail. This is because the IPS rule for event-action of an echo request was set
+to “deny-packet-inline”.
+
+b. From PC-A, attempt to ping PC-C. Were the pings successful? Explain.
+The ping should be successful. This is because the IPS rule does not cover echo reply. When
+PC-A pings PC-C, PC-C responds with an echo reply.
+
+Step 4: View the syslog messages.
+a. Click the Syslog server.
+b. Select the Services tab.
+c. In the left navigation menu, select SYSLOG to view the log file.
+
+Step 5: Check results.
+Your completion percentage should be 100%. Click Check Results to see feedback and
+verification of which required components have been completed.
+
+Practical no: 10
+Working with various NMap commands for network scanning and security
+NMAP
+Nmap (Network Mapper) is an open-source network scanning tool used to discover devices,
+identify open ports, detect services and their versions, and gather information about operating
+systems on a network. It is widely used for network auditing, security assessments, and
+troubleshooting. Nmap allows users to do a bunch of things that are related to a wide range of
+network-related tasks.
+●​ Network Discovery: With Nmap, users can scan networks and discover devices and
+hosts on a network, allowing network admins to understand the network more
+efficiently.
+●​ Port Scanning: It can determine which ports are open and which services are running
+on those ports, which is critical for security assessments and vulnerability scanning.
+●​ OS Fingerprinting: Nmap can attempt to identify the operating system running on a
+target host by analyzing various characteristics of network packets.
+●​ Vulnerability Assessment: It's a valuable tool for identifying potential vulnerabilities
+in systems and services, aiding in proactive security measures.
+●​ Network Monitoring: Nmap can be used for continuous monitoring to detect changes
+in the network environment
+1.Scan scanme.nmap.org, to determine the versions for the services running on each port,
+so that to determine if they are out of date and potentially vulnerable to exploitation. To
+determine the operating system of the webserver running the target site.
+nmap scanme.nmap.org
+
+1. Basic Scan
+Basic scan is used to discover open ports and services running on a target machine. It
+scans the most common 1000 TCP ports and identifies whether they are open, closed, or
+filtered.
+Command:
+nmap <target>
+For example:
+nmap scanme.nmap.org
+
+Select regular Scan and Click on scan.
+
+2. Service Version Detection and OS Detection
+This scan is used to determine the version of services running on open ports and to identify
+the operating system of the target machine. It helps in detecting outdated services that may be
+vulnerable.
+Command:
+nmap -sV -O <target>
+For example:
+nmap -sV -O scanme.nmap.org
+
+Screenshot:
+
+3. Ping Sweep Scan
+Ping sweep is a method that can establish a range of IP addresses which map to live hosts.
+Ping Sweep/Scan (-sP) is used to find live machines from a range of IP addresses. It sends
+ICMP echo request to multiple machines. In case of ping request, a single packet (56 bytes
+data + 08 byte header) is sent. It also determines round trip time.
+Command:
+nmap –sP <target>
+For example:
+nmap –sn 172.16.4.1-254
+In target dropdown → select ip
+Profile → ping scan
+
+4. Full Port Scan
+This scan is used to discover all open TCP ports on the target system. By default, Nmap
+scans only 1000 ports, but this command scans all 65535 ports.
+Command:
+nmap -p 1-65535 -v <target>
+For example:
+nmap -p 1-65535 -v 172.16.4.51
+Screenshot:
+
+5. SYN Stealth Scan
+SYN Stealth Scan is also known as Half-Open Scan. It works based on the TCP
+three-way handshake. It sends a SYN packet and waits for a response without
+completing the connection. It is faster and less detectable.
+Command:
+nmap -sS -A -O <target> -p <port>
+For example:
+nmap -sS -A -O 172.16.4.51 -p 80
+
+6. TCP Connect Scan
+TCP Connect Scan is the most basic type of TCP scanning. It completes the full
+TCP handshake using the operating system’s connect() call. It does not require
+special privileges.
+Command:
+nmap -p 1-65535 -T4 -A <target>
+
+For example:
+nmap -p 1-65535 -T4 -A 172.16.4.51
+Full TCP Port Scan
+
+exact TCP Connect Full Port Scan
+
+7. UDP Scan
+UDP Scan is used to scan UDP ports on the target machine. It sends UDP
+packets to the target ports and checks for ICMP Port Unreachable messages to
+determine whether ports are open or closed.
+Command:
+nmap -sU <target>
+For example:
+nmap -sU 172.16.4.51
+
+8. Packet Trace
+Packet Trace is used to display all packets sent and received during the scanning
+process. It helps in understanding how Nmap communicates with the target
+system.
+Command:
+nmap --packet-trace <target>
+For example:
+nmap --packet-trace 10.0.2.23
+Screenshot:
+
+8.Save your scan results in txt file
+
+

@@ -1,0 +1,3742 @@
+﻿Practical No:-1 
+Write program to implement the following Cipher Techniques: 
+A. Caesar Cipher 
+Code:-
+def caesar_cipher(text,key): 
+result="" 
+for c in text: 
+if 'a'<= c <='z': 
+c=chr(((ord(c)-ord('a')+key)%26)+ord('a')) 
+elif 'A'<= c <='Z': 
+c=chr(((ord(c)-ord('A')+key)%26)+ord('A')) 
+result+=c 
+return result 
+#Taking input 
+text=input("Enter a plaintext to encrypt:\n") 
+key=int(input("Enter key:\n")) 
+#Output 
+print("Encrypted message: ",caesar_cipher(text,key)) 
+def caesar_decrypt(text,key): 
+result="" 
+for c in text: 
+if 'a'<= c <='z': 
+c=chr(((ord(c)-ord('a')-key)%26)+ord('a')) 
+elif 'A'<= c <='Z': 
+c=chr(((ord(c)-ord('A')-key)%26)+ord('A')) 
+result+=c 
+return result 
+#Taking input 
+text=input("Enter a plaintext to decrypt:\n") 
+key=int(input("Enter key:\n")) 
+#Output 
+print("Encrypted message: ",caesar_decrypt(text,key))
+	
+
+
+
+Hill Cipher 
+
+
+
+
+Examples: 
+Input : Plaintext: ACT 
+Key: GYBNQKURP 
+Output : Ciphertext: POH 
+Code:-
+
+
+import numpy as np 
+from math import gcd 
+# Convert key to 3x3 matrix 
+def get_key_matrix(key): 
+key_matrix = np.zeros((3, 3), dtype=int) 
+k = 0 
+for i in range(3): 
+for j in range(3): 
+key_matrix[i][j] = ord(key[k]) - 65 
+k += 1 
+return key_matrix 
+# Modular multiplicative inverse 
+def mod_inverse(a, m): 
+a = a % m 
+for x in range(1, m): 
+if (a * x) % m == 1: 
+return x 
+return None 
+# Matrix inverse mod 26 
+def matrix_mod_inverse(matrix): 
+det = int(np.round(np.linalg.det(matrix))) % 26 
+if gcd(det, 26) != 1: 
+raise ValueError("Matrix not invertible under mod 26") 
+det_inv = mod_inverse(det, 26) 
+# Cofactor matrix 
+cofactor = np.zeros((3, 3), dtype=int)
+for r in range(3): 
+for c in range(3): 
+minor = np.delete(np.delete(matrix, r, axis=0), c, axis=1) 
+cofactor[r][c] = ((-1) ** (r + c)) * int(np.round(np.linalg.det(minor))) 
+# Adjugate = transpose of cofactor 
+adjugate = cofactor.T % 26 
+# Final inverse 
+return (det_inv * adjugate) % 26 
+def encrypt(message, key_matrix): 
+vector = np.array([[ord(message[i]) - 65] for i in range(3)]) 
+cipher = np.dot(key_matrix, vector) % 26 
+return ''.join(chr(cipher[i][0] + 65) for i in range(3)) 
+def decrypt(ciphertext, key_matrix): 
+vector = np.array([[ord(ciphertext[i]) - 65] for i in range(3)]) 
+inv_key = matrix_mod_inverse(key_matrix) 
+message = np.dot(inv_key, vector) % 26 
+return ''.join(chr(message[i][0] + 65) for i in range(3)) 
+# ------------------- MAIN -------------------- 
+key = input("Enter 9-letter KEY: ").upper() 
+message = input("Enter 3-letter MESSAGE: ").upper() 
+key_matrix = get_key_matrix(key) 
+cipher = encrypt(message, key_matrix) 
+print("\nEncrypted:", cipher) 
+plain = decrypt(cipher, key_matrix) 
+print("Decrypted:", plain)
+
+
+
+
+
+
+C.Vernam Cipher
+Code: 
+def makeVernamCypher(text, key): 
+"""Returns the Vernam Cipher for a given string and key""" 
+answer = "" # cipher text 
+p = 0 # pointer for key 
+for char in text: 
+answer += chr(ord(char) ^ ord(key[p])) 
+p += 1 
+if p == len(key): 
+p = 0 
+return answer 
+MY_KEY = "cvwopslweinedvq9fnasdlkfn2" 
+while True: 
+print("\n\n--- Vernam Cipher ---") 
+PlainText = input("Enter text to encrypt: ") 
+# Encrypt 
+Cypher = makeVernamCypher(PlainText, MY_KEY) 
+print("Cipher text:", Cypher) 
+# Decrypt (same function) 
+Decrypt = makeVernamCypher(Cypher, MY_KEY) 
+print("Decrypted:", Decrypt)
+
+
+Practical No:-2 
+Write program to implement the following Cipher Techniques: 
+1. Playfair Cipher 
+
+
+def generate_matrix(key): 
+ key = key.upper().replace("J", "I") 
+ matrix = [] 
+ used = set() 
+ for c in key: 
+ if c not in used and c.isalpha(): 
+ used.add(c) 
+ matrix.append(c) 
+ for c in "ABCDEFGHIKLMNOPQRSTUVWXYZ": # J excluded 
+ if c not in used: 
+ used.add(c) 
+ matrix.append(c) 
+ return [matrix[i:i+5] for i in range(0, 25, 5)] 
+def find_pos(matrix, ch): 
+ if ch == "J": 
+ ch = "I" 
+ for i in range(5): 
+ for j in range(5): 
+ if matrix[i][j] == ch:
+ return i, j 
+ return None 
+def prepare_text(text): 
+ text = text.upper().replace("J", "I") 
+ text = "".join([c for c in text if c.isalpha()]) 
+ result = "" 
+ i = 0 
+ while i < len(text): 
+ a = text[i] 
+ if i + 1 < len(text): 
+ b = text[i + 1] 
+ if a == b: 
+ result += a + "X" 
+ i += 1 
+ else: 
+ result += a + b 
+ i += 2 
+ else: 
+ result += a + "X" 
+ i += 1 
+ return result 
+def encrypt_pair(a, b, matrix): 
+ r1, c1 = find_pos(matrix, a) 
+ r2, c2 = find_pos(matrix, b) 
+ if r1 == r2: 
+ return matrix[r1][(c1 + 1) % 5] + matrix[r2][(c2 + 1) % 5] 
+ if c1 == c2: 
+ return matrix[(r1 + 1) % 5][c1] + matrix[(r2 + 1) % 5][c2] 
+ return matrix[r1][c2] + matrix[r2][c1] 
+def decrypt_pair(a, b, matrix): 
+ r1, c1 = find_pos(matrix, a) 
+ r2, c2 = find_pos(matrix, b) 
+ if r1 == r2: 
+ return matrix[r1][(c1 - 1) % 5] + matrix[r2][(c2 - 1) % 5]  if c1 == c2:
+ return matrix[(r1 - 1) % 5][c1] + matrix[(r2 - 1) % 5][c2] 
+ return matrix[r1][c2] + matrix[r2][c1] 
+def playfair_encrypt(key, text): 
+ matrix = generate_matrix(key) 
+ text = prepare_text(text) 
+ cipher = "" 
+ for i in range(0, len(text), 2): 
+ cipher += encrypt_pair(text[i], text[i + 1], matrix) 
+ return cipher 
+def playfair_decrypt(key, text): 
+ matrix = generate_matrix(key) 
+ plain = "" 
+ for i in range(0, len(text), 2): 
+ plain += decrypt_pair(text[i], text[i + 1], matrix) 
+ return plain 
+# ---------------------------------------------------------- # USER INPUT 
+# ---------------------------------------------------------- 
+print("---- Playfair Cipher ----") 
+key = input("Enter Key: ") 
+choice = input("Enter 1 for Encryption, 2 for Decryption: ") 
+if choice == "1": 
+ plaintext = input("Enter Plaintext: ") 
+ cipher = playfair_encrypt(key, plaintext) 
+ print("\nEncrypted Text:", cipher) 
+elif choice == "2": 
+ ciphertext = input("Enter Ciphertext: ").upper()  decrypted = playfair_decrypt(key, ciphertext)  print("\nDecrypted Text:", decrypted)
+
+
+else: 
+ print("Invalid choice!")
+	
+
+2. Rail Fence Cipher 
+Code:-
+def rail_fence_encrypt(text, key): 
+ # Remove spaces 
+ text = text.replace(" ", "") 
+ # Create empty rails 
+ rails = [""] * key 
+ row = 0 
+ direction = 1 # 1 = down, -1 = up 
+ for char in text: 
+ rails[row] += char 
+ # Change direction at top or bottom rail 
+ if row == 0: 
+ direction = 1 
+ elif row == key - 1: 
+ direction = -1 
+ row += direction 
+ return "".join(rails) 
+def rail_fence_decrypt(cipher, key): 
+ # Determine pattern of positions 
+ pattern = [[] for _ in range(key)] 
+ row = 0 
+ direction = 1 
+ # First pass: mark positions 
+ for i in range(len(cipher)): 
+ pattern[row].append(i) 
+ if row == 0: 
+ direction = 1
+	
+
+
+
+ elif row == key - 1: 
+ direction = -1 
+ row += direction 
+ # Fill pattern with cipher text 
+ result = [''] * len(cipher) 
+ index = 0 
+ for r in range(key): 
+ for pos in pattern[r]: 
+ result[pos] = cipher[index] 
+ index += 1 
+ # Read plaintext by following zig-zag again 
+ plaintext = "" 
+ row = 0 
+ direction = 1 
+ for i in range(len(cipher)): 
+ plaintext += result[pattern[row].pop(0)] 
+ if row == 0: 
+ direction = 1 
+ elif row == key - 1: 
+ direction = -1 
+ row += direction 
+ return plaintext 
+# ---------------------------------------------------------- 
+# USER INPUT 
+# ---------------------------------------------------------- 
+print("---- Rail Fence Cipher ----") 
+key = int(input("Enter number of rails: ")) 
+choice = input("Enter 1 for Encryption, 2 for Decryption: ") 
+if choice == "1": 
+ plaintext = input("Enter Plaintext: ") 
+ cipher = rail_fence_encrypt(plaintext, key) 
+ print("\nEncrypted Text:", cipher) 
+elif choice == "2": 
+ ciphertext = input("Enter Ciphertext: ") 
+ decrypted = rail_fence_decrypt(ciphertext, key) 
+ print("\nDecrypted Text:", decrypted) 
+else: 
+ print("Invalid choice!")
+	
+
+
+
+3. Vignere Cipher 
+Code:-
+def generate_key(text, key): 
+ key = list(key) 
+ if len(text) == len(key): 
+ return "".join(key) 
+ else: 
+ for i in range(len(text) - len(key)): 
+ key.append(key[i % len(key)]) 
+ return "".join(key) 
+def encrypt_vigenere(plaintext, key): 
+ ciphertext = [] 
+ key = generate_key(plaintext, key) 
+ for p, k in zip(plaintext, key): 
+ if p.isalpha(): 
+ shift = (ord(p.upper()) - 65 + ord(k.upper()) - 65) % 26 
+ ciphertext.append(chr(shift + 65)) 
+ else: 
+ ciphertext.append(p) 
+ return "".join(ciphertext) 
+def decrypt_vigenere(ciphertext, key): 
+ plaintext = [] 
+ key = generate_key(ciphertext, key) 
+ for c, k in zip(ciphertext, key): 
+ if c.isalpha(): 
+ shift = (ord(c.upper()) - 65 - (ord(k.upper()) - 65)) % 26 
+ plaintext.append(chr(shift + 65)) 
+ else: 
+ plaintext.append(c) 
+ return "".join(plaintext)
+	
+
+
+
+Practical No:-3 
+DES Algorithm 
+Code:-
+from Crypto.Cipher import DES 
+from Crypto.Random import get_random_bytes 
+from Crypto.Util.Padding import pad, unpad 
+def encrypt_des(key, plaintext): 
+ """Encrypts plaintext using DES in ECB mode.""" 
+ cipher = DES.new(key, DES.MODE_ECB) 
+ padded_plaintext = pad(plaintext, DES.block_size) 
+ ciphertext = cipher.encrypt(padded_plaintext) 
+ return ciphertext 
+def decrypt_des(key, ciphertext): 
+ """Decrypts ciphertext using DES in ECB mode.""" 
+ cipher = DES.new(key, DES.MODE_ECB) 
+ padded_plaintext = cipher.decrypt(ciphertext) 
+ plaintext = unpad(padded_plaintext, DES.block_size) 
+ return plaintext 
+if __name__ == "__main__": 
+ # Generate a random 8-byte DES key 
+ key = get_random_bytes(8) 
+ print(f"Generated DES Key: {key.hex()}") 
+ # Message to encrypt 
+ message = b"This is a secret message for DES encryption." 
+ print(f"Original Message: {message.decode('utf-8')}") 
+ # Encrypt the message 
+ encrypted_message = encrypt_des(key, message) 
+ print(f"Encrypted Message (hex): {encrypted_message.hex()}") 
+ # Decrypt the message 
+ decrypted_message = decrypt_des(key, encrypted_message) 
+ print(f"Decrypted Message: {decrypted_message.decode('utf-8')}")
+	
+
+# ---- User Input ---- 
+print("=== Vigenère Cipher ===") 
+choice = input("Encrypt or Decrypt (e/d): ").strip().lower() 
+text = input("Enter text: ") 
+key = input("Enter key: ") 
+if choice == "e": 
+ result = encrypt_vigenere(text, key) 
+ print("\nEncrypted Text:", result) 
+elif choice == "d": 
+ result = decrypt_vigenere(text, key) 
+ print("\nDecrypted Text:", result) 
+else: 
+ print("Invalid choice!")
+	
+
+
+
+
+
+RSA Algorithm 
+Code:-
+# RSA Algorithm in Python (WITHOUT external libraries) 
+def gcd(a, b): 
+ while b != 0: 
+ a, b = b, a % b 
+ return a 
+# Function to find modular inverse (d) 
+def mod_inverse(e, phi): 
+ for d in range(1, phi): 
+ if (d * e) % phi == 1: 
+ return d 
+ return None 
+# RSA Implementation 
+def rsa(): 
+ print("=== RSA Algorithm Implementation ===") 
+ # Step 1: Choose two prime numbers 
+ p = int(input("Enter prime number p: ")) 
+ q = int(input("Enter prime number q: ")) 
+ # Step 2: Compute n = p*q 
+ n = p * q 
+ # Step 3: Compute phi(n) = (p-1)*(q-1) 
+ phi = (p - 1) * (q - 1) 
+ # Step 4: Choose e such that gcd(e, phi) = 1 
+ e = int(input("Enter public key exponent e (1 < e < phi) & gcd(e,phi)=1: "))  if gcd(e, phi) != 1: 
+ print("Invalid e value. gcd(e,phi) must be 1.") 
+ return 
+ # Step 5: Compute private key d (modular inverse of e) 
+ d = mod_inverse(e, phi) 
+ print(f"\nPublic Key: (e={e}, n={n})") 
+ print(f"Private Key: (d={d}, n={n})\n") 
+ # Step 6: Encryption 
+ msg = int(input("Enter message (number) to encrypt: ")) 
+ cipher = (msg ** e) % n 
+ print(f"Encrypted Message: {cipher}") 
+ # Step 7: Decryption
+decrypted = (cipher ** d) % n 
+ print(f"Decrypted Message: {decrypted}") 
+rsa()
+
+
+	
+
+
+
+Diffie Hellman Key Exchange Algorithm 
+
+
+C. Write a program to implement the Diffie-Hellman Key Agreement algorithm to generate symmetric keys. 
+Code:-
+# Simple Diffie-Hellman demo (easy) 
+# Classic small numbers used for clarity (DO NOT use in real security) def diffie_hellman_demo(): 
+ # Publicly known (both parties agree) 
+ p = 23 # prime modulus 
+ g = 5 # generator (primitive root mod p) 
+ print("Publicly known: p =", p, ", g =", g, "\n") 
+ # Alice chooses a private key (a) 
+ a = int(input("Alice private key (small integer) choose e.g. 6: ") or "6")  A = pow(g, a, p) # Alice's public key 
+ print("Alice computes public A = g^a mod p ->", A) 
+ # Bob chooses a private key (b) 
+ b = int(input("Bob private key (small integer) choose e.g. 15: ") or "15")  B = pow(g, b, p) # Bob's public key 
+ print("Bob computes public B = g^b mod p ->", B) 
+ print("\nThey exchange A and B (over insecure channel).")
+	
+
+
+
+ # Each computes the shared secret 
+ alice_shared = pow(B, a, p) # (g^b)^a mod p = g^(ab) mod p 
+ bob_shared = pow(A, b, p) # (g^a)^b mod p = g^(ab) mod p 
+ print("\nAlice's computed shared secret:", alice_shared) 
+ print("Bob's computed shared secret: ", bob_shared) 
+ if alice_shared == bob_shared: 
+ print("\nSuccess! Shared secret matches.") 
+ else: 
+ print("\nSomething went wrong — secrets differ.") 
+if __name__ == "__main__": 
+ diffie_hellman_demo()
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+Awd
+
+
+
+
+Practical No:-1
+
+
+Steps To creating a new project: -
+
+
+Open Visual Studio 2022 → Search ASP.NET Web application (.NET Framework) →  Enter the Project Name → Choose the project location → Click Create.
+  
+
+
+
+Select web Forms
+  
+
+
+
+View → Solution Explorer
+  
+
+
+
+Right Click on Project →Add →Web Forms 
+  
+
+
+
+  
+
+
+
+Design → view →ToolBox 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rename Label and Button →right click →Properties →rename
+  
+
+
+
+A] Create an application that obtains four int values from the user and display the product.
+
+
+Design:-
+  
+
+
+
+
+
+aspx.cs file
+ Code: -
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+namespace p1
+{
+    public partial class PRODUCT1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+
+        protected void TextBox4_TextChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int n1, n2, n3, n4, result;
+            n1 = Convert.ToInt16(TextBox1.Text);
+            n2 = Convert.ToInt16(TextBox2.Text);
+            n3 = Convert.ToInt16(TextBox5.Text);
+            n4 = Convert.ToInt16(TextBox7.Text);
+            result = n1 * n2 * n3 * n4;
+            TextBox8.Text = result.ToString();
+
+
+        }
+    }
+}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Screenshot of code: -
+  
+
+
+
+Output:-
+  
+
+B]Create an application that receives the (Student Id, Student Name, Course Name, Date of Birth) information from a set of students. The application should also display the information of all the students once the data entered.
+
+
+Design:-
+  
+
+
+
+aspx.cs file
+Code: -
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace prac2
+{
+    public partial class Student_form : System.Web.UI.Page
+    {
+        struct student
+        {
+            public string id, name, course, DOB;
+        }
+        static student[] s = new student[3];
+        static int i;
+        protected void Page_Load(object sender, EventArgs e)
+        { }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Write(i + "<br>");
+            s[i].id = TextBox1.Text;
+            s[i].name = TextBox5.Text;
+            s[i].course = TextBox3.Text;
+            s[i].DOB = TextBox4.Text;
+            i++;
+        }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            for (int y=0; y<i; y++)
+            {
+                Response.Write(y + " ");
+                Response.Write("Student ID: " + s[y].id + "<br>");
+                Response.Write("Student Name: " + s[y].name + "<br>");
+                Response.Write("Student Course: " + s[y].course + "<br>");
+                Response.Write("Student Date of Birth: " + s[y].DOB + "<br>");
+            } } }
+}
+	
+
+Screenshot:-
+  
+
+  
+
+
+
+Output: -
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practical No:-2
+
+
+A] Create a simple application to perform money conversion.
+Design  
+
+
+Right click on the radio button and set:
+1.AutoPostBack:True 
+2.Text
+(Do this for all  radio button) 
+  
+
+
+
+
+
+
+
+RupeesConverter.aspx file
+Code:-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+namespace practical2B
+{
+    public partial class RupeeConverter : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+
+        protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(TextBox1.Text);
+            a = a * 89;
+            Label2.Text = a.ToString();
+            RadioButton2.Checked = false;
+            RadioButton3.Checked = false;
+            RadioButton4.Checked = false;
+
+
+        }
+        protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(TextBox1.Text);
+            a = a / 89;
+            Label2.Text = a.ToString();
+            RadioButton1.Checked = false;
+            RadioButton3.Checked = false;
+            RadioButton4.Checked = false;
+        }
+
+
+        protected void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(TextBox1.Text);
+            a = a * 85;
+            Label2.Text = a.ToString();
+            RadioButton1.Checked = false;
+            RadioButton2.Checked = false;
+            RadioButton4.Checked = false;
+        }
+
+
+        protected void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(TextBox1.Text);
+            a = a / 85;
+            Label2.Text = a.ToString();
+            RadioButton1.Checked = false;
+            RadioButton2.Checked = false;
+            RadioButton3.Checked = false;
+        }
+    }
+}
+	
+
+Screenshot:-
+  
+
+  
+
+
+
+Output:-
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+________________
+
+B]Create a simple application to perform Temperature conversion.
+
+
+Click right on radiobutton → properties → Autopostback → Correct right to false.
+For both button do same  
+  
+
+
+
+
+
+
+
+Design
+  
+
+
+
+Code:-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace practical2A
+{
+    public partial class tempreature : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+
+        protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(TextBox2.Text);
+            a = ((9 / 5) * a) + 32;
+            Label2.Text = a.ToString();
+            RadioButton2.Checked = false;
+        }
+
+
+        protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(TextBox2.Text);
+            a = (0.55) * (a - 32); ;
+            Label2.Text = a.ToString();
+            RadioButton1.Checked = false;
+        }
+    }
+}
+	
+
+AutoPstBack →True
+  
+
+
+
+Screenshot:-
+  
+
+Output:-
+  
+
+  
+
+  
+________________
+
+Practical No:-3
+
+
+Working with Web Forms and Controls
+A)Demonstrate the use of Calendar control to perform following operations.
+1.Display messages in a calendar control
+2.Display vacation in a calendar control
+3.Selected day in a calendar control using style
+4.Difference between two calendar  dates
+
+
+Design: -
+  
+
+
+
+Calender.aspx.cs file
+Code:-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+namespace practical3A
+{
+    public partial class Calender : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Calendar1.FirstDayOfWeek = FirstDayOfWeek.Sunday;
+            Calendar1.NextPrevFormat = NextPrevFormat.ShortMonth;
+            Label2.Text = "Today Date " + Calendar1.TodaysDate.ToShortDateString();
+            Label3.Text = "Christmas Vacation start on 25th Decemeber";
+            TimeSpan d = new DateTime(2025, 12, 25) - DateTime.Now;
+            Label4.Text = "Days remaining for christmas vacatin:" + d.Days.ToString();
+            TimeSpan d1 = new DateTime(2025, 12, 31) - DateTime.Now;
+            Label5.Text = "Days remaining for christmas vacatin:" + d1.Days.ToString();
+        }
+
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            Label1.Text = "Tour selected date is " + Calendar1.SelectedDate.ToString();
+        }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Label1.Text = "";
+            Label2.Text = "";
+            Label3.Text = "";
+            Label4.Text = "";
+            Label5.Text = "";
+        }
+    }
+}
+	
+
+________________
+
+
+Screenshot:-
+  
+
+
+
+Output:-
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+B]Demonstrate the use of Treeview control performs the following operations.
+a) Treeview control and datalist 
+b) Treeview operations.
+
+
+1.First create four web forms (Related to programming languages)
+2. Go on toolbox → navigation → treeview
+
+
+  
+
+
+
+Click on treeview and right click and then click on edit nodes
+  
+
+
+
+  
+
+Add this data
+Then click on parent or leaf node then NavigateUrl and change the Text.
+  
+  
+
+
+
+________________
+
+
+navigate URL
+  
+
+
+
+  
+
+
+
+Navigate java file 
+  
+
+  
+
+
+
+Design
+  
+
+
+
+Web.XML file
+
+
+Right click on project → Add → New item → Search  xml → Click on XML FILE
+  
+
+
+
+Code:-
+TreeView.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Treeview.aspx.cs" Inherits="_6406_practical3B.Treeview" %>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+        </div>
+        <asp:TreeView ID="TreeView1" runat="server" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged">
+            <Nodes>
+                <asp:TreeNode Text="Programming Language" Value="Programming Language">
+                    <asp:TreeNode NavigateUrl="~/Java.aspx" Text="java" Value="java"></asp:TreeNode>
+                    <asp:TreeNode NavigateUrl="~/Python.aspx" Text="Python" Value="Python"></asp:TreeNode>
+                </asp:TreeNode>
+                <asp:TreeNode Text="Database" Value="Database">
+                    <asp:TreeNode Text="SQL" Value="SQL" NavigateUrl="~/SQL.aspx"></asp:TreeNode>
+                    <asp:TreeNode Text="MongoDB" Value="MongoDB" NavigateUrl="~/MongoDB.aspx"></asp:TreeNode>
+                </asp:TreeNode>
+            </Nodes>
+        </asp:TreeView>
+        <asp:DataList ID="DataList1" runat="server">
+            <ItemTemplate>
+                <table class ="table" border="1">
+                    <tr>
+                        <td>
+                            Roll No:<%#Eval("sid") %><br ></br>
+                            Name:<%#Eval("sname") %><br ></br>
+                            Class:<%#Eval("class") %><br ></br>
+                        </td>
+                    </tr>
+                </table>
+            </ItemTemplate>
+        </asp:DataList>
+    </form>
+</body>
+</html>
+	
+
+Treeview.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+namespace _6406_practical3B
+{
+    public partial class Treeview : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if(!IsPostBack)
+            { BindData(); }
+        }
+
+
+        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+        {
+
+
+        }
+        protected void BindData()
+        {
+            DataSet ds = new DataSet();
+            ds.ReadXml(Server.MapPath("XMLFile1.xml"));
+            if(ds!=null && ds.HasChanges())
+            {
+                DataList1.DataSource = ds;
+                DataList1.DataBind();
+            }
+            else
+            {
+                DataList1.DataBind();
+            }
+        }
+    }
+}
+	
+
+XMLFile1.xml
+<?xml version="1.0" encoding="utf-8" ?>
+<StudentDetails>
+        <student>
+                <sid>1</sid>
+                <sname>Priya</sname>
+                <class>FYIT</class>
+        </student>
+        <student>
+                <sid>2</sid>
+                <sname>Soham</sname>
+                <class>SYIT</class>
+        </student>
+        <student>
+                <sid>3</sid>
+                <sname>Sujata</sname>
+                <class>TYIT</class>
+        </student>
+</StudentDetails>
+	
+
+________________
+
+
+Screenshot:-
+XMLFile1.xml
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Treeview.aspx.cs
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Treeview.aspx
+  
+
+
+
+________________
+
+
+Output:-
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________
+
+
+Practical No:-4
+
+
+A. Create a Registration form to demonstrate use of various Validation controls.
+
+
+Design
+  
+
+
+
+Now, Applying validator
+Go to Toolbox and search of RequiredFieldValidator.
+  
+
+
+
+
+
+
+
+
+
+
+
+Now give the properties to the required field:
+
+
+Validating name field: -
+Before
+  
+
+
+
+After
+  
+
+
+
+
+
+
+
+Validating Age field
+  
+
+
+
+Validating Email field
+  
+
+
+
+Validating password field
+  
+
+Validating confirm Password field
+  
+
+
+
+RequiredFieldValidation has been applied to all input fields.
+  
+
+
+
+Now,
+Give the validation to the name.
+  
+
+Give the ErrorMessage:Enter your name
+For giving Regular expression → go to validate Expression → on coroner three dot → write in box : ^[a-zA-Z\s]+$ → click ok.
+  
+
+
+
+Give the validation to the Age.
+  
+
+
+
+* In Type=Integer also Give the Maximum and Minimum values
+  
+
+Give the validation to Email
+  
+
+
+
+For giving Regular expression go to validate Expression → on coroner three dot →select internet e-mail address→ write in box : \w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*→ click ok.
+  
+
+  
+________________
+
+  
+
+
+
+Give the validation to Password
+  
+
+
+
+  
+
+Click on textbox properties →In TextMode select password
+  
+
+Give the validation to ConfirmPassword
+  
+
+
+
+In the ControlToCompare property, specify the name of the TextBox whose value you want to compare.
+  
+
+In TextMode select password
+  
+
+
+
+  
+
+
+
+Validation.aspx.cs file
+Source Code:-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+namespace _6406_parct4A
+{
+    public partial class Validation : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+
+        protected void TextBox4_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+
+        protected void TextBox5_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Label7.Text = "Form submitted successfully";
+        }
+    }
+}
+	
+
+Screenshot:- 
+  
+
+Output:-
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+________________
+
+
+B. Create Web Form to demonstrate use of Adrotator Control.
+Steps
+1. Download images in png or jpeg format.
+2. Create a folder in solution explorer and put the images in that folder.
+
+
+Right click on project → Add → New folder
+  
+
+
+
+3.Create a XML file
+Right click on project → Add → New Item → Search XML → Add
+  
+
+Design
+  
+
+
+
+* In the Toolbox search  AdRotator → and add in the design.
+  
+
+
+
+* In the choose  data source → Drag None → new data source → XML File → In data file browse image folder → click ok.
+  
+
+
+
+* Click on XML file 
+  
+
+
+
+* In Data file browse XMLFile1.xml
+  
+
+
+
+  
+
+  
+
+
+
+
+
+Code:-
+XML File:-
+<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+        <Ad>
+                <ImageUrl>D:\6406_AWD\pract4_2\pract4_2\Images\facebook.png</ImageUrl>
+                <NavigateUrl>https://www.facebook.com/</NavigateUrl>
+                <AlternateText>FACEBOOK</AlternateText>
+                <Impression>20</Impression>
+                <Keyword>facebook</Keyword>
+        </Ad>
+
+
+        <Ad>
+                <ImageUrl>D:\6406_AWD\pract4_2\pract4_2\Images\instagram.jfif</ImageUrl>
+                <NavigateUrl>https://www.instagram.com/</NavigateUrl>
+                <AlternateText>INSTAGRAM</AlternateText>
+                <Impression>20</Impression>
+                <Keyword>instagram</Keyword>
+        </Ad>
+
+
+        <Ad>
+                <ImageUrl>D:\6406_AWD\pract4_2\pract4_2\Images\google.png</ImageUrl>
+                <NavigateUrl>https://www.google.com/</NavigateUrl>
+                <AlternateText>GOOGLE</AlternateText>
+                <Impression>20</Impression>
+                <Keyword>instagram</Keyword>
+        </Ad>
+</Advertisements>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Screenshot:-
+  
+
+
+
+AddRotator.asppx file
+Source code: -
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="pract4_2.WebForm1" %>
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:AdRotator ID="AdRotator1" runat="server" DataSourceID="XmlDataSource1" />
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/XMLFile1.xml"></asp:XmlDataSource>
+        </div>
+    </form>
+</body>
+</html>
+	
+
+Screenshot:-
+  
+
+
+
+Output:-
+Google page
+  
+
+  
+
+
+
+Instagram Page:-
+  
+
+  
+
+
+
+Facebook page
+  
+
+  
+
+
+
+
+
+
+
+________________
+
+
+Practical No:- 5
+
+
+A.Create Web Form to demonstrate use of User Controls.
+Step 1: -First add UserControl
+Right click on project → Add → New item → Search user → WebFormsUSerControl → Add.
+  
+
+
+
+Design
+  
+
+Code:-
+WebUserControl.ascx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+namespace practical4_3
+{
+    public partial class WebUserControl1 : System.Web.UI.UserControl
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Label3.Text = "Your Name: "+ TextBox1.Text + "<br/>" +
+                "City: " + TextBox2.Text;
+        }
+    }
+}
+
+
+	
+
+  
+
+
+
+WebForm1.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4_3.WebForm1" %>
+<%@ Register Src="~/WebUserControl1.ascx" TagPrefix="uc1" TagName="Student" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <uc1:Student runat="server"></uc1:Student>
+        </div>
+    </form>
+</body>
+</html>
+	
+
+  
+
+Output:-
+  
+
+  
+
+  
+________________
+
+Practical No:-6
+
+
+Aim: Working with Navigation, Beautification and Master page.
+
+
+1. Create a web application to demonstrate use of Master Page with applying Styles and Themes for page beautification.
+
+
+Steps 1: Creating 4 web form
+Right click on project → Add -> New item → Search Web forms with master page → select 
+Step 2:  Click on Web Forms Master Page.
+  
+
+
+
+Step 3: Click on site.Master
+  
+
+
+
+Webform1.aspx
+Source code: -
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical6.WebForm1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+     <!-- Hero Section -->
+    <div style="background:linear-gradient(to right, #2c3e50, #34495e);
+                padding:70px; text-align:center; color:white;">
+        <h1 style="font-size:45px; margin-bottom:10px;">
+            The Book Hub
+        </h1>
+        <p style="font-size:18px; margin-bottom:25px;">
+            Discover Books That Inspire, Educate & Entertain
+        </p>
+        <asp:Button runat="server" Text="Explore Books"
+            Style="padding:12px 35px; font-size:16px;
+            background:#e67e22; color:white; border:none; border-radius:6px;" />
+    </div>
+
+
+    <!-- Welcome Section -->
+    <div style="padding:50px; text-align:center;">
+        <h2 style="color:#2c3e50;">Welcome to The Book Hub</h2>
+        <p style="font-size:16px; color:#555; max-width:800px; margin:auto;">
+            The Book Hub is your trusted online bookstore offering a wide range of books 
+            including fiction, non-fiction, academic, self-help, and children's books.
+            We aim to make reading accessible, affordable, and enjoyable for everyone.
+        </p>
+    </div>
+
+
+    <!-- Categories Section -->
+    <div style="background:#f4f6f8; padding:50px;">
+        <h2 style="text-align:center; color:#2c3e50;">Our Categories</h2>
+        <table style="width:100%; margin-top:30px; text-align:center; font-size:17px;">
+            <tr>
+                <td>📘 Fiction</td>
+                <td>📗 Non-Fiction</td>
+                <td>📕 Academic</td>
+                <td>📙 Children</td>
+            </tr>
+            <tr>
+                <td>📓 Self-Help</td>
+                <td>📔 Novels</td>
+                <td>📚 Competitive Exams</td>
+                <td>📖 Biographies</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- Featured Books -->
+    <div style="padding:50px; text-align:center;">
+        <h2 style="color:#2c3e50;">Featured Books</h2>
+        <table style="width:100%; margin-top:30px;">
+            <tr>
+                <td>
+                    <b>Atomic Habits</b><br />
+                    James Clear<br />
+                    ₹499<br /><br />
+                    <asp:Button runat="server" Text="View Details" />
+                </td>
+                <td>
+                    <b>The Alchemist</b><br />
+                    Paulo Coelho<br />
+                    ₹399<br /><br />
+                    <asp:Button runat="server" Text="View Details" />
+                </td>
+                <td>
+                    <b>Think Like a Monk</b><br />
+                    Jay Shetty<br />
+                    ₹450<br /><br />
+                    <asp:Button runat="server" Text="View Details" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- Why Choose Us -->
+    <div style="background:#f9f9f9; padding:50px; text-align:center;">
+        <h2 style="color:#2c3e50;">Why Choose The Book Hub?</h2>
+        <p style="font-size:16px; color:#555;">
+            ✔ Wide collection of quality books <br />
+            ✔ Affordable pricing <br />
+            ✔ Secure and easy ordering <br />
+            ✔ Fast delivery across India
+        </p>
+    </div>
+
+
+    <!-- Call To Action -->
+    <div style="background:#2c3e50; padding:40px; text-align:center; color:white;">
+        <h2>Start Your Reading Journey Today</h2>
+        <p>Explore thousands of books at The Book Hub</p>
+    </div>
+
+
+</asp:Content>
+	
+
+Webform2.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="practical6.WebForm2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+ <div style="background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            padding:80px; text-align:center; color:white;">
+    <h1 style="font-size:48px;">About The Book Hub</h1>
+    <p style="font-size:20px; max-width:800px; margin:auto;">
+        Connecting Readers with the Power of Books
+    </p>
+</div>
+
+
+    <!-- Who We Are -->
+    <div style="padding:70px; background:#ffffff;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:55%; padding-right:40px;">
+                    <h2 style="color:#2c3e50; font-size:32px;">Who We Are</h2>
+                    <p style="font-size:17px; color:#555; line-height:1.8;">
+                        The Book Hub is a vibrant online bookstore crafted for passionate readers, students, and lifelong learners.  
+                        We are a team of bibliophiles who believe in the transformative power of books — they educate, inspire, and connect people across the world.
+                        <br /><br />
+                        Our platform offers a thoughtfully curated collection of fiction, non-fiction, academic, self-help, and children’s books.  
+                        We strive to create a seamless online shopping experience that makes reading accessible, enjoyable, and affordable for everyone.
+                    </p>
+                </td>
+                <td style="width:45%; text-align:center;">
+                   <div style="height:280px; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center;">
+    
+    <asp:Image ID="imgAboutBook" runat="server"
+        ImageUrl="~/Images/book.jpg"
+        Style="height:100%; 
+               width:100%; 
+               object-fit:contain; 
+               border-radius:10px;" />
+</div>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- Stats Section -->
+    <div style="background:#2c3e50; padding:60px; color:white; text-align:center;">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <h2 style="font-size:36px;">10K+</h2>
+                    <p>Books Available</p>
+                </td>
+                <td>
+                    <h2 style="font-size:36px;">5K+</h2>
+                    <p>Happy Readers</p>
+                </td>
+                <td>
+                    <h2 style="font-size:36px;">100+</h2>
+                    <p>Authors</p>
+                </td>
+                <td>
+                    <h2 style="font-size:36px;">24/7</h2>
+                    <p>Support</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- Mission & Vision Cards -->
+    <div style="padding:70px; background:#f8f9fa;">
+        <table style="width:100%; text-align:center;">
+            <tr>
+                <td style="padding:25px;">
+                    <div style="background:white; padding:40px; border-radius:10px;
+                                box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+                        <h2 style="color:#27ae60;">Our Mission</h2>
+                        <p style="font-size:16px; color:#555;">
+                            To inspire a love for reading by making high-quality books accessible
+                            and affordable to readers of all ages.
+                        </p>
+                    </div>
+                </td>
+                <td style="padding:25px;">
+                    <div style="background:white; padding:40px; border-radius:10px;
+                                box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+                        <h2 style="color:#2980b9;">Our Vision</h2>
+                        <p style="font-size:16px; color:#555;">
+                            To become the most trusted online bookstore known for quality,
+                            customer satisfaction, and a passion for reading.
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- Why Choose Us -->
+<div style="padding:30px 20px; background:#ffffff; text-align:center;">
+    <h2 style="font-size:28px; color:#2c3e50; margin-bottom:20px;">Why Choose The Book Hub?</h2>
+    <table style="width:100%; margin-top:20px;">
+        <tr>
+            <td>
+                <div style="background:#ecf0f1; padding:20px; border-radius:8px;">
+                    📚 <br /><br />
+                    Wide Range of Books
+                </div>
+            </td>
+            <td>
+                <div style="background:#ecf0f1; padding:20px; border-radius:8px;">
+                    💰 <br /><br />
+                    Affordable Pricing
+                </div>
+            </td>
+            <td>
+                <div style="background:#ecf0f1; padding:20px; border-radius:8px;">
+                    🔒 <br /><br />
+                    Secure Payments
+                </div>
+            </td>
+            <td>
+                <div style="background:#ecf0f1; padding:20px; border-radius:8px;">
+                    🚚 <br /><br />
+                    Fast Delivery
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+    <!-- Closing Banner -->
+    <div style="background:#2c3e50; padding:50px; text-align:center; color:white;">
+        <h2>Thank You for Being Part of The Book Hub</h2>
+        <p>Your journey into the world of books starts here</p>
+    </div>
+
+
+</asp:Content>
+	
+
+Webform3.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebForm3.aspx.cs" Inherits="practical6.WebForm3" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+  <!-- Hero Section -->
+    <div style="background:linear-gradient(to right, #2c3e50, #34495e);
+                padding:80px 20px; text-align:center; color:white;">
+        <h1 style="font-size:45px; margin-bottom:15px;">
+            Contact The Book Hub
+        </h1>
+        <p style="font-size:18px; max-width:800px; margin:auto; margin-bottom:30px;">
+            Have questions or suggestions? Reach out to us and let’s make your reading experience amazing!
+        </p>
+    </div>
+
+
+    <!-- Contact Info Section -->
+    <div style="max-width:900px; margin:50px auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:25px;">
+
+
+        <!-- Address Card -->
+        <div style="background:#dfe6e9; color:#2c3e50; flex:1 1 200px; min-width:200px; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
+            <div style="font-size:32px; margin-bottom:15px;">📍</div>
+            <h3 style="margin-bottom:10px; font-size:20px;">Address</h3>
+            <p>123 Book Street, Knowledge City, 45678</p>
+        </div>
+
+
+        <!-- Phone Card -->
+        <div style="background:#dfe6e9; color:#2c3e50; flex:1 1 200px; min-width:200px; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
+            <div style="font-size:32px; margin-bottom:15px;">📞</div>
+            <h3 style="margin-bottom:10px; font-size:20px;">Phone</h3>
+            <p>+1 234 567 890 <br /> +1 987 654 321</p>
+        </div>
+
+
+        <!-- Email Card -->
+        <div style="background:#dfe6e9; color:#2c3e50; flex:1 1 200px; min-width:200px; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
+            <div style="font-size:32px; margin-bottom:15px;">✉</div>
+            <h3 style="margin-bottom:10px; font-size:20px;">Email</h3>
+            <p>support@thebookhub.com <br /> info@thebookhub.com</p>
+        </div>
+
+
+        <!-- Working Hours Card -->
+        <div style="background:#dfe6e9; color:#2c3e50; flex:1 1 200px; min-width:200px; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
+            <div style="font-size:32px; margin-bottom:15px;">⏰</div>
+            <h3 style="margin-bottom:10px; font-size:20px;">Working Hours</h3>
+            <p>Mon - Sat: 9:00 AM - 6:00 PM</p>
+        </div>
+
+
+    </div>
+
+
+    <div style="background:#f9f9f9; padding:40px; text-align:center; border-radius:12px;">
+
+
+    <h2 style="color:#2c3e50;">Visit Our Store</h2>
+    <p style="font-size:16px; color:#555;">
+        📍 ABC Road, Mumbai, India <br />
+        📞 +91 9876543210 <br />
+        📧 support@thebookhub.com <br />
+        🕒 Mon - Sat: 10AM - 8PM
+    </p>
+
+
+</div>
+
+
+
+
+    <!-- Footer Note -->
+    <div style="text-align:center; margin-bottom:80px; color:#555; max-width:700px; margin-left:auto; margin-right:auto;">
+        <p style="font-size:16px;">
+            We’re always here to help you find the perfect book. Visit, call, or email us anytime!
+        </p>
+    </div>
+</asp:Content>
+	
+
+Webform4.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebForm4.aspx.cs" Inherits="practical6.WebForm4" %>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Book Information - The Book Hub</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+
+        <!-- Hero Section -->
+        <div style="background:linear-gradient(to right, #2c3e50, #34495e);
+                    padding:70px 20px; text-align:center; color:white;">
+            <h1 style="font-size:45px; margin-bottom:15px;">
+                Explore Our Books
+            </h1>
+            <p style="font-size:18px; max-width:800px; margin:auto;">
+                Discover novels, fiction, and more curated just for you.
+            </p>
+        </div>
+
+
+        <!-- Book List Section -->
+        <div style="max-width:1000px; margin:50px auto; display:flex; flex-wrap:wrap; gap:30px; justify-content:center;">
+            <asp:Repeater ID="rptBooks" runat="server">
+                <ItemTemplate>
+                    <div style="background:#ecf0f1; width:250px; padding:15px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
+
+
+                        <!-- Book Image -->
+                        <div style="height:300px; width:290px; 
+            margin:auto; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            background:white; 
+            border-radius:10px; 
+            margin-bottom:20px;">
+
+
+    <asp:Image ID="imgBook" runat="server"
+        ImageUrl='<%# Eval("ImageUrl") %>'
+        Style="max-height:100%; 
+               max-width:100%; 
+               object-fit:contain;" />
+</div>
+
+
+
+
+
+
+                        <h3 style="margin:0 0 5px; color:#2c3e50;"><%# Eval("Title") %></h3>
+                        <p style="margin:0 0 10px; font-size:14px; color:#555;">by <%# Eval("Author") %></p>
+                        <p style="font-size:13px; color:#666; height:60px; overflow:hidden;"><%# Eval("Description") %></p>
+
+
+                        <asp:Button runat="server" Text="Buy Now"
+                            CommandArgument='<%# Eval("Title") %>'
+                            OnClick="BuyNow_Click"
+                            Style="margin-top:10px; padding:10px 25px; background:#e67e22; color:white; border:none; border-radius:6px; cursor:pointer;" />
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+
+
+                <!-- Footer Section -->
+        <div style="background:#2c3e50; color:white; padding:30px 20px; margin-top:40px;">
+            
+<div style="max-width:800px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between;">
+                
+                <!-- About -->
+                <div style="width:250px; margin-bottom:20px;">
+                    <h3 style="margin-bottom:15px;">The Book Hub</h3>
+                    <p style="font-size:14px; line-height:1.6; color:#ccc;">
+                        Your one-stop destination for fiction, non-fiction, academic and inspirational books.
+                        We connect readers with the power of stories.
+                    </p>
+                </div>
+
+
+                <!-- Quick Links -->
+                <div style="width:200px; margin-bottom:20px;">
+                    <h3 style="margin-bottom:15px;">Quick Links</h3>
+                    <p><a href="#" style="color:#ccc; text-decoration:none;">Home</a></p>
+                    <p><a href="#" style="color:#ccc; text-decoration:none;">About</a></p>
+                    <p><a href="#" style="color:#ccc; text-decoration:none;">Books</a></p>
+                    <p><a href="#" style="color:#ccc; text-decoration:none;">Contact</a></p>
+                </div>
+
+
+                <!-- Contact -->
+                <div style="width:250px; margin-bottom:20px;">
+                    <h3 style="margin-bottom:15px;">Contact Us</h3>
+                    <p style="color:#ccc;">📧 info@thebookhub.com</p>
+                    <p style="color:#ccc;">📞 +91 9876543210</p>
+                    <p style="color:#ccc;">📍 India</p>
+                </div>
+
+
+            </div>
+
+
+            <!-- Bottom Copyright -->
+            <div style="text-align:center; margin-top:15px; border-top:1px solid #444; padding-top:10px; font-size:14px; color:#bbb;">
+                © 2025 The Book Hub | All Rights Reserved
+            </div>
+
+
+        </div>
+
+
+
+
+        <script runat="server">
+
+
+            // Book model
+            public class Book
+            {
+                public string Title { get; set; }
+                public string Author { get; set; }
+                public string Genre { get; set; }
+                public string Description { get; set; }
+                public string ImageUrl { get; set; }   // Added
+            }
+
+
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                if (!IsPostBack)
+                {
+                    var books = new System.Collections.Generic.List<Book>
+                    {
+                        new Book {
+                            Title="To Kill a Mockingbird",
+                            Author="Harper Lee",
+                            Genre="Fiction / Classic",
+                            Description="A timeless novel exploring racial injustice and moral growth in the Deep South.",
+                            ImageUrl="Images/mockbrid.jpg"
+                        },
+                        new Book {
+                            Title="1984",
+                            Author="George Orwell",
+                            Genre="Dystopian / Political Fiction",
+                            Description="A chilling depiction of a totalitarian regime and the dangers of surveillance and censorship.",
+                            ImageUrl="Images/1984.jpg"
+                        },
+                        new Book {
+                            Title="The Alchemist",
+                            Author="Paulo Coelho",
+                            Genre="Adventure / Philosophy",
+                            Description="A journey of self-discovery as a young shepherd searches for his personal legend.",
+                            ImageUrl="Images/The alchemist.jpg"
+                        },
+                        new Book {
+                            Title="Pride and Prejudice",
+                            Author="Jane Austen",
+                            Genre="Romance / Classic",
+                            Description="A witty exploration of love, family, and social expectations in 19th century England.",
+                            ImageUrl="Images/pride.jpg"
+                        },
+                        new Book {
+                            Title="Sapiens",
+                            Author="Yuval Noah Harari",
+                            Genre="History / Non-fiction",
+                            Description="An engaging overview of human evolution, culture, and the forces shaping our societies.",
+                            ImageUrl="Images/sapiens.png"
+                        },
+                        new Book {
+                            Title="The Hobbit",
+                            Author="J.R.R. Tolkien",
+                            Genre="Fantasy / Adventure",
+                            Description="Bilbo Baggins embarks on a thrilling adventure to win treasure guarded by a dragon.",
+                            ImageUrl="Images/hobbit.jpg"
+                        }
+                    };
+
+
+                    rptBooks.DataSource = books;
+                    rptBooks.DataBind();
+                }
+            }
+
+
+
+
+            protected void BuyNow_Click(object sender, EventArgs e)
+            {
+                var btn = (System.Web.UI.WebControls.Button)sender;
+                string bookTitle = btn.CommandArgument;
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    $"alert('You selected: {bookTitle}');", true);
+            }
+
+
+        </script>
+
+
+    </form>
+</body>
+</html>
+	
+
+For Importing image in code: -
+Right click on project → Add → New folder → Name of folder: -Images → Put all downloaded images in the folder.
+
+
+  
+
+Site1.master
+Source code: -
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="practical6.SiteMaster" %>
+
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+
+
+                <!-- Logo / Brand -->
+                <a class="navbar-brand" runat="server" href="~/WebForm1.aspx">
+                    The Book Hub
+                </a>
+
+
+                <!-- Toggle Button -->
+                <button type="button" class="navbar-toggler"
+                    data-bs-toggle="collapse"
+                    data-bs-target=".navbar-collapse"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <!-- Menu Links -->
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/WebForm1.aspx">
+                                Home
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/WebForm2.aspx">
+                                About Us
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/WebForm3.aspx">
+                                Contact
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/WebForm4.aspx">
+                                Book Information
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </nav>
+
+
+        <!-- Main Content -->
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+            <hr />
+
+
+            <!-- Footer -->
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - The Book Hub</p>
+            </footer>
+        </div>
+
+
+    </form>
+
+
+    <!-- Bootstrap Script -->
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+    </asp:PlaceHolder>
+
+
+</body>
+</html>
+<!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+
+
+                <!-- Logo / Brand -->
+                <a class="navbar-brand" runat="server" href="~/WebForm1.aspx">
+                    The Book Hub
+                </a>
+
+
+                <!-- Toggle Button -->
+                <button type="button" class="navbar-toggler"
+                    data-bs-toggle="collapse"
+                    data-bs-target=".navbar-collapse"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <!-- Menu Links -->
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/WebForm1.aspx">
+                                Home
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/WebForm2.aspx">
+                                About Us
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/WebForm3.aspx">
+                                Contact
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/WebForm4.aspx">
+                                Book Information
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </nav>
+
+
+        <!-- Main Content -->
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+            <hr />
+
+
+            <!-- Footer -->
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - The Book Hub</p>
+            </footer>
+        </div>
+
+
+    </form>
+    <!-- Bootstrap Script -->
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+    </asp:PlaceHolder>
+
+
+</body>
+</html>
+	
+
+________________
+
+
+ScreenShot:-
+Webform1.aspx
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Webform2.aspx
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Webform3.aspx
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Webform4.aspx
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Site1.master
+  
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Output:-
+  
+
+  
+
+  
+
+
+
+
+
+
+
+About us page
+  
+
+  
+
+  
+
+
+
+
+
+  
+
+
+
+Contact us page
+  
+
+
+
+  
+
+
+
+
+
+
+
+Book Information page
+  
+
+
+
+  
+
+
+
+  
+
+________________
+
+
+Practical No:-7
+
+
+* Working with Database using data controls
+
+
+1. Create a web application bind data in a multiline textbox by querying in
+another textbox.
+
+
+1)Steps to create table in SQL
+
+
+Go to the SQL Server management server
+  
+
+
+
+Create new database
+  
+
+
+
+Click on Add and ok
+  
+
+
+
+Write new query: -
+On database 6406_IT → right click → new query
+  
+
+
+
+  
+
+
+
+Select Entire query →Execute
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+Right Click on dbo.student → Design
+  
+
+
+
+Inserting data
+Steps: -
+  
+
+Inserting
+Insert 5-10 data same
+  
+
+
+
+  
+
+  
+
+2)Connect the SQL Server with Visual Studio Code
+Go to Server Explorer and Right click on Data Connection and Add connection 
+  
+
+
+
+Right click on data collections: -
+Data collections → right click on add new connection → Go to change 
+  
+
+
+
+Checked on Alwasy…. And click ok.
+  
+
+
+
+* Server name : - .
+* Checked on Trust server certificate
+* In select or enter database name :- select your database.
+* Click on test connection 
+  
+
+
+
+Click on ok.
+  
+
+
+
+  
+
+
+
+  
+
+
+
+3)Design UI and  Write code to fetch the data from the database
+
+
+Create a Web Form
+  
+
+
+
+ Go to Design and add a TextBox and change the TextMode from SingleLine to MultiLine.
+  
+
+
+
+  
+
+Add a ListBox
+  
+
+
+
+In Unbound →Choose the DataSource → Select new data  source   
+
+
+Select database
+  
+
+
+
+* Select your connection name → checked on connection string
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+Click on test query
+  
+
+
+
+Now check In web.config file connection string.
+  
+
+
+
+Design :
+  
+
+
+
+Code:-
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+
+
+
+
+namespace Database
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string connStr =
+        ConfigurationManager.ConnectionStrings["6406_ITConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand(TextBox1.Text, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            ListBox1.Items.Clear();
+            while(reader.Read())
+            {
+                //To add new blank line in the area
+                for(int i=0; i<reader.FieldCount; i++)
+                {
+                    ListBox1.Items.Add(reader[i].ToString());
+                }
+            }
+            reader.Close();
+            con.Close();
+        }
+    }
+}
+	
+
+Screenshot:
+  
+
+
+
+Output:
+
+
+Write the query in TextBox and Click on Button
+  
+
+
+
+
+
+________________
+
+
+B. Create a web application to display Data Binding using dropdown list
+Control.
+
+
+Create new database
+  
+
+
+
+Click on Add and ok
+  
+
+
+
+
+
+
+
+Write new query: -
+On database 6406_IT → right click → new query
+  
+
+
+
+  
+
+
+
+Select Entire query →Execute
+  
+
+
+
+  
+
+
+
+Right Click on dbo.student → Design
+  
+
+
+
+Inserting data
+Steps: -
+  
+
+Inserting
+Insert 5-10 data same
+  
+
+
+
+  
+
+  
+
+Open visual studio
+  
+
+
+
+Right click on data collections: -
+Data collections → right click on add new connection → Go to change 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Checked on Alwasy…. And click ok.
+  
+
+
+
+* Server name : - .
+* Checked on Trust server certificate
+* In select or enter database name :- select your database.
+* Click on test connection 
+  
+
+
+
+Click on ok.
+  
+
+
+
+  
+
+
+
+Click on Employee table
+  
+
+Add web forms
+  
+
+Design
+In toolbox selet dropdown 
+  
+
+
+
+Select button,Label
+  
+
+
+
+In unbound select →  Choose Data source
+In none select new data source
+  
+
+
+
+Select database
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Select your connection name → checked on connection string
+  
+
+
+
+  
+
+
+
+  
+
+
+
+Click on test query
+  
+
+
+
+
+
+Final design
+  
+
+
+
+Now check in web.config fileo see if the connection string=”6406_Pract6BConnectionString” is there.
+  
+
+
+
+
+
+
+
+
+
+
+
+Remove DataSourceID  from webForm 1.aspx to slove the error od data binding.
+  
+
+Code:-
+WebForm1.cs
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+namespace practical6B
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if(IsPostBack == false)
+            {
+                string conStr = ConfigurationManager.ConnectionStrings["6406_ITConnectionString"].ConnectionString;
+                SqlConnection con = new SqlConnection(conStr);
+                SqlCommand cmd = new SqlCommand("Select Distinct dept from Employee", con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                DropDownList1.DataSource = reader;
+                DropDownList1.DataTextField = "dept";
+                DropDownList1.DataBind();
+                reader.Close();
+                con.Close();
+            }
+        }
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Label1.Text = "You Have Selected " + DropDownList1.SelectedValue;
+        }
+    }
+}
+	
+
+Screenshot:-
+  
+
+Output:-
+  
+
+
+
+  
+
+
+
+  
+
+Practical No:-8
+
+
+Aim: Working with GridView control.
+
+
+A. Create a web application to demonstrate use of GridView control to fetch data from database and demonstrate paging on gridview control.
+
+
+First connect the database
+Step 1: -
+* Go to SQL Server :-
+  
+
+
+
+* Click on connect
+  
+
+  
+
+
+
+Step 2: Open visual studio
+
+
+Add connections
+
+
+* Right click on data collections: -
+Data collections → right click on add new connection → Go to change 
+  
+
+
+
+* Server name : - .
+* Checked on Trust server certificate
+* In select or enter database name :- select your database.
+* Click on test connection 
+
+
+
+
+  
+
+
+
+* Click on ok.
+
+
+  
+
+Step 3: Write a query in Visual studio.
+* Right click on Tables → New query
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+* SELECT * FROM data
+  
+
+
+
+Step 4 : Add Web form
+
+
+  
+
+Step 5: Design
+* In the toolbox select GridView.
+* In data source → select new data source 
+  
+
+
+
+  
+
+
+
+* Select Database → click ok
+  
+
+
+
+
+
+
+
+
+
+* Select your connection.
+  
+
+
+
+  
+
+  
+
+
+
+* Click Test query
+  
+
+  
+
+
+
+Step 6: - In design → 
+* Checked on Enable paging And
+* Enable sorting
+  
+
+
+
+* Go to configure data source
+  
+
+
+
+* Click Next → Test query → finish
+
+
+Step 6: - Go to Edit columns  
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+Add Pagesize in source Code
+WebForm1
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="_6406_Practical8_A.WebForm1" %>
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1" PageSize="3">
+            </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:6406_ITConnectionString %>" SelectCommand="SELECT * FROM [Employee1]"></asp:SqlDataSource>
+        </div>
+    </form>
+</body>
+</html>
+	
+
+  
+
+
+
+Design After Adding PageSize=”3”
+  
+
+
+
+
+
+
+
+Output:-
+  
+
+
+
+  
+
+
+
+________________
+
+
+B] Create a web application to demonstrate use of GridView control to update and delete data from the database.
+
+
+Continue In the Same database.
+
+
+Step 1: In design
+* Go to SqlDataSource1 → configure data source
+  
+
+
+
+* Select your connection string → click ok.
+  
+
+
+
+* Click on Advanced
+  
+
+
+
+* Click on Generate
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Click on Test query → finish
+  
+
+
+
+Step 2: Go to Edit column → Click on Enable on Editing, Deleting
+  
+
+
+
+
+
+
+
+After doing all the steps, the code in the WebForm1.aspx file will be automatically changed.
+
+
+Add pageSize if not there in code.
+  
+
+
+
+Source Code: -
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="_6412_Practical8.WebForm1" %>
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1" Width="297px" PageSize="3" AutoGenerateColumns="False" DataKeyNames="ID" Height="129px">
+                <Columns>
+                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                    <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
+                    <asp:BoundField DataField="FNAME" HeaderText="FNAME" SortExpression="FNAME" />
+                    <asp:BoundField DataField="LNAME" HeaderText="LNAME" SortExpression="LNAME" />
+                </Columns>
+            </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:6412_ITConnectionString2 %>" SelectCommand="SELECT * FROM [Employee]" DeleteCommand="DELETE FROM [Employee] WHERE [ID] = @ID" InsertCommand="INSERT INTO [Employee] ([ID], [FNAME], [LNAME]) VALUES (@ID, @FNAME, @LNAME)" UpdateCommand="UPDATE [Employee] SET [FNAME] = @FNAME, [LNAME] = @LNAME WHERE [ID] = @ID">
+                <DeleteParameters>
+                    <asp:Parameter Name="ID" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="ID" Type="Int32" />
+                    <asp:Parameter Name="FNAME" Type="String" />
+                    <asp:Parameter Name="LNAME" Type="String" />
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="FNAME" Type="String" />
+                    <asp:Parameter Name="LNAME" Type="String" />
+                    <asp:Parameter Name="ID" Type="Int32" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+        </div>
+    </form>
+</body>
+</html>
+	
+
+Output:-
+  
+
+Edit Name
+  
+
+After Changing Name
+  
+
+Delete the column
+  
+
+
+
+
+
+
+
+
+
+* Now check in SQL Query
+  
+
+
+
+Note: - If Delete function is not working properly So Add In WebForm.aspx file 
+
+
+In GridView Line 
+  
+After DataSourceID Add DayaKeyNames = “ID”
+________________
+
+
+Practical No:-9
+
+
+Working with GridView control
+
+
+A. Create a web application to demonstrate reading and writing operations with XML
+Step 1: Create a 2 XML file.
+  
+
+
+
+Step 2:Design:
+(ToolBox-->Search for GridView)
+  
+
+
+
+  
+
+Add data in control form
+Click on new data source →XML file → Browse and select XMLFile1 → Click on OK
+  
+
+
+
+Next  step is , Click On Browse and select XMLFile1.xml.
+  
+
+
+
+  
+
+
+
+Design:-
+  
+
+
+
+Code:-
+GridViewControl.cs
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Xml;
+
+
+namespace practical7
+{
+    public partial class GreedViewControl : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+        }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            ds.ReadXml(Server.MapPath("XMLFile1.xml"));
+            GridView1.DataSource = ds.Tables[0].DefaultView;
+            GridView1.DataBind();
+        }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            using(XmlWriter xmlW = XmlWriter.Create(@"D:\6406_AWD\practical7\practical7\XMLFile2.xml"))
+            {
+                xmlW.WriteStartElement("student");
+                xmlW.WriteElementString("name", "Shraddha");
+                xmlW.WriteElementString("age", "20");
+                xmlW.WriteEndElement();
+            }
+            Response.Write("OK");
+        }
+
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+    }
+}
+	
+
+GridViewControl.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GreedViewControl.aspx.cs" Inherits="practical7.GreedViewControl" %>
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" style="margin-left: 26px" Text="READ" Width="111px" />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" style="margin-left: 43px" Text="WRITE" Width="111px" />
+        <div>
+           <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Height="193px" Width="393px">
+            <Columns>
+                <asp:BoundField DataField="id" HeaderText="ID" />
+                <asp:BoundField DataField="name" HeaderText="Name" />
+            </Columns>
+            </asp:GridView>
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/XMLFile1.xml"></asp:XmlDataSource>
+            <br />
+        </div>
+    </form>
+</body>
+</html>
+	
+
+XMLFile1.xml
+<?xml version="1.0" encoding="utf-8" ?>
+<students>
+        <student>
+                <id>101</id>
+                <name>Shraddha</name>
+        </student>
+</students>
+	
+
+Screenshot:-
+GridViewControl.aspx
+  
+
+
+
+GridViewControl.cs
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+Output:-
+  
+
+
+
+When clicking on READ
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+When clicking on WRITE
+  
+
+
+
+After clicking on write it will also print the output XMLFile2
+  
+
+
+
+Final design
+  
+
+
+
+
+
+
+
+________________
+
+
+B. Create a web application to demonstrate use of various Ajax controls.
+
+
+Toolbox → Add scriptmanager
+  
+
+
+
+ Updatepanel → Inside updatepanel add only button -Partial Postback 
+  
+
+
+
+  
+
+Design:- 
+  
+
+
+
+Click on Both button
+  
+
+
+
+AJAX_Partialpostback.aspx.cs file
+Source Code: -
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace _6406_AJAX
+{
+    public partial class AJAX_Partial_post_back : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+
+        protected void Button1_Click(object sender , EventArgs e)
+        {
+            string time = DateTime.Now.ToLongTimeString();
+            Label2.Text = "Showing time for panel1 " + time;
+        }
+
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            string time = DateTime.Now.ToLongTimeString();
+            Label3.Text = "Showing time for outside panel1 " + time;
+        }
+    }
+}
+	
+
+Screenshot of code: -
+  
+
+Next step is, In design page → go to the Source
+
+
+* In this code adding only this line of code: -
+<br /> 
+<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+ <br />
+	
+
+  
+
+
+
+Output: -
+  
+
+When clicking on the partial postback button.
+  
+
+
+
+When clicking on the total postback button.
